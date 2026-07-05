@@ -1,0 +1,267 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Home"
+msgstr "Home"
+
+msgid "About Us"
+msgstr "About Us"
+
+msgid "Products"
+msgstr "Products"
+
+msgid "Contact Us"
+msgstr "Contact Us"
+
+msgid "Get in Touch"
+msgstr "Get in Touch"
+
+msgid "Newsletter"
+msgstr "Newsletter"
+
+msgid ""
+"Subscribe to our newsletter to get the latest updates and luxury offers."
+msgstr ""
+"Subscribe to our newsletter to get the latest updates and luxury offers."
+
+msgid "Success!"
+msgstr "Success!"
+
+msgid "You have been added to our email list."
+msgstr "You have been added to our email list."
+
+msgid "Email Address"
+msgstr "Email Address"
+
+msgid "Subscribe"
+msgstr "Subscribe"
+
+msgid "Latest Tweets"
+msgstr "Latest Tweets"
+
+msgid "Please wait..."
+msgstr "Please wait..."
+
+msgid "Tehran, Iran"
+msgstr "Tehran, Iran"
+
+msgid "Follow Us"
+msgstr "Follow Us"
+
+msgid "© 2026 Palace Karimi. All Rights Reserved."
+msgstr "© 2026 Palace Karimi. All Rights Reserved."
+
+msgid "Designed & Developed by"
+msgstr "Designed & Developed by"
+
+msgid "FAQ"
+msgstr "FAQ"
+
+msgid "Sitemap"
+msgstr "Sitemap"
+
+msgid "The Finest Quality"
+msgstr "The Finest Quality"
+
+msgid "PREMIUM SAFFRON"
+msgstr "PREMIUM SAFFRON"
+
+msgid "Experience the true taste of luxury."
+msgstr "Experience the true taste of luxury."
+
+msgid "Exporting Worldwide"
+msgstr "Exporting Worldwide"
+
+msgid "PERSIAN PISTACHIO"
+msgstr "PERSIAN PISTACHIO"
+
+msgid "Hand-picked and premium quality."
+msgstr "Hand-picked and premium quality."
+
+msgid "Palace Karimi"
+msgstr "Palace Karimi"
+
+msgid "YOUR TRUSTED PARTNER"
+msgstr "YOUR TRUSTED PARTNER"
+
+msgid "Providing the best agricultural products."
+msgstr "Providing the best agricultural products."
+
+msgid "Follow us on social media for the latest updates and news!"
+msgstr "Follow us on social media for the latest updates and news!"
+
+msgid ""
+"Experience a secure purchase with the top exporter of authentic Iranian "
+"products"
+msgstr ""
+"Experience a secure purchase with the top exporter of authentic Iranian "
+"products"
+
+msgid "Demand the best quality saffron and pistachio from us."
+msgstr "Demand the best quality saffron and pistachio from us."
+
+msgid "Contact Experts"
+msgstr "Contact Experts"
+
+msgid "or"
+msgstr "or"
+
+msgid "view products."
+msgstr "view products."
+
+msgid "Palace Karimi is a brand that is"
+msgstr "Palace Karimi is a brand that is"
+
+msgid "Authentic"
+msgstr "Authentic"
+
+msgid "High Quality"
+msgstr "High Quality"
+
+msgid "Global"
+msgstr "Global"
+
+msgid "and a secure choice for export."
+msgstr "and a secure choice for export."
+
+msgid ""
+"With years of experience in cultivation, processing, and exporting the "
+"finest Iranian saffron and pistachio, we offer quality and authenticity to "
+"global markets. All our products are packaged and shipped with international"
+" standards."
+msgstr ""
+"With years of experience in cultivation, processing, and exporting the "
+"finest Iranian saffron and pistachio, we offer quality and authenticity to "
+"global markets. All our products are packaged and shipped with international"
+" standards."
+
+msgid "Experience the pinnacle of luxury with Palace Karimi"
+msgstr "Experience the pinnacle of luxury with Palace Karimi"
+
+msgid "Consultation"
+msgstr "Consultation"
+
+msgid "Harvesting"
+msgstr "Harvesting"
+
+msgid "Processing"
+msgstr "Processing"
+
+msgid "Packaging"
+msgstr "Packaging"
+
+msgid "Global Export"
+msgstr "Global Export"
+
+msgid "New"
+msgstr "New"
+
+msgid "View Details"
+msgstr "View Details"
+
+msgid "No products available."
+msgstr "No products available."
+
+msgid "Why Choose"
+msgstr "Why Choose"
+
+msgid "Palace Karimi?"
+msgstr "Palace Karimi?"
+
+msgid "100% Organic"
+msgstr "100% Organic"
+
+msgid "Pure, natural products cultivated without harmful chemicals."
+msgstr "Pure, natural products cultivated without harmful chemicals."
+
+msgid "Premium Quality"
+msgstr "Premium Quality"
+
+msgid "Export-grade saffron and pistachio carefully hand-picked."
+msgstr "Export-grade saffron and pistachio carefully hand-picked."
+
+msgid "Luxury Packaging"
+msgstr "Luxury Packaging"
+
+msgid "Elegant and secure packaging maintaining freshness and aroma."
+msgstr "Elegant and secure packaging maintaining freshness and aroma."
+
+msgid "Lab Certified"
+msgstr "Lab Certified"
+
+msgid "Rigorous laboratory testing for color, flavor, and purity."
+msgstr "Rigorous laboratory testing for color, flavor, and purity."
+
+msgid "Direct from Farms"
+msgstr "Direct from Farms"
+
+msgid "Sourced directly from the best Iranian agricultural lands."
+msgstr "Sourced directly from the best Iranian agricultural lands."
+
+msgid "Wholesale Supply"
+msgstr "Wholesale Supply"
+
+msgid "Capability to fulfill bulk orders for businesses worldwide."
+msgstr "Capability to fulfill bulk orders for businesses worldwide."
+
+msgid "24/7 Support"
+msgstr "24/7 Support"
+
+msgid "Dedicated customer service and consultation for our partners."
+msgstr "Dedicated customer service and consultation for our partners."
+
+msgid "Our Guarantees"
+msgstr "Our Guarantees"
+
+msgid "Authenticity Guarantee"
+msgstr "Authenticity Guarantee"
+
+msgid ""
+"We guarantee that all our saffron and pistachios are 100% authentic Persian "
+"products, free from any artificial additives or coloring."
+msgstr ""
+"We guarantee that all our saffron and pistachios are 100% authentic Persian "
+"products, free from any artificial additives or coloring."
+
+msgid "International Standards"
+msgstr "International Standards"
+
+msgid ""
+"Our products are processed and packaged strictly according to international "
+"food safety and hygiene standards."
+msgstr ""
+"Our products are processed and packaged strictly according to international "
+"food safety and hygiene standards."
+
+msgid "Custom White-Labeling"
+msgstr "Custom White-Labeling"
+
+msgid ""
+"We offer exclusive custom packaging and white-labeling services for your "
+"brand to stand out in the global market."
+msgstr ""
+"We offer exclusive custom packaging and white-labeling services for your "
+"brand to stand out in the global market."
+
+msgid "We proudly export our products to"
+msgstr "We proudly export our products to"
+
+msgid "Europe"
+msgstr "Europe"
+
+msgid "Asia"
+msgstr "Asia"
+
+msgid "Middle East"
+msgstr "Middle East"
+
+msgid ""
+"Trusted by leading international businesses and distributors worldwide."
+msgstr ""
+"Trusted by leading international businesses and distributors worldwide."

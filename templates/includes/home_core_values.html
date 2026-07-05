@@ -1,0 +1,152 @@
+{% load static i18n %}
+<div class="container mb-5 pb-4">
+    <div class="row">
+       <div class="col mb-4"><hr class="my-5" style="border-color: #E8E3D9;"></div>
+    </div>
+
+    <div class="row pb-3">
+       <div class="col-lg-8">
+          <h2 class="font-weight-normal text-7"><strong class="font-weight-extra-bold" style="color: #8A609C;">{% trans 'Why Choose' %}</strong> {% trans 'Palace Karimi?' %}</h2>
+          <div class="row mt-4">
+             <div class="col-sm-6">
+                <div class="feature-box feature-box-style-2 mb-4">
+                   <div class="feature-box-icon"><i class="fas fa-leaf" style="color: #8A609C;"></i></div>
+                   <div class="feature-box-info">
+                      <h4 class="font-weight-bold text-4 mb-0">{% trans '100% Organic' %}</h4>
+                      <p class="mb-0 text-2">{% trans 'Pure, natural products cultivated without harmful chemicals.' %}</p>
+                   </div>
+                </div>
+                <div class="feature-box feature-box-style-2 mb-4">
+                   <div class="feature-box-icon"><i class="fas fa-medal" style="color: #8A609C;"></i></div>
+                   <div class="feature-box-info">
+                      <h4 class="font-weight-bold text-4 mb-0">{% trans 'Premium Quality' %}</h4>
+                      <p class="mb-0 text-2">{% trans 'Export-grade saffron and pistachio carefully hand-picked.' %}</p>
+                   </div>
+                </div>
+                <div class="feature-box feature-box-style-2 mb-4">
+                   <div class="feature-box-icon"><i class="fas fa-gift" style="color: #8A609C;"></i></div>
+                   <div class="feature-box-info">
+                      <h4 class="font-weight-bold text-4 mb-0">{% trans 'Luxury Packaging' %}</h4>
+                      <p class="mb-0 text-2">{% trans 'Elegant and secure packaging maintaining freshness and aroma.' %}</p>
+                   </div>
+                </div>
+                <div class="feature-box feature-box-style-2 mb-4">
+                   <div class="feature-box-icon"><i class="fas fa-globe" style="color: #8A609C;"></i></div>
+                   <div class="feature-box-info">
+                      <h4 class="font-weight-bold text-4 mb-0">{% trans 'Global Export' %}</h4>
+                      <p class="mb-0 text-2">{% trans 'Fast and reliable international shipping to global destinations.' %}</p>
+                   </div>
+                </div>
+             </div>
+             <div class="col-sm-6">
+                <div class="feature-box feature-box-style-2 mb-4">
+                   <div class="feature-box-icon"><i class="fas fa-flask" style="color: #8A609C;"></i></div>
+                   <div class="feature-box-info">
+                      <h4 class="font-weight-bold text-4 mb-0">{% trans 'Lab Certified' %}</h4>
+                      <p class="mb-0 text-2">{% trans 'Rigorous laboratory testing for color, flavor, and purity.' %}</p>
+                   </div>
+                </div>
+                <div class="feature-box feature-box-style-2 mb-4">
+                   <div class="feature-box-icon"><i class="fas fa-tractor" style="color: #8A609C;"></i></div>
+                   <div class="feature-box-info">
+                      <h4 class="font-weight-bold text-4 mb-0">{% trans 'Direct from Farms' %}</h4>
+                      <p class="mb-0 text-2">{% trans 'Sourced directly from the best Iranian agricultural lands.' %}</p>
+                   </div>
+                </div>
+                <div class="feature-box feature-box-style-2 mb-4">
+                   <div class="feature-box-icon"><i class="fas fa-pallet" style="color: #8A609C;"></i></div>
+                   <div class="feature-box-info">
+                      <h4 class="font-weight-bold text-4 mb-0">{% trans 'Wholesale Supply' %}</h4>
+                      <p class="mb-0 text-2">{% trans 'Capability to fulfill bulk orders for businesses worldwide.' %}</p>
+                   </div>
+                </div>
+                <div class="feature-box feature-box-style-2 mb-4">
+                   <div class="feature-box-icon"><i class="fas fa-headset" style="color: #8A609C;"></i></div>
+                   <div class="feature-box-info">
+                      <h4 class="font-weight-bold text-4 mb-0">{% trans '24/7 Support' %}</h4>
+                      <p class="mb-0 text-2">{% trans 'Dedicated customer service and consultation for our partners.' %}</p>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+
+       <div class="col-lg-4">
+          <h2 class="font-weight-normal text-6">{% trans 'Our Guarantees' %}</h2>
+          <div class="accordion accordion-modern mt-4" id="accordion">
+             <div class="card card-default">
+                <div class="card-header">
+                   <h4 class="card-title m-0">
+                      <a class="accordion-toggle text-color-dark font-weight-bold" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                         <i class="fas fa-certificate mr-2" style="color: #8A609C;"></i>
+                         {% trans 'Authenticity Guarantee' %}
+                      </a>
+                   </h4>
+                </div>
+                <div id="collapseOne" class="collapse show">
+                   <div class="card-body text-2">
+                      <p class="mb-0">{% trans 'We guarantee that all our saffron and pistachios are 100% authentic Persian products, free from any artificial additives or coloring.' %}</p>
+                   </div>
+                </div>
+             </div>
+             <div class="card card-default">
+                <div class="card-header">
+                   <h4 class="card-title m-0">
+                      <a class="accordion-toggle text-color-dark font-weight-bold" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                         <i class="fas fa-file-contract mr-2" style="color: #8A609C;"></i>
+                         {% trans 'International Standards' %}
+                      </a>
+                   </h4>
+                </div>
+                <div id="collapseTwo" class="collapse">
+                   <div class="card-body text-2">
+                      <p class="mb-0">{% trans 'Our products are processed and packaged strictly according to international food safety and hygiene standards.' %}</p>
+                   </div>
+                </div>
+             </div>
+             <div class="card card-default">
+                <div class="card-header">
+                   <h4 class="card-title m-0">
+                      <a class="accordion-toggle text-color-dark font-weight-bold" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                         <i class="fas fa-gem mr-2" style="color: #8A609C;"></i>
+                         {% trans 'Custom White-Labeling' %}
+                      </a>
+                   </h4>
+                </div>
+                <div id="collapseThree" class="collapse">
+                   <div class="card-body text-2">
+                      <p class="mb-0">{% trans 'We offer exclusive custom packaging and white-labeling services for your brand to stand out in the global market.' %}</p>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+
+    <hr class="solid my-5" style="border-color: #E8E3D9;">
+
+    <div class="row text-center pt-4">
+       <div class="col">
+          <h2 class="word-rotator slide font-weight-bold text-7 text-sm-8 mb-3 primary-font">
+             <span>{% trans 'We proudly export our products to' %} </span>
+             <span class="word-rotator-words" style="background-color: #8A609C; color: #FAF8F4; padding: 5 10px; border-radius: 4px;">
+                <b class="is-visible">{% trans 'Europe' %}</b>
+                <b>{% trans 'Asia' %}</b>
+                <b>{% trans 'Middle East' %}</b>
+             </span>
+          </h2>
+          <h4 class="lead tall text-4 primary-font" style="color: #1C1C1C;">{% trans 'Trusted by leading international businesses and distributors worldwide.' %}</h4>
+       </div>
+    </div>
+
+    <div class="row text-center mt-5">
+       <div class="owl-carousel owl-theme carousel-center-active-item" data-plugin-options="{'responsive': {'0': {'items': 1}, '479': {'items': 3}, '768': {'items': 5}, '992': {'items': 7}, '1200': {'items': 7}}, 'autoplay': true, 'autoplayTimeout': 3000, 'dots': false}">
+          <div><img class="img-fluid" src="{% static 'img/logos/logo-1.png' %}" alt="Partner 1" style="opacity: 0.6; filter: grayscale(100%);"></div>
+          <div><img class="img-fluid" src="{% static 'img/logos/logo-2.png' %}" alt="Partner 2" style="opacity: 0.6; filter: grayscale(100%);"></div>
+          <div><img class="img-fluid" src="{% static 'img/logos/logo-3.png' %}" alt="Partner 3" style="opacity: 0.6; filter: grayscale(100%);"></div>
+          <div><img class="img-fluid" src="{% static 'img/logos/logo-4.png' %}" alt="Partner 4" style="opacity: 0.6; filter: grayscale(100%);"></div>
+          <div><img class="img-fluid" src="{% static 'img/logos/logo-5.png' %}" alt="Partner 5" style="opacity: 0.6; filter: grayscale(100%);"></div>
+          <div><img class="img-fluid" src="{% static 'img/logos/logo-6.png' %}" alt="Partner 6" style="opacity: 0.6; filter: grayscale(100%);"></div>
+       </div>
+    </div>
+</div>

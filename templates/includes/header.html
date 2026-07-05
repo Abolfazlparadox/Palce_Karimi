@@ -1,0 +1,200 @@
+{% load static i18n %}
+<style>
+    /* --- PALACE KARIMI LUXURY HEADER STYLES --- */
+
+    /* 1. Top Promo Bar */
+    .header-promo-bar {
+        background: linear-gradient(90deg, #8A609C, #6D4C7D);
+        color: #C49A3D;
+        font-size: 0.9rem;
+        border-bottom: 1px solid #E8E3D9;
+    }
+    .header-promo-bar i { color: #D97706; }
+
+    /* 2. Absolute Blue Color Annihilation for Menu */
+    html body #header .header-nav-main nav > ul > li > a {
+        color: #1C1C1C !important;
+        font-weight: 700 !important;
+        font-size: 15px !important;
+        padding: 0.5rem 1rem !important;
+        background: transparent !important;
+    }
+    html body #header .header-nav-main nav > ul > li > a.active,
+    html body #header .header-nav-main nav > ul > li:hover > a,
+    html body #header .header-nav-main nav > ul > li.open > a {
+        color: #D97706 !important; /* Saffron text on hover/active */
+        background: transparent !important;
+    }
+
+    /* Elegant Bottom Line Effect on Hover */
+    #header .header-nav-main-effect-1 nav > ul > li > a::before {
+        background-color: #D97706 !important;
+        height: 3px !important;
+        bottom: 0 !important;
+    }
+
+    /* 3. Luxury CTA Button & Pulse */
+    .luxury-cta {
+        background: linear-gradient(45deg, #C49A3D, #D97706) !important;
+        color: #FAF8F4 !important;
+        border-radius: 50px !important;
+        padding: 8px 22px !important;
+        font-weight: 700 !important;
+        border: none !important;
+        box-shadow: 0 4px 15px rgba(217, 119, 6, 0.4) !important;
+        transition: all 0.3s ease;
+    }
+    .luxury-cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(217, 119, 6, 0.6) !important;
+    }
+    .icon-pulse { animation: pulse-gold 2s infinite; }
+    @keyframes pulse-gold {
+        0% { box-shadow: 0 0 0 0 rgba(196, 154, 61, 0.7); }
+        70% { box-shadow: 0 0 0 10px rgba(196, 154, 61, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(196, 154, 61, 0); }
+    }
+
+    /* 4. Language Dropdown Styling */
+    .luxury-lang-toggle {
+        color: #8A609C !important;
+        font-weight: 700 !important;
+        font-size: 14px;
+        padding: 5px 10px;
+        border-radius: 8px;
+        border: 1px solid transparent;
+        transition: all 0.3s ease;
+    }
+    .luxury-lang-toggle:hover {
+        background-color: #FAF8F4;
+        border-color: #E8E3D9;
+        color: #D97706 !important;
+    }
+    .lang-dropdown-menu {
+        border: 1px solid #E8E3D9 !important;
+        border-radius: 12px !important;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;
+        padding: 5px !important;
+        min-width: 140px;
+        z-index: 10000 !important;
+    }
+    .lang-dropdown-menu button {
+        border-radius: 8px;
+        transition: all 0.2s ease;
+        margin-bottom: 2px;
+    }
+    .lang-dropdown-menu button:hover {
+        background-color: #FAF8F4 !important;
+        color: #D97706 !important;
+        font-weight: bold;
+    }
+
+    /* 5. Mobile Toggle Button (Hamburger) */
+    .header-btn-collapse-nav {
+        background-color: #8A609C !important;
+        color: #FAF8F4 !important;
+        border: none !important;
+        border-radius: 8px !important;
+    }
+    .header-btn-collapse-nav:focus { outline: none !important; }
+
+    /* 6. Clean Background */
+    .header-body { background-color: #FAF8F4 !important; }
+</style>
+
+<header id="header" class="header-effect-shrink" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 100, 'stickyChangeLogo': true, 'stickyHeaderContainerHeight': 80}">
+    <div class="header-body border-top-0" style="box-shadow: 0 5px 25px rgba(0,0,0,0.03);">
+
+        <div class="header-promo-bar py-2 d-none d-md-block">
+            <div class="container">
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-auto">
+                        <span class="d-flex align-items-center font-weight-semibold">
+                            <i class="fas fa-crown mx-2"></i>
+                            <span>{% trans 'Experience the pinnacle of luxury with Palace Karimi' %}</span>
+                        </span>
+                    </div>
+                    <div class="col-auto">
+                        <span class="d-flex align-items-center font-weight-semibold" style="color: #FAF8F4;">
+                            <i class="fab fa-whatsapp mx-1"></i> <span class="ltr-text mx-1">09927590575</span>
+                            <span class="mx-3 opacity-5">|</span>
+                            <i class="fas fa-phone mx-1"></i> <span class="ltr-text mx-1">09303755667</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="header-container container">
+            <div class="header-row">
+
+                <div class="header-column">
+                    <div class="header-row">
+                        <div class="header-logo my-2">
+                            <a href="{% url 'catalog:home' %}">
+                                <img alt="Palace Karimi" height="65" style="width: auto; max-width: 160px; object-fit: contain;" data-sticky-height="50" data-sticky-top="15" src="{% static 'img/Palace Karimi.jpg' %}">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="header-column justify-content-end">
+                    <div class="header-row align-items-center">
+
+                        <div class="header-nav header-nav-line header-nav-bottom-line header-nav-bottom-line-effect-1 justify-content-center">
+                            <div class="header-nav-main header-nav-main-text-capitalize header-nav-main-square header-nav-main-dropdown-no-borders header-nav-main-effect-2 header-nav-main-sub-effect-1">
+                                <nav class="collapse">
+                                    <ul class="nav nav-pills" id="mainNav">
+                                        <li class="dropdown"><a class="dropdown-item active" href="{% url 'catalog:home' %}">{% trans 'Home' %}</a></li>
+                                        <li class="dropdown"><a class="dropdown-item" href="#">{% trans 'Products' %}</a></li>
+                                        <li class="dropdown"><a class="dropdown-item" href="#">{% trans 'About Us' %}</a></li>
+                                        <li class="dropdown"><a class="dropdown-item" href="#">{% trans 'Contact Us' %}</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+
+                        <div class="header-actions d-flex align-items-center ml-3 mr-3 z-index-3">
+
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% get_available_languages as LANGUAGES %}
+                            {% get_language_info_list for LANGUAGES as languages %}
+
+                            <div class="dropdown mx-2">
+                                <button class="btn dropdown-toggle d-flex align-items-center" type="button" id="langMenuBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background: transparent; border: 1px solid #8A609C; color: #8A609C; font-weight: 700; border-radius: 8px; padding: 5px 12px; transition: all 0.3s;">
+                                    <img src="{% static 'img/blank.gif' %}" class="flag flag-{% if LANGUAGE_CODE == 'en' %}us{% elif LANGUAGE_CODE == 'fa' %}ir{% elif LANGUAGE_CODE == 'ar' %}sa{% elif LANGUAGE_CODE == 'tr' %}tr{% endif %} mx-1" alt="{{ LANGUAGE_CODE }}">
+                                    <span class="mx-1 text-uppercase">{{ LANGUAGE_CODE }}</span>
+                                </button>
+
+                                <form action="{% url 'set_language' %}" method="post" class="d-none">
+                                    {% csrf_token %}
+                                    <input name="next" type="hidden" value="{{ request.get_full_path|default:request.path }}">
+                                    <input type="hidden" name="language" value="">
+                                </form>
+
+                                <div class="dropdown-menu dropdown-menu-right lang-dropdown-menu" aria-labelledby="langMenuBtn" style="border-radius: 12px; border: 1px solid #E8E3D9; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                                    {% for language in languages %}
+                                       <a href="#" onclick="event.preventDefault(); let f = this.closest('.dropdown').querySelector('form'); f.querySelector('input[name=language]').value='{{ language.code }}'; f.submit();" class="dropdown-item text-center py-2 font-weight-semibold">
+                                           <img src="{% static 'img/blank.gif' %}" class="flag flag-{% if language.code == 'en' %}us{% elif language.code == 'fa' %}ir{% elif language.code == 'ar' %}sa{% elif language.code == 'tr' %}tr{% endif %} mx-1" alt="{{ language.name_local }}">
+                                           {{ language.name_local }}
+                                       </a>
+                                   {% endfor %}
+                                </div>
+                            </div>
+
+                            <a href="#" class="btn luxury-cta icon-pulse d-none d-sm-flex align-items-center mx-1">
+                                <i class="fas fa-gem mx-1"></i> <span class="d-none d-md-inline">{% trans 'Consultation' %}</span>
+                            </a>
+                        </div>
+
+                        <button class="btn header-btn-collapse-nav ml-2" data-toggle="collapse" data-target=".header-nav-main nav">
+                            <i class="fas fa-bars"></i>
+                        </button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</header>

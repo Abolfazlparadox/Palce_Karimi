@@ -1,0 +1,266 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Language: fa\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Home"
+msgstr "خانه"
+
+msgid "About Us"
+msgstr "درباره ما"
+
+msgid "Products"
+msgstr "محصولات"
+
+msgid "Contact Us"
+msgstr "تماس با ما"
+
+msgid "Get in Touch"
+msgstr "در ارتباط باشید"
+
+msgid "Newsletter"
+msgstr "خبرنامه"
+
+msgid ""
+"Subscribe to our newsletter to get the latest updates and luxury offers."
+msgstr ""
+"برای دریافت آخرین به‌روزرسانی‌ها و پیشنهادات ویژه ما، در خبرنامه مشترک شوید."
+
+msgid "Success!"
+msgstr "موفقیت!"
+
+msgid "You have been added to our email list."
+msgstr "شما به لیست ایمیل ما افزوده شدید."
+
+msgid "Email Address"
+msgstr "آدرس ایمیل"
+
+msgid "Subscribe"
+msgstr "عضویت"
+
+msgid "Latest Tweets"
+msgstr "جدیدترین توییت‌ها"
+
+msgid "Please wait..."
+msgstr "لطفا منتظر باشید ..."
+
+msgid "Tehran, Iran"
+msgstr "تهران، ایران"
+
+msgid "Follow Us"
+msgstr "ما را دنبال کنید"
+
+msgid "© 2026 Palace Karimi. All Rights Reserved."
+msgstr "© 2026 پالس کریمی. تمامی حقوق محفوظ است."
+
+msgid "Designed & Developed by"
+msgstr "طراحی و توسعه توسط"
+
+msgid "FAQ"
+msgstr "سوالات متداول"
+
+msgid "Sitemap"
+msgstr "نقشه سایت"
+
+msgid "The Finest Quality"
+msgstr "بهترین و باکیفیت‌ترین"
+
+msgid "PREMIUM SAFFRON"
+msgstr "زعفران سوپر نگین"
+
+msgid "Experience the true taste of luxury."
+msgstr "طعم واقعی اصالت و لوکس بودن را تجربه کنید."
+
+msgid "Exporting Worldwide"
+msgstr "صادرات به سراسر جهان"
+
+msgid "PERSIAN PISTACHIO"
+msgstr "پسته اصیل ایرانی"
+
+msgid "Hand-picked and premium quality."
+msgstr "دست‌چین شده و با کیفیت جهانی."
+
+msgid "Palace Karimi"
+msgstr "پالس کریمی"
+
+msgid "YOUR TRUSTED PARTNER"
+msgstr "شریک معتمد شما"
+
+msgid "Providing the best agricultural products."
+msgstr "ارائه‌دهنده بهترین محصولات کشاورزی."
+
+msgid "Follow us on social media for the latest updates and news!"
+msgstr ""
+"برای اطلاع از آخرین به روز رسانی ها و اخبار، ما را در شبکه های اجتماعی دنبال"
+" کنید!"
+
+msgid ""
+"Experience a secure purchase with the top exporter of authentic Iranian "
+"products"
+msgstr "تجربه خریدی مطمئن با صادرکننده برتر محصولات اصیل ایرانی"
+
+msgid "Demand the best quality saffron and pistachio from us."
+msgstr "بهترین کیفیت زعفران و پسته را از ما بخواهید."
+
+msgid "Contact Experts"
+msgstr "تماس با کارشناسان"
+
+msgid "or"
+msgstr "یا"
+
+msgid "view products."
+msgstr "مشاهده محصولات."
+
+msgid "Palace Karimi is a brand that is"
+msgstr "پالس کریمی برندی"
+
+msgid "Authentic"
+msgstr "اصیل"
+
+msgid "High Quality"
+msgstr "باکیفیت"
+
+msgid "Global"
+msgstr "جهانی"
+
+msgid "and a secure choice for export."
+msgstr "و انتخابی مطمئن برای صادرات است."
+
+msgid ""
+"With years of experience in cultivation, processing, and exporting the "
+"finest Iranian saffron and pistachio, we offer quality and authenticity to "
+"global markets. All our products are packaged and shipped with international"
+" standards."
+msgstr ""
+"ما با سال‌ها تجربه در زمینه کشت، فرآوری و صادرات مرغوب‌ترین زعفران و پسته "
+"ایرانی، کیفیت و اصالت را به بازارهای جهانی عرضه می‌کنیم. تمامی محصولات ما با"
+" استانداردهای بین‌المللی بسته‌بندی و ارسال می‌شوند."
+
+msgid "Experience the pinnacle of luxury with Palace Karimi"
+msgstr "اوج لوکس بودن را با پالس کریمی تجربه کنید"
+
+msgid "Consultation"
+msgstr "مشاوره"
+
+msgid "Harvesting"
+msgstr "برداشت"
+
+msgid "Processing"
+msgstr "فرآوری"
+
+msgid "Packaging"
+msgstr "بسته‌بندی"
+
+msgid "Global Export"
+msgstr "صادرات جهانی"
+
+msgid "New"
+msgstr "جدید"
+
+msgid "View Details"
+msgstr "مشاهده جزئیات"
+
+msgid "No products available."
+msgstr "محصولی برای نمایش وجود ندارد."
+
+msgid "Why Choose"
+msgstr "چرا انتخاب کنید"
+
+msgid "Palace Karimi?"
+msgstr "پالاس کریمی؟"
+
+msgid "100% Organic"
+msgstr "۱۰۰٪ ارگانیک"
+
+msgid "Pure, natural products cultivated without harmful chemicals."
+msgstr "محصولات خالص و طبیعی که بدون مواد شیمیایی مضر کشت می‌شوند."
+
+msgid "Premium Quality"
+msgstr "کیفیت برتر"
+
+msgid "Export-grade saffron and pistachio carefully hand-picked."
+msgstr "زعفران و پسته صادراتی با دقت دست‌چین شده."
+
+msgid "Luxury Packaging"
+msgstr "بسته‌بندی لوکس"
+
+msgid "Elegant and secure packaging maintaining freshness and aroma."
+msgstr "بسته‌بندی شیک و ایمن که تازگی و عطر را حفظ می‌کند."
+
+msgid "Lab Certified"
+msgstr "دارای گواهی آزمایشگاه"
+
+msgid "Rigorous laboratory testing for color, flavor, and purity."
+msgstr "آزمایش‌های دقیق آزمایشگاهی برای رنگ، طعم و خلوص."
+
+msgid "Direct from Farms"
+msgstr "مستقیم از مزارع"
+
+msgid "Sourced directly from the best Iranian agricultural lands."
+msgstr "تهیه شده مستقیم از بهترین زمین‌های کشاورزی ایران."
+
+msgid "Wholesale Supply"
+msgstr "تأمین عمده"
+
+msgid "Capability to fulfill bulk orders for businesses worldwide."
+msgstr "توانایی انجام سفارشات عمده برای کسب‌وکارهای سراسر جهان."
+
+msgid "24/7 Support"
+msgstr "پشتیبانی ۲۴/۷"
+
+msgid "Dedicated customer service and consultation for our partners."
+msgstr "خدمات مشتری و مشاوره اختصاصی برای شرکای ما."
+
+msgid "Our Guarantees"
+msgstr "تضمین‌های ما"
+
+msgid "Authenticity Guarantee"
+msgstr "تضمین اصالت"
+
+msgid ""
+"We guarantee that all our saffron and pistachios are 100% authentic Persian "
+"products, free from any artificial additives or coloring."
+msgstr ""
+"ما تضمین می‌کنیم که تمام زعفران و پسته‌های ما ۱۰۰٪ محصولات اصیل ایرانی و "
+"بدون هیچ‌گونه افزودنی یا رنگ مصنوعی هستند."
+
+msgid "International Standards"
+msgstr "استانداردهای بین‌المللی"
+
+msgid ""
+"Our products are processed and packaged strictly according to international "
+"food safety and hygiene standards."
+msgstr ""
+"محصولات ما کاملاً مطابق با استانداردهای بین‌المللی ایمنی و بهداشت مواد غذایی"
+" فرآوری و بسته‌بندی می‌شوند."
+
+msgid "Custom White-Labeling"
+msgstr "برچسب‌گذاری سفید سفارشی"
+
+msgid ""
+"We offer exclusive custom packaging and white-labeling services for your "
+"brand to stand out in the global market."
+msgstr ""
+"ما خدمات بسته‌بندی سفارشی و برچسب‌گذاری سفید انحصاری را برای برجسته شدن برند"
+" شما در بازار جهانی ارائه می‌دهیم."
+
+msgid "We proudly export our products to"
+msgstr "ما با افتخار محصولات خود را به"
+
+msgid "Europe"
+msgstr "اروپا"
+
+msgid "Asia"
+msgstr "آسیا"
+
+msgid "Middle East"
+msgstr "خاورمیانه"
+
+msgid ""
+"Trusted by leading international businesses and distributors worldwide."
+msgstr ""
+"مورد اعتماد کسب‌وکارها و توزیع‌کنندگان برجسته بین‌المللی در سراسر جهان."

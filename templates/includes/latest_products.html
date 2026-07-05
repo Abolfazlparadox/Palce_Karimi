@@ -1,0 +1,46 @@
+{% load i18n static currency_tags %}
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-12 text-center mb-4">
+            <h2 class="font-weight-normal text-7 mb-0"><strong class="font-weight-extra-bold">{% trans 'Products' %}</strong> {% trans 'New' %}</h2>
+        </div>
+    </div>
+    <div class="row products product-thumb-info-list">
+        {% for product in latest_products %}
+        <div class="col-12 col-sm-6 col-lg-3 product mb-4">
+            <span class="product-thumb-info border-0">
+                <a href="#" class="add-to-cart-product custom-gold-btn">
+                    <span class="text-1">{% trans 'View Details' %}</span>
+                </a>
+                <a href="#">
+                    <span class="product-thumb-info-image">
+                        {% if product.main_image %}
+                            <img alt="{{ product.main_image.alt_text|default:product.name }}" class="img-fluid" src="{{ product.main_image.image.url }}" style="height: 250px; object-fit: cover; width: 100%;">
+                        {% else %}
+                            <img alt="{{ product.name }}" class="img-fluid" src="{% static 'img/products/product-grey-1.jpg' %}" style="height: 250px; object-fit: cover; width: 100%;">
+                        {% endif %}
+                    </span>
+                </a>
+                <span class="product-thumb-info-content pl-0 bg-color-light">
+                    <a href="#">
+                        <h4 class="text-4 text-primary">{{ product.name }}</h4>
+                        <span class="price">
+                            <span class="amount text-dark font-weight-semibold">
+                                {% with first_variant=product.variants.first %}
+                                    {% if first_variant %}
+                                        {% convert_price first_variant.base_price %}
+                                    {% endif %}
+                                {% endwith %}
+                            </span>
+                        </span>
+                    </a>
+                </span>
+            </span>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center">
+            <p>{% trans 'No products available.' %}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>

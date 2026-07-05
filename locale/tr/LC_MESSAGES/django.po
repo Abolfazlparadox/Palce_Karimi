@@ -1,0 +1,269 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Home"
+msgstr "Ana Sayfa"
+
+msgid "About Us"
+msgstr "Hakkımızda"
+
+msgid "Products"
+msgstr "Ürünler"
+
+msgid "Contact Us"
+msgstr "İletişim"
+
+msgid "Get in Touch"
+msgstr "İletişimde Kalın"
+
+msgid "Newsletter"
+msgstr "Bülten"
+
+msgid ""
+"Subscribe to our newsletter to get the latest updates and luxury offers."
+msgstr ""
+"En son güncellemeleri ve lüks teklifleri almak için bültenimize abone olun."
+
+msgid "Success!"
+msgstr "Başarılı!"
+
+msgid "You have been added to our email list."
+msgstr "E-posta listemize eklendiniz."
+
+msgid "Email Address"
+msgstr "E-posta Adresi"
+
+msgid "Subscribe"
+msgstr "Abone Ol"
+
+msgid "Latest Tweets"
+msgstr "Son Tweetler"
+
+msgid "Please wait..."
+msgstr "Lütfen bekleyin..."
+
+msgid "Tehran, Iran"
+msgstr "Tahran, İran"
+
+msgid "Follow Us"
+msgstr "Bizi Takip Edin"
+
+msgid "© 2026 Palace Karimi. All Rights Reserved."
+msgstr "© 2026 Palace Karimi. Tüm hakları saklıdır."
+
+msgid "Designed & Developed by"
+msgstr "Tasarım ve Geliştirme:"
+
+msgid "FAQ"
+msgstr "SSS"
+
+msgid "Sitemap"
+msgstr "Site Haritası"
+
+msgid "The Finest Quality"
+msgstr "En İyi Kalite"
+
+msgid "PREMIUM SAFFRON"
+msgstr "PREMIUM SAFRAN"
+
+msgid "Experience the true taste of luxury."
+msgstr "Lüksün gerçek tadını yaşayın."
+
+msgid "Exporting Worldwide"
+msgstr "Dünya Çapında İhracat"
+
+msgid "PERSIAN PISTACHIO"
+msgstr "FARS FISTIĞI"
+
+msgid "Hand-picked and premium quality."
+msgstr "Özenle seçilmiş ve birinci sınıf kalite."
+
+msgid "Palace Karimi"
+msgstr "Palace Karimi"
+
+msgid "YOUR TRUSTED PARTNER"
+msgstr "GÜVENİLİR ORTAĞINIZ"
+
+msgid "Providing the best agricultural products."
+msgstr "En iyi tarım ürünlerini sunuyoruz."
+
+msgid "Follow us on social media for the latest updates and news!"
+msgstr "En son güncellemeler ve haberler için bizi sosyal medyada takip edin!"
+
+msgid ""
+"Experience a secure purchase with the top exporter of authentic Iranian "
+"products"
+msgstr ""
+"Otantik İran ürünlerinin en iyi ihracatçısı ile güvenli bir satın alma "
+"deneyimi yaşayın"
+
+msgid "Demand the best quality saffron and pistachio from us."
+msgstr "Bizden en kaliteli safran ve fıstığı talep edin."
+
+msgid "Contact Experts"
+msgstr "Uzmanlarla İletişime Geçin"
+
+msgid "or"
+msgstr "veya"
+
+msgid "view products."
+msgstr "ürünleri görüntüleyin."
+
+msgid "Palace Karimi is a brand that is"
+msgstr "Palace Karimi"
+
+msgid "Authentic"
+msgstr "Otantik"
+
+msgid "High Quality"
+msgstr "Yüksek Kaliteli"
+
+msgid "Global"
+msgstr "Küresel"
+
+msgid "and a secure choice for export."
+msgstr "bir markadır ve ihracat için güvenli bir seçimdir."
+
+msgid ""
+"With years of experience in cultivation, processing, and exporting the "
+"finest Iranian saffron and pistachio, we offer quality and authenticity to "
+"global markets. All our products are packaged and shipped with international"
+" standards."
+msgstr ""
+"En iyi İran safranı ve fıstığının yetiştirilmesi, işlenmesi ve ihraç "
+"edilmesinde yılların verdiği tecrübe ile küresel pazarlara kalite ve "
+"özgünlük sunuyoruz. Tüm ürünlerimiz uluslararası standartlarda paketlenip "
+"sevk edilmektedir."
+
+msgid "Experience the pinnacle of luxury with Palace Karimi"
+msgstr "Palace Karimi ile lüksün zirvesini yaşayın"
+
+msgid "Consultation"
+msgstr "Danışma"
+
+msgid "Harvesting"
+msgstr "Hasat"
+
+msgid "Processing"
+msgstr "İşleme"
+
+msgid "Packaging"
+msgstr "Paketleme"
+
+msgid "Global Export"
+msgstr "Küresel İhracat"
+
+msgid "New"
+msgstr "Yeni"
+
+msgid "View Details"
+msgstr "Detayları Göster"
+
+msgid "No products available."
+msgstr "Gösterilecek ürün yok."
+
+msgid "Why Choose"
+msgstr "Neden Seçmelisiniz"
+
+msgid "Palace Karimi?"
+msgstr "Palace Karimi?"
+
+msgid "100% Organic"
+msgstr "%100 Organik"
+
+msgid "Pure, natural products cultivated without harmful chemicals."
+msgstr "Zararlı kimyasallar olmadan yetiştirilen saf, doğal ürünler."
+
+msgid "Premium Quality"
+msgstr "Üstün Kalite"
+
+msgid "Export-grade saffron and pistachio carefully hand-picked."
+msgstr "İhracat sınıfı safran ve fıstık özenle elle toplanmıştır."
+
+msgid "Luxury Packaging"
+msgstr "Lüks Ambalaj"
+
+msgid "Elegant and secure packaging maintaining freshness and aroma."
+msgstr "Zarafet ve tazeliği koruyan şık ve güvenli ambalaj."
+
+msgid "Lab Certified"
+msgstr "Laboratuvar Sertifikalı"
+
+msgid "Rigorous laboratory testing for color, flavor, and purity."
+msgstr "Renk, lezzet ve saflık için titiz laboratuvar testleri."
+
+msgid "Direct from Farms"
+msgstr "Doğrudan Çiftliklerden"
+
+msgid "Sourced directly from the best Iranian agricultural lands."
+msgstr "Doğrudan en iyi İran tarım arazilerinden temin edilmiştir."
+
+msgid "Wholesale Supply"
+msgstr "Toptan Tedarik"
+
+msgid "Capability to fulfill bulk orders for businesses worldwide."
+msgstr ""
+"Dünya çapındaki işletmeler için toplu siparişleri karşılama kapasitesi."
+
+msgid "24/7 Support"
+msgstr "7/24 Destek"
+
+msgid "Dedicated customer service and consultation for our partners."
+msgstr "Ortaklarımız için özel müşteri hizmetleri ve danışmanlık."
+
+msgid "Our Guarantees"
+msgstr "Garantilerimiz"
+
+msgid "Authenticity Guarantee"
+msgstr "Orijinallik Garantisi"
+
+msgid ""
+"We guarantee that all our saffron and pistachios are 100% authentic Persian "
+"products, free from any artificial additives or coloring."
+msgstr ""
+"Tüm safran ve fıstıklarımızın %100 otantik Fars ürünleri olduğunu, herhangi "
+"bir yapay katkı maddesi veya renklendirici içermediğini garanti ediyoruz."
+
+msgid "International Standards"
+msgstr "Uluslararası Standartlar"
+
+msgid ""
+"Our products are processed and packaged strictly according to international "
+"food safety and hygiene standards."
+msgstr ""
+"Ürünlerimiz uluslararası gıda güvenliği ve hijyen standartlarına sıkı sıkıya"
+" bağlı olarak işlenir ve paketlenir."
+
+msgid "Custom White-Labeling"
+msgstr "Özel Markalama"
+
+msgid ""
+"We offer exclusive custom packaging and white-labeling services for your "
+"brand to stand out in the global market."
+msgstr ""
+"Markanızın küresel pazarda öne çıkması için özel ambalaj ve beyaz etiketleme"
+" hizmetleri sunuyoruz."
+
+msgid "We proudly export our products to"
+msgstr "Ürünlerimizi gururla ihraç ediyoruz"
+
+msgid "Europe"
+msgstr "Avrupa"
+
+msgid "Asia"
+msgstr "Asya"
+
+msgid "Middle East"
+msgstr "Orta Doğu"
+
+msgid ""
+"Trusted by leading international businesses and distributors worldwide."
+msgstr ""
+"Dünya çapında önde gelen uluslararası işletmeler ve distribütörler "
+"tarafından güvenilmektedir."

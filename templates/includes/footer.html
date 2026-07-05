@@ -1,0 +1,127 @@
+{% load static i18n %}
+<style>
+   /* Custom Palace Karimi Footer Palette */
+   #footer {
+       background-color: #FAF8F4 !important;
+       border-top: 2px solid #E8E3D9 !important;
+   }
+   #footer, #footer p, #footer li, #footer span, .footer-copyright p {
+       color: #1C1C1C !important;
+   }
+   #footer h5 {
+       color: #184C36 !important;
+       font-weight: bold;
+   }
+   #footer .footer-ribbon {
+       background: #184C36 !important;
+   }
+   #footer .footer-ribbon::before {
+       border-right-color: #0b251a !important; /* Darker shade for ribbon fold */
+   }
+   #footer a {
+       color: #184C36 !important;
+   }
+   #footer a:hover {
+       color: #D97706 !important; /* Saffron hover */
+   }
+   #footer .social-icons li a {
+       background: #5E8B3D !important; /* Pistachio background */
+       color: #FAF8F4 !important;
+   }
+   #footer .social-icons li a:hover {
+       background: #D97706 !important; /* Saffron hover */
+   }
+   #footer .btn-light {
+       background: #C49A3D !important; /* Gold button */
+       color: #FAF8F4 !important;
+       border-color: #C49A3D !important;
+   }
+   #footer .btn-light:hover {
+       background: #D97706 !important; /* Saffron hover */
+       border-color: #D97706 !important;
+   }
+   #footer .input-group-rounded input {
+       border-color: #E8E3D9 !important;
+       background: #ffffff !important;
+   }
+   .footer-copyright {
+       background-color: #FAF8F4 !important;
+       border-top: 1px solid #E8E3D9 !important;
+   }
+   #footer .list-icons i {
+       color: #D97706 !important; /* Saffron icons */
+   }
+</style>
+<footer id="footer">
+   <div class="container">
+      <div class="footer-ribbon">
+         <span>{% trans 'Get in Touch' %}</span>
+      </div>
+      <div class="row py-5 my-4">
+         <div class="col-md-6 col-lg-4 mb-4 mb-lg-0 pb-2 pb-lg-0">
+            <h5 class="text-3 mb-3">{% trans 'Newsletter' %}</h5>
+            <p class="pr-1">{% trans 'Subscribe to our newsletter to get the latest updates and luxury offers.' %}</p>
+            <div class="alert alert-success d-none" id="newsletterSuccess">
+               <strong>{% trans 'Success!' %}</strong> {% trans 'You have been added to our email list.' %}
+            </div>
+            <div class="alert alert-danger d-none" id="newsletterError"></div>
+            <form id="newsletterForm" action="#" method="POST" class="mr-md-4 mb-3">
+               <div class="input-group input-group-rounded">
+                  <input class="form-control form-control-sm bg-light text-left" placeholder="{% trans 'Email Address' %}" dir="ltr" name="newsletterEmail" id="newsletterEmail" type="email">
+                  <span class="input-group-append">
+                     <button class="btn btn-light text-color-dark" type="submit"><strong>{% trans 'Subscribe' %}</strong></button>
+                  </span>
+               </div>
+            </form>
+         </div>
+         <div class="col-md-6 col-lg-3 mb-4 mb-lg-0 pb-2 pb-lg-0">
+            <h5 class="text-3 mb-3">{% trans 'Latest Tweets' %}</h5>
+            <div id="tweet" class="twitter mb-2">
+               <p class="mb-0 text-color-light opacity-7">{% trans 'Follow us on social media for the latest updates and news!' %}</p>
+            </div>
+         </div>
+         <div class="col-md-6 col-lg-3 mb-4 mb-md-0 pb-2 pb-md-0">
+            <div class="contact-details">
+               <h5 class="text-3 mb-3">{% trans 'Contact Us' %}</h5>
+               <ul class="list list-icons list-icons-lg mb-2">
+                  <li class="mb-1"><i class="far fa-dot-circle text-color-primary"></i><p class="m-0">{% trans 'Tehran, Iran' %}</p></li>
+                  <li class="mb-1"><i class="fab fa-whatsapp text-color-primary"></i><p class="m-0"><a href="tel:09927590575" class="ltr-text" dir="ltr">(+98) 992-759-0575</a><br><a href="tel:09303755667" class="ltr-text" dir="ltr">(+98) 930-375-5667</a></p></li>
+                  <li class="mb-1"><i class="far fa-envelope text-color-primary"></i><p class="m-0"><a href="mailto:info@palacekarimi.com">info@palacekarimi.com</a></p></li>
+               </ul>
+            </div>
+         </div>
+         <div class="col-md-6 col-lg-2">
+            <h5 class="text-3 mb-3 pb-1">{% trans 'Follow Us' %}</h5>
+            <ul class="social-icons">
+               <li class="social-icons-instagram"><a href="https://www.instagram.com/palace_karimi/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+               <li class="social-icons-facebook"><a href="#" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+               <li class="social-icons-twitter"><a href="#" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+               <li class="social-icons-linkedin"><a href="#" target="_blank" title="Linkedin"><i class="fab fa-linkedin-in"></i></a></li>
+            </ul>
+         </div>
+      </div>
+   </div>
+   <div class="footer-copyright">
+      <div class="container py-2">
+         <div class="row py-4">
+            <div class="col-lg-2 d-flex align-items-center justify-content-center justify-content-lg-start mb-2 mb-lg-0 mt-1 mt-lg-0">
+               <a href="#" class="logo pr-0 pr-lg-3">
+                  <img alt="Palace Karimi" src="{% static 'img/Palace Karimi.jpg' %}" class="opacity-5" height="40" style="border-radius: 4px;">
+               </a>
+            </div>
+            <div class="col-lg-6 d-flex align-items-center justify-content-center justify-content-lg-start mb-4 mb-lg-0">
+               <p>{% trans '© 2026 Palace Karimi. All Rights Reserved.' %} | {% trans 'Designed & Developed by' %} <a href="https://github.com/Abolfazlparadox" target="_blank" class="text-color-primary font-weight-bold">Abolfazlparadox</a></p>
+            </div>
+            <div class="col-lg-4 d-flex align-items-center justify-content-center justify-content-lg-end">
+               <nav id="sub-menu">
+                  <ul>
+                     <li><i class="fas fa-angle-left"></i><a href="#" class="ml-1 text-decoration-none"> {% trans 'FAQ' %}</a></li>
+                     <li><i class="fas fa-angle-left"></i><a href="#" class="ml-1 text-decoration-none"> {% trans 'Sitemap' %}</a></li>
+                     <li><i class="fas fa-angle-left"></i><a href="#" class="ml-1 text-decoration-none"> {% trans 'Contact Us' %}</a></li>
+                  </ul>
+               </nav>
+            </div>
+         </div>
+      </div>
+   </div>
+</footer>
