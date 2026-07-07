@@ -13,3 +13,6 @@ def home_page(request):
         'latest_products': latest_products,
     }
     return render(request, 'index.html', context)
+
+def about_us(request):
+    return render(request, 'catalog/about_us.html')

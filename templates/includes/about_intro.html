@@ -1,0 +1,29 @@
+{% load i18n static %}
+<div class="container pb-1">
+    <div class="row pt-4">
+        <div class="col">
+            <div class="overflow-hidden mb-3">
+                <h2 class="word-rotator slide font-weight-bold text-7 text-sm-8 mb-0 appear-animation" data-appear-animation="maskUp">
+                    <span>{% trans 'Palace Karimi; The Symbol of' %} </span>
+                    <span class="word-rotator-words bg-primary">
+                        <b class="is-visible">{% trans 'Authenticity' %}</b>
+                        <b>{% trans 'Premium Quality' %}</b>
+                        <b>{% trans 'Global Export' %}</b>
+                    </span>
+                </h2>
+            </div>
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-lg-10">
+            <div class="overflow-hidden">
+                <p class="lead mb-0 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="250">
+                    {% trans 'With a rich heritage in cultivating the world’s finest saffron and pistachios, Palace Karimi stands as a bridge between the ancient farms of Persia and the luxury global market.' %} <span class="text-primary">{% trans 'We deliver nothing but perfection.' %}</span>
+                </p>
+            </div>
+        </div>
+        <div class="col-lg-2 appear-animation mt-3 mt-lg-0" data-appear-animation="fadeIn" data-appear-animation-delay="450">
+            <a href="{% url 'catalog:home' %}" class="btn btn-modern btn-primary mt-1">{% trans 'Join Our Network' %}</a>
+        </div>
+    </div>
+</div>

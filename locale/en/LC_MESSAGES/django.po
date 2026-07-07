@@ -132,12 +132,12 @@ msgstr "and a secure choice for export."
 
 msgid ""
 "With years of experience in cultivation, processing, and exporting the "
-"finest Iranian saffron and pistachio, we offer quality and authenticity to "
+"finest Iranian saffron and pistachios, we offer quality and authenticity to "
 "global markets. All our products are packaged and shipped with international"
 " standards."
 msgstr ""
 "With years of experience in cultivation, processing, and exporting the "
-"finest Iranian saffron and pistachio, we offer quality and authenticity to "
+"finest Iranian saffron and pistachios, we offer quality and authenticity to "
 "global markets. All our products are packaged and shipped with international"
 " standards."
 
@@ -173,9 +173,6 @@ msgstr "Why Choose"
 
 msgid "Palace Karimi?"
 msgstr "Palace Karimi?"
-
-msgid "100% Organic"
-msgstr "100% Organic"
 
 msgid "Pure, natural products cultivated without harmful chemicals."
 msgstr "Pure, natural products cultivated without harmful chemicals."
@@ -222,13 +219,6 @@ msgstr "Our Guarantees"
 msgid "Authenticity Guarantee"
 msgstr "Authenticity Guarantee"
 
-msgid ""
-"We guarantee that all our saffron and pistachios are 100% authentic Persian "
-"products, free from any artificial additives or coloring."
-msgstr ""
-"We guarantee that all our saffron and pistachios are 100% authentic Persian "
-"products, free from any artificial additives or coloring."
-
 msgid "International Standards"
 msgstr "International Standards"
 
@@ -265,3 +255,231 @@ msgid ""
 "Trusted by leading international businesses and distributors worldwide."
 msgstr ""
 "Trusted by leading international businesses and distributors worldwide."
+
+msgid "Introduce"
+msgstr "Introduce"
+
+msgid "Us"
+msgstr "Us"
+
+msgid ""
+"Palace Karimi is a leading exporter of premium agricultural products. "
+"Sourced directly from the finest farms, our saffron and pistachios undergo "
+"rigorous quality control."
+msgstr ""
+"Palace Karimi is a leading exporter of premium agricultural products. "
+"Sourced directly from the finest farms, our saffron and pistachios undergo "
+"rigorous quality control."
+
+msgid "Read More"
+msgstr "Read More"
+
+msgid ""
+"Our commitment to excellence ensures that every product reaching your hands "
+"meets the highest international standards."
+msgstr ""
+"Our commitment to excellence ensures that every product reaching your hands "
+"meets the highest international standards."
+
+msgid ""
+"We utilize state-of-the-art sorting and packaging technologies to preserve "
+"the natural aroma, flavor, and nutritional value of our products."
+msgstr ""
+"We utilize state-of-the-art sorting and packaging technologies to preserve "
+"the natural aroma, flavor, and nutritional value of our products."
+
+msgid "Our Vision"
+msgstr "Our Vision"
+
+msgid ""
+"To be the most trusted and recognized global brand for luxury Persian "
+"saffron and premium pistachios, setting the benchmark for quality, purity, "
+"and sustainable agriculture in the international market."
+msgstr ""
+"To be the most trusted and recognized global brand for luxury Persian "
+"saffron and premium pistachios, setting the benchmark for quality, purity, "
+"and sustainable agriculture in the international market."
+
+msgid "Our Mission"
+msgstr "Our Mission"
+
+msgid "Licenses & Certificates"
+msgstr "Licenses & Certificates"
+
+msgid "Quality Management System"
+msgstr "Quality Management System"
+
+msgid "Organic Certified"
+msgstr "Organic Certified"
+
+msgid "Phytosanitary"
+msgstr "Phytosanitary"
+
+msgid "Global Health & Safety"
+msgstr "Global Health & Safety"
+
+msgid "Export Standard Approval"
+msgstr "Export Standard Approval"
+
+msgid "Our"
+msgstr "Our"
+
+msgid "History"
+msgstr "History"
+
+msgid ""
+"From a passionate family-owned farm to a recognized global export "
+"enterprise."
+msgstr ""
+"From a passionate family-owned farm to a recognized global export "
+"enterprise."
+
+msgid "Global Expansion"
+msgstr "Global Expansion"
+
+msgid ""
+"Palace Karimi officially expanded its export lines to Europe and the Middle "
+"East, acquiring major international licenses."
+msgstr ""
+"Palace Karimi officially expanded its export lines to Europe and the Middle "
+"East, acquiring major international licenses."
+
+msgid "Modern Facilities"
+msgstr "Modern Facilities"
+
+msgid "The Beginning"
+msgstr "The Beginning"
+
+msgid ""
+"Cultivating the first premium saffron and pistachio farms with a dedication "
+"to organic and traditional farming methods."
+msgstr ""
+"Cultivating the first premium saffron and pistachio farms with a dedication "
+"to organic and traditional farming methods."
+
+msgid "Meet"
+msgstr "Meet"
+
+msgid "Our Team"
+msgstr "Our Team"
+
+msgid "The dedicated experts behind the success of Palace Karimi."
+msgstr "The dedicated experts behind the success of Palace Karimi."
+
+msgid "Abolfazl Karimi"
+msgstr "Abolfazl Karimi"
+
+msgid "CEO & Founder"
+msgstr "CEO & Founder"
+
+msgid ""
+"Leading the global strategy and ensuring the highest quality standards "
+"across all products."
+msgstr ""
+"Leading the global strategy and ensuring the highest quality standards "
+"across all products."
+
+msgid "Sara Ahmadi"
+msgstr "Sara Ahmadi"
+
+msgid "Export Manager"
+msgstr "Export Manager"
+
+msgid ""
+"Managing international logistics, B2B relations, and smooth customs "
+"clearances."
+msgstr ""
+"Managing international logistics, B2B relations, and smooth customs "
+"clearances."
+
+msgid "Ali Rezaei"
+msgstr "Ali Rezaei"
+
+msgid "Quality Control"
+msgstr "Quality Control"
+
+msgid "Mina Rostami"
+msgstr "Mina Rostami"
+
+msgid "Marketing"
+msgstr "Marketing"
+
+msgid ""
+"Showcasing the true value and luxury of Persian saffron to our international"
+" audience."
+msgstr ""
+"Showcasing the true value and luxury of Persian saffron to our international"
+" audience."
+
+msgid "Palace Karimi; The Symbol of"
+msgstr "Palace Karimi; The Symbol of"
+
+msgid "Authenticity"
+msgstr "Authenticity"
+
+msgid "Join Our Network"
+msgstr "Join Our Network"
+
+msgid "International"
+msgstr "International"
+
+msgid "Certifications & Standards"
+msgstr "Certifications & Standards"
+
+msgid ""
+"Committed to global food safety, organic farming, and premium export "
+"quality."
+msgstr ""
+"Committed to global food safety, organic farming, and premium export "
+"quality."
+
+msgid ""
+"With a rich heritage in cultivating the world’s finest saffron and "
+"pistachios, Palace Karimi stands as a bridge between the ancient farms of "
+"Persia and the luxury global market."
+msgstr ""
+"With a rich heritage in cultivating the world’s finest saffron and "
+"pistachios, Palace Karimi stands as a bridge between the ancient farms of "
+"Persia and the luxury global market."
+
+msgid "We deliver nothing but perfection."
+msgstr "We deliver nothing but perfection."
+
+msgid ""
+"Overseeing laboratory testing and ensuring 100 Percent organic certification"
+" compliance."
+msgstr ""
+"Overseeing laboratory testing and ensuring 100% organic certification "
+"compliance."
+
+msgid ""
+"Implementation of state-of-the-art sorting and packaging facilities to "
+"maintain 100 Percent purity and aroma."
+msgstr ""
+"Implementation of state-of-the-art sorting and packaging facilities to "
+"maintain 100% purity and aroma."
+
+msgid ""
+"Our mission is to empower local farmers through fair trade while delivering "
+"100 Percent organic, lab-tested, and exquisitely packaged products to our "
+"B2B partners and consumers worldwide."
+msgstr ""
+"Our mission is to empower local farmers through fair trade while delivering "
+"100% organic, lab-tested, and exquisitely packaged products to our B2B "
+"partners and consumers worldwide."
+
+msgid ""
+"We guarantee that all our saffron and pistachios are 100 Percent authentic "
+"Persian products, free from any artificial additives or coloring."
+msgstr ""
+"We guarantee that all our saffron and pistachios are 100% authentic Persian "
+"products, free from any artificial additives or coloring."
+
+msgid "100 Percent Organic"
+msgstr "100% Organic"
+
+msgid "100 Percent Natural & Additive-Free"
+msgstr "100% Natural & Additive-Free"
+
+msgid "Fast and reliable international shipping to global destinations."
+msgstr "Fast and reliable international shipping to global destinations."

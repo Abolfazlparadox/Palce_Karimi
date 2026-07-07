@@ -1,0 +1,43 @@
+{% load i18n static %}
+<div class="row">
+    <div class="col-md-8 mx-md-auto text-center">
+        <h2 class="text-color-dark font-weight-normal text-5 mb-2 pt-2"><strong class="font-weight-extra-bold">{% trans 'Our' %}</strong> {% trans 'History' %}</h2>
+        <p>{% trans 'From a passionate family-owned farm to a recognized global export enterprise.' %}</p>
+
+        <div class="py-4 py-md-3"></div>
+
+        <section class="timeline mb-n5" id="timeline">
+            <div class="timeline-body">
+                <div class="timeline-date"><h3 class="text-primary font-weight-bold">2023</h3></div>
+                <article class="timeline-box left text-left appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="200">
+                    <div class="timeline-box-arrow"></div>
+                    <div class="p-2">
+                        <img alt="" class="img-fluid" src="{% static 'img/history/history-3.jpg' %}">
+                        <h3 class="font-weight-bold text-3 mt-3 mb-1">{% trans 'Global Expansion' %}</h3>
+                        <p class="mb-0 text-2">{% trans 'Palace Karimi officially expanded its export lines to Europe and the Middle East, acquiring major international licenses.' %}</p>
+                    </div>
+                </article>
+
+                <div class="timeline-date"><h3 class="text-primary font-weight-bold">2018</h3></div>
+                <article class="timeline-box right text-left appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="400">
+                    <div class="timeline-box-arrow"></div>
+                    <div class="p-2">
+                        <img alt="" class="img-fluid" src="{% static 'img/history/history-2.jpg' %}">
+                        <h3 class="font-weight-bold text-3 mt-3 mb-1">{% trans 'Modern Facilities' %}</h3>
+                        <p class="mb-0 text-2">{% trans 'Implementation of state-of-the-art sorting and packaging facilities to maintain 100 Percent purity and aroma.' %}</p>
+                    </div>
+                </article>
+
+                <div class="timeline-date"><h3 class="text-primary font-weight-bold">1995</h3></div>
+                <article class="timeline-box left text-left appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="600">
+                    <div class="timeline-box-arrow"></div>
+                    <div class="p-2">
+                        <img alt="" class="img-fluid" src="{% static 'img/history/history-1.jpg' %}">
+                        <h3 class="font-weight-bold text-3 mt-3 mb-1">{% trans 'The Beginning' %}</h3>
+                        <p class="mb-0 text-2">{% trans 'Cultivating the first premium saffron and pistachio farms with a dedication to organic and traditional farming methods.' %}</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </div>
+</div>

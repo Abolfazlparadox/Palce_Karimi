@@ -1,0 +1,16 @@
+{% load i18n static %}
+<section class="page-header page-header-classic page-header-sm">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 order-2 order-md-1 align-self-center p-static mt-n1">
+                <h1 data-title-border>{% trans 'About Us' %}</h1>
+            </div>
+            <div class="col-md-4 order-1 order-md-2 align-self-center mb-1 mb-md-0">
+                <ul class="breadcrumb d-block text-md-right">
+                    <li><a href="{% url 'catalog:home' %}">{% trans 'Home' %}</a></li>
+                    <li class="active">{% trans 'About Us' %}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

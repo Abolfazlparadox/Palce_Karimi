@@ -173,9 +173,6 @@ msgstr "چرا انتخاب کنید"
 msgid "Palace Karimi?"
 msgstr "پالاس کریمی؟"
 
-msgid "100% Organic"
-msgstr "۱۰۰٪ ارگانیک"
-
 msgid "Pure, natural products cultivated without harmful chemicals."
 msgstr "محصولات خالص و طبیعی که بدون مواد شیمیایی مضر کشت می‌شوند."
 
@@ -221,13 +218,6 @@ msgstr "تضمین‌های ما"
 msgid "Authenticity Guarantee"
 msgstr "تضمین اصالت"
 
-msgid ""
-"We guarantee that all our saffron and pistachios are 100% authentic Persian "
-"products, free from any artificial additives or coloring."
-msgstr ""
-"ما تضمین می‌کنیم که تمام زعفران و پسته‌های ما ۱۰۰٪ محصولات اصیل ایرانی و "
-"بدون هیچ‌گونه افزودنی یا رنگ مصنوعی هستند."
-
 msgid "International Standards"
 msgstr "استانداردهای بین‌المللی"
 
@@ -264,3 +254,220 @@ msgid ""
 "Trusted by leading international businesses and distributors worldwide."
 msgstr ""
 "مورد اعتماد کسب‌وکارها و توزیع‌کنندگان برجسته بین‌المللی در سراسر جهان."
+
+msgid "Introduce"
+msgstr "معرفی"
+
+msgid "Us"
+msgstr "ما"
+
+msgid ""
+"Palace Karimi is a leading exporter of premium agricultural products. "
+"Sourced directly from the finest farms, our saffron and pistachios undergo "
+"rigorous quality control."
+msgstr ""
+"پالاس کریمی یک صادرکننده پیشرو در محصولات کشاورزی برتر است. زعفران و پسته ما"
+" مستقیماً از بهترین مزارع تهیه شده و تحت کنترل کیفیت دقیق قرار می‌گیرند."
+
+msgid "Read More"
+msgstr "بیشتر بخوانید"
+
+msgid ""
+"Our commitment to excellence ensures that every product reaching your hands "
+"meets the highest international standards."
+msgstr ""
+"تعهد ما به برتری تضمین می‌کند که هر محصولی که به دست شما می‌رسد، با بالاترین"
+" استانداردهای بین‌المللی مطابقت دارد."
+
+msgid ""
+"We utilize state-of-the-art sorting and packaging technologies to preserve "
+"the natural aroma, flavor, and nutritional value of our products."
+msgstr ""
+"ما از فناوری‌های پیشرفته مرتب‌سازی و بسته‌بندی برای حفظ عطر، طعم و ارزش "
+"غذایی طبیعی محصولات خود استفاده می‌کنیم."
+
+msgid "Our Vision"
+msgstr "چشم‌انداز ما"
+
+msgid ""
+"To be the most trusted and recognized global brand for luxury Persian "
+"saffron and premium pistachios, setting the benchmark for quality, purity, "
+"and sustainable agriculture in the international market."
+msgstr ""
+"تبدیل شدن به معتبرترین و شناخته‌شده‌ترین برند جهانی برای زعفران لوکس ایرانی "
+"و پسته ممتاز، و تعیین معیار کیفیت، خلوص و کشاورزی پایدار در بازار "
+"بین‌المللی."
+
+msgid "Our Mission"
+msgstr "مأموریت ما"
+
+msgid "Licenses & Certificates"
+msgstr "مجوزها و گواهینامه‌ها"
+
+msgid "Quality Management System"
+msgstr "سیستم مدیریت کیفیت"
+
+msgid "Organic Certified"
+msgstr "گواهی ارگانیک"
+
+msgid "Phytosanitary"
+msgstr "بهداشت گیاهی"
+
+msgid "Global Health & Safety"
+msgstr "بهداشت و ایمنی جهانی"
+
+msgid "Export Standard Approval"
+msgstr "تأییدیه استاندارد صادرات"
+
+msgid "Our"
+msgstr "ما"
+
+msgid "History"
+msgstr "تاریخچه"
+
+msgid ""
+"From a passionate family-owned farm to a recognized global export "
+"enterprise."
+msgstr "از یک مزرعه خانوادگی پرشور تا یک شرکت صادراتی جهانی شناخته شده."
+
+msgid "Global Expansion"
+msgstr "توسعه جهانی"
+
+msgid ""
+"Palace Karimi officially expanded its export lines to Europe and the Middle "
+"East, acquiring major international licenses."
+msgstr ""
+"پالاس کریمی رسماً خطوط صادراتی خود را به اروپا و خاورمیانه گسترش داد و "
+"مجوزهای بین‌المللی عمده را دریافت کرد."
+
+msgid "Modern Facilities"
+msgstr "امکانات مدرن"
+
+msgid "The Beginning"
+msgstr "آغاز"
+
+msgid ""
+"Cultivating the first premium saffron and pistachio farms with a dedication "
+"to organic and traditional farming methods."
+msgstr ""
+"کشت اولین مزارع زعفران و پسته ممتاز با تعهد به روش‌های کشاورزی ارگانیک و "
+"سنتی."
+
+msgid "Meet"
+msgstr "ملاقات با"
+
+msgid "Our Team"
+msgstr "تیم ما"
+
+msgid "The dedicated experts behind the success of Palace Karimi."
+msgstr "کارشناسان متعهد پشت موفقیت پالاس کریمی."
+
+msgid "Abolfazl Karimi"
+msgstr "ابوالفضل کریمی"
+
+msgid "CEO & Founder"
+msgstr "مدیرعامل و بنیانگذار"
+
+msgid ""
+"Leading the global strategy and ensuring the highest quality standards "
+"across all products."
+msgstr ""
+"رهبری استراتژی جهانی و تضمین بالاترین استانداردهای کیفیت در تمام محصولات."
+
+msgid "Sara Ahmadi"
+msgstr "سارا احمدی"
+
+msgid "Export Manager"
+msgstr "مدیر صادرات"
+
+msgid ""
+"Managing international logistics, B2B relations, and smooth customs "
+"clearances."
+msgstr "مدیریت لجستیک بین‌المللی، روابط تجاری و ترخیص روان گمرکی."
+
+msgid "Ali Rezaei"
+msgstr "علی رضایی"
+
+msgid "Quality Control"
+msgstr "کنترل کیفیت"
+
+msgid "Mina Rostami"
+msgstr "مینا رستمی"
+
+msgid "Marketing"
+msgstr "بازاریابی"
+
+msgid ""
+"Showcasing the true value and luxury of Persian saffron to our international"
+" audience."
+msgstr "نمایش ارزش واقعی و لوکس زعفران ایرانی به مخاطبان بین‌المللی ما."
+
+msgid "Palace Karimi; The Symbol of"
+msgstr "پالس کریمی؛ نمادِ"
+
+msgid "Authenticity"
+msgstr "اصالت"
+
+msgid "Join Our Network"
+msgstr "به شبکه ما بپیوندید"
+
+msgid "International"
+msgstr "بین‌المللی"
+
+msgid "Certifications & Standards"
+msgstr "گواهینامه‌ها و استانداردها"
+
+msgid ""
+"Committed to global food safety, organic farming, and premium export "
+"quality."
+msgstr "متعهد به ایمنی جهانی غذا، کشاورزی ارگانیک و کیفیت برتر صادرات."
+
+msgid ""
+"With a rich heritage in cultivating the world’s finest saffron and "
+"pistachios, Palace Karimi stands as a bridge between the ancient farms of "
+"Persia and the luxury global market."
+msgstr ""
+"پالس کریمی با میراثی غنی در کشت بهترین زعفران و پسته جهان، به عنوان پلی میان"
+" مزارع کهن ایران و بازار لوکس جهانی ایستاده است."
+
+msgid "We deliver nothing but perfection."
+msgstr "ما چیزی جز کمال ارائه نمی‌دهیم."
+
+msgid ""
+"Overseeing laboratory testing and ensuring 100 Percent organic certification"
+" compliance."
+msgstr ""
+"نظارت بر آزمایش‌های تخصصی و تضمین رعایت ۱۰۰ درصدی استانداردهای گواهی "
+"ارگانیک."
+
+msgid ""
+"Implementation of state-of-the-art sorting and packaging facilities to "
+"maintain 100 Percent purity and aroma."
+msgstr ""
+"به‌کارگیری پیشرفته‌ترین امکانات سورتینگ و بسته‌بندی برای حفظ ۱۰۰ درصدی خلوص "
+"و عطر محصولات."
+
+msgid ""
+"Our mission is to empower local farmers through fair trade while delivering "
+"100 Percent organic, lab-tested, and exquisitely packaged products to our "
+"B2B partners and consumers worldwide."
+msgstr ""
+"مأموریت ما توانمندسازی کشاورزان محلی از طریق تجارت منصفانه است؛ در حالی که "
+"محصولات ۱۰۰٪ ارگانیک، آزمایش‌شده و با بسته‌بندی لوکس را به شرکای تجاری (B2B)"
+" و مصرف‌کنندگان خود در سراسر جهان ارائه می‌دهیم."
+
+msgid ""
+"We guarantee that all our saffron and pistachios are 100 Percent authentic "
+"Persian products, free from any artificial additives or coloring."
+msgstr ""
+"ما تضمین می‌کنیم که تمام زعفران و پسته‌های ما ۱۰۰٪ محصولات اصیل ایرانی و "
+"عاری از هرگونه افزودنی یا رنگ مصنوعی هستند."
+
+msgid "100 Percent Organic"
+msgstr "۱۰۰٪ ارگانیک"
+
+msgid "100 Percent Natural & Additive-Free"
+msgstr "۱۰۰٪ طبیعی و بدون افزودنی"
+
+msgid "Fast and reliable international shipping to global destinations."
+msgstr "ارسال بین‌المللی سریع و مطمئن به مقاصد جهانی."

@@ -1,0 +1,26 @@
+{% load i18n static %}
+<section class="section section-default border-0 my-5 appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="750">
+    <div class="container py-4">
+        <div class="row align-items-center">
+            <div class="col-md-6 appear-animation" data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="1000">
+                <div class="owl-carousel owl-theme nav-inside mb-0" data-plugin-options="{'items': 1, 'margin': 10, 'animateOut': 'fadeOut', 'autoplay': true, 'autoplayTimeout': 6000, 'loop': true}">
+                    <div><img alt="Palace Karimi Farm" class="img-fluid" src="{% static 'img/generic/generic-corporate-3-2-full.jpg' %}"></div>
+                    <div><img alt="Palace Karimi Facility" class="img-fluid" src="{% static 'img/generic/generic-corporate-3-3-full.jpg' %}"></div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="overflow-hidden mb-2">
+                    <h2 class="text-color-dark font-weight-normal text-5 mb-0 pt-0 mt-0 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="1200"><strong class="font-weight-extra-bold">{% trans 'Introduce' %}</strong> {% trans 'Us' %}</h2>
+                </div>
+                <p class="appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1400">
+                    {% trans 'Palace Karimi is a leading exporter of premium agricultural products. Sourced directly from the finest farms, our saffron and pistachios undergo rigorous quality control.' %}
+                    <a href="#">{% trans 'Read More' %}</a>
+                    {% trans 'Our commitment to excellence ensures that every product reaching your hands meets the highest international standards.' %}
+                </p>
+                <p class="mb-0 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1600">
+                    {% trans 'We utilize state-of-the-art sorting and packaging technologies to preserve the natural aroma, flavor, and nutritional value of our products.' %}
+                </p>
+            </div>
+        </div>
+    </div>
+</section>

@@ -174,9 +174,6 @@ msgstr "Neden Seçmelisiniz"
 msgid "Palace Karimi?"
 msgstr "Palace Karimi?"
 
-msgid "100% Organic"
-msgstr "%100 Organik"
-
 msgid "Pure, natural products cultivated without harmful chemicals."
 msgstr "Zararlı kimyasallar olmadan yetiştirilen saf, doğal ürünler."
 
@@ -223,13 +220,6 @@ msgstr "Garantilerimiz"
 msgid "Authenticity Guarantee"
 msgstr "Orijinallik Garantisi"
 
-msgid ""
-"We guarantee that all our saffron and pistachios are 100% authentic Persian "
-"products, free from any artificial additives or coloring."
-msgstr ""
-"Tüm safran ve fıstıklarımızın %100 otantik Fars ürünleri olduğunu, herhangi "
-"bir yapay katkı maddesi veya renklendirici içermediğini garanti ediyoruz."
-
 msgid "International Standards"
 msgstr "Uluslararası Standartlar"
 
@@ -267,3 +257,230 @@ msgid ""
 msgstr ""
 "Dünya çapında önde gelen uluslararası işletmeler ve distribütörler "
 "tarafından güvenilmektedir."
+
+msgid "Introduce"
+msgstr "Tanıtmak"
+
+msgid "Us"
+msgstr "Bizi"
+
+msgid ""
+"Palace Karimi is a leading exporter of premium agricultural products. "
+"Sourced directly from the finest farms, our saffron and pistachios undergo "
+"rigorous quality control."
+msgstr ""
+"Palace Karimi, birinci sınıf tarım ürünlerinin lider ihracatçısıdır. "
+"Doğrudan en iyi çiftliklerden temin edilen safran ve fıstıklarımız titiz "
+"kalite kontrolünden geçer."
+
+msgid "Read More"
+msgstr "Daha Fazla Oku"
+
+msgid ""
+"Our commitment to excellence ensures that every product reaching your hands "
+"meets the highest international standards."
+msgstr ""
+"Mükemmelliğe olan bağlılığımız, elinize ulaşan her ürünün en yüksek "
+"uluslararası standartları karşılamasını sağlar."
+
+msgid ""
+"We utilize state-of-the-art sorting and packaging technologies to preserve "
+"the natural aroma, flavor, and nutritional value of our products."
+msgstr ""
+"Ürünlerimizin doğal aromasını, lezzetini ve besin değerini korumak için son "
+"teknoloji sıralama ve paketleme teknolojilerini kullanıyoruz."
+
+msgid "Our Vision"
+msgstr "Vizyonumuz"
+
+msgid ""
+"To be the most trusted and recognized global brand for luxury Persian "
+"saffron and premium pistachios, setting the benchmark for quality, purity, "
+"and sustainable agriculture in the international market."
+msgstr ""
+"Uluslararası pazarda kalite, saflık ve sürdürülebilir tarım için ölçüt "
+"belirleyerek, lüks Fars safranı ve birinci sınıf fıstık için en güvenilir ve"
+" tanınan küresel marka olmak."
+
+msgid "Our Mission"
+msgstr "Misyonumuz"
+
+msgid "Licenses & Certificates"
+msgstr "Lisanslar ve Sertifikalar"
+
+msgid "Quality Management System"
+msgstr "Kalite Yönetim Sistemi"
+
+msgid "Organic Certified"
+msgstr "Organik Sertifikalı"
+
+msgid "Phytosanitary"
+msgstr "Bitki Sağlığı"
+
+msgid "Global Health & Safety"
+msgstr "Küresel Sağlık ve Güvenlik"
+
+msgid "Export Standard Approval"
+msgstr "İhracat Standardı Onayı"
+
+msgid "Our"
+msgstr "Bizim"
+
+msgid "History"
+msgstr "Tarihçemiz"
+
+msgid ""
+"From a passionate family-owned farm to a recognized global export "
+"enterprise."
+msgstr ""
+"Tutkulu bir aile çiftliğinden tanınmış bir küresel ihracat kuruluşuna."
+
+msgid "Global Expansion"
+msgstr "Küresel Genişleme"
+
+msgid ""
+"Palace Karimi officially expanded its export lines to Europe and the Middle "
+"East, acquiring major international licenses."
+msgstr ""
+"Palace Karimi, büyük uluslararası lisanslar alarak ihracat hatlarını resmi "
+"olarak Avrupa ve Orta Doğu'ya genişletti."
+
+msgid "Modern Facilities"
+msgstr "Modern Tesisler"
+
+msgid "The Beginning"
+msgstr "Başlangıç"
+
+msgid ""
+"Cultivating the first premium saffron and pistachio farms with a dedication "
+"to organic and traditional farming methods."
+msgstr ""
+"Organik ve geleneksel tarım yöntemlerine adanmışlıkla ilk birinci sınıf "
+"safran ve fıstık çiftliklerini yetiştirmek."
+
+msgid "Meet"
+msgstr "Tanışın"
+
+msgid "Our Team"
+msgstr "Ekibimiz"
+
+msgid "The dedicated experts behind the success of Palace Karimi."
+msgstr "Palace Karimi'nin başarısının arkasındaki özverili uzmanlar."
+
+msgid "Abolfazl Karimi"
+msgstr "Abolfazl Karimi"
+
+msgid "CEO & Founder"
+msgstr "CEO ve Kurucu"
+
+msgid ""
+"Leading the global strategy and ensuring the highest quality standards "
+"across all products."
+msgstr ""
+"Küresel stratejiyi yönetmek ve tüm ürünlerde en yüksek kalite standartlarını"
+" sağlamak."
+
+msgid "Sara Ahmadi"
+msgstr "Sara Ahmadi"
+
+msgid "Export Manager"
+msgstr "İhracat Müdürü"
+
+msgid ""
+"Managing international logistics, B2B relations, and smooth customs "
+"clearances."
+msgstr ""
+"Uluslararası lojistik, B2B ilişkileri ve sorunsuz gümrükleme işlemlerini "
+"yönetmek."
+
+msgid "Ali Rezaei"
+msgstr "Ali Rezaei"
+
+msgid "Quality Control"
+msgstr "Kalite Kontrol"
+
+msgid "Mina Rostami"
+msgstr "Mina Rostami"
+
+msgid "Marketing"
+msgstr "Pazarlama"
+
+msgid ""
+"Showcasing the true value and luxury of Persian saffron to our international"
+" audience."
+msgstr ""
+"Fars safranının gerçek değerini ve lüksünü uluslararası kitlemize "
+"sergilemek."
+
+msgid "Palace Karimi; The Symbol of"
+msgstr "Palace Karimi; Sembolü"
+
+msgid "Authenticity"
+msgstr "Özgünlük"
+
+msgid "Join Our Network"
+msgstr "Ağımıza Katılın"
+
+msgid "International"
+msgstr "Uluslararası"
+
+msgid "Certifications & Standards"
+msgstr "Sertifikalar ve Standartlar"
+
+msgid ""
+"Committed to global food safety, organic farming, and premium export "
+"quality."
+msgstr ""
+"Küresel gıda güvenliğine, organik tarıma ve üstün ihracat kalitesine "
+"bağlıyız."
+
+msgid ""
+"With a rich heritage in cultivating the world’s finest saffron and "
+"pistachios, Palace Karimi stands as a bridge between the ancient farms of "
+"Persia and the luxury global market."
+msgstr ""
+"Dünyanın en iyi safran ve fıstıklarını yetiştirmede zengin bir mirasa sahip "
+"olan Palace Karimi, antik Pers çiftlikleri ile lüks küresel pazar arasında "
+"bir köprü görevi görüyor."
+
+msgid "We deliver nothing but perfection."
+msgstr "Mükemmellikten başka bir şey sunmuyoruz."
+
+msgid ""
+"Overseeing laboratory testing and ensuring 100 Percent organic certification"
+" compliance."
+msgstr ""
+"Laboratuvar testlerini denetlemek ve %100 organik sertifika uyumluluğunu "
+"sağlamak."
+
+msgid ""
+"Implementation of state-of-the-art sorting and packaging facilities to "
+"maintain 100 Percent purity and aroma."
+msgstr ""
+"%100 saflık ve aromayı korumak için en son teknoloji ayırma ve paketleme "
+"tesislerinin uygulanması."
+
+msgid ""
+"Our mission is to empower local farmers through fair trade while delivering "
+"100 Percent organic, lab-tested, and exquisitely packaged products to our "
+"B2B partners and consumers worldwide."
+msgstr ""
+"Misyonumuz, adil ticaret yoluyla yerel çiftçileri güçlendirirken, dünya "
+"çapındaki B2B ortaklarımıza ve tüketicilere %100 organik, laboratuvarda test"
+" edilmiş ve zarif bir şekilde paketlenmiş ürünler sunmaktır."
+
+msgid ""
+"We guarantee that all our saffron and pistachios are 100 Percent authentic "
+"Persian products, free from any artificial additives or coloring."
+msgstr ""
+"Tüm safran ve fıstıklarımızın %100 otantik Fars ürünleri olduğunu, herhangi "
+"bir yapay katkı maddesi veya renklendirici içermediğini garanti ediyoruz."
+
+msgid "100 Percent Organic"
+msgstr "%100 Organik"
+
+msgid "100 Percent Natural & Additive-Free"
+msgstr "%100 Doğal ve Katkısız"
+
+msgid "Fast and reliable international shipping to global destinations."
+msgstr "Küresel noktalara hızlı ve güvenilir uluslararası nakliye."

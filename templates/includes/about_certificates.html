@@ -1,0 +1,20 @@
+{% load i18n static %}
+<section class="section section-default border-0 my-5 appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="750" style="background-color: #FAF8F4;">
+    <div class="container py-4">
+        <div class="row align-items-center text-center">
+            <div class="col-12 mb-5">
+                <h2 class="text-color-dark font-weight-normal text-6 mb-2"><strong class="font-weight-extra-bold" style="color: #8A609C;">{% trans 'International' %}</strong> {% trans 'Certifications & Standards' %}</h2>
+                <p class="lead text-4">{% trans 'Committed to global food safety, organic farming, and premium export quality.' %}</p>
+            </div>
+        </div>
+        <div class="row text-center mt-3">
+            <div class="owl-carousel owl-theme carousel-center-active-item mb-0" data-plugin-options="{'responsive': {'0': {'items': 2}, '768': {'items': 4}, '992': {'items': 5}}, 'autoplay': true, 'autoplayTimeout': 3000, 'dots': false}">
+                <div><img class="img-fluid px-3" src="{% static 'img/logos/logo-1.png' %}" alt="ISO" style="filter: grayscale(100%); opacity: 0.6; transition: all 0.3s;" onmouseover="this.style.filter='none'; this.style.opacity='1';" onmouseout="this.style.filter='grayscale(100%)'; this.style.opacity='0.6';"></div>
+                <div><img class="img-fluid px-3" src="{% static 'img/logos/logo-2.png' %}" alt="FDA" style="filter: grayscale(100%); opacity: 0.6; transition: all 0.3s;" onmouseover="this.style.filter='none'; this.style.opacity='1';" onmouseout="this.style.filter='grayscale(100%)'; this.style.opacity='0.6';"></div>
+                <div><img class="img-fluid px-3" src="{% static 'img/logos/logo-3.png' %}" alt="Organic" style="filter: grayscale(100%); opacity: 0.6; transition: all 0.3s;" onmouseover="this.style.filter='none'; this.style.opacity='1';" onmouseout="this.style.filter='grayscale(100%)'; this.style.opacity='0.6';"></div>
+                <div><img class="img-fluid px-3" src="{% static 'img/logos/logo-4.png' %}" alt="HACCP" style="filter: grayscale(100%); opacity: 0.6; transition: all 0.3s;" onmouseover="this.style.filter='none'; this.style.opacity='1';" onmouseout="this.style.filter='grayscale(100%)'; this.style.opacity='0.6';"></div>
+                <div><img class="img-fluid px-3" src="{% static 'img/logos/logo-5.png' %}" alt="Halal" style="filter: grayscale(100%); opacity: 0.6; transition: all 0.3s;" onmouseover="this.style.filter='none'; this.style.opacity='1';" onmouseout="this.style.filter='grayscale(100%)'; this.style.opacity='0.6';"></div>
+            </div>
+        </div>
+    </div>
+</section>

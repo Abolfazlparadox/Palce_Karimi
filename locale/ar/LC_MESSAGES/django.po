@@ -129,7 +129,7 @@ msgstr "وخيار آمن للتصدير."
 
 msgid ""
 "With years of experience in cultivation, processing, and exporting the "
-"finest Iranian saffron and pistachio, we offer quality and authenticity to "
+"finest Iranian saffron and pistachios, we offer quality and authenticity to "
 "global markets. All our products are packaged and shipped with international"
 " standards."
 msgstr ""
@@ -169,9 +169,6 @@ msgstr "لماذا تختار"
 
 msgid "Palace Karimi?"
 msgstr "بالاس كريمي؟"
-
-msgid "100% Organic"
-msgstr "٪١٠٠ عضوي"
 
 msgid "Pure, natural products cultivated without harmful chemicals."
 msgstr "منتجات نقية وطبيعية مزروعة بدون مواد كيميائية ضارة."
@@ -218,13 +215,6 @@ msgstr "ضماناتنا"
 msgid "Authenticity Guarantee"
 msgstr "ضمان الأصالة"
 
-msgid ""
-"We guarantee that all our saffron and pistachios are 100% authentic Persian "
-"products, free from any artificial additives or coloring."
-msgstr ""
-"نحن نضمن أن جميع منتجاتنا من الزعفران والفستق هي منتجات فارسية أصلية ١٠٠٪، "
-"خالية من أي إضافات صناعية أو تلوين."
-
 msgid "International Standards"
 msgstr "المعايير الدولية"
 
@@ -261,3 +251,221 @@ msgid ""
 "Trusted by leading international businesses and distributors worldwide."
 msgstr ""
 "موثوق به من قبل الشركات والموزعين الدوليين الرائدين في جميع أنحاء العالم."
+
+msgid "Introduce"
+msgstr "تقديم"
+
+msgid "Us"
+msgstr "نحن"
+
+msgid ""
+"Palace Karimi is a leading exporter of premium agricultural products. "
+"Sourced directly from the finest farms, our saffron and pistachios undergo "
+"rigorous quality control."
+msgstr ""
+"بالاس كريمي هي شركة رائدة في تصدير المنتجات الزراعية المتميزة. يتم الحصول "
+"على الزعفران والفستق مباشرة من أجود المزارع، وتخضع لمراقبة جودة صارمة."
+
+msgid "Read More"
+msgstr "اقرأ أكثر"
+
+msgid ""
+"Our commitment to excellence ensures that every product reaching your hands "
+"meets the highest international standards."
+msgstr ""
+"التزامنا بالتميز يضمن أن كل منتج يصل إلى يديك يفي بأعلى المعايير الدولية."
+
+msgid ""
+"We utilize state-of-the-art sorting and packaging technologies to preserve "
+"the natural aroma, flavor, and nutritional value of our products."
+msgstr ""
+"نحن نستخدم أحدث تقنيات الفرز والتعبئة للحفاظ على الرائحة الطبيعية والنكهة "
+"والقيمة الغذائية لمنتجاتنا."
+
+msgid "Our Vision"
+msgstr "رؤيتنا"
+
+msgid ""
+"To be the most trusted and recognized global brand for luxury Persian "
+"saffron and premium pistachios, setting the benchmark for quality, purity, "
+"and sustainable agriculture in the international market."
+msgstr ""
+"أن نكون العلامة التجارية العالمية الأكثر ثقة وشهرة للزعفران الفارسي الفاخر "
+"والفستق الممتاز، ونضع معيارًا للجودة والنقاء والزراعة المستدامة في السوق "
+"الدولية."
+
+msgid "Our Mission"
+msgstr "مهمتنا"
+
+msgid "Licenses & Certificates"
+msgstr "التراخيص والشهادات"
+
+msgid "Quality Management System"
+msgstr "نظام إدارة الجودة"
+
+msgid "Organic Certified"
+msgstr "شهادة عضوية"
+
+msgid "Phytosanitary"
+msgstr "الصحة النباتية"
+
+msgid "Global Health & Safety"
+msgstr "الصحة والسلامة العالمية"
+
+msgid "Export Standard Approval"
+msgstr "موافقة معيار التصدير"
+
+msgid "Our"
+msgstr "لنا"
+
+msgid "History"
+msgstr "تاريخنا"
+
+msgid ""
+"From a passionate family-owned farm to a recognized global export "
+"enterprise."
+msgstr "من مزرعة عائلية شغوفة إلى مؤسسة تصدير عالمية معترف بها."
+
+msgid "Global Expansion"
+msgstr "التوسع العالمي"
+
+msgid ""
+"Palace Karimi officially expanded its export lines to Europe and the Middle "
+"East, acquiring major international licenses."
+msgstr ""
+"وسعت بالاس كريمي رسميًا خطوط التصدير الخاصة بها إلى أوروبا والشرق الأوسط، "
+"وحصلت على تراخيص دولية كبرى."
+
+msgid "Modern Facilities"
+msgstr "المرافق الحديثة"
+
+msgid "The Beginning"
+msgstr "البداية"
+
+msgid ""
+"Cultivating the first premium saffron and pistachio farms with a dedication "
+"to organic and traditional farming methods."
+msgstr ""
+"زراعة أولى مزارع الزعفران والفستق الممتازة مع التفاني في أساليب الزراعة "
+"العضوية والتقليدية."
+
+msgid "Meet"
+msgstr "تعرف على"
+
+msgid "Our Team"
+msgstr "فريقنا"
+
+msgid "The dedicated experts behind the success of Palace Karimi."
+msgstr "الخبراء المتفانون وراء نجاح بالاس كريمي."
+
+msgid "Abolfazl Karimi"
+msgstr "ابوالفضل کریمی"
+
+msgid "CEO & Founder"
+msgstr "المدير التنفيذي والمؤسس"
+
+msgid ""
+"Leading the global strategy and ensuring the highest quality standards "
+"across all products."
+msgstr ""
+"قيادة الاستراتيجية العالمية وضمان أعلى معايير الجودة في جميع المنتجات."
+
+msgid "Sara Ahmadi"
+msgstr "سارا احمدی"
+
+msgid "Export Manager"
+msgstr "مدير التصدير"
+
+msgid ""
+"Managing international logistics, B2B relations, and smooth customs "
+"clearances."
+msgstr ""
+"إدارة الخدمات اللوجستية الدولية، والعلاقات بين الشركات، والتخليص الجمركي "
+"السلس."
+
+msgid "Ali Rezaei"
+msgstr "علی رضایی"
+
+msgid "Quality Control"
+msgstr "مراقبة الجودة"
+
+msgid "Mina Rostami"
+msgstr "مینا رستمی"
+
+msgid "Marketing"
+msgstr "تسويق"
+
+msgid ""
+"Showcasing the true value and luxury of Persian saffron to our international"
+" audience."
+msgstr "عرض القيمة الحقيقية والفخامة للزعفران الفارسي لجمهورنا الدولي."
+
+msgid "Palace Karimi; The Symbol of"
+msgstr "بالاس كريمي؛ رمز"
+
+msgid "Authenticity"
+msgstr "الأصالة"
+
+msgid "Join Our Network"
+msgstr "انضم إلى شبكتنا"
+
+msgid "International"
+msgstr "دولي"
+
+msgid "Certifications & Standards"
+msgstr "الشهادات والمعايير"
+
+msgid ""
+"Committed to global food safety, organic farming, and premium export "
+"quality."
+msgstr ""
+"ملتزمون بسلامة الأغذية العالمية والزراعة العضوية وجودة التصدير الممتازة."
+
+msgid ""
+"With a rich heritage in cultivating the world’s finest saffron and "
+"pistachios, Palace Karimi stands as a bridge between the ancient farms of "
+"Persia and the luxury global market."
+msgstr ""
+"مع تراث غني في زراعة أجود أنواع الزعفران والفستق في العالم، تقف بالاس كريمي "
+"كجسر بين مزارع بلاد فارس القديمة والسوق العالمية الفاخرة."
+
+msgid "We deliver nothing but perfection."
+msgstr "نحن لا نقدم سوى الكمال."
+
+msgid ""
+"Overseeing laboratory testing and ensuring 100 Percent organic certification"
+" compliance."
+msgstr ""
+"الإشراف على الاختبارات المعملية وضمان الامتثال لشهادات المنتجات العضوية "
+"بنسبة ١٠٠٪."
+
+msgid ""
+"Implementation of state-of-the-art sorting and packaging facilities to "
+"maintain 100 Percent purity and aroma."
+msgstr ""
+"تنفيذ أحدث مرافق الفرز والتعبئة للحفاظ على النقاء والرائحة بنسبة ١٠٠٪."
+
+msgid ""
+"Our mission is to empower local farmers through fair trade while delivering "
+"100 Percent organic, lab-tested, and exquisitely packaged products to our "
+"B2B partners and consumers worldwide."
+msgstr ""
+"مهمتنا هي تمكين المزارعين المحليين من خلال التجارة العادلة مع تقديم منتجات "
+"عضوية ١٠٠٪، ومختبرة، ومعبأة بشكل رائع لشركائنا التجاريين والمستهلكين في جميع"
+" أنحاء العالم."
+
+msgid ""
+"We guarantee that all our saffron and pistachios are 100 Percent authentic "
+"Persian products, free from any artificial additives or coloring."
+msgstr ""
+"نحن نضمن أن جميع منتجاتنا من الزعفران والفستق هي منتجات فارسية أصلية ١٠٠٪، "
+"وخالية من أي إضافات صناعية أو ألوان."
+
+msgid "100 Percent Organic"
+msgstr "عضوي بنسبة ١٠٠٪"
+
+msgid "100 Percent Natural & Additive-Free"
+msgstr "١٠٠٪ طبيعي وخالي من الإضافات"
+
+msgid "Fast and reliable international shipping to global destinations."
+msgstr "شحن دولي سريع وموثوق إلى الوجهات العالمية."
