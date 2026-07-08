@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+{% block title %}{% trans 'Contact Us' %} | {% trans 'Palace Karimi' %}{% endblock %}
+{% block content %}
+<div role="main" class="main">
+
+    <!-- Google Maps Placeholder -->
+    <div id="googlemaps" class="google-map mt-0" style="height: 500px;"></div>
+
+    <div class="container">
+        <div class="row py-4">
+            <div class="col-lg-6">
+                <div class="overflow-hidden mb-1">
+                    <h2 class="font-weight-normal text-7 mt-2 mb-0 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="200"><strong class="font-weight-extra-bold">{% trans 'Contact' %}</strong> {% trans 'Us' %}</h2>
+                </div>
+                <div class="overflow-hidden mb-4 pb-3">
+                    <p class="mb-0 appear-animation lead" data-appear-animation="maskUp" data-appear-animation-delay="400">{% trans 'We are here to answer your questions and discuss global export opportunities.' %}</p>
+                </div>
+
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if message.message == 'success_contact' %}
+                            <div class="alert alert-success mt-4">
+                                <strong>{% trans 'Success!' %}</strong> {% trans 'Your message has been sent to us.' %}
+                            </div>
+                        {% elif message.message == 'error_contact' %}
+                            <div class="alert alert-danger mt-4">
+                                <strong>{% trans 'Error!' %}</strong> {% trans 'There was an error sending your message. Please check the fields.' %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+
+                <form class="contact-form mb-5 mb-lg-0" action="{% url 'catalog:contact_us' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-lg-6">
+                            <label class="required font-weight-bold text-dark text-2">{% trans 'Full Name' %}</label>
+                            <input type="text" maxlength="100" class="form-control" name="name" required>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label class="required font-weight-bold text-dark text-2">{% trans 'Email Address' %}</label>
+                            <input type="email" maxlength="100" class="form-control text-left" name="email" dir="ltr" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label class="font-weight-bold text-dark text-2">{% trans 'Subject' %}</label>
+                            <input type="text" maxlength="100" class="form-control" name="subject" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <label class="required font-weight-bold text-dark text-2">{% trans 'Message' %}</label>
+                            <textarea maxlength="5000" rows="8" class="form-control" name="message" required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col">
+                            <input type="submit" value="{% trans 'Send Message' %}" class="btn btn-modern btn-rounded btn-primary mb-2" style="border-radius: 50px;">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-6">
+                <div class="appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="800">
+                    <h4 class="mt-2 mb-1"><strong>{% trans 'Our' %}</strong> {% trans 'Office' %}</h4>
+                    <ul class="list list-icons list-icons-style-2 mt-2">
+                        <li class="line-height-9"><i class="fas fa-map-marker-alt top-6 text-primary"></i> <strong class="text-dark">{% trans 'Address:' %}</strong> {% trans 'Tehran, Iran' %}</li>
+                        <li class="line-height-9"><i class="fas fa-phone top-6 text-primary"></i> <strong class="text-dark">{% trans 'Phone:' %}</strong> <span class="ltr-text">(+98) 123-4567</span></li>
+                        <li class="line-height-9"><i class="fas fa-envelope top-6 text-primary"></i> <strong class="text-dark">{% trans 'Email:' %}</strong> <a href="mailto:info@palacekarimi.com">info@palacekarimi.com</a></li>
+                    </ul>
+                </div>
+
+                <div class="appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="950">
+                    <h4 class="pt-5"><strong>{% trans 'Business' %}</strong> {% trans 'Hours' %}</h4>
+                    <ul class="list list-icons list-dark mt-2">
+                        <li><i class="far fa-clock top-6 text-primary"></i> {% trans 'Saturday to Wednesday - 9:00 AM to 5:00 PM' %}</li>
+                        <li><i class="far fa-clock top-6 text-primary"></i> {% trans 'Thursday - 9:00 AM to 2:00 PM' %}</li>
+                        <li><i class="far fa-clock top-6 text-primary"></i> {% trans 'Friday - Closed' %}</li>
+                    </ul>
+                </div>
+
+                <h4 class="pt-5"><strong>{% trans 'Get in Touch' %}</strong></h4>
+                <p class="lead mb-0 text-1rem">{% trans 'Whether you are looking for bulk saffron orders, premium pistachio exports, or white-labeling services, our experts are ready to assist you.' %}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Rebranded CTA Section -->
+<section class="call-to-action call-to-action-default with-button-arrow content-align-center call-to-action-in-footer" style="background-color: #1e7e34; border: none;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 col-lg-9">
+                <div class="call-to-action-content text-color-light">
+                    <h2 class="font-weight-normal text-6 mb-2 text-color-light">{% trans 'Palace Karimi is' %} <strong class="font-weight-extra-bold">{% trans 'Everything' %}</strong> {% trans 'you need for a' %} <strong class="font-weight-extra-bold">{% trans 'Luxury' %}</strong> {% trans 'export experience!' %}</h2>
+                    <p class="mb-0 mt-1 text-color-light opacity-8"><strong class="font-weight-extra-bold">{% trans 'The Best' %}</strong> {% trans 'choice for authentic Persian products.' %}</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-lg-3">
+                <div class="call-to-action-btn">
+                    <a href="{% url 'catalog:home' %}" class="btn custom-gold-btn btn-lg text-3 font-weight-semibold px-4 py-3" style="border-radius: 30px;">{% trans 'Start Now' %}</a><span class="arrow hlb" data-appear-animation="rotateInUpLeft" style="top: -40px; right: 64%;"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block scripts %}
+    <!-- Google Maps Script -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEn4c_T1rFt7ltf_oNavnjND8dDPm4KQs"></script>
+<script>
+    /*
+    Map Settings for Palace Karimi (Hossein Karimi Trading)
+    Sabzevar, Razavi Khorasan Province, Iran
+    */
+
+    // Map Markers
+    var mapMarkers = [{
+        address: "6M3W+H7X, Sabzevar, Razavi Khorasan Province, Iran",
+        html: "<div class='p-2 text-center'><strong class='text-primary text-4'>{% trans 'Hossein Karimi Trading' %}</strong><br>{% trans 'Palace Karimi Office' %}<br>Sabzevar, Iran</div>",
+        icon: {
+            image: "{% static 'img/pin.png' %}",
+            iconsize: [26, 46],
+            iconanchor: [12, 46]
+        },
+        popup: true
+    }];
+
+    // Map Initial Location (Sabzevar)
+    var initLatitude = 36.204044;
+    var initLongitude = 57.695777;
+
+    // Map Extended Settings
+    var mapSettings = {
+        controls: {
+            draggable: (($.browser.mobile) ? false : true),
+            panControl: true,
+            zoomControl: true,
+            mapTypeControl: true,
+            scaleControl: true,
+            streetViewControl: true,
+            overviewMapControl: true
+        },
+        scrollwheel: false,
+        markers: mapMarkers,
+        latitude: initLatitude,
+        longitude: initLongitude,
+        zoom: 16  // زوم را بالا بردم تا خیابان و دفتر به خوبی دیده شود
+    };
+
+    // Initialize map
+    document.addEventListener("DOMContentLoaded", function() {
+        if(typeof $.fn.gMap !== 'undefined') {
+            $('#googlemaps').gMap(mapSettings);
+        }
+    });
+
+    // Map center At
+    var mapCenterAt = function(options, e) {
+        e.preventDefault();
+        $('#googlemaps').gMap("centerAt", options);
+    }
+</script>
+{% endblock %}

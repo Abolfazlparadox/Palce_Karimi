@@ -130,16 +130,6 @@ msgstr "جهانی"
 msgid "and a secure choice for export."
 msgstr "و انتخابی مطمئن برای صادرات است."
 
-msgid ""
-"With years of experience in cultivation, processing, and exporting the "
-"finest Iranian saffron and pistachio, we offer quality and authenticity to "
-"global markets. All our products are packaged and shipped with international"
-" standards."
-msgstr ""
-"ما با سال‌ها تجربه در زمینه کشت، فرآوری و صادرات مرغوب‌ترین زعفران و پسته "
-"ایرانی، کیفیت و اصالت را به بازارهای جهانی عرضه می‌کنیم. تمامی محصولات ما با"
-" استانداردهای بین‌المللی بسته‌بندی و ارسال می‌شوند."
-
 msgid "Experience the pinnacle of luxury with Palace Karimi"
 msgstr "اوج لوکس بودن را با پالس کریمی تجربه کنید"
 
@@ -471,3 +461,105 @@ msgstr "۱۰۰٪ طبیعی و بدون افزودنی"
 
 msgid "Fast and reliable international shipping to global destinations."
 msgstr "ارسال بین‌المللی سریع و مطمئن به مقاصد جهانی."
+
+msgid "Contact"
+msgstr "تماس"
+
+msgid ""
+"We are here to answer your questions and discuss global export "
+"opportunities."
+msgstr ""
+"ما اینجا هستیم تا به سوالات شما پاسخ دهیم و درباره فرصت‌های صادرات جهانی "
+"گفتگو کنیم."
+
+msgid "Error!"
+msgstr "خطا!"
+
+msgid "There was an error sending your message. Please check the fields."
+msgstr "در ارسال پیام شما خطایی رخ داد. لطفاً فیلدها را بررسی کنید."
+
+msgid "Your message has been sent to us."
+msgstr "پیام شما با موفقیت برای ما ارسال شد."
+
+msgid "Full Name"
+msgstr "نام کامل"
+
+msgid "Subject"
+msgstr "موضوع"
+
+msgid "Message"
+msgstr "پیام"
+
+msgid "Send Message"
+msgstr "ارسال پیام"
+
+msgid "Office"
+msgstr "دفتر"
+
+msgid "Address:"
+msgstr "آدرس:"
+
+msgid "Phone:"
+msgstr "تلفن:"
+
+msgid "Email:"
+msgstr "ایمیل:"
+
+msgid "Business"
+msgstr "ساعات"
+
+msgid "Hours"
+msgstr "کاری"
+
+msgid "Saturday to Wednesday - 9:00 AM to 5:00 PM"
+msgstr "شنبه تا چهارشنبه - ۹ صبح تا ۵ عصر"
+
+msgid "Thursday - 9:00 AM to 2:00 PM"
+msgstr "پنج‌شنبه - ۹ صبح تا ۲ بعدازظهر"
+
+msgid "Friday - Closed"
+msgstr "جمعه - تعطیل"
+
+msgid ""
+"Whether you are looking for bulk saffron orders, premium pistachio exports, "
+"or white-labeling services, our experts are ready to assist you."
+msgstr ""
+"چه به دنبال سفارشات عمده زعفران باشید، چه صادرات پسته ممتاز یا خدمات "
+"برچسب‌گذاری خصوصی، کارشناسان ما آماده کمک به شما هستند."
+
+msgid "Palace Karimi is"
+msgstr "پالس کریمی"
+
+msgid "Everything"
+msgstr "همان چیزی"
+
+msgid "you need for a"
+msgstr "است که برای یک تجربه"
+
+msgid "Luxury"
+msgstr "لوکس"
+
+msgid "export experience!"
+msgstr "صادراتی نیاز دارید!"
+
+msgid "The Best"
+msgstr "بهترین"
+
+msgid "choice for authentic Persian products."
+msgstr "انتخاب برای تأمین محصولات اصیل ایرانی."
+
+msgid "Hossein Karimi Trading"
+msgstr "بازرگانی حسین کریمی"
+
+msgid "Palace Karimi Office"
+msgstr "دفتر مرکزی پالس کریمی"
+
+msgid ""
+"With years of experience in cultivation, processing, and exporting the "
+"finest Iranian saffron and pistachio, we offer quality and authenticity to "
+"global markets. All our products are packaged and shipped with international"
+" standards."
+msgstr ""
+"ما با سال‌ها تجربه در زمینه کشت، فرآوری و صادرات مرغوب‌ترین زعفران و پسته "
+"ایرانی، کیفیت و اصالت را به بازارهای جهانی عرضه می‌کنیم. تمامی محصولات ما با"
+" استانداردهای بین‌المللی بسته‌بندی و ارسال می‌شوند."

@@ -130,17 +130,6 @@ msgstr "Global"
 msgid "and a secure choice for export."
 msgstr "and a secure choice for export."
 
-msgid ""
-"With years of experience in cultivation, processing, and exporting the "
-"finest Iranian saffron and pistachios, we offer quality and authenticity to "
-"global markets. All our products are packaged and shipped with international"
-" standards."
-msgstr ""
-"With years of experience in cultivation, processing, and exporting the "
-"finest Iranian saffron and pistachios, we offer quality and authenticity to "
-"global markets. All our products are packaged and shipped with international"
-" standards."
-
 msgid "Experience the pinnacle of luxury with Palace Karimi"
 msgstr "Experience the pinnacle of luxury with Palace Karimi"
 
@@ -483,3 +472,106 @@ msgstr "100% Natural & Additive-Free"
 
 msgid "Fast and reliable international shipping to global destinations."
 msgstr "Fast and reliable international shipping to global destinations."
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid ""
+"We are here to answer your questions and discuss global export "
+"opportunities."
+msgstr ""
+"We are here to answer your questions and discuss global export "
+"opportunities."
+
+msgid "Error!"
+msgstr "Error!"
+
+msgid "There was an error sending your message. Please check the fields."
+msgstr "There was an error sending your message. Please check the fields."
+
+msgid "Your message has been sent to us."
+msgstr "Your message has been sent to us."
+
+msgid "Full Name"
+msgstr "Full Name"
+
+msgid "Subject"
+msgstr "Subject"
+
+msgid "Message"
+msgstr "Message"
+
+msgid "Send Message"
+msgstr "Send Message"
+
+msgid "Office"
+msgstr "Office"
+
+msgid "Address:"
+msgstr "Address:"
+
+msgid "Phone:"
+msgstr "Phone:"
+
+msgid "Email:"
+msgstr "Email:"
+
+msgid "Business"
+msgstr "Business"
+
+msgid "Hours"
+msgstr "Hours"
+
+msgid "Saturday to Wednesday - 9:00 AM to 5:00 PM"
+msgstr "Saturday to Wednesday - 9:00 AM to 5:00 PM"
+
+msgid "Thursday - 9:00 AM to 2:00 PM"
+msgstr "Thursday - 9:00 AM to 2:00 PM"
+
+msgid "Friday - Closed"
+msgstr "Friday - Closed"
+
+msgid ""
+"Whether you are looking for bulk saffron orders, premium pistachio exports, "
+"or white-labeling services, our experts are ready to assist you."
+msgstr ""
+"Whether you are looking for bulk saffron orders, premium pistachio exports, "
+"or white-labeling services, our experts are ready to assist you."
+
+msgid "Palace Karimi is"
+msgstr "Palace Karimi is"
+
+msgid "Everything"
+msgstr "Everything"
+
+msgid "you need for a"
+msgstr "you need for a"
+
+msgid "Luxury"
+msgstr "Luxury"
+
+msgid "export experience!"
+msgstr "export experience!"
+
+msgid "The Best"
+msgstr "The Best"
+
+msgid "choice for authentic Persian products."
+msgstr "choice for authentic Persian products."
+
+msgid "Hossein Karimi Trading"
+msgstr "Hossein Karimi Trading"
+
+msgid "Palace Karimi Office"
+msgstr "Palace Karimi Office"
+
+msgid ""
+"With years of experience in cultivation, processing, and exporting the "
+"finest Iranian saffron and pistachio, we offer quality and authenticity to "
+"global markets. All our products are packaged and shipped with international"
+" standards."
+msgstr ""
+"With years of experience in cultivation, processing, and exporting the "
+"finest Iranian saffron and pistachio, we offer quality and authenticity to "
+"global markets. All our products are packaged and shipped with international"
+" standards."

@@ -8,15 +8,17 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-		<title>قالب Porto - قالب HTML چند منظوره پورتو</title>
+		<title>{% block title %}{% trans 'Palace Karimi | Luxury Persian Saffron & Pistachio' %}{% endblock %}</title>
 
 		<meta name="keywords" content="HTML5 Template">
 		<meta name="description" content="Porto - Responsive HTML5 Template">
 		<meta name="author" content="okler.net">
 
 		<!-- Favicon -->
-		<link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
-		<link rel="apple-touch-icon" href="{% static 'img/apple-touch-icon.png' %}">
+        <!-- Favicon / Tab Logo -->
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon-32x32.png' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon-16x16.png' %}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/apple-touch-icon.png' %}">
 
 		<!-- Mobile Metas -->
 		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
@@ -148,5 +150,7 @@
                 });
             });
         </script>
+        {% block scripts %}
+        {% endblock %}
 	</body>
 </html>

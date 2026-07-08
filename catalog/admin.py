@@ -1,6 +1,6 @@
 from django.contrib import admin
 from parler.admin import TranslatableAdmin
-from .models import Category, Product, ProductVariant, ProductImage, VariantImage, ExchangeRate
+from .models import Category, Product, ProductVariant, ProductImage, VariantImage, ExchangeRate, ContactMessage
 
 class ProductImageInline(admin.TabularInline):
     model = ProductImage
@@ -56,3 +56,9 @@ class ProductVariantAdmin(admin.ModelAdmin):
 class ExchangeRateAdmin(admin.ModelAdmin):
     list_display = ('currency_code', 'rate_to_base', 'last_updated')
     readonly_fields = ('last_updated',)
+
+@admin.register(ContactMessage)
+class ContactMessageAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'subject', 'created_at')
+    search_fields = ('name', 'email', 'subject')
+    readonly_fields = ('created_at',)

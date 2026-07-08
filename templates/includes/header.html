@@ -31,7 +31,7 @@
                     <div class="header-row">
                         <div class="header-logo my-2">
                             <a href="{% url 'catalog:home' %}">
-                                <img alt="Palace Karimi" height="65" style="width: auto; max-width: 160px; object-fit: contain;" data-sticky-height="50" data-sticky-top="15" src="{% static 'img/Palace Karimi.jpg' %}">
+                                <img alt="Palace Karimi" height="65" style="width: auto; max-width: 160px; object-fit: contain;" data-sticky-height="50" data-sticky-top="15" src="{% static 'img/512x512.png' %}">
                             </a>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                                         <li class="dropdown"><a class="dropdown-item active" href="{% url 'catalog:home' %}">{% trans 'Home' %}</a></li>
                                         <li class="dropdown"><a class="dropdown-item" href="#">{% trans 'Products' %}</a></li>
                                         <li class="dropdown"><a class="dropdown-item" href="{% url 'catalog:about_us' %}">{% trans 'About Us' %}</a></li>
-                                        <li class="dropdown"><a class="dropdown-item" href="#">{% trans 'Contact Us' %}</a></li>
+                                        <li class="dropdown"><a class="dropdown-item" href="{% url 'catalog:contact_us' %}">{% trans 'Contact Us' %}</a></li>
                                     </ul>
                                 </nav>
                             </div>

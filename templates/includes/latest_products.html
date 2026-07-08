@@ -17,7 +17,7 @@
                         {% if product.main_image %}
                             <img alt="{{ product.main_image.alt_text|default:product.name }}" class="img-fluid" src="{{ product.main_image.image.url }}" style="height: 250px; object-fit: cover; width: 100%;">
                         {% else %}
-                            <img alt="{{ product.name }}" class="img-fluid" src="{% static 'img/products/product-grey-1.jpg' %}" style="height: 250px; object-fit: cover; width: 100%;">
+                            <img alt="{{ product.name }}" class="img-fluid" src="{% static 'img/products/product-0.png' %}" style="height: 250px; object-fit: cover; width: 100%;">
                         {% endif %}
                     </span>
                 </a>

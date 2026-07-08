@@ -84,3 +84,18 @@ class VariantImage(models.Model):
         if self.image and not self.image.name.endswith('.webp'):
             self.image = optimize_image(self.image)
         super().save(*args, **kwargs)
+
+class ContactMessage(models.Model):
+    name = models.CharField(max_length=100, verbose_name="Full Name")
+    email = models.EmailField(max_length=100, verbose_name="Email Address")
+    subject = models.CharField(max_length=100, verbose_name="Subject")
+    message = models.TextField(max_length=5000, verbose_name="Message")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Contact Message"
+        verbose_name_plural = "Contact Messages"
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.name} - {self.subject}"
