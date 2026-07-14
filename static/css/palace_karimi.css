@@ -1,0 +1,22 @@
+/* Palace Karimi Luxury Theme */
+
+/* Header Styles */
+#header { background-color: #FAF8F4 !important; border-bottom: 2px solid #E8E3D9 !important; }
+#header .header-nav-main nav > ul > li > a { color: #1C1C1C !important; font-weight: 600; }
+#header .header-nav-main nav > ul > li > a:hover { color: #D97706 !important; }
+
+/* Footer Styles */
+#footer { background-color: #FAF8F4 !important; border-top: 2px solid #E8E3D9 !important; }
+#footer, #footer p, #footer li, #footer span, .footer-copyright p { color: #1C1C1C !important; }
+#footer h5 { color: #184C36 !important; font-weight: bold; }
+#footer .footer-ribbon { background: #184C36 !important; }
+#footer .footer-ribbon::before { border-right-color: #0b251a !important; }
+#footer a { color: #184C36 !important; }
+#footer a:hover { color: #D97706 !important; }
+#footer .social-icons li a { background: #5E8B3D !important; color: #FAF8F4 !important; }
+#footer .social-icons li a:hover { background: #D97706 !important; }
+#footer .btn-light { background: #C49A3D !important; color: #FAF8F4 !important; border-color: #C49A3D !important; }
+#footer .btn-light:hover { background: #D97706 !important; border-color: #D97706 !important; }
+#footer .input-group-rounded input { border-color: #E8E3D9 !important; background: #ffffff !important; }
+.footer-copyright { background-color: #FAF8F4 !important; border-top: 1px solid #E8E3D9 !important; }
+#footer .list-icons i { color: #D97706 !important; }
