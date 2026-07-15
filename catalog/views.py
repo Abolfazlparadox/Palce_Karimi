@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Category, Product
 from .forms import ContactMessageForm
+from django.core.paginator import Paginator
 
 def home_page(request):
     # Fetch active products with their translations to avoid N+1 queries
@@ -30,3 +31,18 @@ def contact_us(request):
             messages.error(request, 'error_contact')
     
     return render(request, 'catalog/contact_us.html')
+
+def shop_page(request):
+    product_list = Product.objects.filter(is_active=True).order_by('-created_at')
+    paginator = Paginator(product_list, 12) # 12 products per page
+    
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    return render(request, 'catalog/shop.html', {'page_obj': page_obj})
+
+def terms_faq(request):
+    """
+    Renders the Terms, Conditions & FAQ page.
+    """
+    return render(request, 'catalog/terms.html')

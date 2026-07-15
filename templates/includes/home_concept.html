@@ -1,38 +1,38 @@
-{% load static i18n image_tags %}
+{% load static i18n %}
 <div class="appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="200">
     <div class="home-concept mt-5 mb-5">
         <div class="container">
             <div class="row text-center align-items-center">
-                <span class="sun" style="background-color: #C49A3D; box-shadow: 0 0 20px rgba(196,154,61,0.5);"></span>
+                <span class="sun custom-concept-sun"></span>
                 <span class="cloud"></span>
                 <div class="col-lg-2 ml-lg-auto z-index-1">
                     <div class="process-image">
-                        <img src="{% resize_static 'img/home/concept-harvest.jpg' 145 145 %}" alt="Harvest">
-                        <strong style="color: #184C36 !important; font-size: 16px; margin-top: 10px; display: block;">{% trans 'Harvesting' %}</strong>
+                        <img src="{% static 'img/home/concept-harvest.webp' %}" alt="Harvest">
+                        <strong class="custom-concept-label">{% trans 'Harvesting' %}</strong>
                     </div>
                 </div>
                 <div class="col-lg-2 mt-4 mt-lg-0 z-index-1">
                     <div class="process-image process-image-on-middle">
-                        <img src="{% resize_static 'img/home/concept-processing.jpg' 145 145 %}" alt="Processing">
-                        <strong style="color: #184C36 !important; font-size: 16px; margin-top: 10px; display: block;">{% trans 'Processing' %}</strong>
+                        <img src="{% static 'img/home/concept-processing.webp' %}" alt="Processing">
+                        <strong class="custom-concept-label">{% trans 'Processing' %}</strong>
                     </div>
                 </div>
                 <div class="col-lg-2 mt-4 mt-lg-0 z-index-1">
                     <div class="process-image">
-                        <img src="{% resize_static 'img/home/concept-packaging.jpg' 145 145 %}" alt="Packaging">
-                        <strong style="color: #184C36 !important; font-size: 16px; margin-top: 10px; display: block;">{% trans 'Packaging' %}</strong>
+                        <img src="{% static 'img/home/concept-packaging.webp' %}" alt="Packaging">
+                        <strong class="custom-concept-label">{% trans 'Packaging' %}</strong>
                     </div>
                 </div>
                 <div class="col-lg-4 ml-lg-auto mt-1 mt-lg-0 z-index-1">
                     <div class="project-image">
                         <div id="fcSlideshow" class="fc-slideshow">
                             <ul class="fc-slides">
-                                <li><a href="#"><img class="img-responsive" src="{% resize_static 'img/projects/export-1.jpg' 338 338 %}" alt="Export"></a></li>
-                                <li><a href="#"><img class="img-responsive" src="{% resize_static 'img/projects/export-2.jpg' 338 338 %}" alt="Export"></a></li>
-                                <li><a href="#"><img class="img-responsive" src="{% resize_static 'img/projects/export-3.jpg' 338 338 %}" alt="Export"></a></li>
+                                <li><a href="#"><img class="img-responsive" src="{% static 'img/projects/export-1.webp' %}" alt="Export"></a></li>
+                                <li><a href="#"><img class="img-responsive" src="{% static 'img/projects/export-2.webp' %}" alt="Export"></a></li>
+                                <li><a href="#"><img class="img-responsive" src="{% static 'img/projects/export-3.webp' %}" alt="Export"></a></li>
                             </ul>
                         </div>
-                        <strong class="our-work" style="!important; color: #D97706 !important; border: none !important;">{% trans 'Global Export' %}</strong>
+                        <strong class="our-work custom-concept-our-work">{% trans 'Global Export' %}</strong>
                     </div>
                 </div>
             </div>

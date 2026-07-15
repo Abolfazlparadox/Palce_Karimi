@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+
+from django.contrib import staticfiles
 from django.utils.translation import gettext_lazy as _
 import os
 
@@ -33,6 +35,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -113,7 +116,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'fa'
+LANGUAGE_CODE = 'fa-ir'
+TIME_ZONE = 'Asia/Tehran'
 USE_I18N = True
 USE_L10N = True
 
@@ -130,7 +134,6 @@ LOCALE_PATHS = [
 
 SITE_ID = 1
 
-TIME_ZONE = 'UTC'
 
 USE_TZ = True
 
@@ -151,13 +154,77 @@ PARLER_LANGUAGES = {
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-
-
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+JAZZMIN_SETTINGS = {
+    # --- تنظیمات برند و لوگو ---
+    "site_title": "مدیریت کاخ کریمی",
+    "site_header": "پنل مدیریت",
+    "site_brand": "Palace Karimi",
+    # آدرس لوگوی شما در پوشه static (نام فایل لوگوی خود را جایگزین کنید اگر متفاوت است)
+    "site_logo": "img/logo.webp",
+    "login_logo": "img/logo.webp",
+    "site_logo_classes": "img-circle",  # لوگو را دایره‌ای می‌کند
+    "site_icon": "img/favicon-32x32.png",  # آیکون تب مرورگر
+    "welcome_sign": "به سیستم مدیریت محتوای کاخ کریمی خوش آمدید",
+    "copyright": "Palace Karimi Ltd",
+
+    # --- تنظیمات جستجو و منوها ---
+    "search_model": ["catalog.Product", "catalog.ContactMessage"],
+    "user_avatar": None,
+    "topmenu_links": [
+        {"name": "پیشخوان", "url": "admin:index", "permissions": ["auth.view_user"]},
+        {"name": "مشاهده سایت", "url": "/", "new_window": True},
+    ],
+    "show_sidebar": True,
+    "navigation_expanded": True,
+    "language_chooser": True,
+
+    # --- آیکون‌های اختصاصی منو ---
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user-shield",
+        "auth.Group": "fas fa-users",
+        "catalog.Product": "fas fa-box-open",
+        "catalog.Category": "fas fa-tags",
+        "catalog.QualityGrade": "fas fa-gem",
+        "catalog.PackagingType": "fas fa-box",
+        "catalog.ProductVariant": "fas fa-cubes",
+        "catalog.TieredPrice": "fas fa-hand-holding-usd",
+        "catalog.ContactMessage": "fas fa-envelope-open-text",
+        "catalog.ExchangeRate": "fas fa-money-check-alt",
+    },
+
+    "changeform_format": "horizontal_tabs",
+    "changeform_format_overrides": {
+        "catalog.product": "single",
+        "catalog.category": "single",
+    },
+
+    # --- معرفی فایل CSS اختصاصی ما ---
+    "custom_css": "css/admin_rtl_fix.css",
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "navbar_small_text": False,
+    "sidebar_fixed": True,
+    "sidebar_nav_child_indent": True,
+    "sidebar_nav_compact_style": False,
+    "accent": "accent-success",
+    "navbar": "navbar-white navbar-light",
+    "sidebar": "sidebar-dark-success",
+
+    # تنظیمات تم بر اساس داکیومنتی که فرستادی
+    "theme": "flatly",  # تم پیش‌فرض برای حالت روز
+    "dark_mode_theme": "darkly",  # تغییر خودکار به تم تاریک اگر سیستم کاربر روی Dark Mode باشد
+}

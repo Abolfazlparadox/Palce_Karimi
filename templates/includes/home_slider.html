@@ -1,0 +1,64 @@
+{% load static i18n %}
+<div class="slider-container rev_slider_wrapper custom-slider-wrapper">
+   <div id="revolutionSlider" class="slider rev_slider" data-version="5.4.8" data-plugin-revolution-slider data-plugin-options="{'delay': 9000, 'gridwidth': 1170, 'gridheight': 670, 'disableProgressBar': 'on', 'responsiveLevels': [4096,1200,992,500], 'navigation' : {'arrows': { 'enable': true }, 'bullets': {'enable': true, 'style': 'bullets-style-1', 'h_align': 'center', 'v_align': 'bottom', 'space': 7, 'v_offset': 70, 'h_offset': 0}}}">
+      <ul>
+         <!-- Slide 1: Saffron -->
+         <li data-transition="fade">
+            <img src="{% static 'img/slides/saffron-slide.webp' %}" alt="Saffron" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg">
+            <div class="tp-caption text-color-light font-weight-normal rev-text-shadow-md"
+                 data-x="center" data-y="center" data-voffset="['-78','-78','-78','-138']"
+                 data-fontsize="['24','24','24','40']"
+                 data-frames='[{"delay":700,"speed":1500,"frame":"0","from":"y:-50%;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                 >{% trans 'The Finest Quality' %}</div>
+            <div class="tp-caption font-weight-extra-bold text-color-light secondary-font rev-text-shadow-lg"
+                 data-x="center" data-y="center" data-voffset="['-15','-15','-15','-5']"
+                 data-fontsize="['60','60','60','90']"
+                 data-frames='[{"delay":1000,"speed":2000,"frame":"0","from":"sX:1.5;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                 >{% trans 'PREMIUM SAFFRON' %}</div>
+            <div class="tp-caption font-weight-light text-color-light rev-text-shadow-sm"
+                 data-x="center" data-y="center" data-voffset="['55','55','55','135']"
+                 data-fontsize="['20','20','20','40']"
+                 data-frames='[{"delay":1500,"speed":1500,"frame":"0","from":"y:100%;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                 >{% trans 'Experience the true taste of luxury.' %}</div>
+         </li>
+         <!-- Slide 2: Pistachio -->
+         <li data-transition="fade">
+            <img src="{% static 'img/slides/pistachio-slide.webp' %}" alt="Pistachio" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg">
+            <div class="tp-caption text-color-light font-weight-normal rev-text-shadow-md"
+                 data-x="center" data-y="center" data-voffset="['-78','-78','-78','-138']"
+                 data-fontsize="['24','24','24','40']"
+                 data-frames='[{"delay":700,"speed":1500,"frame":"0","from":"y:-50%;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                 >{% trans 'Exporting Worldwide' %}</div>
+            <div class="tp-caption font-weight-extra-bold text-color-light secondary-font rev-text-shadow-lg"
+                 data-x="center" data-y="center" data-voffset="['-15','-15','-15','-5']"
+                 data-fontsize="['60','60','60','90']"
+                 data-frames='[{"delay":1000,"speed":2000,"frame":"0","from":"sX:1.5;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                 >{% trans 'PERSIAN PISTACHIO' %}</div>
+            <div class="tp-caption font-weight-light text-color-light rev-text-shadow-sm"
+                 data-x="center" data-y="center" data-voffset="['55','55','55','135']"
+                 data-fontsize="['20','20','20','40']"
+                 data-frames='[{"delay":1500,"speed":1500,"frame":"0","from":"y:100%;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                 >{% trans 'Hand-picked and premium quality.' %}</div>
+         </li>
+         <!-- Slide 3: Brand -->
+         <li data-transition="fade">
+            <img src="{% static 'img/slides/palace-slide.webp' %}" alt="Palace Karimi" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg">
+            <div class="tp-caption text-color-light font-weight-normal rev-text-shadow-md"
+                 data-x="center" data-y="center" data-voffset="['-78','-78','-78','-138']"
+                 data-fontsize="['24','24','24','40']"
+                 data-frames='[{"delay":700,"speed":1500,"frame":"0","from":"y:-50%;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                 >{% trans 'Palace Karimi' %}</div>
+            <div class="tp-caption font-weight-extra-bold text-color-light secondary-font rev-text-shadow-lg"
+                 data-x="center" data-y="center" data-voffset="['-15','-15','-15','-5']"
+                 data-fontsize="['60','60','60','90']"
+                 data-frames='[{"delay":1000,"speed":2000,"frame":"0","from":"sX:1.5;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                 >{% trans 'YOUR TRUSTED PARTNER' %}</div>
+            <div class="tp-caption font-weight-light text-color-light rev-text-shadow-sm"
+                 data-x="center" data-y="center" data-voffset="['55','55','55','135']"
+                 data-fontsize="['20','20','20','40']"
+                 data-frames='[{"delay":1500,"speed":1500,"frame":"0","from":"y:100%;opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]'
+                 >{% trans 'Providing the best agricultural products.' %}</div>
+         </li>
+      </ul>
+   </div>
+</div>

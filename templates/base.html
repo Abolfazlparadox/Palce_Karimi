@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 {% load static i18n %}
-{% get_current_language_bidi as LANGUAGE_BIDI %}
-<html {% if LANGUAGE_BIDI %}dir="rtl"{% else %}dir="ltr"{% endif %} lang="{{ LANGUAGE_CODE }}">
-	<head>
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'fa' or LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+<head>
 
 		<!-- Basic -->
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 		<title>{% block title %}{% trans 'Palace Karimi | Luxury Persian Saffron & Pistachio' %}{% endblock %}</title>
-
+        <!-- International Luxury Font for English & Turkish -->
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 		<meta name="keywords" content="HTML5 Template">
 		<meta name="description" content="Porto - Responsive HTML5 Template">
 		<meta name="author" content="okler.net">
@@ -48,7 +49,7 @@
 
 
 		<!-- Skin CSS -->
-		<link rel="stylesheet" href="{% static 'css/skins/default.css' %}">
+		<link id="skin-css" rel="stylesheet" href="{% static 'css/skins/default.css' %}">
 
 		<!-- Theme Custom CSS -->
 		<link rel="stylesheet" href="{% static 'css/custom.css' %}">
@@ -148,6 +149,24 @@
                         themeIcon.classList.add('fa-moon');
                     }
                 });
+            });
+        </script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // پیدا کردن تمام پیام‌های سیستم
+                var alerts = document.querySelectorAll('.alert');
+                if (alerts.length > 0) {
+                    setTimeout(function() {
+                        alerts.forEach(function(alert) {
+                            // افکت محو شدن نرم
+                            alert.style.transition = "opacity 0.6s ease";
+                            alert.style.opacity = "0";
+                            setTimeout(function() {
+                                alert.remove();
+                            }, 600); // حذف کامل از DOM بعد از پایان انیمیشن
+                        });
+                    }, 5000); // پیام بعد از ۵ ثانیه محو می‌شود
+                }
             });
         </script>
         {% block scripts %}

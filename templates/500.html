@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{% trans '500 - Internal Server Error' %}{% endblock %}
+
+{% block content %}
+<div role="main" class="main">
+    <section class="page-header page-header-modern page-header-md custom-dynamic-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 align-self-center p-static order-2 text-center">
+                    <h1 class="font-weight-bold text-8">{% trans '500 - Internal Server Error' %}</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <div class="misc-box">
+                    <h2 class="font-weight-bold text-10 mb-0">{% trans '500' %}</h2>
+                    <h4 class="font-weight-bold text-5 mb-3">{% trans 'We are currently experiencing technical difficulties.' %}</h4>
+                    <p class="lead">{% trans 'Please try again later or contact support if the problem persists.' %}</p>
+                    <a href="{% url 'catalog:home' %}" class="btn btn-primary btn-modern py-3 px-5 font-weight-bold">{% trans 'Back to Home' %}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

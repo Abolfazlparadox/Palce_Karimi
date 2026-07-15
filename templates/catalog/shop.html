@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static i18n currency_tags %}
+
+{% block title %}{% trans 'Shop' %} | {% trans 'Palace Karimi' %}{% endblock %}
+
+{% block content %}
+<section class="page-header page-header-classic page-header-sm custom-dynamic-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 order-2 order-md-1 align-self-center p-static mt-n1">
+                <h1 data-title-border>{% trans 'Products' %}</h1>
+            </div>
+            <div class="col-md-4 order-1 order-md-2 align-self-center mb-1 mb-md-0">
+                <ul class="breadcrumb d-block text-md-right">
+                    <li><a href="{% url 'catalog:home' %}">{% trans 'Home' %}</a></li>
+                    <li class="active">{% trans 'Products' %}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div role="main" class="main shop py-4">
+    <div class="container">
+        <div class="masonry-loader masonry-loader-showing">
+            <div class="row products product-thumb-info-list" data-plugin-masonry data-plugin-options="{'layoutMode': 'fitRows'}">
+
+                {% for product in page_obj %}
+                <div class="col-12 col-sm-6 col-lg-3 product mb-4">
+
+                    {% with variant=product.variants.first %}
+
+                    {% if variant and variant.sale_price %}
+                    <a href="#">
+                        <span class="onsale bg-primary text-color-light">{% trans 'Sale!' %}</span>
+                    </a>
+                    {% endif %}
+
+                    <span class="product-thumb-info border-0">
+                        <!-- دکمه مشاهده جزئیات / افزودن به سبد -->
+                        <a href="#" class="add-to-cart-product custom-gold-btn">
+                            <span class="text-1 text-uppercase font-weight-bold">{% trans 'View Details' %}</span>
+                        </a>
+
+                        <!-- عکس محصول -->
+                        <a href="#">
+                            <span class="product-thumb-info-image">
+                                {% if product.main_image %}
+                                    <img alt="{{ product.main_image.alt_text|default:product.name }}" class="img-fluid" src="{{ product.main_image.image.url }}" style="height: 250px; object-fit: cover; width: 100%;">
+                                {% else %}
+                                    <img alt="{{ product.name }}" class="img-fluid" src="{% static 'img/products/product-0.png' %}" style="height: 250px; object-fit: cover; width: 100%;">
+                                {% endif %}
+                            </span>
+                        </a>
+
+                        <!-- اطلاعات محصول -->
+                        <span class="product-thumb-info-content product-thumb-info-content pl-0 bg-color-light">
+                            <a href="#">
+                                <h4 class="text-4 text-primary mb-1">{{ product.name }}</h4>
+                                <span class="price">
+                                    {% if variant %}
+                                        {% if variant.sale_price %}
+                                            <del><span class="amount text-muted">{% convert_price variant.base_price %}</span></del>
+                                            <ins><span class="amount text-dark font-weight-semibold">{% convert_price variant.sale_price %}</span></ins>
+                                        {% else %}
+                                            <span class="amount text-dark font-weight-semibold">{% convert_price variant.base_price %}</span>
+                                        {% endif %}
+                                    {% else %}
+                                        <span class="amount text-dark font-weight-semibold">{% trans 'Price not set' %}</span>
+                                    {% endif %}
+                                </span>
+                            </a>
+                        </span>
+                    </span>
+
+                    {% endwith %}
+                </div>
+                {% empty %}
+                <div class="col-12 text-center py-5">
+                    <p class="lead text-muted">{% trans 'No products available.' %}</p>
+                </div>
+                {% endfor %}
+
+            </div>
+
+            <!-- Pagination -->
+            {% if page_obj.has_other_pages %}
+            <div class="row mt-4 mb-n3">
+                <div class="col">
+                    <ul class="pagination float-right">
+
+                        <!-- دکمه صفحه قبلی -->
+                        {% if page_obj.has_previous %}
+                        <!-- دقت کن: در href فیلتر نذاشتیم تا انگلیسی بماند -->
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}"><i class="fas fa-angle-right"></i></a></li>
+                        {% else %}
+                        <li class="page-item disabled"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a></li>
+                        {% endif %}
+
+                        <!-- شماره صفحات -->
+                        {% for i in page_obj.paginator.page_range %}
+                            {% if page_obj.number == i %}
+                                <!-- اینجا فقط نمایش است، پس فیلتر می‌گیرد -->
+                                <li class="page-item active"><a class="page-link bg-primary border-primary" href="#">{{ i|localize_digits }}</a></li>
+                            {% else %}
+                                <!-- در href انگلیسی، در متن نمایشی فارسی -->
+                                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i|localize_digits }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+
+                        <!-- دکمه صفحه بعدی -->
+                        {% if page_obj.has_next %}
+                        <!-- در href فیلتر نذاشتیم -->
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}"><i class="fas fa-angle-left"></i></a></li>
+                        {% else %}
+                        <li class="page-item disabled"><a class="page-link" href="#"><i class="fas fa-angle-left"></i></a></li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}

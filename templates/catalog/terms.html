@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{% trans 'Terms, Conditions & FAQ' %} | {% trans 'Palace Karimi' %}{% endblock %}
+
+{% block content %}
+<div role="main" class="main">
+    <section class="page-header page-header-modern page-header-md custom-dynamic-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 align-self-center p-static order-2 text-center">
+                    <h1 class="font-weight-bold text-8">{% trans 'Terms, Conditions & FAQ' %}</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="container py-4">
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="mb-5">
+                    <h2 class="font-weight-bold text-5 mb-3">{% trans 'Shipping & Customs' %}</h2>
+                    <p>{% trans 'Detailed information about our international shipping policies, customs clearance procedures, and delivery times. We ensure a smooth and transparent process for all our global partners.' %}</p>
+                </div>
+
+                <div class="mb-5">
+                    <h2 class="font-weight-bold text-5 mb-3">{% trans 'Quality Certificates' %}</h2>
+                    <p>{% trans 'All our products are accompanied by internationally recognized quality and safety certificates. Here you can find details about our certifications like ISO, HACCP, and Organic.' %}</p>
+                </div>
+
+                <div class="mb-5">
+                    <h2 class="font-weight-bold text-5 mb-3">{% trans 'Payment Terms' %}</h2>
+                    <p>{% trans 'We offer flexible and secure payment terms for our B2B partners, including bank transfers, letters of credit, and other arrangements. Contact us to discuss your specific needs.' %}</p>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <h4 class="font-weight-bold text-4 mb-3">{% trans 'Frequently Asked Questions' %}</h4>
+                <div class="accordion" id="faqAccordion">
+                    <div class="card card-default">
+                        <div class="card-header">
+                            <h4 class="card-title m-0">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#faqAccordion" href="#collapseOne">
+                                    {% trans 'What is the minimum order quantity (MOQ)?' %}
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="collapse show">
+                            <div class="card-body">
+                                <p class="mb-0">{% trans 'Our MOQ varies depending on the product and packaging. Please contact our sales team for detailed information.' %}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card card-default">
+                        <div class="card-header">
+                            <h4 class="card-title m-0">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#faqAccordion" href="#collapseTwo">
+                                    {% trans 'Do you offer white-labeling services?' %}
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="collapse">
+                            <div class="card-body">
+                                <p class="mb-0">{% trans 'Yes, we offer comprehensive white-labeling and custom packaging solutions for your brand.' %}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card card-default">
+                        <div class="card-header">
+                            <h4 class="card-title m-0">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#faqAccordion" href="#collapseThree">
+                                    {% trans 'What are the available shipping methods?' %}
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="collapse">
+                            <div class="card-body">
+                                <p class="mb-0">{% trans 'We ship via air, sea, and land freight, depending on the destination and order size.' %}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

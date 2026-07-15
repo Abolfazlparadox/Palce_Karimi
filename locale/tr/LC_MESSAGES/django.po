@@ -578,3 +578,104 @@ msgstr ""
 "edilmesinde yılların verdiği tecrübe ile küresel pazarlara kalite ve "
 "özgünlük sunuyoruz. Tüm ürünlerimiz uluslararası standartlarda paketlenip "
 "sevk edilmektedir."
+
+msgid "404 - Page Not Found"
+msgstr "404 - Sayfa Bulunamadı"
+
+msgid "404"
+msgstr "404"
+
+msgid "Oops! The page you were looking for doesn’t exist."
+msgstr "Hata! Aradığınız sayfa mevcut değil."
+
+msgid "You may have mistyped the address or the page may have moved."
+msgstr "Adresi yanlış yazmış olabilirsiniz veya sayfa taşınmış olabilir."
+
+msgid "Back to Home"
+msgstr "Ana Sayfaya Dön"
+
+msgid "500 - Internal Server Error"
+msgstr "500 - İç Sunucu Hatası"
+
+msgid "500"
+msgstr "500"
+
+msgid "We are currently experiencing technical difficulties."
+msgstr "Şu anda teknik zorluklar yaşıyoruz."
+
+msgid "Please try again later or contact support if the problem persists."
+msgstr ""
+"Lütfen daha sonra tekrar deneyin veya sorun devam ederse destek ekibiyle "
+"iletişime geçin."
+
+msgid "Terms, Conditions & FAQ"
+msgstr "Şartlar, Koşullar ve SSS"
+
+msgid "Shipping & Customs"
+msgstr "Nakliye ve Gümrük"
+
+msgid ""
+"Detailed information about our international shipping policies, customs "
+"clearance procedures, and delivery times. We ensure a smooth and transparent"
+" process for all our global partners."
+msgstr ""
+"Uluslararası nakliye politikalarımız, gümrükleme prosedürlerimiz ve teslimat"
+" sürelerimiz hakkında detaylı bilgi. Tüm küresel ortaklarımız için sorunsuz "
+"ve şeffaf bir süreç sağlıyoruz."
+
+msgid "Quality Certificates"
+msgstr "Kalite Sertifikaları"
+
+msgid ""
+"All our products are accompanied by internationally recognized quality and "
+"safety certificates. Here you can find details about our certifications like"
+" ISO, HACCP, and Organic."
+msgstr ""
+"Tüm ürünlerimiz uluslararası düzeyde tanınan kalite ve güvenlik "
+"sertifikalarına sahiptir. Burada ISO, HACCP ve Organik gibi sertifikalarımız"
+" hakkında detayları bulabilirsiniz."
+
+msgid "Payment Terms"
+msgstr "Ödeme Koşulları"
+
+msgid ""
+"We offer flexible and secure payment terms for our B2B partners, including "
+"bank transfers, letters of credit, and other arrangements. Contact us to "
+"discuss your specific needs."
+msgstr ""
+"B2B ortaklarımız için banka transferleri, akreditifler ve diğer düzenlemeler"
+" dahil olmak üzere esnek ve güvenli ödeme koşulları sunuyoruz. Özel "
+"ihtiyaçlarınızı görüşmek için bizimle iletişime geçin."
+
+msgid "Frequently Asked Questions"
+msgstr "Sıkça Sorulan Sorular"
+
+msgid "What is the minimum order quantity (MOQ)?"
+msgstr "Minimum sipariş miktarı (MOQ) nedir?"
+
+msgid ""
+"Our MOQ varies depending on the product and packaging. Please contact our "
+"sales team for detailed information."
+msgstr ""
+"Minimum sipariş miktarımız ürüne ve ambalaja göre değişmektedir. Detaylı "
+"bilgi için lütfen satış ekibimizle iletişime geçin."
+
+msgid "Do you offer white-labeling services?"
+msgstr "Beyaz etiket (White-labeling) hizmetleri sunuyor musunuz?"
+
+msgid ""
+"Yes, we offer comprehensive white-labeling and custom packaging solutions "
+"for your brand."
+msgstr ""
+"Evet, markanız için kapsamlı beyaz etiket ve özel ambalaj çözümleri "
+"sunuyoruz."
+
+msgid "What are the available shipping methods?"
+msgstr "Mevcut gönderim yöntemleri nelerdir?"
+
+msgid ""
+"We ship via air, sea, and land freight, depending on the destination and "
+"order size."
+msgstr ""
+"Varış noktasına ve sipariş büyüklüğüne bağlı olarak hava, deniz ve kara "
+"yoluyla gönderim yapıyoruz."

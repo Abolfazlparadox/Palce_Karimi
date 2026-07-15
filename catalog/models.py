@@ -1,101 +1,249 @@
+import os
+import uuid
 from django.db import models
+from django.db.models import Q
+from django.core.exceptions import ValidationError
 from parler.models import TranslatableModel, TranslatedFields
-from .utils import optimize_image, product_image_path, variant_image_path
 
-class ExchangeRate(models.Model):
-    currency_code = models.CharField(max_length=3, unique=True, help_text="e.g., USD, IRR, TRY, AED")
-    rate_to_base = models.DecimalField(max_digits=20, decimal_places=4, help_text="Exchange rate relative to base currency")
-    last_updated = models.DateTimeField(auto_now=True)
+# ==========================================
+# 0. Utility Functions
+# ==========================================
+def get_image_upload_path(instance, filename):
+    ext = filename.split('.')[-1]
+    new_filename = f"{uuid.uuid4().hex}.{ext}"
+    return os.path.join('products', str(instance.product.uuid), new_filename)
 
-    def __str__(self):
-        return self.currency_code
+# ==========================================
+# 1. Base / Taxonomy Models
+# ==========================================
 
 class Category(TranslatableModel):
-    is_active = models.BooleanField(default=True)
     translations = TranslatedFields(
-        name=models.CharField(max_length=100),
-        slug=models.SlugField(allow_unicode=True, unique=True),
-        description=models.TextField(blank=True)
+        name=models.CharField(verbose_name="نام دسته‌بندی", max_length=200),
+        slug=models.SlugField(verbose_name="شناسه (Slug)", max_length=220, unique=True),
+        description=models.TextField(verbose_name="توضیحات", blank=True)
     )
+    is_active = models.BooleanField(verbose_name="وضعیت فعالیت", default=True, db_index=True)
+    created_at = models.DateTimeField(verbose_name="تاریخ ایجاد", auto_now_add=True, db_index=True)
+    updated_at = models.DateTimeField(verbose_name="تاریخ بروزرسانی", auto_now=True)
 
     class Meta:
-        verbose_name_plural = "Categories"
+        verbose_name = "دسته‌بندی"
+        verbose_name_plural = "دسته‌بندی‌ها"
 
     def __str__(self):
-        return self.safe_translation_getter('name', any_language=True) or "Unnamed Category"
+        return self.safe_translation_getter('name', any_language=True) or 'دسته‌بندی بدون ترجمه'
+
+
+class QualityGrade(TranslatableModel):
+    translations = TranslatedFields(
+        name=models.CharField(verbose_name="درجه کیفی", max_length=100)
+    )
+    created_at = models.DateTimeField(verbose_name="تاریخ ایجاد", auto_now_add=True)
+    updated_at = models.DateTimeField(verbose_name="تاریخ بروزرسانی", auto_now=True)
+
+    class Meta:
+        verbose_name = "درجه کیفی"
+        verbose_name_plural = "درجات کیفی"
+
+    def __str__(self):
+        return self.safe_translation_getter('name', any_language=True) or 'درجه کیفی بدون ترجمه'
+
+
+class PackagingType(TranslatableModel):
+    translations = TranslatedFields(
+        name=models.CharField(verbose_name="نوع بسته‌بندی", max_length=100)
+    )
+    created_at = models.DateTimeField(verbose_name="تاریخ ایجاد", auto_now_add=True)
+    updated_at = models.DateTimeField(verbose_name="تاریخ بروزرسانی", auto_now=True)
+
+    class Meta:
+        verbose_name = "نوع بسته‌بندی"
+        verbose_name_plural = "انواع بسته‌بندی"
+
+    def __str__(self):
+        return self.safe_translation_getter('name', any_language=True) or 'بسته‌بندی بدون ترجمه'
+
+
+# ==========================================
+# 2. Core Product Architecture (B2B)
+# ==========================================
 
 class Product(TranslatableModel):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
-    sku = models.CharField(max_length=50, unique=True, db_index=True)
-    is_active = models.BooleanField(default=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, db_index=True)
     translations = TranslatedFields(
-        name=models.CharField(max_length=200),
-        slug=models.SlugField(allow_unicode=True, unique=True),
-        short_description=models.TextField(blank=True),
-        full_description=models.TextField(blank=True)
+        name=models.CharField(verbose_name="نام محصول", max_length=200),
+        slug=models.SlugField(verbose_name="شناسه URL (اسلاگ)", max_length=220, unique=True),
+        short_description=models.CharField(verbose_name="توضیح کوتاه", max_length=500),
+        full_description=models.TextField(verbose_name="توضیحات کامل"),
+        seo_title=models.CharField(verbose_name="عنوان سئو", max_length=255, blank=True),
+        meta_description=models.CharField(verbose_name="توضیحات متا (SEO)", max_length=300, blank=True)
     )
 
-    def __str__(self):
-        return self.safe_translation_getter('name', any_language=True) or self.sku
+    category = models.ForeignKey(Category, related_name='products', on_delete=models.PROTECT, verbose_name="دسته‌بندی محصول")
+    grade = models.ForeignKey(QualityGrade, related_name='products', on_delete=models.SET_NULL, null=True, blank=True, verbose_name="درجه کیفی")
 
-    @property
-    def main_image(self):
-        main_img = self.images.filter(is_main=True).first() or self.images.first()
-        if main_img:
-            return main_img
-        variant_img = VariantImage.objects.filter(variant__product=self, is_main=True).first() or VariantImage.objects.filter(variant__product=self).first()
-        return variant_img
-
-class ProductVariant(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='variants')
-    weight = models.CharField(max_length=50, help_text="e.g., 5g, 10g")
-    packaging_type = models.CharField(max_length=100, help_text="e.g., Khatam, Crystal")
-    base_price = models.DecimalField(max_digits=12, decimal_places=2, help_text="Price in base currency, e.g., USD")
-    stock = models.PositiveIntegerField(default=0)
-
-    def __str__(self):
-        return f"{self.product.safe_translation_getter('name', any_language=True)} - {self.weight} {self.packaging_type}"
-
-class ProductImage(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField(upload_to=product_image_path)
-    alt_text = models.CharField(max_length=255, blank=True, help_text="متن جایگزین برای سئو")
-    is_main = models.BooleanField(default=False, help_text="آیا این عکس اصلی است؟")
-
-    def __str__(self):
-        return f"Image for {self.product.safe_translation_getter('name', any_language=True)}"
-
-    def save(self, *args, **kwargs):
-        if self.image and not self.image.name.endswith('.webp'):
-            self.image = optimize_image(self.image)
-        super().save(*args, **kwargs)
-
-class VariantImage(models.Model):
-    variant = models.ForeignKey(ProductVariant, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField(upload_to=variant_image_path)
-    alt_text = models.CharField(max_length=255, blank=True, help_text="متن جایگزین برای سئو")
-    is_main = models.BooleanField(default=False, help_text="آیا این عکس اصلی متغیر است؟")
-
-    def __str__(self):
-        return f"Image for {self.variant}"
-
-    def save(self, *args, **kwargs):
-        if self.image and not self.image.name.endswith('.webp'):
-            self.image = optimize_image(self.image)
-        super().save(*args, **kwargs)
-
-class ContactMessage(models.Model):
-    name = models.CharField(max_length=100, verbose_name="Full Name")
-    email = models.EmailField(max_length=100, verbose_name="Email Address")
-    subject = models.CharField(max_length=100, verbose_name="Subject")
-    message = models.TextField(max_length=5000, verbose_name="Message")
-    created_at = models.DateTimeField(auto_now_add=True)
+    is_active = models.BooleanField(verbose_name="نمایش در سایت", default=True, db_index=True)
+    published_at = models.DateTimeField(verbose_name="تاریخ انتشار", null=True, blank=True)
+    created_at = models.DateTimeField(verbose_name="تاریخ ایجاد", auto_now_add=True, db_index=True)
+    updated_at = models.DateTimeField(verbose_name="تاریخ بروزرسانی", auto_now=True)
 
     class Meta:
-        verbose_name = "Contact Message"
-        verbose_name_plural = "Contact Messages"
+        verbose_name = "محصول"
+        verbose_name_plural = "محصولات"
         ordering = ['-created_at']
 
     def __str__(self):
-        return f"{self.name} - {self.subject}"
+        return self.safe_translation_getter('name', any_language=True) or 'محصول بدون ترجمه'
+
+    @property
+    def default_variant(self):
+        variant = self.variants.filter(is_default=True).first()
+        return variant if variant else self.variants.first()
+
+    @property
+    def main_image(self):
+        img = self.images.filter(is_main=True).first()
+        return img if img else self.images.order_by('order').first()
+
+
+class ProductVariant(models.Model):
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, db_index=True)
+    product = models.ForeignKey(Product, related_name='variants', on_delete=models.CASCADE, verbose_name="محصول مرتبط")
+    packaging_type = models.ForeignKey(PackagingType, related_name='variants', on_delete=models.PROTECT, verbose_name="نوع بسته‌بندی")
+
+    sku = models.CharField(verbose_name="کد کالا (SKU)", max_length=100, unique=True, db_index=True)
+    weight_in_grams = models.PositiveIntegerField(verbose_name="وزن (گرم)")
+    moq = models.PositiveIntegerField(verbose_name="حداقل سفارش (MOQ)", default=1)
+    is_default = models.BooleanField(verbose_name="متغیر پیش‌فرض", default=False, help_text="این متغیر به عنوان قیمت و ویژگی اصلی محصول نمایش داده می‌شود.")
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "متغیر محصول"
+        verbose_name_plural = "متغیرهای محصول"
+        ordering = ['weight_in_grams']
+        constraints = [
+            models.UniqueConstraint(fields=["product", "packaging_type", "weight_in_grams"], name="unique_product_variant"),
+            models.UniqueConstraint(fields=["product"], condition=Q(is_default=True), name="unique_default_variant_per_product")
+        ]
+
+    def __str__(self):
+        pkg_name = self.packaging_type.safe_translation_getter('name', any_language=True) or 'Pkg'
+        return f"{self.product} - {self.weight_in_grams}g ({pkg_name})"
+
+
+# ==========================================
+# 3. Product Details (Prices & Images)
+# ==========================================
+
+class TieredPrice(models.Model):
+    product_variant = models.ForeignKey(ProductVariant, related_name='tiered_prices', on_delete=models.CASCADE, verbose_name="متغیر محصول")
+    min_qty = models.PositiveIntegerField(verbose_name="حداقل تعداد")
+    max_qty = models.PositiveIntegerField(verbose_name="حداکثر تعداد", null=True, blank=True)
+    price_usd = models.DecimalField(verbose_name="قیمت (دلار)", max_digits=10, decimal_places=2)
+
+    class Meta:
+        verbose_name = "قیمت پلکانی"
+        verbose_name_plural = "قیمت‌های پلکانی"
+        ordering = ['min_qty']
+
+    def clean(self):
+        super().clean()
+        if self.max_qty is not None and self.min_qty >= self.max_qty:
+            raise ValidationError({'max_qty': "حداکثر تعداد باید بزرگتر از حداقل تعداد باشد."})
+
+        def overlaps(a_min, a_max, b_min, b_max):
+            if a_max is None and b_max is None: return True
+            if a_max is None: return b_max is None or b_max >= a_min
+            if b_max is None: return a_max >= b_min
+            return a_min <= b_max and b_min <= a_max
+
+        existing = TieredPrice.objects.filter(product_variant=self.product_variant).exclude(pk=self.pk)
+        for tier in existing:
+            if overlaps(self.min_qty, self.max_qty, tier.min_qty, tier.max_qty):
+                raise ValidationError("بازه قیمت‌ها با هم تداخل دارند.")
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        if self.max_qty:
+            return f"{self.min_qty} تا {self.max_qty} عدد: ${self.price_usd}"
+        return f"{self.min_qty} عدد به بالا: ${self.price_usd}"
+
+
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE, verbose_name="محصول")
+    image = models.ImageField(verbose_name="تصویر", upload_to=get_image_upload_path)
+    alt_text = models.CharField(verbose_name="متن جایگزین (Alt)", max_length=255, blank=True)
+    order = models.PositiveIntegerField(verbose_name="ترتیب نمایش", default=0)
+    is_main = models.BooleanField(verbose_name="تصویر اصلی است؟", default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "تصویر محصول"
+        verbose_name_plural = "تصاویر محصول"
+        ordering = ["order", "-created_at"]
+
+    def save(self, *args, **kwargs):
+        if self.is_main:
+            ProductImage.objects.filter(product=self.product, is_main=True).exclude(pk=self.pk).update(is_main=False)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"تصویر {self.order} برای {self.product}"
+
+
+# ==========================================
+# 4. Operations & External Models
+# ==========================================
+
+class ContactMessage(models.Model):
+    name = models.CharField(verbose_name="نام و نام خانوادگی", max_length=100)
+    email = models.EmailField(verbose_name="ایمیل", max_length=100)
+    subject = models.CharField(verbose_name="موضوع پیام", max_length=100)
+    message = models.TextField(verbose_name="متن پیام", max_length=5000)
+
+    is_read = models.BooleanField(verbose_name="خوانده شده؟", default=False, db_index=True)
+    ip_address = models.GenericIPAddressField(verbose_name="آی‌پی کاربر", null=True, blank=True)
+    user_agent = models.TextField(verbose_name="مرورگر کاربر", blank=True)
+
+    created_at = models.DateTimeField(verbose_name="تاریخ ثبت", auto_now_add=True, db_index=True)
+
+    class Meta:
+        verbose_name = "پیام ارتباط با ما"
+        verbose_name_plural = "پیام‌های کاربران"
+        ordering = ['-created_at']
+
+    def __str__(self):
+        status = "خوانده شده" if self.is_read else "جدید"
+        return f"[{status}] {self.name} - {self.subject}"
+
+
+class ExchangeRate(models.Model):
+    class Currency(models.TextChoices):
+        USD = 'USD', 'دلار آمریکا'
+        EUR = 'EUR', 'یورو'
+        AED = 'AED', 'درهم امارات'
+        TRY = 'TRY', 'لیر ترکیه'
+        IRR = 'IRR', 'ریال ایران'
+
+    currency = models.CharField(
+        verbose_name="کد ارز",
+        max_length=5,
+        choices=Currency.choices,
+        unique=True
+    )
+    rate = models.DecimalField(verbose_name="نرخ تبدیل", max_digits=15, decimal_places=4)
+    updated_at = models.DateTimeField(verbose_name="آخرین بروزرسانی", auto_now=True)
+
+    class Meta:
+        verbose_name = "نرخ ارز"
+        verbose_name_plural = "نرخ‌های ارز"
+        ordering = ['currency']
+
+    def __str__(self):
+        return f"{self.get_currency_display()} - {self.rate}"

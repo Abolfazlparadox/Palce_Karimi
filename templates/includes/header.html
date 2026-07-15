@@ -15,9 +15,9 @@
                     </div>
                     <div class="col-auto">
                         <span class="d-flex align-items-center font-weight-semibold" style="color: #FAF8F4;">
-                            <i class="fab fa-whatsapp mx-1"></i> <span class="ltr-text mx-1">09927590575</span>
+                            <i class="fab fa-whatsapp mx-1"></i> <span class="ltr-text mx-1">{% trans '09927590575' %}</span>
                             <span class="mx-3 opacity-5">|</span>
-                            <i class="fas fa-phone mx-1"></i> <span class="ltr-text mx-1">09303755667</span>
+                            <i class="fas fa-phone mx-1"></i> <span class="ltr-text mx-1">{% trans '09303755667' %}</span>
                         </span>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                     <div class="header-row">
                         <div class="header-logo my-2">
                             <a href="{% url 'catalog:home' %}">
-                                <img alt="Palace Karimi" height="65" style="width: auto; max-width: 160px; object-fit: contain;" data-sticky-height="50" data-sticky-top="15" src="{% static 'img/512x512.png' %}">
+                                <img class="default-logo" alt="{% trans 'Palace Karimi Logo' %}" height="65" style="width: auto; max-width: 160px; object-fit: contain;" data-sticky-height="50" data-sticky-top="15" src="{% static 'img/logo.webp' %}">
                             </a>
                         </div>
                     </div>
@@ -45,8 +45,9 @@
                                 <nav class="collapse">
                                     <ul class="nav nav-pills" id="mainNav">
                                         <li class="dropdown"><a class="dropdown-item active" href="{% url 'catalog:home' %}">{% trans 'Home' %}</a></li>
-                                        <li class="dropdown"><a class="dropdown-item" href="#">{% trans 'Products' %}</a></li>
+                                        <li class="dropdown"><a class="dropdown-item" href="{% url 'catalog:shop' %}">{% trans 'Products' %}</a></li>
                                         <li class="dropdown"><a class="dropdown-item" href="{% url 'catalog:about_us' %}">{% trans 'About Us' %}</a></li>
+                                        <li class="dropdown"><a class="dropdown-item" href="{% url 'catalog:terms_faq' %}">{% trans 'Terms & FAQ' %}</a></li>
                                         <li class="dropdown"><a class="dropdown-item" href="{% url 'catalog:contact_us' %}">{% trans 'Contact Us' %}</a></li>
                                     </ul>
                                 </nav>
@@ -75,7 +76,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-right lang-dropdown-menu" aria-labelledby="langMenuBtn" style="border-radius: 12px; border: 1px solid #E8E3D9; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
                                     {% for language in languages %}
-                                       <a href="#" onclick="event.preventDefault(); let f = this.closest('.dropdown').querySelector('form'); f.querySelector('input[name=language]').value='{{ language.code }}'; f.submit();" class="dropdown-item text-center py-2 font-weight-semibold">
+                                       <a href="javascript:void(0);" onclick="event.preventDefault(); let f = this.closest('.dropdown').querySelector('form'); f.querySelector('input[name=language]').value='{{ language.code }}'; f.submit();" class="dropdown-item text-center py-2 font-weight-semibold">
                                            <img src="{% static 'img/blank.gif' %}" class="flag flag-{% if language.code == 'en' %}us{% elif language.code == 'fa' %}ir{% elif language.code == 'ar' %}sa{% elif language.code == 'tr' %}tr{% endif %} mx-1" alt="{{ language.name_local }}">
                                            {{ language.name_local }}
                                        </a>
@@ -83,7 +84,7 @@
                                 </div>
                             </div>
 
-                            <a href="#" class="btn luxury-cta icon-pulse d-none d-sm-flex align-items-center mx-1">
+                            <a href="{% url 'catalog:contact_us' %}" class="btn luxury-cta icon-pulse d-none d-sm-flex align-items-center mx-1">
                                 <i class="fas fa-gem mx-1"></i> <span class="d-none d-md-inline">{% trans 'Consultation' %}</span>
                             </a>
                         </div>
