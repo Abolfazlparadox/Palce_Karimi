@@ -2,23 +2,31 @@
 <section class="section section-default border-0 my-5 appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="750">
     <div class="container py-4">
         <div class="row align-items-center">
+            <!-- بخش اسلایدر تصاویر -->
             <div class="col-md-6 appear-animation" data-appear-animation="fadeInLeftShorter" data-appear-animation-delay="1000">
                 <div class="owl-carousel owl-theme nav-inside mb-0" data-plugin-options="{'items': 1, 'margin': 10, 'animateOut': 'fadeOut', 'autoplay': true, 'autoplayTimeout': 6000, 'loop': true}">
-                    <div><img alt="Palace Karimi Farm" class="img-fluid" src="{% static 'img/generic/Palece-karimi.webp' %}"></div>
-                    <div><img alt="Palace Karimi Facility" class="img-fluid" src="{% static 'img/generic/Palece-karimi-logo.webp' %}"></div>
+                    <!-- ابعاد عکس‌ها به سایز استاندارد ۶۰۰ در ۴۰۰ تغییر یافت تا ارور لایت‌هاوس ندهد -->
+                    <div><img alt="Palace Karimi Farm" class="img-fluid rounded" src="{% static 'img/generic/Palece-karimi.webp' %}" width="600" height="400" style="object-fit: cover;"></div>
+                    <div><img alt="Palace Karimi Facility" class="img-fluid rounded" src="{% static 'img/generic/Palece-karimi-logo.webp' %}" width="600" height="400" style="object-fit: cover;"></div>
                 </div>
             </div>
+
+            <!-- بخش متون معرفی -->
             <div class="col-md-6">
                 <div class="overflow-hidden mb-2">
-                    <h2 class="text-color-dark font-weight-normal text-5 mb-0 pt-0 mt-0 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="1200"><strong class="font-weight-extra-bold">{% trans 'Introduce' %}</strong> {% trans 'Us' %}</h2>
+                    <h2 class="text-color-dark font-weight-normal text-5 mb-0 pt-0 mt-0 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="1200"><strong class="font-weight-extra-bold text-primary">{% trans 'About' %}</strong> {% trans 'Palace Karimi' %}</h2>
                 </div>
-                <p class="appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1400">
-                    {% trans 'Palace Karimi is a leading exporter of premium agricultural products. Sourced directly from the finest farms, our saffron and pistachios undergo rigorous quality control.' %}
-                    <a href="#">{% trans 'Read More' %}</a>
-                    {% trans 'Our commitment to excellence ensures that every product reaching your hands meets the highest international standards.' %}
+
+                <p class="appear-animation text-2 text-justify" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1400" style="line-height: 1.8;">
+                    {% trans 'Hossein Karimi Trading, operating under the Palace Karimi brand and managed by Mr. Hossein Karimi, is a dynamic and growing enterprise. With a dedicated team of 25 experts, we specialize in supplying, packaging, and exporting premium Iranian saffron and pistachios.' %}
                 </p>
-                <p class="mb-0 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1600">
-                    {% trans 'We utilize state-of-the-art sorting and packaging technologies to preserve the natural aroma, flavor, and nutritional value of our products.' %}
+
+                <p class="appear-animation text-2 text-justify" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1600" style="line-height: 1.8;">
+                    {% trans 'By combining experience, market knowledge, and a commitment to quality, we strive to build a reliable bridge between Iranian producers and global markets. Every stage of our operation, from meticulous product selection to packaging and shipping, is conducted under strict professional standards and continuous supervision to ensure our customers always receive premium and reliable products.' %}
+                </p>
+
+                <p class="mb-0 appear-animation text-2 text-justify" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="1800" style="line-height: 1.8;">
+                    {% trans 'At Palace Karimi, quality is not just a standard; it is a commitment that flows through all our partnerships and services. Our vision is to become an enduring and trusted name in the global trade of authentic Persian products, forging long-term collaborations with business partners worldwide.' %}
                 </p>
             </div>
         </div>

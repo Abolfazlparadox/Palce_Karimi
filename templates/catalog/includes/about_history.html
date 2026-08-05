@@ -2,41 +2,68 @@
 <div class="row">
     <div class="col-md-8 mx-md-auto text-center">
         <h2 class="text-color-dark font-weight-normal text-5 mb-2 pt-2"><strong class="font-weight-extra-bold">{% trans 'Our' %}</strong> {% trans 'History' %}</h2>
-        <p>{% trans 'From a passionate family-owned farm to a recognized global export enterprise.' %}</p>
+        <p class="lead">{% trans 'Every great success starts with a small decision and years of relentless effort.' %}</p>
 
         <div class="py-4 py-md-3"></div>
 
         <section class="timeline mb-n5" id="timeline">
             <div class="timeline-body">
-                <div class="timeline-date"><h3 class="text-primary font-weight-bold">2023</h3></div>
+
+                <!-- مرحله 1: ریشه ها -->
+                <div class="timeline-date"><h3 class="text-primary font-weight-bold">{% trans 'The Roots' %}</h3></div>
                 <article class="timeline-box left text-left appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="200">
                     <div class="timeline-box-arrow"></div>
                     <div class="p-2">
-                        <img alt="" class="img-fluid" src="{% static 'img/history/history-3.jpg' %}">
-                        <h3 class="font-weight-bold text-3 mt-3 mb-1">{% trans 'Global Expansion' %}</h3>
-                        <p class="mb-0 text-2">{% trans 'Palace Karimi officially expanded its export lines to Europe and the Middle East, acquiring major international licenses.' %}</p>
+                        <img alt="The Roots" class="img-fluid rounded" src="{% static 'img/history/history-1.webp' %}">
+                        <h3 class="font-weight-bold text-3 mt-3 mb-1">{% trans 'Early Ambitions' %}</h3>
+                        <p class="mb-0 text-2">{% trans 'Hossein Karimi’s entrepreneurial journey began at age 16 by managing a poultry farm, followed by establishing a charcoal factory at 19. These early years built the strong foundation of leadership and market expertise.' %}</p>
                     </div>
                 </article>
 
-                <div class="timeline-date"><h3 class="text-primary font-weight-bold">2018</h3></div>
+                <!-- مرحله 2: تولد برند -->
+                <div class="timeline-date"><h3 class="text-primary font-weight-bold">{% trans '2019' %}</h3></div>
                 <article class="timeline-box right text-left appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="400">
                     <div class="timeline-box-arrow"></div>
                     <div class="p-2">
-                        <img alt="" class="img-fluid" src="{% static 'img/history/history-2.jpg' %}">
-                        <h3 class="font-weight-bold text-3 mt-3 mb-1">{% trans 'Modern Facilities' %}</h3>
-                        <p class="mb-0 text-2">{% trans 'Implementation of state-of-the-art sorting and packaging facilities to maintain 100 Percent purity and aroma.' %}</p>
+                        <img alt="The Birth of Palace Karimi" class="img-fluid rounded" src="{% static 'img/history/history-2.webp' %}">
+                        <h3 class="font-weight-bold text-3 mt-3 mb-1">{% trans 'The Birth of Palace Karimi' %}</h3>
+                        <p class="mb-0 text-2">{% trans 'Starting with a small capital of just 10 million Tomans, Hossein and his wife began their pistachio business. Products were lovingly sorted at home at night and distributed to local confectioneries during the day.' %}</p>
                     </div>
                 </article>
 
-                <div class="timeline-date"><h3 class="text-primary font-weight-bold">1995</h3></div>
+                <!-- مرحله 3: نقطه عطف -->
+                <div class="timeline-date"><h3 class="text-primary font-weight-bold">{% trans 'The Journey' %}</h3></div>
                 <article class="timeline-box left text-left appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="600">
                     <div class="timeline-box-arrow"></div>
                     <div class="p-2">
-                        <img alt="" class="img-fluid" src="{% static 'img/history/history-1.jpg' %}">
-                        <h3 class="font-weight-bold text-3 mt-3 mb-1">{% trans 'The Beginning' %}</h3>
-                        <p class="mb-0 text-2">{% trans 'Cultivating the first premium saffron and pistachio farms with a dedication to organic and traditional farming methods.' %}</p>
+                        <img alt="The Turning Point" class="img-fluid rounded" src="{% static 'img/history/history-3.webp' %}">
+                        <h3 class="font-weight-bold text-3 mt-3 mb-1">{% trans 'The Turning Point' %}</h3>
+                        <p class="mb-0 text-2">{% trans 'Joined by Hassan Dolatabadi, the team embarked on a challenging road trip to northern Iran to market 130kg of pistachios. Sleeping in their car and selling door-to-door, they proved that perseverance is an entrepreneur’s greatest asset.' %}</p>
                     </div>
                 </article>
+
+                <!-- مرحله 4: توسعه صنعتی -->
+                <div class="timeline-date"><h3 class="text-primary font-weight-bold">{% trans 'Expansion' %}</h3></div>
+                <article class="timeline-box right text-left appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="800">
+                    <div class="timeline-box-arrow"></div>
+                    <div class="p-2">
+                        <img alt="Industrial Growth" class="img-fluid rounded" src="{% static 'img/history/history-4.webp' %}">
+                        <h3 class="font-weight-bold text-3 mt-3 mb-1">{% trans 'Industrial Growth' %}</h3>
+                        <p class="mb-0 text-2">{% trans 'Growing trust from customers led to the opening of the central office and a larger urban workshop. The integration of modern sorting and processing machinery elevated production capacity and quality to a new level.' %}</p>
+                    </div>
+                </article>
+
+                <!-- مرحله 5: امروز و صادرات -->
+                <div class="timeline-date"><h3 class="text-primary font-weight-bold">{% trans 'Present' %}</h3></div>
+                <article class="timeline-box left text-left appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="1000">
+                    <div class="timeline-box-arrow"></div>
+                    <div class="p-2">
+                        <img alt="Global Recognition" class="img-fluid rounded" src="{% static 'img/history/history-5.webp' %}">
+                        <h3 class="font-weight-bold text-3 mt-3 mb-1">{% trans 'Global Recognition' %}</h3>
+                        <p class="mb-0 text-2">{% trans 'Today, Palace Karimi operates with 25 dedicated experts, exporting to the UAE, Turkey, and the UK. Hossein Karimi proudly serves as the youngest member of the Iran Chamber of Commerce, driving international trade forward.' %}</p>
+                    </div>
+                </article>
+
             </div>
         </section>
     </div>

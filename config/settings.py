@@ -10,11 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
-from django.contrib import staticfiles
 from django.utils.translation import gettext_lazy as _
-import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,9 +31,13 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+# ==============================================================================
 # Application definition
+# ==============================================================================
 
 INSTALLED_APPS = [
+    # Jazzmin must be listed BEFORE django.contrib.admin, otherwise it will
+    # not be able to override the default admin templates.
     'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,15 +45,22 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Third-party apps
+    'parler',   # Multilingual content translation for models (used by ContactMessage/Product etc.)
+    'rosetta',  # In-browser .po translation editor, mounted somewhere in urls.py (e.g. /rosetta/)
+
+    # Local apps
     'core',
-    'parler',
-    'rosetta',
     'catalog',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    # LocaleMiddleware MUST sit between SessionMiddleware and CommonMiddleware.
+    # This is required for Jazzmin's "language_chooser" and Django's set_language
+    # view to correctly detect/persist the active language and text direction.
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -79,8 +89,10 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
+# ==============================================================================
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+# ==============================================================================
 
 DATABASES = {
     'default': {
@@ -94,8 +106,10 @@ DATABASES = {
 }
 
 
+# ==============================================================================
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
+# ==============================================================================
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -113,14 +127,27 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
+# ==============================================================================
+# Internationalization / RTL / Multilingual content
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
+# ==============================================================================
 
+# Default UI language for the whole project (admin + front end).
+# "fa-ir" is used instead of plain "fa" so Persian-specific formatting
+# (numbers, dates) is applied where Django provides it.
 LANGUAGE_CODE = 'fa-ir'
 TIME_ZONE = 'Asia/Tehran'
 USE_I18N = True
-USE_L10N = True
+USE_TZ = True
 
+# NOTE: USE_L10N was removed as a settings option in Django 5.0+ (localized
+# formatting is always enabled now). It's safe to leave out entirely; keeping
+# it here only for backwards-compat clarity and it will simply be ignored.
+# USE_L10N = True
+
+# Languages made available to Django's LocaleMiddleware / set_language view
+# and to Jazzmin's "language_chooser" dropdown (this affects admin UI text,
+# not the Parler-translated model content below).
 LANGUAGES = [
     ('fa', _('Persian')),
     ('en', _('English')),
@@ -128,31 +155,35 @@ LANGUAGES = [
     ('tr', _('Turkish')),
 ]
 
+# Where Django looks for your .po/.mo translation files (django-admin makemessages).
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale'),
 ]
 
+# Required by django-parler's PARLER_LANGUAGES dict below (keyed by SITE_ID),
+# even if django.contrib.sites itself is not installed.
 SITE_ID = 1
 
-
-USE_TZ = True
-
+# Languages available for translatable model CONTENT (Product, Category, etc.
+# via django-parler). This is independent from LANGUAGES/admin UI language above.
 PARLER_LANGUAGES = {
-    1: (
+    SITE_ID: (
         {'code': 'fa'},
         {'code': 'en'},
         {'code': 'ar'},
         {'code': 'tr'},
     ),
     'default': {
-        'fallback': 'en',
-        'hide_untranslated': False,
-    }
+        'fallback': 'fa',            # fall back to Persian if a translation is missing
+        'hide_untranslated': False,  # still show the object even without a translation
+    },
 }
 
 
-# Static files (CSS, JavaScript, Images)
+# ==============================================================================
+# Static & media files
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
+# ==============================================================================
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
@@ -161,36 +192,71 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+# ==============================================================================
+# JAZZMIN_SETTINGS
+# General/behavioural configuration for the django-jazzmin admin theme.
+# https://django-jazzmin.readthedocs.io/configuration/
+# ==============================================================================
+
 JAZZMIN_SETTINGS = {
-    # --- تنظیمات برند و لوگو ---
+    # --- Branding & logo ---
     "site_title": "مدیریت کاخ کریمی",
     "site_header": "پنل مدیریت",
     "site_brand": "Palace Karimi",
-    # آدرس لوگوی شما در پوشه static (نام فایل لوگوی خود را جایگزین کنید اگر متفاوت است)
+    # Path relative to a static files directory (must resolve via {% static %}).
     "site_logo": "img/logo.webp",
     "login_logo": "img/logo.webp",
-    "site_logo_classes": "img-circle",  # لوگو را دایره‌ای می‌کند
-    "site_icon": "img/favicon-32x32.png",  # آیکون تب مرورگر
+    # Separate logo for data-bs-theme="dark" login page, in case the light
+    # logo doesn't read well on a dark background. Falls back to login_logo
+    # automatically if you don't have a dark variant yet.
+    "login_logo_dark": "img/logo.webp",
+    "site_logo_classes": "img-circle",
+    "site_icon": "img/favicon-32x32.png",
     "welcome_sign": "به سیستم مدیریت محتوای کاخ کریمی خوش آمدید",
     "copyright": "Palace Karimi Ltd",
 
-    # --- تنظیمات جستجو و منوها ---
+    # --- Search bar ---
     "search_model": ["catalog.Product", "catalog.ContactMessage"],
     "user_avatar": None,
+
+    # --- Top navbar links ---
     "topmenu_links": [
         {"name": "پیشخوان", "url": "admin:index", "permissions": ["auth.view_user"]},
+        {"model": "auth.User"},
         {"name": "مشاهده سایت", "url": "/", "new_window": True},
     ],
+
+    # --- User menu (top-right dropdown) ---
+    "usermenu_links": [
+        {"name": "مشاهده سایت", "url": "/", "new_window": True},
+    ],
+
+    # --- Side menu behaviour ---
     "show_sidebar": True,
     "navigation_expanded": True,
-    "language_chooser": True,
+    "hide_apps": [],
+    "hide_models": [],
+    # Optional explicit ordering for apps/models in the sidebar (and dashboard app list).
+    "order_with_respect_to": [
+        "catalog",
+        "catalog.Product",
+        "catalog.Category",
+        "catalog.ProductVariant",
+        "catalog.QualityGrade",
+        "catalog.PackagingType",
+        "catalog.TieredPrice",
+        "catalog.ExchangeRate",
+        "catalog.ContactMessage",
+        "auth",
+    ],
 
-    # --- آیکون‌های اختصاصی منو ---
+    # --- Custom sidebar icons (Font Awesome 5 free classes) ---
     "icons": {
         "auth": "fas fa-users-cog",
         "auth.user": "fas fa-user-shield",
@@ -204,27 +270,90 @@ JAZZMIN_SETTINGS = {
         "catalog.ContactMessage": "fas fa-envelope-open-text",
         "catalog.ExchangeRate": "fas fa-money-check-alt",
     },
+    "default_icon_parents": "fas fa-chevron-circle-right",
+    "default_icon_children": "fas fa-circle",
 
+    # --- Related object popups (foreign key "+" / edit / view buttons) ---
+    # Render them as a Bootstrap modal instead of a separate browser popup
+    # window; this behaves far better in an RTL layout.
+    "related_modal_active": True,
+
+    # --- Custom CSS/JS ---
+    # Save the theme CSS provided earlier as: static/css/admin_rtl_fix.css
+    "custom_css": "css/admin_rtl_fix.css",
+    "custom_js": "js/admin_custom.js",
+    # Disabled because the Persian "Vazirmatn" font is already loaded via
+    # @import inside admin_rtl_fix.css — no need to also load Jazzmin's
+    # default Google Font.
+    "use_google_fonts_cdn": False,
+    # Leave both of these off in production; only flip "show_ui_builder" to
+    # True temporarily in development if you want to live-tweak the theme.
+    "show_ui_builder": False,
+    "show_theme_chooser": False,
+
+    # --- Change form layout ---
     "changeform_format": "horizontal_tabs",
     "changeform_format_overrides": {
         "catalog.product": "single",
         "catalog.category": "single",
     },
 
-    # --- معرفی فایل CSS اختصاصی ما ---
-    "custom_css": "css/admin_rtl_fix.css",
+    # --- Admin UI language switcher dropdown (uses LANGUAGES above) ---
+    "language_chooser": True,
 }
+
+
+# ==============================================================================
+# JAZZMIN_UI_TWEAKS
+# Visual/structural tweaks (colours here are overridden by admin_rtl_fix.css,
+# but the underlying Bootstrap variables still need sensible base values).
+# https://django-jazzmin.readthedocs.io/ui_customisation/
+# ==============================================================================
 
 JAZZMIN_UI_TWEAKS = {
     "navbar_small_text": False,
+    "footer_small_text": False,
+    "body_small_text": False,
+    "brand_small_text": False,
+    "brand_colour": False,
+
+    # Accent/link colour set to "primary" so it lines up with the purple
+    # --bs-primary override in admin_rtl_fix.css.
+    "accent": "accent-primary",
+
+    "navbar": "navbar-white navbar-light",
+    "no_navbar_border": False,
+    "navbar_fixed": True,
+    "layout_boxed": False,
+    "footer_fixed": False,
     "sidebar_fixed": True,
+    "sidebar": "sidebar-dark-primary",
+    "sidebar_nav_small_text": False,
+    "sidebar_disable_expand": False,
     "sidebar_nav_child_indent": True,
     "sidebar_nav_compact_style": False,
-    "accent": "accent-success",
-    "navbar": "navbar-white navbar-light",
-    "sidebar": "sidebar-dark-success",
+    "sidebar_nav_legacy_style": False,
+    "sidebar_nav_flat_style": False,
 
-    # تنظیمات تم بر اساس داکیومنتی که فرستادی
-    "theme": "flatly",  # تم پیش‌فرض برای حالت روز
-    "dark_mode_theme": "darkly",  # تغییر خودکار به تم تاریک اگر سیستم کاربر روی Dark Mode باشد
+    # Keep the changelist "actions" toolbar visible while scrolling a long list.
+    "actions_sticky_top": True,
+
+    # Base Bootswatch theme; exact colours are repainted by admin_rtl_fix.css.
+    "theme": "flatly",
+
+    # IMPORTANT: newer Jazzmin versions (AdminLTE v4 / Bootstrap 5 based)
+    # replaced the old "dark_mode_theme" key with "default_theme_mode".
+    # Valid values: "light" | "dark" | "auto" (auto follows the OS/browser
+    # prefers-color-scheme setting). Do NOT set "dark_mode_theme" anymore —
+    # it is deprecated and silently ignored (with a warning in the logs).
+    "default_theme_mode": "auto",
+
+    "button_classes": {
+        "primary": "btn-primary",
+        "secondary": "btn-secondary",
+        "info": "btn-info",
+        "warning": "btn-warning",
+        "danger": "btn-danger",
+        "success": "btn-success",
+    },
 }

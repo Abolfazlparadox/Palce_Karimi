@@ -10,6 +10,8 @@
 
 		<title>{% block title %}{% trans 'Palace Karimi | Luxury Persian Saffron & Pistachio' %}{% endblock %}</title>
         <!-- International Luxury Font for English & Turkish -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 		<meta name="keywords" content="HTML5 Template">
 		<meta name="description" content="Porto - Responsive HTML5 Template">
@@ -36,7 +38,6 @@
 		<!-- Theme CSS -->
 		<link rel="stylesheet" href="{% static 'css/theme.css' %}">
 		<link rel="stylesheet" href="{% static 'css/theme-elements.css' %}">
-		<link rel="stylesheet" href="{% static 'css/theme-blog.css' %}">
 		<link rel="stylesheet" href="{% static 'css/theme-shop.css' %}">
 
 		<!-- Current Page CSS -->
@@ -49,7 +50,10 @@
 
 
 		<!-- Skin CSS -->
-		<link id="skin-css" rel="stylesheet" href="{% static 'css/skins/default.css' %}">
+		<link id="skin-css" rel="stylesheet"
+		      href="{% static 'css/skins/default.css' %}"
+		      data-light="{% static 'css/skins/default.css' %}"
+		      data-dark="{% static 'css/skins/default-dark.css' %}">
 
 		<!-- Theme Custom CSS -->
 		<link rel="stylesheet" href="{% static 'css/custom.css' %}">
@@ -57,14 +61,21 @@
 		<!-- Head Libs -->
 		<script src="{% static 'vendor/modernizr/modernizr.min.js' %}"></script>
         <script>
-            // خواندن تم ذخیره شده یا تم سیستم کاربر
-            const savedTheme = localStorage.getItem('palace_theme');
-            const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            // این اسکریپت باید هرچه زودتر (قبل از رندر) اجرا شود تا از فلش رنگ اشتباه (FOUC) جلوگیری شود
+            (function () {
+                var savedTheme = localStorage.getItem('palace_theme');
+                var systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                var isDark = savedTheme === 'dark' || (!savedTheme && systemPrefersDark);
 
-            // اعمال تم تاریک در صورت نیاز
-            if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
-                document.documentElement.classList.add('dark');
-            }
+                if (isDark) {
+                    document.documentElement.classList.add('dark');
+                    // سوییچ کردن فایل اسکین همینجا، همزمان با کلاس dark -> جلوگیری از ناهماهنگی رنگ اسکین با پس‌زمینه
+                    var skinLink = document.getElementById('skin-css');
+                    if (skinLink && skinLink.dataset.dark) {
+                        skinLink.setAttribute('href', skinLink.dataset.dark);
+                    }
+                }
+            })();
         </script>
 	</head>
 	<body class="loading-overlay-showing" data-plugin-page-transition data-loading-overlay data-plugin-options="{'hideDelay': 500}">
@@ -118,39 +129,8 @@
 
 		<!-- Theme Initialization Files -->
 		<script src="{% static 'js/theme.init.js' %}"></script>
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const themeToggleBtn = document.getElementById('theme-toggle-btn');
-                const themeIcon = document.getElementById('theme-toggle-icon');
-                const htmlElement = document.documentElement;
-
-                // تنظیم اولیه آیکون (اگر سایت تاریک بود، آیکون خورشید شود)
-                if (htmlElement.classList.contains('dark')) {
-                    themeIcon.classList.remove('fa-moon');
-                    themeIcon.classList.add('fa-sun');
-                }
-
-                // رویداد کلیک روی دکمه
-                themeToggleBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-
-                    // سوییچ کردن کلاس dark روی تگ html
-                    const isDark = htmlElement.classList.toggle('dark');
-
-                    if (isDark) {
-                        // اگر تاریک شد، آیکون خورشید شود و در حافظه ذخیره شود
-                        localStorage.setItem('palace_theme', 'dark');
-                        themeIcon.classList.remove('fa-moon');
-                        themeIcon.classList.add('fa-sun');
-                    } else {
-                        // اگر روشن شد، آیکون ماه شود و در حافظه ذخیره شود
-                        localStorage.setItem('palace_theme', 'light');
-                        themeIcon.classList.remove('fa-sun');
-                        themeIcon.classList.add('fa-moon');
-                    }
-                });
-            });
-        </script>
+        <!-- توجه: منطق تاگل تم (دارک/لایت + سوییچ اسکین پسته‌ای) دیگر اینجا نیست،
+             به‌طور کامل و یکپارچه داخل static/js/custom.js قرار گرفته تا یک منبع واحد حقیقت داشته باشیم -->
         <script>
             document.addEventListener("DOMContentLoaded", function() {
                 // پیدا کردن تمام پیام‌های سیستم

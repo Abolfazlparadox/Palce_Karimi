@@ -27,13 +27,13 @@ msgstr "النشرة الإخبارية"
 
 msgid ""
 "Subscribe to our newsletter to get the latest updates and luxury offers."
-msgstr "اشترك في نشرتنا الإخبارية للحصول على أحدث التحديثات والعروض الفاخرة."
+msgstr "اشترك في النشرة الإخبارية للحصول على أحدث التحديثات والعروض الفاخرة."
 
 msgid "Success!"
 msgstr "نجاح!"
 
 msgid "You have been added to our email list."
-msgstr "تمت إضافتك إلى قائمة بريدنا الإلكتروني."
+msgstr "تمت إضافتك إلى قائمة البريد الإلكتروني لدينا."
 
 msgid "Email Address"
 msgstr "عنوان البريد الإلكتروني"
@@ -54,13 +54,13 @@ msgid "Follow Us"
 msgstr "تابعنا"
 
 msgid "© 2026 Palace Karimi. All Rights Reserved."
-msgstr "© 2026 بالاس كريمي. كل الحقوق محفوظة."
+msgstr "© 2026 Palace Karimi. جميع الحقوق محفوظة."
 
 msgid "Designed & Developed by"
-msgstr "تم التصميم والتطوير بواسطة"
+msgstr "تصميم وتطوير بواسطة"
 
 msgid "FAQ"
-msgstr "الأسئلة الشائعة"
+msgstr "أسئلة مكررة"
 
 msgid "Sitemap"
 msgstr "خريطة الموقع"
@@ -84,7 +84,7 @@ msgid "Hand-picked and premium quality."
 msgstr "مقطوف يدوياً وبجودة عالية."
 
 msgid "Palace Karimi"
-msgstr "بالاس كريمي"
+msgstr "بالس كريمي"
 
 msgid "YOUR TRUSTED PARTNER"
 msgstr "شريكك الموثوق"
@@ -306,7 +306,7 @@ msgid "Export Standard Approval"
 msgstr "موافقة معيار التصدير"
 
 msgid "Our"
-msgstr "لنا"
+msgstr "مكتبنا"
 
 msgid "History"
 msgstr "تاريخنا"
@@ -490,7 +490,7 @@ msgid "Send Message"
 msgstr "إرسال رسالة"
 
 msgid "Office"
-msgstr "مكتب"
+msgstr ""
 
 msgid "Address:"
 msgstr "العنوان:"
@@ -655,3 +655,193 @@ msgid ""
 "order size."
 msgstr ""
 "نحن نشحن عبر الشحن الجوي والبحري والبري، اعتماداً على الوجهة وحجم الطلب."
+
+msgid ""
+"Hossein Karimi Trading - Supplying the finest Iranian Saffron and Pistachio."
+msgstr "تجارة حسين كريمي - المورّد لأفضل الزعفران والفستق الإيراني."
+
+msgid "Working Hours:"
+msgstr "ساعات العمل:"
+
+msgid "Corner of Chamran 28, Chamran St., Sabzevar, Khorasan Razavi, Iran"
+msgstr "إيران، خراسان الرضوية، سبزوار، شارع جمران، زاوية جمران 28"
+
+msgid "Palace Karimi Logo"
+msgstr "شعار بالاس كريمي"
+
+msgid "Palace Karimi | Luxury Persian Saffron & Pistachio"
+msgstr "بالاس كريمي | الزعفران والفستق الإيراني الفاخر"
+
+msgid "In God We Trust..."
+msgstr "في الله نثق..."
+
+msgid "08:00 - 20:00"
+msgstr "08:00 - 20:00"
+
+msgid "0992 759 0575"
+msgstr "0992 759 0575"
+
+msgid "0930 375 5667"
+msgstr "0930 375 5667"
+
+msgid "051 44 29 20 21"
+msgstr "051 44 29 20 21"
+
+msgid "palacekarimi2023@gmail.com"
+msgstr "palacekarimi2023@gmail.com"
+
+msgid "Instagram"
+msgstr "إنستغرام"
+
+msgid "Facebook"
+msgstr "فيسبوك"
+
+msgid "Twitter"
+msgstr "إكس (تويتر)"
+
+msgid "Linkedin"
+msgstr "لينكدإن"
+
+msgid "Everyday - 08:00 to 20:00"
+msgstr "كل يوم - 08:00 إلى 20:00"
+
+msgid "Admin Panel"
+msgstr "لوحة الإدارة"
+
+msgid "Palace Karimi: From the heart of orchards to the heart of business"
+msgstr "بالس كريمي؛ من قلب البساتين إلى قلب التجارة"
+
+msgid ""
+"Handpicked from the finest orchards and processed under strict quality "
+"standards."
+msgstr "مقطوفة بعناية من أفضل البساتين ومعالجة وفقاً لأدق معايير الجودة."
+
+msgid "Terms & FAQ"
+msgstr "الشروط والأسئلة الشائعة"
+
+msgid "Competitive Pricing"
+msgstr "أسعار تنافسية"
+
+msgid ""
+"Direct sourcing allows us to offer the best market prices for B2B partners."
+msgstr "يتيح لنا التوريد المباشر تقديم أفضل أسعار السوق لشركائنا التجاريين."
+
+msgid ""
+"Every great success starts with a small decision and years of relentless "
+"effort."
+msgstr "كل نجاح عظيم يبدأ بقرار صغير وسنوات من الجهد الدؤوب."
+
+msgid "The Roots"
+msgstr "الجذور"
+
+msgid "Early Ambitions"
+msgstr "الطموحات المبكرة"
+
+msgid ""
+"Hossein Karimi’s entrepreneurial journey began at age 16 by managing a "
+"poultry farm, followed by establishing a charcoal factory at 19. These early"
+" years built the strong foundation of leadership and market expertise."
+msgstr ""
+"بدأت رحلة حسين كريمي في ريادة الأعمال في سن الـ ۱۶ من خلال إدارة مزرعة "
+"دواجن، وتلاها إنشاء مصنع للفحم في سن الـ ۱۹. بنت هذه السنوات الأولى أساساً "
+"قوياً للقيادة والخبرة في السوق."
+
+msgid "2019"
+msgstr "۲۰۱۹"
+
+msgid "The Birth of Palace Karimi"
+msgstr "ولادة بالس كريمي"
+
+msgid ""
+"Starting with a small capital of just 10 million Tomans, Hossein and his "
+"wife began their pistachio business. Products were lovingly sorted at home "
+"at night and distributed to local confectioneries during the day."
+msgstr ""
+"بدأ حسين وزوجته تجارة الفستق برأس مال صغير بلغ ۱۰ ملايين تومان فقط. كانت "
+"المنتجات تُفرز بحب في المنزل ليلاً وتُوزع على محلات الحلويات المحلية نهاراً."
+
+msgid "The Journey"
+msgstr "الرحلة"
+
+msgid "The Turning Point"
+msgstr "نقطة التحول"
+
+msgid ""
+"Joined by Hassan Dolatabadi, the team embarked on a challenging road trip to"
+" northern Iran to market 130kg of pistachios. Sleeping in their car and "
+"selling door-to-door, they proved that perseverance is an entrepreneur’s "
+"greatest asset."
+msgstr ""
+"بانضمام حسن دولت آبادي، انطلق الفريق في رحلة شاقة إلى شمال إيران لتسويق ۱۳۰ "
+"كيلوغراماً من الفستق. من خلال النوم في سيارتهم والبيع من باب إلى باب، أثبتوا"
+" أن المثابرة هي أعظم أصول رائد الأعمال."
+
+msgid "Expansion"
+msgstr "التوسع"
+
+msgid "Industrial Growth"
+msgstr "النمو الصناعي"
+
+msgid ""
+"Growing trust from customers led to the opening of the central office and a "
+"larger urban workshop. The integration of modern sorting and processing "
+"machinery elevated production capacity and quality to a new level."
+msgstr ""
+"أدت الثقة المتزايدة من العملاء إلى افتتاح المكتب المركزي وورشة عمل حضرية "
+"أكبر. رفع دمج آلات الفرز والمعالجة الحديثة الطاقة الإنتاجية والجودة إلى "
+"مستوى جديد."
+
+msgid "Present"
+msgstr "اليوم"
+
+msgid "Global Recognition"
+msgstr "اعتراف عالمي"
+
+msgid ""
+"Today, Palace Karimi operates with 25 dedicated experts, exporting to the "
+"UAE, Turkey, and the UK. Hossein Karimi proudly serves as the youngest "
+"member of the Iran Chamber of Commerce, driving international trade forward."
+msgstr ""
+"اليوم، تعمل بالس كريمي مع ۲۵ خبيراً متخصصاً، وتصدر إلى الإمارات العربية "
+"المتحدة وتركيا والمملكة المتحدة. يخدم حسين كريمي بفخر كأصغر عضو في غرفة "
+"التجارة الإيرانية، دافعاً التجارة الدولية إلى الأمام."
+
+msgid "About"
+msgstr "حول"
+
+msgid ""
+"Hossein Karimi Trading, operating under the Palace Karimi brand and managed "
+"by Mr. Hossein Karimi, is a dynamic and growing enterprise. With a dedicated"
+" team of 25 experts, we specialize in supplying, packaging, and exporting "
+"premium Iranian saffron and pistachios."
+msgstr ""
+"تعمل شركة حسين كريمي التجارية، تحت علامة بالس كريمي التجارية وبإدارة السيد "
+"حسين كريمي، كمؤسسة ديناميكية ومتنامية. بفضل فريق متخصص مكون من ۲۵ خبيراً، "
+"ننشط في توريد وتعبئة وتصدير الزعفران والفستق الإيراني الممتاز."
+
+msgid ""
+"By combining experience, market knowledge, and a commitment to quality, we "
+"strive to build a reliable bridge between Iranian producers and global "
+"markets. Every stage of our operation, from meticulous product selection to "
+"packaging and shipping, is conducted under strict professional standards and"
+" continuous supervision to ensure our customers always receive premium and "
+"reliable products."
+msgstr ""
+"من خلال الجمع بين الخبرة ومعرفة السوق والالتزام بالجودة، سعينا لبناء جسر "
+"موثوق بين المنتجين الإيرانيين والأسواق العالمية. تتم جميع مراحل عملنا، من "
+"الاختيار الدقيق للمنتجات إلى التعبئة والشحن، وفقاً للمعايير المهنية والإشراف"
+" المستمر لضمان حصول عملائنا دائماً على منتجات ممتازة وموثوقة."
+
+msgid ""
+"At Palace Karimi, quality is not just a standard; it is a commitment that "
+"flows through all our partnerships and services. Our vision is to become an "
+"enduring and trusted name in the global trade of authentic Persian products,"
+" forging long-term collaborations with business partners worldwide."
+msgstr ""
+"في بالس كريمي، الجودة ليست مجرد معيار، بل هي التزام يتدفق عبر جميع شراكاتنا "
+"وخدماتنا. رؤيتنا هي أن نصبح اسماً خالداً وموثوقاً في التجارة العالمية "
+"للمنتجات الإيرانية الأصيلة، وإقامة تعاون طويل الأمد مع شركاء تجاريين في جميع"
+" أنحاء العالم."
+
+msgid "God provides sustenance without measure."
+msgstr "الله هو الرزاق بغير حساب."

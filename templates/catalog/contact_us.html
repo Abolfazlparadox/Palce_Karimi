@@ -7,7 +7,21 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <div role="main" class="main">
-
+    <section class="page-header page-header-classic page-header-sm custom-dynamic-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 order-2 order-md-1 align-self-center p-static mt-n1">
+                    <h1 data-title-border>{% trans 'Contact Us' %}</h1>
+                </div>
+                <div class="col-md-4 order-1 order-md-2 align-self-center mb-1 mb-md-0">
+                    <ul class="breadcrumb d-block text-md-right">
+                        <li><a href="{% url 'catalog:home' %}">{% trans 'Home' %}</a></li>
+                        <li class="active">{% trans 'Contact Us' %}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
     <div id="leaflet-map" style="height: 400px; z-index: 1;"></div>
 
     <div class="container">
@@ -71,18 +85,32 @@
                 <div class="appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="800">
                     <h4 class="mt-2 mb-1"><strong>{% trans 'Our' %}</strong> {% trans 'Office' %}</h4>
                     <ul class="list list-icons list-icons-style-2 mt-2">
-                        <li class="line-height-9"><i class="fas fa-map-marker-alt top-6 text-primary"></i> <strong class="text-dark">{% trans 'Address:' %}</strong> {% trans 'Tehran, Iran' %}</li>
-                        <li class="line-height-9"><i class="fas fa-phone top-6 text-primary"></i> <strong class="text-dark">{% trans 'Phone:' %}</strong> <span class="ltr-text">{% trans '(+98) 123-4567' %}</span></li>
-                        <li class="line-height-9"><i class="fas fa-envelope top-6 text-primary"></i> <strong class="text-dark">{% trans 'Email:' %}</strong> <a href="mailto:info@palacekarimi.com">info@palacekarimi.com</a></li>
+                        <li class="line-height-9">
+                            <i class="fas fa-map-marker-alt top-6 text-primary"></i>
+                            <strong class="text-dark">{% trans 'Address:' %}</strong>
+                            {% trans 'Corner of Chamran 28, Chamran St., Sabzevar, Khorasan Razavi, Iran' %}
+                        </li>
+                        <li class="line-height-9">
+                            <i class="fas fa-phone top-6 text-primary"></i>
+                            <strong class="text-dark">{% trans 'Phone:' %}</strong>
+                            <span class="ltr-text" dir="ltr">
+                                <a href="tel:+985144292021">051 44 29 20 21</a> |
+                                <a href="tel:+989927590575">0992 759 0575</a> |
+                                <a href="tel:+989303755667">0930 375 5667</a>
+                            </span>
+                        </li>
+                        <li class="line-height-9">
+                            <i class="fas fa-envelope top-6 text-primary"></i>
+                            <strong class="text-dark">{% trans 'Email:' %}</strong>
+                            <a href="mailto:palacekarimi2023@gmail.com">palacekarimi2023@gmail.com</a>
+                        </li>
                     </ul>
                 </div>
 
                 <div class="appear-animation" data-appear-animation="fadeIn" data-appear-animation-delay="950">
                     <h4 class="pt-5"><strong>{% trans 'Business' %}</strong> {% trans 'Hours' %}</h4>
                     <ul class="list list-icons list-dark mt-2">
-                        <li><i class="far fa-clock top-6 text-primary"></i> {% trans 'Saturday to Wednesday - 9:00 AM to 5:00 PM' %}</li>
-                        <li><i class="far fa-clock top-6 text-primary"></i> {% trans 'Thursday - 9:00 AM to 2:00 PM' %}</li>
-                        <li><i class="far fa-clock top-6 text-primary"></i> {% trans 'Friday - Closed' %}</li>
+                        <li><i class="far fa-clock top-6 text-primary"></i> {% trans 'Everyday - 08:00 to 20:00' %}</li>
                     </ul>
                 </div>
 
@@ -96,14 +124,39 @@
 
 {% block scripts %}
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var map = L.map('leaflet-map').setView([36.21, 57.68], 13);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-        L.marker([36.21, 57.68]).addTo(map)
-            .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-            .openPopup();
+document.addEventListener("DOMContentLoaded", function () {
+
+    // Palace Karimi Office (Sabzevar Coordinates)
+    const lat = 36.20398606913347;
+    const lng = 57.69571887590756;
+
+    // ایجاد نقشه
+    const map = L.map('leaflet-map').setView([lat, lng], 17);
+
+    // نقشه OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // آیکون اختصاصی
+    const marker = L.icon({
+        iconUrl: '/static/img/logo.webp',
+        iconSize: [45, 45],
+        iconAnchor: [22, 45],
+        popupAnchor: [0, -40]
     });
+
+    // مارکر
+    L.marker([lat, lng], { icon: marker })
+        .addTo(map)
+        .bindPopup(`
+            <div style="text-align:center;">
+                <strong>Palace Karimi</strong><br>
+                Premium Saffron & Pistachio Exporter
+            </div>
+        `)
+        .openPopup();
+
+});
 </script>
 {% endblock %}

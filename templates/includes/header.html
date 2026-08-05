@@ -1,23 +1,23 @@
 {% load static i18n %}
 
-
 <header id="header" class="header-effect-shrink" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 100, 'stickyChangeLogo': true, 'stickyHeaderContainerHeight': 80}">
     <div class="header-body border-top-0" style="box-shadow: 0 5px 25px rgba(0,0,0,0.03);">
 
+        <!-- Promo Bar (Updated with Real Business Contact Info) -->
         <div class="header-promo-bar py-2 d-none d-md-block">
             <div class="container">
                 <div class="row align-items-center justify-content-between">
                     <div class="col-auto">
                         <span class="d-flex align-items-center font-weight-semibold">
                             <i class="fas fa-crown mx-2"></i>
-                            <span>{% trans 'Experience the pinnacle of luxury with Palace Karimi' %}</span>
+                            <span>{% trans 'Palace Karimi: From the heart of orchards to the heart of business' %}</span>
                         </span>
                     </div>
                     <div class="col-auto">
                         <span class="d-flex align-items-center font-weight-semibold" style="color: #FAF8F4;">
-                            <i class="fab fa-whatsapp mx-1"></i> <span class="ltr-text mx-1">{% trans '09927590575' %}</span>
+                            <i class="fas fa-phone mx-1"></i> <span class="ltr-text mx-1" dir="ltr">051 44 29 20 21</span>
                             <span class="mx-3 opacity-5">|</span>
-                            <i class="fas fa-phone mx-1"></i> <span class="ltr-text mx-1">{% trans '09303755667' %}</span>
+                            <i class="fab fa-whatsapp mx-1"></i> <span class="ltr-text mx-1" dir="ltr">0992 759 0575</span>
                         </span>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                             <div class="header-nav-main header-nav-main-text-capitalize header-nav-main-square header-nav-main-dropdown-no-borders header-nav-main-effect-2 header-nav-main-sub-effect-1">
                                 <nav class="collapse">
                                     <ul class="nav nav-pills" id="mainNav">
-                                        <li class="dropdown"><a class="dropdown-item active" href="{% url 'catalog:home' %}">{% trans 'Home' %}</a></li>
+                                        <li class="dropdown"><a class="dropdown-item" href="{% url 'catalog:home' %}">{% trans 'Home' %}</a></li>
                                         <li class="dropdown"><a class="dropdown-item" href="{% url 'catalog:shop' %}">{% trans 'Products' %}</a></li>
                                         <li class="dropdown"><a class="dropdown-item" href="{% url 'catalog:about_us' %}">{% trans 'About Us' %}</a></li>
                                         <li class="dropdown"><a class="dropdown-item" href="{% url 'catalog:terms_faq' %}">{% trans 'Terms & FAQ' %}</a></li>
@@ -59,9 +59,17 @@
                             {% get_current_language as LANGUAGE_CODE %}
                             {% get_available_languages as LANGUAGES %}
                             {% get_language_info_list for LANGUAGES as languages %}
+                            <!-- Admin Login Button -->
+                            <a href="{% url 'admin:index' %}" class="btn luxury-admin-btn d-flex align-items-center justify-content-center mx-1" style="background: transparent; border: 1px solid #8A609C; color: #8A609C; border-radius: 8px; width: 38px; height: 38px; transition: all 0.3s;" title="{% trans 'Admin Panel' %}">
+                                <i class="fas fa-user-shield"></i>
+                            </a>
+
+                            <!-- Dark Mode Toggle Button -->
                             <a href="#" id="theme-toggle-btn" class="btn mx-1 d-flex align-items-center justify-content-center" style="background: transparent; border: 1px solid #8A609C; color: #8A609C; border-radius: 8px; width: 38px; height: 38px; transition: all 0.3s;" title="{% trans 'Toggle Dark Mode' %}">
                                 <i id="theme-toggle-icon" class="fas fa-moon"></i>
                             </a>
+
+                            <!-- Language Dropdown (Fixed Flags) -->
                             <div class="dropdown mx-2">
                                 <button class="btn dropdown-toggle d-flex align-items-center" type="button" id="langMenuBtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background: transparent; border: 1px solid #8A609C; color: #8A609C; font-weight: 700; border-radius: 8px; padding: 5px 12px; transition: all 0.3s;">
                                     <img src="{% static 'img/blank.gif' %}" class="flag flag-{% if LANGUAGE_CODE == 'en' %}us{% elif LANGUAGE_CODE == 'fa' %}ir{% elif LANGUAGE_CODE == 'ar' %}sa{% elif LANGUAGE_CODE == 'tr' %}tr{% endif %} mx-1" alt="{{ LANGUAGE_CODE }}">
@@ -84,8 +92,8 @@
                                 </div>
                             </div>
 
-                            <a href="{% url 'catalog:contact_us' %}" class="btn luxury-cta icon-pulse d-none d-sm-flex align-items-center mx-1">
-                                <i class="fas fa-gem mx-1"></i> <span class="d-none d-md-inline">{% trans 'Consultation' %}</span>
+                            <a href="https://wa.me/989967971048" target="_blank" rel="noopener noreferrer" class="btn luxury-cta icon-pulse d-none d-sm-flex align-items-center mx-1">
+                                <i class="fab fa-whatsapp mx-1"></i> <span class="d-none d-md-inline">{% trans 'Consultation' %}</span>
                             </a>
                         </div>
 

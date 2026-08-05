@@ -1,592 +1,414 @@
 import os
 import polib
 
-# Define the dictionary for Palace Karimi
-translations = {
-    'fa': {
-        'Home': 'خانه', 'About Us': 'درباره ما', 'Products': 'محصولات', 'Contact Us': 'تماس با ما',
-        'Get in Touch': 'در ارتباط باشید', 'Newsletter': 'خبرنامه',
-        'Subscribe to our newsletter to get the latest updates and luxury offers.': 'برای دریافت آخرین به‌روزرسانی‌ها و پیشنهادات ویژه ما، در خبرنامه مشترک شوید.',
-        'Success!': 'موفقیت!', 'You have been added to our email list.': 'شما به لیست ایمیل ما افزوده شدید.',
-        'Email Address': 'آدرس ایمیل', 'Subscribe': 'عضویت', 'Latest Tweets': 'جدیدترین توییت‌ها',
-        'Please wait...': 'لطفا منتظر باشید ...', 'Tehran, Iran': 'تهران، ایران',
-        'Follow Us': 'ما را دنبال کنید',
-        '© 2026 Palace Karimi. All Rights Reserved.': '© 2026 پالس کریمی. تمامی حقوق محفوظ است.',
-        'Designed & Developed by': 'طراحی و توسعه توسط', 'FAQ': 'سوالات متداول', 'Sitemap': 'نقشه سایت',
-        'The Finest Quality': 'بهترین و باکیفیت‌ترین', 'PREMIUM SAFFRON': 'زعفران سوپر نگین',
-        'Experience the true taste of luxury.': 'طعم واقعی اصالت و لوکس بودن را تجربه کنید.',
-        'Exporting Worldwide': 'صادرات به سراسر جهان', 'PERSIAN PISTACHIO': 'پسته اصیل ایرانی',
-        'Hand-picked and premium quality.': 'دست‌چین شده و با کیفیت جهانی.', 'Palace Karimi': 'پالس کریمی',
-        'YOUR TRUSTED PARTNER': 'شریک معتمد شما',
-        'Providing the best agricultural products.': 'ارائه‌دهنده بهترین محصولات کشاورزی.',
-        'Follow us on social media for the latest updates and news!': 'برای اطلاع از آخرین به روز رسانی ها و اخبار، ما را در شبکه های اجتماعی دنبال کنید!',
-        'Experience a secure purchase with the top exporter of authentic Iranian products': 'تجربه خریدی مطمئن با صادرکننده برتر محصولات اصیل ایرانی',
-        'Demand the best quality saffron and pistachio from us.': 'بهترین کیفیت زعفران و پسته را از ما بخواهید.',
-        'Contact Experts': 'تماس با کارشناسان', 'or': 'یا', 'view products.': 'مشاهده محصولات.',
-        'Palace Karimi is a brand that is': 'پالس کریمی برندی', 'Authentic': 'اصیل', 'High Quality': 'باکیفیت',
-        'Global': 'جهانی', 'and a secure choice for export.': 'و انتخابی مطمئن برای صادرات است.',
-        'Experience the pinnacle of luxury with Palace Karimi': 'اوج لوکس بودن را با پالس کریمی تجربه کنید',
-        'Consultation': 'مشاوره',
-        'Harvesting': 'برداشت', 'Processing': 'فرآوری', 'Packaging': 'بسته‌بندی', 'Global Export': 'صادرات جهانی',
-        'New': 'جدید', 'View Details': 'مشاهده جزئیات', 'No products available.': 'محصولی برای نمایش وجود ندارد.',
-        'Why Choose': 'چرا انتخاب کنید', 'Palace Karimi?': 'پالاس کریمی؟',
-        'Pure, natural products cultivated without harmful chemicals.': 'محصولات خالص و طبیعی که بدون مواد شیمیایی مضر کشت می‌شوند.',
-        'Premium Quality': 'کیفیت برتر',
-        'Export-grade saffron and pistachio carefully hand-picked.': 'زعفران و پسته صادراتی با دقت دست‌چین شده.',
-        'Luxury Packaging': 'بسته‌بندی لوکس',
-        'Elegant and secure packaging maintaining freshness and aroma.': 'بسته‌بندی شیک و ایمن که تازگی و عطر را حفظ می‌کند.',
-        'Lab Certified': 'دارای گواهی آزمایشگاه',
-        'Rigorous laboratory testing for color, flavor, and purity.': 'آزمایش‌های دقیق آزمایشگاهی برای رنگ، طعم و خلوص.',
-        'Direct from Farms': 'مستقیم از مزارع',
-        'Sourced directly from the best Iranian agricultural lands.': 'تهیه شده مستقیم از بهترین زمین‌های کشاورزی ایران.',
-        'Wholesale Supply': 'تأمین عمده',
-        'Capability to fulfill bulk orders for businesses worldwide.': 'توانایی انجام سفارشات عمده برای کسب‌وکارهای سراسر جهان.',
-        '24/7 Support': 'پشتیبانی ۲۴/۷',
-        'Dedicated customer service and consultation for our partners.': 'خدمات مشتری و مشاوره اختصاصی برای شرکای ما.',
-        'Our Guarantees': 'تضمین‌های ما', 'Authenticity Guarantee': 'تضمین اصالت',
-        'International Standards': 'استانداردهای بین‌المللی',
-        'Our products are processed and packaged strictly according to international food safety and hygiene standards.': 'محصولات ما کاملاً مطابق با استانداردهای بین‌المللی ایمنی و بهداشت مواد غذایی فرآوری و بسته‌بندی می‌شوند.',
-        'Custom White-Labeling': 'برچسب‌گذاری سفید سفارشی',
-        'We offer exclusive custom packaging and white-labeling services for your brand to stand out in the global market.': 'ما خدمات بسته‌بندی سفارشی و برچسب‌گذاری سفید انحصاری را برای برجسته شدن برند شما در بازار جهانی ارائه می‌دهیم.',
-        'We proudly export our products to': 'ما با افتخار محصولات خود را به', 'Europe': 'اروپا', 'Asia': 'آسیا',
-        'Middle East': 'خاورمیانه',
-        'Trusted by leading international businesses and distributors worldwide.': 'مورد اعتماد کسب‌وکارها و توزیع‌کنندگان برجسته بین‌المللی در سراسر جهان.',
-        'Introduce': 'معرفی', 'Us': 'ما',
-        'Palace Karimi is a leading exporter of premium agricultural products. Sourced directly from the finest farms, our saffron and pistachios undergo rigorous quality control.': 'پالاس کریمی یک صادرکننده پیشرو در محصولات کشاورزی برتر است. زعفران و پسته ما مستقیماً از بهترین مزارع تهیه شده و تحت کنترل کیفیت دقیق قرار می‌گیرند.',
-        'Read More': 'بیشتر بخوانید',
-        'Our commitment to excellence ensures that every product reaching your hands meets the highest international standards.': 'تعهد ما به برتری تضمین می‌کند که هر محصولی که به دست شما می‌رسد، با بالاترین استانداردهای بین‌المللی مطابقت دارد.',
-        'We utilize state-of-the-art sorting and packaging technologies to preserve the natural aroma, flavor, and nutritional value of our products.': 'ما از فناوری‌های پیشرفته مرتب‌سازی و بسته‌بندی برای حفظ عطر، طعم و ارزش غذایی طبیعی محصولات خود استفاده می‌کنیم.',
-        'Our Vision': 'چشم‌انداز ما',
-        'To be the most trusted and recognized global brand for luxury Persian saffron and premium pistachios, setting the benchmark for quality, purity, and sustainable agriculture in the international market.': 'تبدیل شدن به معتبرترین و شناخته‌شده‌ترین برند جهانی برای زعفران لوکس ایرانی و پسته ممتاز، و تعیین معیار کیفیت، خلوص و کشاورزی پایدار در بازار بین‌المللی.',
-        'Our Mission': 'مأموریت ما', 'Licenses & Certificates': 'مجوزها و گواهینامه‌ها',
-        'Quality Management System': 'سیستم مدیریت کیفیت', 'Organic Certified': 'گواهی ارگانیک',
-        'Phytosanitary': 'بهداشت گیاهی',
-        'Global Health & Safety': 'بهداشت و ایمنی جهانی', 'Export Standard Approval': 'تأییدیه استاندارد صادرات',
-        'Our': 'ما', 'History': 'تاریخچه',
-        'From a passionate family-owned farm to a recognized global export enterprise.': 'از یک مزرعه خانوادگی پرشور تا یک شرکت صادراتی جهانی شناخته شده.',
-        'Global Expansion': 'توسعه جهانی',
-        'Palace Karimi officially expanded its export lines to Europe and the Middle East, acquiring major international licenses.': 'پالاس کریمی رسماً خطوط صادراتی خود را به اروپا و خاورمیانه گسترش داد و مجوزهای بین‌المللی عمده را دریافت کرد.',
-        'Modern Facilities': 'امکانات مدرن', 'The Beginning': 'آغاز',
-        'Cultivating the first premium saffron and pistachio farms with a dedication to organic and traditional farming methods.': 'کشت اولین مزارع زعفران و پسته ممتاز با تعهد به روش‌های کشاورزی ارگانیک و سنتی.',
-        'Meet': 'ملاقات با', 'Our Team': 'تیم ما',
-        'The dedicated experts behind the success of Palace Karimi.': 'کارشناسان متعهد پشت موفقیت پالاس کریمی.',
-        'Abolfazl Karimi': 'ابوالفضل کریمی', 'CEO & Founder': 'مدیرعامل و بنیانگذار',
-        'Leading the global strategy and ensuring the highest quality standards across all products.': 'رهبری استراتژی جهانی و تضمین بالاترین استانداردهای کیفیت در تمام محصولات.',
-        'Sara Ahmadi': 'سارا احمدی', 'Export Manager': 'مدیر صادرات',
-        'Managing international logistics, B2B relations, and smooth customs clearances.': 'مدیریت لجستیک بین‌المللی، روابط تجاری و ترخیص روان گمرکی.',
-        'Ali Rezaei': 'علی رضایی', 'Quality Control': 'کنترل کیفیت', 'Mina Rostami': 'مینا رستمی',
-        'Marketing': 'بازاریابی',
-        'Showcasing the true value and luxury of Persian saffron to our international audience.': 'نمایش ارزش واقعی و لوکس زعفران ایرانی به مخاطبان بین‌المللی ما.',
-        'Palace Karimi; The Symbol of': 'پالس کریمی؛ نمادِ',
-        'Authenticity': 'اصالت',
-        'Join Our Network': 'به شبکه ما بپیوندید',
-        'International': 'بین‌المللی',
-        'Certifications & Standards': 'گواهینامه‌ها و استانداردها',
-        'Committed to global food safety, organic farming, and premium export quality.': 'متعهد به ایمنی جهانی غذا، کشاورزی ارگانیک و کیفیت برتر صادرات.',
-        'With a rich heritage in cultivating the world’s finest saffron and pistachios, Palace Karimi stands as a bridge between the ancient farms of Persia and the luxury global market.': 'پالس کریمی با میراثی غنی در کشت بهترین زعفران و پسته جهان، به عنوان پلی میان مزارع کهن ایران و بازار لوکس جهانی ایستاده است.',
-        'We deliver nothing but perfection.': 'ما چیزی جز کمال ارائه نمی‌دهیم.',
-        'Overseeing laboratory testing and ensuring 100 Percent organic certification compliance.': 'نظارت بر آزمایش‌های تخصصی و تضمین رعایت ۱۰۰ درصدی استانداردهای گواهی ارگانیک.',
-        'Implementation of state-of-the-art sorting and packaging facilities to maintain 100 Percent purity and aroma.': 'به‌کارگیری پیشرفته‌ترین امکانات سورتینگ و بسته‌بندی برای حفظ ۱۰۰ درصدی خلوص و عطر محصولات.',
-        'Our mission is to empower local farmers through fair trade while delivering 100 Percent organic, lab-tested, and exquisitely packaged products to our B2B partners and consumers worldwide.': 'مأموریت ما توانمندسازی کشاورزان محلی از طریق تجارت منصفانه است؛ در حالی که محصولات ۱۰۰٪ ارگانیک، آزمایش‌شده و با بسته‌بندی لوکس را به شرکای تجاری (B2B) و مصرف‌کنندگان خود در سراسر جهان ارائه می‌دهیم.',
-        'We guarantee that all our saffron and pistachios are 100 Percent authentic Persian products, free from any artificial additives or coloring.': 'ما تضمین می‌کنیم که تمام زعفران و پسته‌های ما ۱۰۰٪ محصولات اصیل ایرانی و عاری از هرگونه افزودنی یا رنگ مصنوعی هستند.',
-        '100 Percent Organic': '۱۰۰٪ ارگانیک',
-        '100 Percent Natural & Additive-Free': '۱۰۰٪ طبیعی و بدون افزودنی',
-        'Fast and reliable international shipping to global destinations.': 'ارسال بین‌المللی سریع و مطمئن به مقاصد جهانی.',
-        'Contact': 'تماس',
-        'We are here to answer your questions and discuss global export opportunities.': 'ما اینجا هستیم تا به سوالات شما پاسخ دهیم و درباره فرصت‌های صادرات جهانی گفتگو کنیم.',
-        'Error!': 'خطا!',
-        'There was an error sending your message. Please check the fields.': 'در ارسال پیام شما خطایی رخ داد. لطفاً فیلدها را بررسی کنید.',
-        'Your message has been sent to us.': 'پیام شما با موفقیت برای ما ارسال شد.',
-        'Full Name': 'نام کامل',
-        'Subject': 'موضوع',
-        'Message': 'پیام',
-        'Send Message': 'ارسال پیام',
-        'Office': 'دفتر',
-        'Address:': 'آدرس:',
-        'Phone:': 'تلفن:',
-        'Email:': 'ایمیل:',
-        'Business': 'ساعات',
-        'Hours': 'کاری',
-        'Saturday to Wednesday - 9:00 AM to 5:00 PM': 'شنبه تا چهارشنبه - ۹ صبح تا ۵ عصر',
-        'Thursday - 9:00 AM to 2:00 PM': 'پنج‌شنبه - ۹ صبح تا ۲ بعدازظهر',
-        'Friday - Closed': 'جمعه - تعطیل',
-        'Whether you are looking for bulk saffron orders, premium pistachio exports, or white-labeling services, our experts are ready to assist you.': 'چه به دنبال سفارشات عمده زعفران باشید، چه صادرات پسته ممتاز یا خدمات برچسب‌گذاری خصوصی، کارشناسان ما آماده کمک به شما هستند.',
-        'Palace Karimi is': 'پالس کریمی',
-        'Everything': 'همان چیزی',
-        'you need for a': 'است که برای یک تجربه',
-        'Luxury': 'لوکس',
-        'export experience!': 'صادراتی نیاز دارید!',
-        'The Best': 'بهترین',
-        'choice for authentic Persian products.': 'انتخاب برای تأمین محصولات اصیل ایرانی.',
-        'Hossein Karimi Trading': 'بازرگانی حسین کریمی',
-        'Palace Karimi Office': 'دفتر مرکزی پالس کریمی',
-        'With years of experience in cultivation, processing, and exporting the finest Iranian saffron and pistachio, we offer quality and authenticity to global markets. All our products are packaged and shipped with international standards.': 'ما با سال‌ها تجربه در زمینه کشت، فرآوری و صادرات مرغوب‌ترین زعفران و پسته ایرانی، کیفیت و اصالت را به بازارهای جهانی عرضه می‌کنیم. تمامی محصولات ما با استانداردهای بین‌المللی بسته‌بندی و ارسال می‌شوند.',
-        '09303755667':'09303755667',
-        '404 - Page Not Found': '۴۰۴ - صفحه پیدا نشد',
-        '404': '۴۰۴',
-        'Oops! The page you were looking for doesn’t exist.': 'اوه! صفحه‌ای که به دنبال آن هستید وجود ندارد.',
-        'You may have mistyped the address or the page may have moved.': 'ممکن است آدرس را اشتباه وارد کرده باشید یا صفحه جابجا شده باشد.',
-        'Back to Home': 'بازگشت به صفحه اصلی',
-        '500 - Internal Server Error': '۵۰۰ - خطای داخلی سرور',
-        '500': '۵۰۰',
-        'We are currently experiencing technical difficulties.': 'در حال حاضر با مشکلات فنی روبرو هستیم.',
-        'Please try again later or contact support if the problem persists.': 'لطفاً بعداً دوباره تلاش کنید یا در صورت تداوم مشکل با پشتیبانی تماس بگیرید.',
-        'Terms, Conditions & FAQ': 'قوانین، مقررات و سوالات متداول',
-        'Shipping & Customs': 'حمل و نقل و گمرک',
-        'Detailed information about our international shipping policies, customs clearance procedures, and delivery times. We ensure a smooth and transparent process for all our global partners.': 'اطلاعات دقیق درباره سیاست‌های حمل و نقل بین‌المللی، مراحل ترخیص کالا از گمرک و زمان‌بندی تحویل. ما فرآیندی روان و شفاف را برای تمام شرکای جهانی خود تضمین می‌کنیم.',
-        'Quality Certificates': 'گواهینامه‌های کیفیت',
-        'All our products are accompanied by internationally recognized quality and safety certificates. Here you can find details about our certifications like ISO, HACCP, and Organic.': 'تمامی محصولات ما دارای گواهینامه‌های کیفیت و ایمنی معتبر بین‌المللی هستند. در اینجا می‌توانید جزئیات مربوط به گواهینامه‌های ما مانند ISO، HACCP و ارگانیک را بیابید.',
-        'Payment Terms': 'شرایط پرداخت',
-        'We offer flexible and secure payment terms for our B2B partners, including bank transfers, letters of credit, and other arrangements. Contact us to discuss your specific needs.': 'ما شرایط پرداخت منعطف و امنی را برای شرکای B2B خود ارائه می‌دهیم، از جمله حواله‌های بانکی، اعتبار اسنادی (LC) و سایر توافقات. برای بررسی نیازهای خاص خود با ما تماس بگیرید.',
-        'Frequently Asked Questions': 'سوالات متداول',
-        'What is the minimum order quantity (MOQ)?': 'حداقل مقدار سفارش (MOQ) چقدر است؟',
-        'Our MOQ varies depending on the product and packaging. Please contact our sales team for detailed information.': 'حداقل سفارش ما بسته به نوع محصول و بسته‌بندی متفاوت است. لطفاً برای اطلاعات دقیق با تیم فروش ما تماس بگیرید.',
-        'Do you offer white-labeling services?': 'آیا خدمات بسته‌بندی با برند اختصاصی (White-labeling) ارائه می‌دهید؟',
-        'Yes, we offer comprehensive white-labeling and custom packaging solutions for your brand.': 'بله، ما راهکارهای جامع برچسب‌گذاری خصوصی و بسته‌بندی سفارشی برای برند شما ارائه می‌دهیم.',
-        'What are the available shipping methods?': 'روش‌های ارسال موجود کدامند؟',
-        'We ship via air, sea, and land freight, depending on the destination and order size.': 'ما ارسال را از طریق حمل و نقل هوایی، دریایی و زمینی، بسته به مقصد و حجم سفارش انجام می‌دهیم.'
+LOCALE_DIR = 'locale'
 
-
+# دیکشنری جامع ترجمه‌های فوتر و هدر سایت
+TRANSLATIONS = {
+    "Get in Touch": {
+        "fa": "در ارتباط باشید",
+        "ar": "ابق على تواصل",
+        "tr": "İletişimde Kalın"
     },
-    'en': {
-        'Home': 'Home', 'About Us': 'About Us', 'Products': 'Products', 'Contact Us': 'Contact Us',
-        'Get in Touch': 'Get in Touch', 'Newsletter': 'Newsletter',
-        'Subscribe to our newsletter to get the latest updates and luxury offers.': 'Subscribe to our newsletter to get the latest updates and luxury offers.',
-        'Success!': 'Success!', 'You have been added to our email list.': 'You have been added to our email list.',
-        'Email Address': 'Email Address', 'Subscribe': 'Subscribe', 'Latest Tweets': 'Latest Tweets',
-        'Please wait...': 'Please wait...', 'Tehran, Iran': 'Tehran, Iran',
-        'Follow Us': 'Follow Us',
-        '© 2026 Palace Karimi. All Rights Reserved.': '© 2026 Palace Karimi. All Rights Reserved.',
-        'Designed & Developed by': 'Designed & Developed by', 'FAQ': 'FAQ', 'Sitemap': 'Sitemap',
-        'The Finest Quality': 'The Finest Quality', 'PREMIUM SAFFRON': 'PREMIUM SAFFRON',
-        'Experience the true taste of luxury.': 'Experience the true taste of luxury.',
-        'Exporting Worldwide': 'Exporting Worldwide', 'PERSIAN PISTACHIO': 'PERSIAN PISTACHIO',
-        'Hand-picked and premium quality.': 'Hand-picked and premium quality.', 'Palace Karimi': 'Palace Karimi',
-        'YOUR TRUSTED PARTNER': 'YOUR TRUSTED PARTNER',
-        'Providing the best agricultural products.': 'Providing the best agricultural products.',
-        'Follow us on social media for the latest updates and news!': 'Follow us on social media for the latest updates and news!',
-        'Experience a secure purchase with the top exporter of authentic Iranian products': 'Experience a secure purchase with the top exporter of authentic Iranian products',
-        'Demand the best quality saffron and pistachio from us.': 'Demand the best quality saffron and pistachio from us.',
-        'Contact Experts': 'Contact Experts', 'or': 'or', 'view products.': 'view products.',
-        'Palace Karimi is a brand that is': 'Palace Karimi is a brand that is', 'Authentic': 'Authentic',
-        'High Quality': 'High Quality', 'Global': 'Global',
-        'and a secure choice for export.': 'and a secure choice for export.',
-        'Experience the pinnacle of luxury with Palace Karimi': 'Experience the pinnacle of luxury with Palace Karimi',
-        'Consultation': 'Consultation',
-        'Harvesting': 'Harvesting', 'Processing': 'Processing', 'Packaging': 'Packaging',
-        'Global Export': 'Global Export',
-        'New': 'New', 'View Details': 'View Details', 'No products available.': 'No products available.',
-        'Why Choose': 'Why Choose', 'Palace Karimi?': 'Palace Karimi?',
-        'Pure, natural products cultivated without harmful chemicals.': 'Pure, natural products cultivated without harmful chemicals.',
-        'Premium Quality': 'Premium Quality',
-        'Export-grade saffron and pistachio carefully hand-picked.': 'Export-grade saffron and pistachio carefully hand-picked.',
-        'Luxury Packaging': 'Luxury Packaging',
-        'Elegant and secure packaging maintaining freshness and aroma.': 'Elegant and secure packaging maintaining freshness and aroma.',
-        'Lab Certified': 'Lab Certified',
-        'Rigorous laboratory testing for color, flavor, and purity.': 'Rigorous laboratory testing for color, flavor, and purity.',
-        'Direct from Farms': 'Direct from Farms',
-        'Sourced directly from the best Iranian agricultural lands.': 'Sourced directly from the best Iranian agricultural lands.',
-        'Wholesale Supply': 'Wholesale Supply',
-        'Capability to fulfill bulk orders for businesses worldwide.': 'Capability to fulfill bulk orders for businesses worldwide.',
-        '24/7 Support': '24/7 Support',
-        'Dedicated customer service and consultation for our partners.': 'Dedicated customer service and consultation for our partners.',
-        'Our Guarantees': 'Our Guarantees', 'Authenticity Guarantee': 'Authenticity Guarantee',
-        'International Standards': 'International Standards',
-        'Our products are processed and packaged strictly according to international food safety and hygiene standards.': 'Our products are processed and packaged strictly according to international food safety and hygiene standards.',
-        'Custom White-Labeling': 'Custom White-Labeling',
-        'We offer exclusive custom packaging and white-labeling services for your brand to stand out in the global market.': 'We offer exclusive custom packaging and white-labeling services for your brand to stand out in the global market.',
-        'We proudly export our products to': 'We proudly export our products to', 'Europe': 'Europe', 'Asia': 'Asia',
-        'Middle East': 'Middle East',
-        'Trusted by leading international businesses and distributors worldwide.': 'Trusted by leading international businesses and distributors worldwide.',
-        'Introduce': 'Introduce', 'Us': 'Us',
-        'Palace Karimi is a leading exporter of premium agricultural products. Sourced directly from the finest farms, our saffron and pistachios undergo rigorous quality control.': 'Palace Karimi is a leading exporter of premium agricultural products. Sourced directly from the finest farms, our saffron and pistachios undergo rigorous quality control.',
-        'Read More': 'Read More',
-        'Our commitment to excellence ensures that every product reaching your hands meets the highest international standards.': 'Our commitment to excellence ensures that every product reaching your hands meets the highest international standards.',
-        'We utilize state-of-the-art sorting and packaging technologies to preserve the natural aroma, flavor, and nutritional value of our products.': 'We utilize state-of-the-art sorting and packaging technologies to preserve the natural aroma, flavor, and nutritional value of our products.',
-        'Our Vision': 'Our Vision',
-        'To be the most trusted and recognized global brand for luxury Persian saffron and premium pistachios, setting the benchmark for quality, purity, and sustainable agriculture in the international market.': 'To be the most trusted and recognized global brand for luxury Persian saffron and premium pistachios, setting the benchmark for quality, purity, and sustainable agriculture in the international market.',
-        'Our Mission': 'Our Mission', 'Licenses & Certificates': 'Licenses & Certificates',
-        'Quality Management System': 'Quality Management System', 'Organic Certified': 'Organic Certified',
-        'Phytosanitary': 'Phytosanitary',
-        'Global Health & Safety': 'Global Health & Safety', 'Export Standard Approval': 'Export Standard Approval',
-        'Our': 'Our', 'History': 'History',
-        'From a passionate family-owned farm to a recognized global export enterprise.': 'From a passionate family-owned farm to a recognized global export enterprise.',
-        'Global Expansion': 'Global Expansion',
-        'Palace Karimi officially expanded its export lines to Europe and the Middle East, acquiring major international licenses.': 'Palace Karimi officially expanded its export lines to Europe and the Middle East, acquiring major international licenses.',
-        'Modern Facilities': 'Modern Facilities', 'The Beginning': 'The Beginning',
-        'Cultivating the first premium saffron and pistachio farms with a dedication to organic and traditional farming methods.': 'Cultivating the first premium saffron and pistachio farms with a dedication to organic and traditional farming methods.',
-        'Meet': 'Meet', 'Our Team': 'Our Team',
-        'The dedicated experts behind the success of Palace Karimi.': 'The dedicated experts behind the success of Palace Karimi.',
-        'Abolfazl Karimi': 'Abolfazl Karimi', 'CEO & Founder': 'CEO & Founder',
-        'Leading the global strategy and ensuring the highest quality standards across all products.': 'Leading the global strategy and ensuring the highest quality standards across all products.',
-        'Sara Ahmadi': 'Sara Ahmadi', 'Export Manager': 'Export Manager',
-        'Managing international logistics, B2B relations, and smooth customs clearances.': 'Managing international logistics, B2B relations, and smooth customs clearances.',
-        'Ali Rezaei': 'Ali Rezaei', 'Quality Control': 'Quality Control', 'Mina Rostami': 'Mina Rostami',
-        'Marketing': 'Marketing',
-        'Showcasing the true value and luxury of Persian saffron to our international audience.': 'Showcasing the true value and luxury of Persian saffron to our international audience.',
-        'Palace Karimi; The Symbol of': 'Palace Karimi; The Symbol of',
-        'Authenticity': 'Authenticity',
-        'Join Our Network': 'Join Our Network',
-        'International': 'International',
-        'Certifications & Standards': 'Certifications & Standards',
-        'Committed to global food safety, organic farming, and premium export quality.': 'Committed to global food safety, organic farming, and premium export quality.',
-        'With a rich heritage in cultivating the world’s finest saffron and pistachios, Palace Karimi stands as a bridge between the ancient farms of Persia and the luxury global market.': 'With a rich heritage in cultivating the world’s finest saffron and pistachios, Palace Karimi stands as a bridge between the ancient farms of Persia and the luxury global market.',
-        'We deliver nothing but perfection.': 'We deliver nothing but perfection.',
-        'Overseeing laboratory testing and ensuring 100 Percent organic certification compliance.': 'Overseeing laboratory testing and ensuring 100% organic certification compliance.',
-        'Implementation of state-of-the-art sorting and packaging facilities to maintain 100 Percent purity and aroma.': 'Implementation of state-of-the-art sorting and packaging facilities to maintain 100% purity and aroma.',
-        'Our mission is to empower local farmers through fair trade while delivering 100 Percent organic, lab-tested, and exquisitely packaged products to our B2B partners and consumers worldwide.': 'Our mission is to empower local farmers through fair trade while delivering 100% organic, lab-tested, and exquisitely packaged products to our B2B partners and consumers worldwide.',
-        'We guarantee that all our saffron and pistachios are 100 Percent authentic Persian products, free from any artificial additives or coloring.': 'We guarantee that all our saffron and pistachios are 100% authentic Persian products, free from any artificial additives or coloring.',
-        '100 Percent Organic': '100% Organic',
-        '100 Percent Natural & Additive-Free': '100% Natural & Additive-Free',
-        'Fast and reliable international shipping to global destinations.': 'Fast and reliable international shipping to global destinations.',
-        'Contact': 'Contact',
-        'We are here to answer your questions and discuss global export opportunities.': 'We are here to answer your questions and discuss global export opportunities.',
-        'Error!': 'Error!',
-        'There was an error sending your message. Please check the fields.': 'There was an error sending your message. Please check the fields.',
-        'Your message has been sent to us.': 'Your message has been sent to us.',
-        'Full Name': 'Full Name',
-        'Subject': 'Subject',
-        'Message': 'Message',
-        'Send Message': 'Send Message',
-        'Office': 'Office',
-        'Address:': 'Address:',
-        'Phone:': 'Phone:',
-        'Email:': 'Email:',
-        'Business': 'Business',
-        'Hours': 'Hours',
-        'Saturday to Wednesday - 9:00 AM to 5:00 PM': 'Saturday to Wednesday - 9:00 AM to 5:00 PM',
-        'Thursday - 9:00 AM to 2:00 PM': 'Thursday - 9:00 AM to 2:00 PM',
-        'Friday - Closed': 'Friday - Closed',
-        'Whether you are looking for bulk saffron orders, premium pistachio exports, or white-labeling services, our experts are ready to assist you.': 'Whether you are looking for bulk saffron orders, premium pistachio exports, or white-labeling services, our experts are ready to assist you.',
-        'Palace Karimi is': 'Palace Karimi is',
-        'Everything': 'Everything',
-        'you need for a': 'you need for a',
-        'Luxury': 'Luxury',
-        'export experience!': 'export experience!',
-        'The Best': 'The Best',
-        'choice for authentic Persian products.': 'choice for authentic Persian products.',
-        'Hossein Karimi Trading': 'Hossein Karimi Trading',
-        'Palace Karimi Office': 'Palace Karimi Office',
-    'With years of experience in cultivation, processing, and exporting the finest Iranian saffron and pistachio, we offer quality and authenticity to global markets. All our products are packaged and shipped with international standards.': 'With years of experience in cultivation, processing, and exporting the finest Iranian saffron and pistachio, we offer quality and authenticity to global markets. All our products are packaged and shipped with international standards.',
-        '09303755667':'09303755667',
+    "Newsletter": {
+        "fa": "خبرنامه",
+        "ar": "النشرة الإخبارية",
+        "tr": "Bülten"
     },
-    'ar': {
-        'Home': 'الرئيسية', 'About Us': 'معلومات عنا', 'Products': 'المنتجات', 'Contact Us': 'اتصل بنا',
-        'Get in Touch': 'ابق على تواصل', 'Newsletter': 'النشرة الإخبارية',
-        'Subscribe to our newsletter to get the latest updates and luxury offers.': 'اشترك في نشرتنا الإخبارية للحصول على أحدث التحديثات والعروض الفاخرة.',
-        'Success!': 'نجاح!', 'You have been added to our email list.': 'تمت إضافتك إلى قائمة بريدنا الإلكتروني.',
-        'Email Address': 'عنوان البريد الإلكتروني', 'Subscribe': 'اشتراك', 'Latest Tweets': 'أحدث التغريدات',
-        'Please wait...': 'أرجو الإنتظار...', 'Tehran, Iran': 'طهران، إيران',
-        'Follow Us': 'تابعنا', '© 2026 Palace Karimi. All Rights Reserved.': '© 2026 بالاس كريمي. كل الحقوق محفوظة.',
-        'Designed & Developed by': 'تم التصميم والتطوير بواسطة', 'FAQ': 'الأسئلة الشائعة', 'Sitemap': 'خريطة الموقع',
-        'The Finest Quality': 'أفضل جودة', 'PREMIUM SAFFRON': 'زعفران سوبر نيجين',
-        'Experience the true taste of luxury.': 'اكتشف الطعم الحقيقي للفخامة.',
-        'Exporting Worldwide': 'تصدير لجميع أنحاء العالم', 'PERSIAN PISTACHIO': 'فستق فارسي',
-        'Hand-picked and premium quality.': 'مقطوف يدوياً وبجودة عالية.', 'Palace Karimi': 'بالاس كريمي',
-        'YOUR TRUSTED PARTNER': 'شريكك الموثوق',
-        'Providing the best agricultural products.': 'نقدم أفضل المنتجات الزراعية.',
-        'Follow us on social media for the latest updates and news!': 'تابعنا على وسائل التواصل الاجتماعي للحصول على آخر التحديثات والأخبار!',
-        'Experience a secure purchase with the top exporter of authentic Iranian products': 'تجربة شراء آمنة مع أفضل مصدر للمنتجات الإيرانية الأصيلة',
-        'Demand the best quality saffron and pistachio from us.': 'اطلب منا أفضل جودة من الزعفران والفستق.',
-        'Contact Experts': 'اتصل بالخبراء', 'or': 'أو', 'view products.': 'عرض المنتجات.',
-        'Palace Karimi is a brand that is': 'بالاس كريمي هي علامة تجارية', 'Authentic': 'أصيلة',
-        'High Quality': 'عالية الجودة', 'Global': 'عالمية', 'and a secure choice for export.': 'وخيار آمن للتصدير.',
-        'Experience the pinnacle of luxury with Palace Karimi': 'جرب قمة الفخامة مع بالاس كريمي',
-        'Consultation': 'استشارة',
-        'Harvesting': 'حصاد', 'Processing': 'معالجة', 'Packaging': 'تغليف', 'Global Export': 'التصدير العالمي',
-        'New': 'جديد', 'View Details': 'عرض التفاصيل', 'No products available.': 'لا توجد منتجات متاحة.',
-        'Why Choose': 'لماذا تختار', 'Palace Karimi?': 'بالاس كريمي؟',
-        'Pure, natural products cultivated without harmful chemicals.': 'منتجات نقية وطبيعية مزروعة بدون مواد كيميائية ضارة.',
-        'Premium Quality': 'جودة ممتازة',
-        'Export-grade saffron and pistachio carefully hand-picked.': 'زعفران وفستق من الدرجة التصديرية يتم انتقاؤه بعناية.',
-        'Luxury Packaging': 'تغليف فاخر',
-        'Elegant and secure packaging maintaining freshness and aroma.': 'تغليف أنيق وآمن يحافظ على النضارة والرائحة.',
-        'Lab Certified': 'معتمد من المختبر',
-        'Rigorous laboratory testing for color, flavor, and purity.': 'اختبارات معملية صارمة للون والنكهة والنقاء.',
-        'Direct from Farms': 'مباشرة من المزارع',
-        'Sourced directly from the best Iranian agricultural lands.': 'يتم الحصول عليها مباشرة من أفضل الأراضي الزراعية الإيرانية.',
-        'Wholesale Supply': 'توريد بالجملة',
-        'Capability to fulfill bulk orders for businesses worldwide.': 'القدرة على تلبية الطلبات الكبيرة للشركات في جميع أنحاء العالم.',
-        '24/7 Support': 'دعم ٢٤/٧',
-        'Dedicated customer service and consultation for our partners.': 'خدمة عملاء واستشارات مخصصة لشركائنا.',
-        'Our Guarantees': 'ضماناتنا', 'Authenticity Guarantee': 'ضمان الأصالة',
-        'International Standards': 'المعايير الدولية',
-        'Our products are processed and packaged strictly according to international food safety and hygiene standards.': 'تتم معالجة منتجاتنا وتعبئتها بشكل صارم وفقًا لمعايير سلامة الأغذية والنظافة الدولية.',
-        'Custom White-Labeling': 'العلامة التجارية البيضاء المخصصة',
-        'We offer exclusive custom packaging and white-labeling services for your brand to stand out in the global market.': 'نحن نقدم خدمات تغليف مخصصة وحصرية ووضع العلامات التجارية البيضاء لعلامتك التجارية لتبرز في السوق العالمية.',
-        'We proudly export our products to': 'نحن نصدر منتجاتنا بفخر إلى', 'Europe': 'أوروبا', 'Asia': 'آسيا',
-        'Middle East': 'الشرق الأوسط',
-        'Trusted by leading international businesses and distributors worldwide.': 'موثوق به من قبل الشركات والموزعين الدوليين الرائدين في جميع أنحاء العالم.',
-        'Introduce': 'تقديم', 'Us': 'نحن',
-        'Palace Karimi is a leading exporter of premium agricultural products. Sourced directly from the finest farms, our saffron and pistachios undergo rigorous quality control.': 'بالاس كريمي هي شركة رائدة في تصدير المنتجات الزراعية المتميزة. يتم الحصول على الزعفران والفستق مباشرة من أجود المزارع، وتخضع لمراقبة جودة صارمة.',
-        'Read More': 'اقرأ أكثر',
-        'Our commitment to excellence ensures that every product reaching your hands meets the highest international standards.': 'التزامنا بالتميز يضمن أن كل منتج يصل إلى يديك يفي بأعلى المعايير الدولية.',
-        'We utilize state-of-the-art sorting and packaging technologies to preserve the natural aroma, flavor, and nutritional value of our products.': 'نحن نستخدم أحدث تقنيات الفرز والتعبئة للحفاظ على الرائحة الطبيعية والنكهة والقيمة الغذائية لمنتجاتنا.',
-        'Our Vision': 'رؤيتنا',
-        'To be the most trusted and recognized global brand for luxury Persian saffron and premium pistachios, setting the benchmark for quality, purity, and sustainable agriculture in the international market.': 'أن نكون العلامة التجارية العالمية الأكثر ثقة وشهرة للزعفران الفارسي الفاخر والفستق الممتاز، ونضع معيارًا للجودة والنقاء والزراعة المستدامة في السوق الدولية.',
-        'Our Mission': 'مهمتنا', 'Licenses & Certificates': 'التراخيص والشهادات',
-        'Quality Management System': 'نظام إدارة الجودة', 'Organic Certified': 'شهادة عضوية',
-        'Phytosanitary': 'الصحة النباتية',
-        'Global Health & Safety': 'الصحة والسلامة العالمية', 'Export Standard Approval': 'موافقة معيار التصدير',
-        'Our': 'لنا', 'History': 'تاريخنا',
-        'From a passionate family-owned farm to a recognized global export enterprise.': 'من مزرعة عائلية شغوفة إلى مؤسسة تصدير عالمية معترف بها.',
-        'Global Expansion': 'التوسع العالمي',
-        'Palace Karimi officially expanded its export lines to Europe and the Middle East, acquiring major international licenses.': 'وسعت بالاس كريمي رسميًا خطوط التصدير الخاصة بها إلى أوروبا والشرق الأوسط، وحصلت على تراخيص دولية كبرى.',
-        'Modern Facilities': 'المرافق الحديثة', 'The Beginning': 'البداية',
-        'Cultivating the first premium saffron and pistachio farms with a dedication to organic and traditional farming methods.': 'زراعة أولى مزارع الزعفران والفستق الممتازة مع التفاني في أساليب الزراعة العضوية والتقليدية.',
-        'Meet': 'تعرف على', 'Our Team': 'فريقنا',
-        'The dedicated experts behind the success of Palace Karimi.': 'الخبراء المتفانون وراء نجاح بالاس كريمي.',
-        'Abolfazl Karimi': 'ابوالفضل کریمی', 'CEO & Founder': 'المدير التنفيذي والمؤسس',
-        'Leading the global strategy and ensuring the highest quality standards across all products.': 'قيادة الاستراتيجية العالمية وضمان أعلى معايير الجودة في جميع المنتجات.',
-        'Sara Ahmadi': 'سارا احمدی', 'Export Manager': 'مدير التصدير',
-        'Managing international logistics, B2B relations, and smooth customs clearances.': 'إدارة الخدمات اللوجستية الدولية، والعلاقات بين الشركات، والتخليص الجمركي السلس.',
-        'Ali Rezaei': 'علی رضایی', 'Quality Control': 'مراقبة الجودة', 'Mina Rostami': 'مینا رستمی',
-        'Marketing': 'تسويق',
-        'Showcasing the true value and luxury of Persian saffron to our international audience.': 'عرض القيمة الحقيقية والفخامة للزعفران الفارسي لجمهورنا الدولي.',
-        'Palace Karimi; The Symbol of': 'بالاس كريمي؛ رمز',
-        'Authenticity': 'الأصالة',
-        'Join Our Network': 'انضم إلى شبكتنا',
-        'International': 'دولي',
-        'Certifications & Standards': 'الشهادات والمعايير',
-        'Committed to global food safety, organic farming, and premium export quality.': 'ملتزمون بسلامة الأغذية العالمية والزراعة العضوية وجودة التصدير الممتازة.',
-        'With a rich heritage in cultivating the world’s finest saffron and pistachios, Palace Karimi stands as a bridge between the ancient farms of Persia and the luxury global market.': 'مع تراث غني في زراعة أجود أنواع الزعفران والفستق في العالم، تقف بالاس كريمي كجسر بين مزارع بلاد فارس القديمة والسوق العالمية الفاخرة.',
-        'We deliver nothing but perfection.': 'نحن لا نقدم سوى الكمال.',
-        'Overseeing laboratory testing and ensuring 100 Percent organic certification compliance.': 'الإشراف على الاختبارات المعملية وضمان الامتثال لشهادات المنتجات العضوية بنسبة ١٠٠٪.',
-        'Implementation of state-of-the-art sorting and packaging facilities to maintain 100 Percent purity and aroma.': 'تنفيذ أحدث مرافق الفرز والتعبئة للحفاظ على النقاء والرائحة بنسبة ١٠٠٪.',
-        'Our mission is to empower local farmers through fair trade while delivering 100 Percent organic, lab-tested, and exquisitely packaged products to our B2B partners and consumers worldwide.': 'مهمتنا هي تمكين المزارعين المحليين من خلال التجارة العادلة مع تقديم منتجات عضوية ١٠٠٪، ومختبرة، ومعبأة بشكل رائع لشركائنا التجاريين والمستهلكين في جميع أنحاء العالم.',
-        'We guarantee that all our saffron and pistachios are 100 Percent authentic Persian products, free from any artificial additives or coloring.': 'نحن نضمن أن جميع منتجاتنا من الزعفران والفستق هي منتجات فارسية أصلية ١٠٠٪، وخالية من أي إضافات صناعية أو ألوان.',
-        '100 Percent Organic': 'عضوي بنسبة ١٠٠٪',
-        '100 Percent Natural & Additive-Free': '١٠٠٪ طبيعي وخالي من الإضافات',
-        'Fast and reliable international shipping to global destinations.': 'شحن دولي سريع وموثوق إلى الوجهات العالمية.',
-        'Contact': 'اتصال',
-        'We are here to answer your questions and discuss global export opportunities.': 'نحن هنا للإجابة على أسئلتك ومناقشة فرص التصدير العالمية.',
-        'Error!': 'خطأ!',
-        'There was an error sending your message. Please check the fields.': 'حدث خطأ أثناء إرسال رسالتك. يرجى التحقق من الحقول.',
-        'Your message has been sent to us.': 'تم إرسال رسالتك إلينا بنجاح.',
-        'Full Name': 'الاسم الكامل',
-        'Subject': 'الموضوع',
-        'Message': 'الرسالة',
-        'Send Message': 'إرسال رسالة',
-        'Office': 'مكتب',
-        'Address:': 'العنوان:',
-        'Phone:': 'هاتف:',
-        'Email:': 'البريد الإلكتروني:',
-        'Business': 'ساعات',
-        'Hours': 'العمل',
-        'Saturday to Wednesday - 9:00 AM to 5:00 PM': 'السبت إلى الأربعاء - ٩ صباحًا إلى ٥ مساءً',
-        'Thursday - 9:00 AM to 2:00 PM': 'الخميس - ٩ صباحًا إلى ٢ مساءً',
-        'Friday - Closed': 'الجمعة - مغلق',
-        'Whether you are looking for bulk saffron orders, premium pistachio exports, or white-labeling services, our experts are ready to assist you.': 'سواء كنت تبحث عن طلبات الزعفران بالجملة، أو صادرات الفستق الفاخرة، أو خدمات العلامة البيضاء، فإن خبرائنا مستعدون لمساعدتك.',
-        'Palace Karimi is': 'بالاس كريمي هو',
-        'Everything': 'كل ما',
-        'you need for a': 'تحتاجه لتجربة تصدير',
-        'Luxury': 'فاخرة',
-        'export experience!': '!',
-        'The Best': 'الأفضل',
-        'choice for authentic Persian products.': 'خيار للمنتجات الفارسية الأصيلة.',
-        'Hossein Karimi Trading': 'شركة حسين كريمي التجارية',
-        'Palace Karimi Office': 'مكتب بالاس كريمي المركزي',
-        'With years of experience in cultivation, processing, and exporting the finest Iranian saffron and pistachio, we offer quality and authenticity to global markets. All our products are packaged and shipped with international standards.': 'ما با سال‌ها تجربه در زمینه کشت، فرآوری و صادرات مرغوب‌ترین زعفران و پسته ایرانی، کیفیت و اصالت را به بازارهای جهانی عرضه می‌کنیم. تمامی محصولات ما با استانداردهای بین‌المللی بسته‌بندی و ارسال می‌شوند.',
-        '404 - Page Not Found': '٤٠٤ - الصفحة غير موجودة',
-        '404': '٤٠٤',
-        'Oops! The page you were looking for doesn’t exist.': 'عفواً! الصفحة التي تبحث عنها غير موجودة.',
-        'You may have mistyped the address or the page may have moved.': 'ربما تكون قد كتبت العنوان بشكل خاطئ أو تم نقل الصفحة.',
-        'Back to Home': 'العودة إلى الصفحة الرئيسية',
-        '500 - Internal Server Error': '٥٠٠ - خطأ داخلي في الخادم',
-        '500': '٥٠٠',
-        'We are currently experiencing technical difficulties.': 'نواجه حالياً صعوبات فنية.',
-        'Please try again later or contact support if the problem persists.': 'يرجى المحاولة مرة أخرى لاحقاً أو الاتصال بالدعم إذا استمرت المشكلة.',
-        'Terms, Conditions & FAQ': 'الشروط والأحكام والأسئلة الشائعة',
-        'Shipping & Customs': 'الشحن والجمارك',
-        'Detailed information about our international shipping policies, customs clearance procedures, and delivery times. We ensure a smooth and transparent process for all our global partners.': 'معلومات مفصلة حول سياسات الشحن الدولي لدينا، وإجراءات التخليص الجمركي، ومواعيد التسليم. نحن نضمن عملية سلسة وشفافة لجميع شركائنا العالميين.',
-        'Quality Certificates': 'شهادات الجودة',
-        'All our products are accompanied by internationally recognized quality and safety certificates. Here you can find details about our certifications like ISO, HACCP, and Organic.': 'جميع منتجاتنا مصحوبة بشهادات جودة وسلامة معترف بها دولياً. يمكنك العثور هنا على تفاصيل حول شهاداتنا مثل ISO و HACCP والعضوية (Organic).',
-        'Payment Terms': 'شروط الدفع',
-        'We offer flexible and secure payment terms for our B2B partners, including bank transfers, letters of credit, and other arrangements. Contact us to discuss your specific needs.': 'نقدم شروط دفع مرنة وآمنة لشركائنا في الأعمال (B2B)، بما في ذلك التحويلات المصرفية، وخطابات الاعتماد، وترتيبات أخرى. اتصل بنا لمناقشة احتياجاتك الخاصة.',
-        'Frequently Asked Questions': 'الأسئلة الشائعة',
-        'What is the minimum order quantity (MOQ)?': 'ما هو الحد الأدنى لكمية الطلب (MOQ)؟',
-        'Our MOQ varies depending on the product and packaging. Please contact our sales team for detailed information.': 'يختلف الحد الأدنى للطلب لدينا بناءً على المنتج والتعبئة. يرجى الاتصال بفريق المبيعات لدينا للحصول على معلومات مفصلة.',
-        'Do you offer white-labeling services?': 'هل تقدمون خدمات العلامة البيضاء (White-labeling)؟',
-        'Yes, we offer comprehensive white-labeling and custom packaging solutions for your brand.': 'نعم، نحن نقدم حلولاً شاملة للعلامة البيضاء والتعبئة المخصصة لعلامتك التجارية.',
-        'What are the available shipping methods?': 'ما هي طرق الشحن المتاحة؟',
-        'We ship via air, sea, and land freight, depending on the destination and order size.': 'نحن نشحن عبر الشحن الجوي والبحري والبري، اعتماداً على الوجهة وحجم الطلب.'
-
+    "Subscribe to our newsletter to get the latest updates and luxury offers.": {
+        "fa": "برای دریافت آخرین به‌روزرسانی‌ها و پیشنهادات ویژه ما، در خبرنامه مشترک شوید.",
+        "ar": "اشترك في النشرة الإخبارية للحصول على أحدث التحديثات والعروض الفاخرة.",
+        "tr": "En son güncellemeleri ve lüks teklifleri almak için bültenimize abone olun."
     },
-    'tr': {
-        'Home': 'Ana Sayfa', 'About Us': 'Hakkımızda', 'Products': 'Ürünler', 'Contact Us': 'İletişim',
-        'Get in Touch': 'İletişimde Kalın', 'Newsletter': 'Bülten',
-        'Subscribe to our newsletter to get the latest updates and luxury offers.': 'En son güncellemeleri ve lüks teklifleri almak için bültenimize abone olun.',
-        'Success!': 'Başarılı!', 'You have been added to our email list.': 'E-posta listemize eklendiniz.',
-        'Email Address': 'E-posta Adresi', 'Subscribe': 'Abone Ol', 'Latest Tweets': 'Son Tweetler',
-        'Please wait...': 'Lütfen bekleyin...', 'Tehran, Iran': 'Tahran, İran',
-        'Follow Us': 'Bizi Takip Edin',
-        '© 2026 Palace Karimi. All Rights Reserved.': '© 2026 Palace Karimi. Tüm hakları saklıdır.',
-        'Designed & Developed by': 'Tasarım ve Geliştirme:', 'FAQ': 'SSS', 'Sitemap': 'Site Haritası',
-        'The Finest Quality': 'En İyi Kalite', 'PREMIUM SAFFRON': 'PREMIUM SAFRAN',
-        'Experience the true taste of luxury.': 'Lüksün gerçek tadını yaşayın.',
-        'Exporting Worldwide': 'Dünya Çapında İhracat', 'PERSIAN PISTACHIO': 'FARS FISTIĞI',
-        'Hand-picked and premium quality.': 'Özenle seçilmiş ve birinci sınıf kalite.',
-        'Palace Karimi': 'Palace Karimi', 'YOUR TRUSTED PARTNER': 'GÜVENİLİR ORTAĞINIZ',
-        'Providing the best agricultural products.': 'En iyi tarım ürünlerini sunuyoruz.',
-        'Follow us on social media for the latest updates and news!': 'En son güncellemeler ve haberler için bizi sosyal medyada takip edin!',
-        'Experience a secure purchase with the top exporter of authentic Iranian products': 'Otantik İran ürünlerinin en iyi ihracatçısı ile güvenli bir satın alma deneyimi yaşayın',
-        'Demand the best quality saffron and pistachio from us.': 'Bizden en kaliteli safran ve fıstığı talep edin.',
-        'Contact Experts': 'Uzmanlarla İletişime Geçin', 'or': 'veya', 'view products.': 'ürünleri görüntüleyin.',
-        'Palace Karimi is a brand that is': 'Palace Karimi', 'Authentic': 'Otantik', 'High Quality': 'Yüksek Kaliteli',
-        'Global': 'Küresel', 'and a secure choice for export.': 'bir markadır ve ihracat için güvenli bir seçimdir.',
-        'Experience the pinnacle of luxury with Palace Karimi': 'Palace Karimi ile lüksün zirvesini yaşayın',
-        'Consultation': 'Danışma',
-        'Harvesting': 'Hasat', 'Processing': 'İşleme', 'Packaging': 'Paketleme', 'Global Export': 'Küresel İhracat',
-        'New': 'Yeni', 'View Details': 'Detayları Göster', 'No products available.': 'Gösterilecek ürün yok.',
-        'Why Choose': 'Neden Seçmelisiniz', 'Palace Karimi?': 'Palace Karimi?',
-        'Pure, natural products cultivated without harmful chemicals.': 'Zararlı kimyasallar olmadan yetiştirilen saf, doğal ürünler.',
-        'Premium Quality': 'Üstün Kalite',
-        'Export-grade saffron and pistachio carefully hand-picked.': 'İhracat sınıfı safran ve fıstık özenle elle toplanmıştır.',
-        'Luxury Packaging': 'Lüks Ambalaj',
-        'Elegant and secure packaging maintaining freshness and aroma.': 'Zarafet ve tazeliği koruyan şık ve güvenli ambalaj.',
-        'Lab Certified': 'Laboratuvar Sertifikalı',
-        'Rigorous laboratory testing for color, flavor, and purity.': 'Renk, lezzet ve saflık için titiz laboratuvar testleri.',
-        'Direct from Farms': 'Doğrudan Çiftliklerden',
-        'Sourced directly from the best Iranian agricultural lands.': 'Doğrudan en iyi İran tarım arazilerinden temin edilmiştir.',
-        'Wholesale Supply': 'Toptan Tedarik',
-        'Capability to fulfill bulk orders for businesses worldwide.': 'Dünya çapındaki işletmeler için toplu siparişleri karşılama kapasitesi.',
-        '24/7 Support': '7/24 Destek',
-        'Dedicated customer service and consultation for our partners.': 'Ortaklarımız için özel müşteri hizmetleri ve danışmanlık.',
-        'Our Guarantees': 'Garantilerimiz', 'Authenticity Guarantee': 'Orijinallik Garantisi',
-        'International Standards': 'Uluslararası Standartlar',
-        'Our products are processed and packaged strictly according to international food safety and hygiene standards.': 'Ürünlerimiz uluslararası gıda güvenliği ve hijyen standartlarına sıkı sıkıya bağlı olarak işlenir ve paketlenir.',
-        'Custom White-Labeling': 'Özel Markalama',
-        'We offer exclusive custom packaging and white-labeling services for your brand to stand out in the global market.': 'Markanızın küresel pazarda öne çıkması için özel ambalaj ve beyaz etiketleme hizmetleri sunuyoruz.',
-        'We proudly export our products to': 'Ürünlerimizi gururla ihraç ediyoruz', 'Europe': 'Avrupa', 'Asia': 'Asya',
-        'Middle East': 'Orta Doğu',
-        'Trusted by leading international businesses and distributors worldwide.': 'Dünya çapında önde gelen uluslararası işletmeler ve distribütörler tarafından güvenilmektedir.',
-        'Introduce': 'Tanıtmak', 'Us': 'Bizi',
-        'Palace Karimi is a leading exporter of premium agricultural products. Sourced directly from the finest farms, our saffron and pistachios undergo rigorous quality control.': 'Palace Karimi, birinci sınıf tarım ürünlerinin lider ihracatçısıdır. Doğrudan en iyi çiftliklerden temin edilen safran ve fıstıklarımız titiz kalite kontrolünden geçer.',
-        'Read More': 'Daha Fazla Oku',
-        'Our commitment to excellence ensures that every product reaching your hands meets the highest international standards.': 'Mükemmelliğe olan bağlılığımız, elinize ulaşan her ürünün en yüksek uluslararası standartları karşılamasını sağlar.',
-        'We utilize state-of-the-art sorting and packaging technologies to preserve the natural aroma, flavor, and nutritional value of our products.': 'Ürünlerimizin doğal aromasını, lezzetini ve besin değerini korumak için son teknoloji sıralama ve paketleme teknolojilerini kullanıyoruz.',
-        'Our Vision': 'Vizyonumuz',
-        'To be the most trusted and recognized global brand for luxury Persian saffron and premium pistachios, setting the benchmark for quality, purity, and sustainable agriculture in the international market.': 'Uluslararası pazarda kalite, saflık ve sürdürülebilir tarım için ölçüt belirleyerek, lüks Fars safranı ve birinci sınıf fıstık için en güvenilir ve tanınan küresel marka olmak.',
-        'Our Mission': 'Misyonumuz', 'Licenses & Certificates': 'Lisanslar ve Sertifikalar',
-        'Quality Management System': 'Kalite Yönetim Sistemi', 'Organic Certified': 'Organik Sertifikalı',
-        'Phytosanitary': 'Bitki Sağlığı',
-        'Global Health & Safety': 'Küresel Sağlık ve Güvenlik', 'Export Standard Approval': 'İhracat Standardı Onayı',
-        'Our': 'Bizim', 'History': 'Tarihçemiz',
-        'From a passionate family-owned farm to a recognized global export enterprise.': 'Tutkulu bir aile çiftliğinden tanınmış bir küresel ihracat kuruluşuna.',
-        'Global Expansion': 'Küresel Genişleme',
-        'Palace Karimi officially expanded its export lines to Europe and the Middle East, acquiring major international licenses.': 'Palace Karimi, büyük uluslararası lisanslar alarak ihracat hatlarını resmi olarak Avrupa ve Orta Doğu\'ya genişletti.',
-        'Modern Facilities': 'Modern Tesisler', 'The Beginning': 'Başlangıç',
-        'Cultivating the first premium saffron and pistachio farms with a dedication to organic and traditional farming methods.': 'Organik ve geleneksel tarım yöntemlerine adanmışlıkla ilk birinci sınıf safran ve fıstık çiftliklerini yetiştirmek.',
-        'Meet': 'Tanışın', 'Our Team': 'Ekibimiz',
-        'The dedicated experts behind the success of Palace Karimi.': 'Palace Karimi\'nin başarısının arkasındaki özverili uzmanlar.',
-        'Abolfazl Karimi': 'Abolfazl Karimi', 'CEO & Founder': 'CEO ve Kurucu',
-        'Leading the global strategy and ensuring the highest quality standards across all products.': 'Küresel stratejiyi yönetmek ve tüm ürünlerde en yüksek kalite standartlarını sağlamak.',
-        'Sara Ahmadi': 'Sara Ahmadi', 'Export Manager': 'İhracat Müdürü',
-        'Managing international logistics, B2B relations, and smooth customs clearances.': 'Uluslararası lojistik, B2B ilişkileri ve sorunsuz gümrükleme işlemlerini yönetmek.',
-        'Ali Rezaei': 'Ali Rezaei', 'Quality Control': 'Kalite Kontrol', 'Mina Rostami': 'Mina Rostami',
-        'Marketing': 'Pazarlama',
-        'Showcasing the true value and luxury of Persian saffron to our international audience.': 'Fars safranının gerçek değerini ve lüksünü uluslararası kitlemize sergilemek.',
-        'Palace Karimi; The Symbol of': 'Palace Karimi; Sembolü',
-        'Authenticity': 'Özgünlük',
-        'Join Our Network': 'Ağımıza Katılın',
-        'International': 'Uluslararası',
-        'Certifications & Standards': 'Sertifikalar ve Standartlar',
-        'Committed to global food safety, organic farming, and premium export quality.': 'Küresel gıda güvenliğine, organik tarıma ve üstün ihracat kalitesine bağlıyız.',
-        'With a rich heritage in cultivating the world’s finest saffron and pistachios, Palace Karimi stands as a bridge between the ancient farms of Persia and the luxury global market.': 'Dünyanın en iyi safran ve fıstıklarını yetiştirmede zengin bir mirasa sahip olan Palace Karimi, antik Pers çiftlikleri ile lüks küresel pazar arasında bir köprü görevi görüyor.',
-        'We deliver nothing but perfection.': 'Mükemmellikten başka bir şey sunmuyoruz.',
-        'Overseeing laboratory testing and ensuring 100 Percent organic certification compliance.': 'Laboratuvar testlerini denetlemek ve %100 organik sertifika uyumluluğunu sağlamak.',
-        'Implementation of state-of-the-art sorting and packaging facilities to maintain 100 Percent purity and aroma.': '%100 saflık ve aromayı korumak için en son teknoloji ayırma ve paketleme tesislerinin uygulanması.',
-        'Our mission is to empower local farmers through fair trade while delivering 100 Percent organic, lab-tested, and exquisitely packaged products to our B2B partners and consumers worldwide.': 'Misyonumuz, adil ticaret yoluyla yerel çiftçileri güçlendirirken, dünya çapındaki B2B ortaklarımıza ve tüketicilere %100 organik, laboratuvarda test edilmiş ve zarif bir şekilde paketlenmiş ürünler sunmaktır.',
-        'We guarantee that all our saffron and pistachios are 100 Percent authentic Persian products, free from any artificial additives or coloring.': 'Tüm safran ve fıstıklarımızın %100 otantik Fars ürünleri olduğunu, herhangi bir yapay katkı maddesi veya renklendirici içermediğini garanti ediyoruz.',
-        '100 Percent Organic': '%100 Organik',
-        '100 Percent Natural & Additive-Free': '%100 Doğal ve Katkısız',
-        'Fast and reliable international shipping to global destinations.': 'Küresel noktalara hızlı ve güvenilir uluslararası nakliye.',
-        'Contact': 'İletişim',
-        'We are here to answer your questions and discuss global export opportunities.': 'Sorularınızı yanıtlamak ve küresel ihracat fırsatlarını görüşmek için buradayız.',
-        'Error!': 'Hata!',
-        'There was an error sending your message. Please check the fields.': 'Mesajınız gönderilirken bir hata oluştu. Lütfen alanları kontrol edin.',
-        'Your message has been sent to us.': 'Mesajınız bize başarıyla gönderildi.',
-        'Full Name': 'Ad Soyad',
-        'Subject': 'Konu',
-        'Message': 'Mesaj',
-        'Send Message': 'Mesaj Gönder',
-        'Office': 'Ofis',
-        'Address:': 'Adres:',
-        'Phone:': 'Telefon:',
-        'Email:': 'E-posta:',
-        'Business': 'Çalışma',
-        'Hours': 'Saatleri',
-        'Saturday to Wednesday - 9:00 AM to 5:00 PM': 'Cumartesi - Çarşamba - 09:00 - 17:00',
-        'Thursday - 9:00 AM to 2:00 PM': 'Perşembe - 09:00 - 14:00',
-        'Friday - Closed': 'Cuma - Kapalı',
-        'Whether you are looking for bulk saffron orders, premium pistachio exports, or white-labeling services, our experts are ready to assist you.': 'İster toplu safran siparişleri, ister birinci sınıf fıstık ihracatı veya özel markalama hizmetleri arıyor olun, uzmanlarımız size yardımcı olmaya hazırdır.',
-        'Palace Karimi is': 'Palace Karimi,',
-        'Everything': 'İhtiyacınız olan',
-        'you need for a': 'mükemmel bir',
-        'Luxury': 'Lüks',
-        'export experience!': 'ihracat deneyimidir!',
-        'The Best': 'En İyi',
-        'choice for authentic Persian products.': 'otantik Fars ürünleri seçimi.',
-        'Hossein Karimi Trading': 'Hossein Karimi Ticaret',
-        'Palace Karimi Office': 'Palace Karimi Merkez Ofisi',
-        'With years of experience in cultivation, processing, and exporting the finest Iranian saffron and pistachio, we offer quality and authenticity to global markets. All our products are packaged and shipped with international standards.': 'En iyi İran safranı ve fıstığının yetiştirilmesi, işlenmesi ve ihraç edilmesinde yılların verdiği tecrübe ile küresel pazarlara kalite ve özgünlük sunuyoruz. Tüm ürünlerimiz uluslararası standartlarda paketlenip sevk edilmektedir.',
-        '404 - Page Not Found': '404 - Sayfa Bulunamadı',
-        '404': '404',
-        'Oops! The page you were looking for doesn’t exist.': 'Hata! Aradığınız sayfa mevcut değil.',
-        'You may have mistyped the address or the page may have moved.': 'Adresi yanlış yazmış olabilirsiniz veya sayfa taşınmış olabilir.',
-        'Back to Home': 'Ana Sayfaya Dön',
-        '500 - Internal Server Error': '500 - İç Sunucu Hatası',
-        '500': '500',
-        'We are currently experiencing technical difficulties.': 'Şu anda teknik zorluklar yaşıyoruz.',
-        'Please try again later or contact support if the problem persists.': 'Lütfen daha sonra tekrar deneyin veya sorun devam ederse destek ekibiyle iletişime geçin.',
-        'Terms, Conditions & FAQ': 'Şartlar, Koşullar ve SSS',
-        'Shipping & Customs': 'Nakliye ve Gümrük',
-        'Detailed information about our international shipping policies, customs clearance procedures, and delivery times. We ensure a smooth and transparent process for all our global partners.': 'Uluslararası nakliye politikalarımız, gümrükleme prosedürlerimiz ve teslimat sürelerimiz hakkında detaylı bilgi. Tüm küresel ortaklarımız için sorunsuz ve şeffaf bir süreç sağlıyoruz.',
-        'Quality Certificates': 'Kalite Sertifikaları',
-        'All our products are accompanied by internationally recognized quality and safety certificates. Here you can find details about our certifications like ISO, HACCP, and Organic.': 'Tüm ürünlerimiz uluslararası düzeyde tanınan kalite ve güvenlik sertifikalarına sahiptir. Burada ISO, HACCP ve Organik gibi sertifikalarımız hakkında detayları bulabilirsiniz.',
-        'Payment Terms': 'Ödeme Koşulları',
-        'We offer flexible and secure payment terms for our B2B partners, including bank transfers, letters of credit, and other arrangements. Contact us to discuss your specific needs.': 'B2B ortaklarımız için banka transferleri, akreditifler ve diğer düzenlemeler dahil olmak üzere esnek ve güvenli ödeme koşulları sunuyoruz. Özel ihtiyaçlarınızı görüşmek için bizimle iletişime geçin.',
-        'Frequently Asked Questions': 'Sıkça Sorulan Sorular',
-        'What is the minimum order quantity (MOQ)?': 'Minimum sipariş miktarı (MOQ) nedir?',
-        'Our MOQ varies depending on the product and packaging. Please contact our sales team for detailed information.': 'Minimum sipariş miktarımız ürüne ve ambalaja göre değişmektedir. Detaylı bilgi için lütfen satış ekibimizle iletişime geçin.',
-        'Do you offer white-labeling services?': 'Beyaz etiket (White-labeling) hizmetleri sunuyor musunuz?',
-        'Yes, we offer comprehensive white-labeling and custom packaging solutions for your brand.': 'Evet, markanız için kapsamlı beyaz etiket ve özel ambalaj çözümleri sunuyoruz.',
-        'What are the available shipping methods?': 'Mevcut gönderim yöntemleri nelerdir?',
-        'We ship via air, sea, and land freight, depending on the destination and order size.': 'Varış noktasına ve sipariş büyüklüğüne bağlı olarak hava, deniz ve kara yoluyla gönderim yapıyoruz.'
+    "Success!": {
+        "fa": "موفقیت!",
+        "ar": "نجاح!",
+        "tr": "Başarılı!"
+    },
+    "You have been added to our email list.": {
+        "fa": "شما به لیست ایمیل ما اضافه شدید.",
+        "ar": "تمت إضافتك إلى قائمة البريد الإلكتروني لدينا.",
+        "tr": "E-posta listemize eklendiniz."
+    },
+    "Email Address": {
+        "fa": "آدرس ایمیل",
+        "ar": "عنوان البريد الإلكتروني",
+        "tr": "E-posta Adresi"
+    },
+    "Subscribe": {
+        "fa": "عضویت در خبرنامه",
+        "ar": "اشتراك",
+        "tr": "Abone Ol"
+    },
+    "About Us": {
+        "fa": "درباره ما",
+        "ar": "معلومات عنا",
+        "tr": "Hakkımızda"
+    },
+    "Hossein Karimi Trading - Supplying the finest Iranian Saffron and Pistachio.": {
+        "fa": "بازرگانی حسین کریمی - تأمین‌کننده بهترین زعفران و پسته ایرانی.",
+        "ar": "تجارة حسين كريمي - المورّد لأفضل الزعفران والفستق الإيراني.",
+        "tr": "Hossein Karimi Ticaret - En kaliteli İran safranı ve Antep fıstığının tedarikçisi."
+    },
+    "Contact Us": {
+        "fa": "تماس با ما",
+        "ar": "اتصل بنا",
+        "tr": "İletişim"
+    },
+    "Corner of Chamran 28, Chamran St., Sabzevar, Khorasan Razavi, Iran": {
+        "fa": "ایران، خراسان رضوی، سبزوار، خیابان چمران، نبش چمران ۲۸",
+        "ar": "إيران، خراسان الرضوية، سبزوار، شارع جمران، زاوية جمران 28",
+        "tr": "İran, Razavi Horasan, Sabzevar, Çamran Caddesi, Çamran 28 Köşesi"
+    },
+    "Follow Us": {
+        "fa": "ما را دنبال کنید",
+        "ar": "تابعنا",
+        "tr": "Bizi Takip Edin"
+    },
+    "Palace Karimi Logo": {
+        "fa": "لوگوی پالاس کریمی",
+        "ar": "شعار بالاس كريمي",
+        "tr": "Palace Karimi Logosu"
+    },
+    "© 2026 Palace Karimi. All Rights Reserved.": {
+        "fa": "© ۲۰۲۶ پالاس کریمی. تمامی حقوق محفوظ است.",
+        "ar": "© 2026 Palace Karimi. جميع الحقوق محفوظة.",
+        "tr": "© 2026 Palace Karimi. Tüm Hakları Saklıdır."
+    },
+    "Designed & Developed by": {
+        "fa": "طراحی و توسعه توسط",
+        "ar": "تصميم وتطوير بواسطة",
+        "tr": "Tasarım ve Geliştirme:"
+    },
+    "FAQ": {
+        "fa": "سوالات متداول",
+        "ar": "أسئلة مكررة",
+        "tr": "SSS"
+    },
+    "Sitemap": {
+        "fa": "نقشه سایت",
+        "ar": "خريطة الموقع",
+        "tr": "Site Haritası"
+    },
+    "Palace Karimi | Luxury Persian Saffron & Pistachio": {
+        "fa": "پالاس کریمی | زعفران و پسته لوکس ایرانی",
+        "ar": "بالاس كريمي | الزعفران والفستق الإيراني الفاخر",
+        "tr": "Palace Karimi | Lüks İran Safranı ve Şam Fıstığı"
+    },
+    "In God We Trust...": {
+        "fa": "به خدا توکل داریم...",
+        "ar": "في الله نثق...",
+        "tr": "Tanrı'ya Güveniyoruz..."
+    },
+    "Working Hours:": {
+        "fa": "ساعات کاری:",
+        "ar": "ساعات العمل:",
+        "tr": "Çalışma Saatleri:"
+    },
 
-    }
+    "08:00 - 20:00": {
+        "fa": "۰۸:۰۰ - ۲۰:۰۰",
+        "ar": "08:00 - 20:00",
+        "tr": "08:00 - 20:00"
+    },
+
+    "0992 759 0575": {
+        "fa": "۰۹۹۲ ۷۵۹ ۰۵۷۵",
+        "ar": "0992 759 0575",
+        "tr": "0992 759 0575"
+    },
+
+    "0930 375 5667": {
+        "fa": "۰۹۳۰ ۳۷۵ ۵۶۶۷",
+        "ar": "0930 375 5667",
+        "tr": "0930 375 5667"
+    },
+
+    "051 44 29 20 21": {
+        "fa": "۰۵۱ ۴۴ ۲۹ ۲۰ ۲۱",
+        "ar": "051 44 29 20 21",
+        "tr": "051 44 29 20 21"
+    },
+
+    "palacekarimi2023@gmail.com": {
+        "fa": "palacekarimi2023@gmail.com",
+        "ar": "palacekarimi2023@gmail.com",
+        "tr": "palacekarimi2023@gmail.com"
+    },
+
+    "Instagram": {
+        "fa": "اینستاگرام",
+        "ar": "إنستغرام",
+        "tr": "Instagram"
+    },
+
+    "Facebook": {
+        "fa": "فیسبوک",
+        "ar": "فيسبوك",
+        "tr": "Facebook"
+    },
+
+    "Twitter": {
+        "fa": "توییتر",
+        "ar": "إكس (تويتر)",
+        "tr": "X (Twitter)"
+    },
+
+    "Linkedin": {
+        "fa": "لینکدین",
+        "ar": "لينكدإن",
+        "tr": "LinkedIn"
+    },
+"Our": {
+        "fa": "دفتر",
+        "ar": "مكتبنا",
+        "tr": "Ofisimiz"
+    },
+    "Office": {
+        "fa": "ما",
+        "ar": "",
+        "tr": ""
+    },
+    "Address:": {
+        "fa": "آدرس:",
+        "ar": "العنوان:",
+        "tr": "Adres:"
+    },
+    "Phone:": {
+        "fa": "تلفن:",
+        "ar": "هاتف:",
+        "tr": "Telefon:"
+    },
+    "Email:": {
+        "fa": "ایمیل:",
+        "ar": "البريد الإلكتروني:",
+        "tr": "E-posta:"
+    },
+    "Business": {
+        "fa": "ساعت",
+        "ar": "ساعات",
+        "tr": "Çalışma"
+    },
+    "Hours": {
+        "fa": "کاری",
+        "ar": "العمل",
+        "tr": "Saatleri"
+    },
+    "Everyday - 08:00 to 20:00": {
+        "fa": "همه‌روزه - ۰۸:۰۰ صبح تا ۲۰:۰۰ شب",
+        "ar": "كل يوم - 08:00 إلى 20:00",
+        "tr": "Her gün - 08:00 ile 20:00 arası"
+    },
+    "Admin Panel": {
+            "fa": "پنل مدیریت",
+            "ar": "لوحة الإدارة",
+            "tr": "Yönetici Paneli"
+        },
+    "Palace Karimi: From the heart of orchards to the heart of business": {
+        "en": "Palace Karimi: From the heart of orchards to the heart of business",
+        "fa": "پالس کریمی؛ از دل باغستان تا قلب تجارت",
+        "ar": "بالس كريمي؛ من قلب البساتين إلى قلب التجارة",
+        "tr": "Palace Karimi; Meyve bahçelerinin kalbinden ticaretin kalbine"
+    },
+
+    "Premium Quality": {
+        "en": "Premium Quality",
+        "fa": "کیفیت ممتاز",
+        "ar": "جودة ممتازة",
+        "tr": "Üstün Kalite"
+    },
+
+    "Handpicked from the finest orchards and processed under strict quality standards.": {
+        "en": "Handpicked from the finest orchards and processed under strict quality standards.",
+        "fa": "دست‌چین شده از بهترین باغ‌ها و فرآوری شده تحت دقیق‌ترین استانداردهای کیفی.",
+        "ar": "مقطوفة بعناية من أفضل البساتين ومعالجة وفقاً لأدق معايير الجودة.",
+        "tr": "En iyi bahçelerden özenle seçilmiş ve sıkı kalite standartlarında işlenmiştir."
+    },
+    "Terms & FAQ": {
+            "en": "Terms & FAQ",
+            "fa": "قوانین و سوالات متداول",
+            "ar": "الشروط والأسئلة الشائعة",
+            "tr": "Şartlar ve SSS"
+        },
+    "Competitive Pricing": {
+        "en": "Competitive Pricing",
+        "fa": "قیمت‌های رقابتی",
+        "ar": "أسعار تنافسية",
+        "tr": "Rekabetçi Fiyatlandırma"
+    },
+
+    "Direct sourcing allows us to offer the best market prices for B2B partners.": {
+        "en": "Direct sourcing allows us to offer the best market prices for B2B partners.",
+        "fa": "تامین مستقیم به ما اجازه می‌دهد بهترین قیمت‌های بازار را به شرکای B2B خود ارائه دهیم.",
+        "ar": "يتيح لنا التوريد المباشر تقديم أفضل أسعار السوق لشركائنا التجاريين.",
+        "tr": "Doğrudan tedarik, B2B ortaklarımız için en iyi piyasa fiyatlarını sunmamızı sağlar."
+    },
+    "Every great success starts with a small decision and years of relentless effort.": {
+        "en": "Every great success starts with a small decision and years of relentless effort.",
+        "fa": "هر موفقیت بزرگی، از یک تصمیم کوچک و سال‌ها تلاش بی‌وقفه آغاز می‌شود.",
+        "ar": "كل نجاح عظيم يبدأ بقرار صغير وسنوات من الجهد الدؤوب.",
+        "tr": "Her büyük başarı, küçük bir kararla ve yıllar süren amansız bir çabayla başlar."
+    },
+    "The Roots": {
+        "en": "The Roots",
+        "fa": "ریشه‌ها",
+        "ar": "الجذور",
+        "tr": "Kökler"
+    },
+    "Early Ambitions": {
+        "en": "Early Ambitions",
+        "fa": "اهداف اولیه و تجربیات",
+        "ar": "الطموحات المبكرة",
+        "tr": "Erken Hedefler"
+    },
+    "Hossein Karimi’s entrepreneurial journey began at age 16 by managing a poultry farm, followed by establishing a charcoal factory at 19. These early years built the strong foundation of leadership and market expertise.": {
+        "en": "Hossein Karimi’s entrepreneurial journey began at age 16 by managing a poultry farm, followed by establishing a charcoal factory at 19. These early years built the strong foundation of leadership and market expertise.",
+        "fa": "مسیر کارآفرینی حسین کریمی در ۱۶ سالگی با اداره یک مرغداری آغاز شد و در ۱۹ سالگی با تأسیس کارخانه تولید زغال ادامه یافت. این سال‌ها پایه‌های محکم رهبری و شناخت بازار را در او شکل داد.",
+        "ar": "بدأت رحلة حسين كريمي في ريادة الأعمال في سن الـ ۱۶ من خلال إدارة مزرعة دواجن، وتلاها إنشاء مصنع للفحم في سن الـ ۱۹. بنت هذه السنوات الأولى أساساً قوياً للقيادة والخبرة في السوق.",
+        "tr": "Hossein Karimi'nin girişimcilik yolculuğu 16 yaşında bir tavuk çiftliğini yöneterek başladı ve 19 yaşında bir kömür fabrikası kurmasıyla devam etti. Bu ilk yıllar, liderlik ve pazar uzmanlığının güçlü temelini oluşturdu."
+    },
+    "2019": {
+        "en": "2019",
+        "fa": "۱۳۹۸",
+        "ar": "۲۰۱۹",
+        "tr": "2019"
+    },
+    "The Birth of Palace Karimi": {
+        "en": "The Birth of Palace Karimi",
+        "fa": "تولد پالِس کریمی",
+        "ar": "ولادة بالس كريمي",
+        "tr": "Palace Karimi'nin Doğuşu"
+    },
+    "Starting with a small capital of just 10 million Tomans, Hossein and his wife began their pistachio business. Products were lovingly sorted at home at night and distributed to local confectioneries during the day.": {
+        "en": "Starting with a small capital of just 10 million Tomans, Hossein and his wife began their pistachio business. Products were lovingly sorted at home at night and distributed to local confectioneries during the day.",
+        "fa": "حسین کریمی و همسرش تنها با ۱۰ میلیون تومان سرمایه وارد حوزه پسته شدند. شب‌ها پسته‌ها را در خانه پاک می‌کردند و صبح‌ها برای فروش به قنادی‌های محلی می‌بردند.",
+        "ar": "بدأ حسين وزوجته تجارة الفستق برأس مال صغير بلغ ۱۰ ملايين تومان فقط. كانت المنتجات تُفرز بحب في المنزل ليلاً وتُوزع على محلات الحلويات المحلية نهاراً.",
+        "tr": "Sadece 10 milyon Tümen gibi küçük bir sermaye ile başlayan Hossein ve eşi, fıstık işine girdiler. Ürünler geceleri evde sevgiyle ayıklanıyor ve gündüzleri yerel pastanelere dağıtılıyordu."
+    },
+    "The Journey": {
+        "en": "The Journey",
+        "fa": "مسیر پرچالش",
+        "ar": "الرحلة",
+        "tr": "Yolculuk"
+    },
+    "The Turning Point": {
+        "en": "The Turning Point",
+        "fa": "نقطه عطف",
+        "ar": "نقطة التحول",
+        "tr": "Dönüm Noktası"
+    },
+    "Joined by Hassan Dolatabadi, the team embarked on a challenging road trip to northern Iran to market 130kg of pistachios. Sleeping in their car and selling door-to-door, they proved that perseverance is an entrepreneur’s greatest asset.": {
+        "en": "Joined by Hassan Dolatabadi, the team embarked on a challenging road trip to northern Iran to market 130kg of pistachios. Sleeping in their car and selling door-to-door, they proved that perseverance is an entrepreneur’s greatest asset.",
+        "fa": "با پیوستن حسن دولت‌آبادی، تیم سفری پرچالش را با ۱۳۰ کیلوگرم پسته به شمال ایران آغاز کرد. آن‌ها با استراحت در خودرو و فروش خانه‌به‌خانه، ثابت کردند که پشتکار بزرگترین سرمایه یک کارآفرین است.",
+        "ar": "بانضمام حسن دولت آبادي، انطلق الفريق في رحلة شاقة إلى شمال إيران لتسويق ۱۳۰ كيلوغراماً من الفستق. من خلال النوم في سيارتهم والبيع من باب إلى باب، أثبتوا أن المثابرة هي أعظم أصول رائد الأعمال.",
+        "tr": "Hassan Dolatabadi'nin katılımıyla ekip, 130 kg fıstığı pazarlamak için kuzey İran'a zorlu bir yolculuğa çıktı. Arabalarında uyuyup kapı kapı satış yaparak, azmin bir girişimcinin en büyük varlığı olduğunu kanıtladılar."
+    },
+    "Expansion": {
+        "en": "Expansion",
+        "fa": "توسعه",
+        "ar": "التوسع",
+        "tr": "Büyüme"
+    },
+    "Industrial Growth": {
+        "en": "Industrial Growth",
+        "fa": "رشد صنعتی",
+        "ar": "النمو الصناعي",
+        "tr": "Endüstriyel Büyüme"
+    },
+    "Growing trust from customers led to the opening of the central office and a larger urban workshop. The integration of modern sorting and processing machinery elevated production capacity and quality to a new level.": {
+        "en": "Growing trust from customers led to the opening of the central office and a larger urban workshop. The integration of modern sorting and processing machinery elevated production capacity and quality to a new level.",
+        "fa": "اعتماد روزافزون مشتریان منجر به تأسیس دفتر مرکزی و یک کارگاه بزرگتر شهری شد. بهره‌گیری از دستگاه‌های مدرن سورتینگ و فرآوری، ظرفیت تولید و کیفیت را به سطح جدیدی ارتقا داد.",
+        "ar": "أدت الثقة المتزايدة من العملاء إلى افتتاح المكتب المركزي وورشة عمل حضرية أكبر. رفع دمج آلات الفرز والمعالجة الحديثة الطاقة الإنتاجية والجودة إلى مستوى جديد.",
+        "tr": "Müşterilerden gelen artan güven, merkez ofisin ve daha büyük bir şehir atölyesinin açılmasına yol açtı. Modern ayıklama ve işleme makinelerinin entegrasyonu, üretim kapasitesini ve kaliteyi yeni bir seviyeye taşıdı."
+    },
+    "Present": {
+        "en": "Present",
+        "fa": "امروز",
+        "ar": "اليوم",
+        "tr": "Bugün"
+    },
+    "Global Recognition": {
+        "en": "Global Recognition",
+        "fa": "اعتبار جهانی",
+        "ar": "اعتراف عالمي",
+        "tr": "Küresel Tanınma"
+    },
+    "Today, Palace Karimi operates with 25 dedicated experts, exporting to the UAE, Turkey, and the UK. Hossein Karimi proudly serves as the youngest member of the Iran Chamber of Commerce, driving international trade forward.": {
+        "en": "Today, Palace Karimi operates with 25 dedicated experts, exporting to the UAE, Turkey, and the UK. Hossein Karimi proudly serves as the youngest member of the Iran Chamber of Commerce, driving international trade forward.",
+        "fa": "امروز، بازرگانی پالِس کریمی با ۲۵ نیروی متخصص فعالیت می‌کند و محصولات خود را به امارات، ترکیه و انگلستان صادر می‌نماید. حسین کریمی نیز به‌عنوان کوچکترین عضو اتاق بازرگانی ایران، مسیر توسعه تجارت بین‌المللی را پیش می‌برد.",
+        "ar": "اليوم، تعمل بالس كريمي مع ۲۵ خبيراً متخصصاً، وتصدر إلى الإمارات العربية المتحدة وتركيا والمملكة المتحدة. يخدم حسين كريمي بفخر كأصغر عضو في غرفة التجارة الإيرانية، دافعاً التجارة الدولية إلى الأمام.",
+        "tr": "Bugün Palace Karimi, BAE, Türkiye ve Birleşik Krallık'a ihracat yapan 25 uzmanla çalışmaktadır. Hossein Karimi, İran Ticaret Odası'nın en genç üyesi olarak gururla hizmet vermekte ve uluslararası ticareti ileriye taşımaktadır."
+    },
+    "About": {
+        "en": "About",
+        "fa": "درباره",
+        "ar": "حول",
+        "tr": "Hakkında"
+    },
+
+    "Palace Karimi": {
+        "en": "Palace Karimi",
+        "fa": "پالِس کریمی",
+        "ar": "بالس كريمي",
+        "tr": "Palace Karimi"
+    },
+
+    "Hossein Karimi Trading, operating under the Palace Karimi brand and managed by Mr. Hossein Karimi, is a dynamic and growing enterprise. With a dedicated team of 25 experts, we specialize in supplying, packaging, and exporting premium Iranian saffron and pistachios.": {
+        "en": "Hossein Karimi Trading, operating under the Palace Karimi brand and managed by Mr. Hossein Karimi, is a dynamic and growing enterprise. With a dedicated team of 25 experts, we specialize in supplying, packaging, and exporting premium Iranian saffron and pistachios.",
+        "fa": "بازرگانی حسین کریمی با برند (پالس کریمی) به مدیریت آقای حسین کریمی، امروزه با بهره‌گیری از تیمی متشکل از ۲۵ نیروی متخصص و متعهد، مجموعه‌ای پویا و رو به رشد در حوزه تأمین، بسته‌بندی و صادرات پسته و زعفران ممتاز ایران فعالیت می‌کند.",
+        "ar": "تعمل شركة حسين كريمي التجارية، تحت علامة بالس كريمي التجارية وبإدارة السيد حسين كريمي، كمؤسسة ديناميكية ومتنامية. بفضل فريق متخصص مكون من ۲۵ خبيراً، ننشط في توريد وتعبئة وتصدير الزعفران والفستق الإيراني الممتاز.",
+        "tr": "Palace Karimi markası altında ve Sayın Hossein Karimi yönetiminde faaliyet gösteren Hossein Karimi Ticaret, dinamik ve büyüyen bir kuruluştur. 25 kişilik uzman ekibimizle birinci sınıf İran safranı ve fıstığı tedarik, paketleme ve ihracatında faaliyet gösteriyoruz."
+    },
+
+    "By combining experience, market knowledge, and a commitment to quality, we strive to build a reliable bridge between Iranian producers and global markets. Every stage of our operation, from meticulous product selection to packaging and shipping, is conducted under strict professional standards and continuous supervision to ensure our customers always receive premium and reliable products.": {
+        "en": "By combining experience, market knowledge, and a commitment to quality, we strive to build a reliable bridge between Iranian producers and global markets. Every stage of our operation, from meticulous product selection to packaging and shipping, is conducted under strict professional standards and continuous supervision to ensure our customers always receive premium and reliable products.",
+        "fa": "ما با تلفیق تجربه، دانش بازار و تعهد به کیفیت، تلاش کرده‌ایم پلی مطمئن میان تولیدکنندگان ایرانی و بازارهای جهان ایجاد کنیم. تمامی مراحل فعالیت مجموعه، از انتخاب دقیق محصولات تا بسته‌بندی و ارسال، با رعایت استانداردهای حرفه‌ای و نظارت مستمر انجام می‌شود تا مشتریان ما همواره محصولی ممتاز و قابل اعتماد دریافت کنند.",
+        "ar": "من خلال الجمع بين الخبرة ومعرفة السوق والالتزام بالجودة، سعينا لبناء جسر موثوق بين المنتجين الإيرانيين والأسواق العالمية. تتم جميع مراحل عملنا، من الاختيار الدقيق للمنتجات إلى التعبئة والشحن، وفقاً للمعايير المهنية والإشراف المستمر لضمان حصول عملائنا دائماً على منتجات ممتازة وموثوقة.",
+        "tr": "Deneyim, pazar bilgisi ve kalite taahhüdünü birleştirerek, İranlı üreticiler ile küresel pazarlar arasında güvenilir bir köprü kurmaya çalışıyoruz. Müşterilerimizin her zaman birinci sınıf ve güvenilir ürünler almasını sağlamak için, dikkatli ürün seçiminden paketleme ve sevkiyata kadar her aşama sıkı profesyonel standartlar ve sürekli denetim altında gerçekleştirilir."
+    },
+
+    "At Palace Karimi, quality is not just a standard; it is a commitment that flows through all our partnerships and services. Our vision is to become an enduring and trusted name in the global trade of authentic Persian products, forging long-term collaborations with business partners worldwide.": {
+        "en": "At Palace Karimi, quality is not just a standard; it is a commitment that flows through all our partnerships and services. Our vision is to become an enduring and trusted name in the global trade of authentic Persian products, forging long-term collaborations with business partners worldwide.",
+        "fa": "در پالس کریمی، کیفیت تنها یک استاندارد نیست، بلکه تعهدی است که در تمامی همکاری‌ها و خدمات ما جریان دارد. چشم‌انداز ما، تبدیل شدن به یکی از نام‌های ماندگار و قابل اعتماد در تجارت جهانی محصولات اصیل ایرانی و ایجاد همکاری‌های بلندمدت با شرکای تجاری در سراسر جهان است.",
+        "ar": "في بالس كريمي، الجودة ليست مجرد معيار، بل هي التزام يتدفق عبر جميع شراكاتنا وخدماتنا. رؤيتنا هي أن نصبح اسماً خالداً وموثوقاً في التجارة العالمية للمنتجات الإيرانية الأصيلة، وإقامة تعاون طويل الأمد مع شركاء تجاريين في جميع أنحاء العالم.",
+        "tr": "Palace Karimi'de kalite sadece bir standart değil; tüm işbirliklerimiz ve hizmetlerimiz boyunca akan bir taahhüttür. Vizyonumuz, dünya çapındaki iş ortaklarıyla uzun vadeli işbirlikleri kurarak otantik İran ürünlerinin küresel ticaretinde kalıcı ve güvenilir bir isim olmaktır."
+    },
+    "God provides sustenance without measure.": {
+        "en": "God provides sustenance without measure.",
+        "fa": "خدا روزی‌رسان بی‌حساب است.",
+        "ar": "الله هو الرزاق بغير حساب.",
+        "tr": "Allah hesapsız rızık verendir."
+    },
 }
 
 
-base_dir = os.path.abspath(os.path.dirname(__file__))
-locale_dir = os.path.join(base_dir, 'locale')
-os.makedirs(locale_dir, exist_ok=True)
+def update_translations():
+    for lang, _ in [('fa', 'Persian'), ('ar', 'Arabic'), ('tr', 'Turkish')]:
+        po_path = os.path.join(LOCALE_DIR, lang, 'LC_MESSAGES', 'django.po')
 
-for lang, trans_dict in translations.items():
-    msg_dir = os.path.join(locale_dir, lang, 'LC_MESSAGES')
-    os.makedirs(msg_dir, exist_ok=True)
+        if not os.path.exists(po_path):
+            print(f"File not found: {po_path}. Skipping {lang}.")
+            continue
 
-    po_path = os.path.join(msg_dir, 'django.po')
-    mo_path = os.path.join(msg_dir, 'django.mo')
+        po = polib.pofile(po_path)
 
-    # Create PO file
-    po = polib.POFile()
-    po.metadata = {
-        'Project-Id-Version': '1.0',
-        'Language': lang,
-        'MIME-Version': '1.0',
-        'Content-Type': 'text/plain; charset=utf-8',
-        'Content-Transfer-Encoding': '8bit',
-    }
+        for msgid, trans_dict in TRANSLATIONS.items():
+            if lang in trans_dict:
+                entry = po.find(msgid)
+                if entry:
+                    entry.msgstr = trans_dict[lang]
+                else:
+                    entry = polib.POEntry(
+                        msgid=msgid,
+                        msgstr=trans_dict[lang]
+                    )
+                    po.append(entry)
 
-    for msgid, msgstr in trans_dict.items():
-        entry = polib.POEntry(
-            msgid=msgid,
-            msgstr=msgstr
-        )
-        po.append(entry)
+        po.save(po_path)
+        print(f"Updated {po_path}")
 
-    po.save(po_path)
-    po.save_as_mofile(mo_path)
 
-print("All translation dictionaries generated and compiled successfully for Palace Karimi!")
+if __name__ == '__main__':
+    print("Starting translation update...")
+    update_translations()
+    print("Done. Now run: python manage.py compilemessages")

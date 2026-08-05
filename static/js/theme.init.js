@@ -237,7 +237,7 @@
 
 					$this.themePluginIcon(opts);
 				});
-				
+
 			});
 		});
 	}

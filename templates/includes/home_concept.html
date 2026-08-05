@@ -19,7 +19,7 @@
                 </div>
                 <div class="col-lg-2 mt-4 mt-lg-0 z-index-1">
                     <div class="process-image">
-                        <img src="{% static 'img/home/concept-packaging.webp' %}" alt="Packaging">
+                            <img src="{% static 'img/home/concept-packaging.webp' %}" alt="Packaging">
                         <strong class="custom-concept-label">{% trans 'Packaging' %}</strong>
                     </div>
                 </div>
@@ -27,9 +27,9 @@
                     <div class="project-image">
                         <div id="fcSlideshow" class="fc-slideshow">
                             <ul class="fc-slides">
-                                <li><a href="#"><img class="img-responsive" src="{% static 'img/projects/export-1.webp' %}" alt="Export"></a></li>
-                                <li><a href="#"><img class="img-responsive" src="{% static 'img/projects/export-2.webp' %}" alt="Export"></a></li>
-                                <li><a href="#"><img class="img-responsive" src="{% static 'img/projects/export-3.webp' %}" alt="Export"></a></li>
+                                <li><a href="{% url 'catalog:shop' %}"><img class="img-responsive" src="{% static 'img/home/export-1.webp' %}" alt="Export"></a></li>
+                                <li><a href="{% url 'catalog:shop' %}"><img class="img-responsive" src="{% static 'img/home/export-1.webp' %}" alt="Export"></a></li>
+                                <li><a href="{% url 'catalog:shop' %}"><img class="img-responsive" src="{% static 'img/home/export-1.webp' %}" alt="Export"></a></li>
                             </ul>
                         </div>
                         <strong class="our-work custom-concept-our-work">{% trans 'Global Export' %}</strong>

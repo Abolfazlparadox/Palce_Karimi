@@ -46,9 +46,9 @@
                         <a href="#">
                             <span class="product-thumb-info-image">
                                 {% if product.main_image %}
-                                    <img alt="{{ product.main_image.alt_text|default:product.name }}" class="img-fluid" src="{{ product.main_image.image.url }}" style="height: 250px; object-fit: cover; width: 100%;">
+                                    <img alt="{{ product.main_image.alt_text|default:product.name }}" class="img-fluid" src="{{ product.main_image.image.url }}" width="300" height="400" style="object-fit: cover; aspect-ratio: 3/4;">
                                 {% else %}
-                                    <img alt="{{ product.name }}" class="img-fluid" src="{% static 'img/products/product-0.png' %}" style="height: 250px; object-fit: cover; width: 100%;">
+                                    <img alt="{{ product.name }}" class="img-fluid" src="{% static 'img/products/product-0.png' %}" width="300" height="400" style="object-fit: cover; aspect-ratio: 3/4;">
                                 {% endif %}
                             </span>
                         </a>

@@ -1,11 +1,13 @@
+import csv
+from django.http import HttpResponse
 from django.contrib import admin
 from django.utils import timezone
 from parler.admin import TranslatableAdmin
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
-from .models import (
+from catalog.models import (
     Category, QualityGrade, PackagingType,
-    Product, ProductVariant, TieredPrice, ProductImage, ContactMessage, ExchangeRate
+    Product, ProductVariant, TieredPrice, ProductImage, ContactMessage, ExchangeRate,NewsletterSubscriber
 )
 
 # ==========================================
@@ -129,3 +131,43 @@ class ContactMessageAdmin(admin.ModelAdmin):
 class ExchangeRateAdmin(admin.ModelAdmin):
     list_display = ('currency', 'rate', 'updated_at')
     list_editable = ('rate',)
+
+
+@admin.register(NewsletterSubscriber)
+class NewsletterSubscriberAdmin(admin.ModelAdmin):
+    list_display = ('email', 'language', 'is_active', 'created_at')
+    list_filter = ('is_active', 'language', 'created_at')
+    search_fields = ('email', 'ip_address')
+    date_hierarchy = 'created_at'
+    list_per_page = 50
+
+    # فیلدهایی که نباید توسط ادمین تغییر کنند
+    readonly_fields = ('email', 'ip_address', 'user_agent', 'language', 'created_at', 'updated_at')
+
+    actions = ['make_active', 'make_inactive', 'export_to_csv']
+
+    @admin.action(description=_("Activate selected subscribers"))
+    def make_active(self, request, queryset):
+        updated = queryset.update(is_active=True)
+        self.message_user(request, _(f"{updated} subscribers successfully activated."))
+
+    @admin.action(description=_("Deactivate selected subscribers"))
+    def make_inactive(self, request, queryset):
+        updated = queryset.update(is_active=False)
+        self.message_user(request, _(f"{updated} subscribers successfully deactivated."))
+
+    @admin.action(description=_("Export selected to CSV (Mailchimp format)"))
+    def export_to_csv(self, request, queryset):
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="subscribers.csv"'
+
+        writer = csv.writer(response)
+        # هدرهای استاندارد برای نرم‌افزارهای ایمیل مارکتینگ
+        writer.writerow(['Email Address', 'Language', 'IP Address', 'Status', 'Date Added'])
+
+        for obj in queryset:
+            status = 'Subscribed' if obj.is_active else 'Unsubscribed'
+            writer.writerow(
+                [obj.email, obj.language, obj.ip_address, status, obj.created_at.strftime("%Y-%m-%d %H:%M:%S")])
+
+        return response

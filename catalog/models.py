@@ -1,18 +1,20 @@
 import os
 import uuid
+from decimal import Decimal
 from django.db import models
 from django.db.models import Q
 from django.core.exceptions import ValidationError
 from parler.models import TranslatableModel, TranslatedFields
+from django_resized import ResizedImageField
+from django.utils.translation import gettext_lazy as _
 
 # ==========================================
 # 0. Utility Functions
 # ==========================================
 def get_image_upload_path(instance, filename):
-    ext = filename.split('.')[-1]
-    new_filename = f"{uuid.uuid4().hex}.{ext}"
+    # تغییر هوشمندانه: پسوند را همیشه روی webp قفل می‌کنیم
+    new_filename = f"{uuid.uuid4().hex}.webp"
     return os.path.join('products', str(instance.product.uuid), new_filename)
-
 # ==========================================
 # 1. Base / Taxonomy Models
 # ==========================================
@@ -20,7 +22,7 @@ def get_image_upload_path(instance, filename):
 class Category(TranslatableModel):
     translations = TranslatedFields(
         name=models.CharField(verbose_name="نام دسته‌بندی", max_length=200),
-        slug=models.SlugField(verbose_name="شناسه (Slug)", max_length=220, unique=True),
+        slug=models.SlugField(verbose_name="شناسه (Slug)", max_length=220, unique=True,allow_unicode=True),
         description=models.TextField(verbose_name="توضیحات", blank=True)
     )
     is_active = models.BooleanField(verbose_name="وضعیت فعالیت", default=True, db_index=True)
@@ -73,7 +75,7 @@ class Product(TranslatableModel):
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, db_index=True)
     translations = TranslatedFields(
         name=models.CharField(verbose_name="نام محصول", max_length=200),
-        slug=models.SlugField(verbose_name="شناسه URL (اسلاگ)", max_length=220, unique=True),
+        slug=models.SlugField(verbose_name="شناسه URL (اسلاگ)", max_length=220, unique=True,allow_unicode=True),
         short_description=models.CharField(verbose_name="توضیح کوتاه", max_length=500),
         full_description=models.TextField(verbose_name="توضیحات کامل"),
         seo_title=models.CharField(verbose_name="عنوان سئو", max_length=255, blank=True),
@@ -128,6 +130,13 @@ class ProductVariant(models.Model):
             models.UniqueConstraint(fields=["product", "packaging_type", "weight_in_grams"], name="unique_product_variant"),
             models.UniqueConstraint(fields=["product"], condition=Q(is_default=True), name="unique_default_variant_per_product")
         ]
+    @property
+    def base_price(self):
+        """بازگرداندن قیمت پایه (اولین رنج قیمت) به دلار"""
+        first_tier = self.tiered_prices.order_by('min_qty').first()
+        if first_tier:
+            return first_tier.price_usd
+        return Decimal('0.00')
 
     def __str__(self):
         pkg_name = self.packaging_type.safe_translation_getter('name', any_language=True) or 'Pkg'
@@ -177,7 +186,14 @@ class TieredPrice(models.Model):
 
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE, verbose_name="محصول")
-    image = models.ImageField(verbose_name="تصویر", upload_to=get_image_upload_path)
+    image = ResizedImageField(
+        size=[300, 400],  # ابعاد هدف (۳۰۰ عرض، ۴۰۰ ارتفاع)
+        crop=['middle', 'center'],  # برش هوشمند از مرکز
+        quality=85,  # کیفیت بهینه برای حفظ وضوح و کاهش حجم
+        force_format='WEBP',  # اجبار به فرمت نسل جدید
+        verbose_name="تصویر",
+        upload_to=get_image_upload_path
+    )
     alt_text = models.CharField(verbose_name="متن جایگزین (Alt)", max_length=255, blank=True)
     order = models.PositiveIntegerField(verbose_name="ترتیب نمایش", default=0)
     is_main = models.BooleanField(verbose_name="تصویر اصلی است؟", default=False)
@@ -247,3 +263,44 @@ class ExchangeRate(models.Model):
 
     def __str__(self):
         return f"{self.get_currency_display()} - {self.rate}"
+
+
+class NewsletterSubscriber(models.Model):
+    email = models.EmailField(
+        _("Email Address"),
+        unique=True,
+        db_index=True
+    )
+    is_active = models.BooleanField(
+        _("Active"),
+        default=True
+    )
+    language = models.CharField(
+        _("Language"),
+        max_length=10,
+        blank=True
+    )
+    ip_address = models.GenericIPAddressField(
+        _("IP Address"),
+        null=True,
+        blank=True
+    )
+    user_agent = models.TextField(
+        _("User Agent"),
+        blank=True
+    )
+    created_at = models.DateTimeField(
+        _("Subscribed At"),
+        auto_now_add=True
+    )
+    updated_at = models.DateTimeField(
+        auto_now=True
+    )
+
+    class Meta:
+        verbose_name = _("Newsletter Subscriber")
+        verbose_name_plural = _("Newsletter Subscribers")
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return self.email

@@ -55,7 +55,7 @@ msgid "Follow Us"
 msgstr "Bizi Takip Edin"
 
 msgid "© 2026 Palace Karimi. All Rights Reserved."
-msgstr "© 2026 Palace Karimi. Tüm hakları saklıdır."
+msgstr "© 2026 Palace Karimi. Tüm Hakları Saklıdır."
 
 msgid "Designed & Developed by"
 msgstr "Tasarım ve Geliştirme:"
@@ -313,7 +313,7 @@ msgid "Export Standard Approval"
 msgstr "İhracat Standardı Onayı"
 
 msgid "Our"
-msgstr "Bizim"
+msgstr "Ofisimiz"
 
 msgid "History"
 msgstr "Tarihçemiz"
@@ -507,7 +507,7 @@ msgid "Send Message"
 msgstr "Mesaj Gönder"
 
 msgid "Office"
-msgstr "Ofis"
+msgstr ""
 
 msgid "Address:"
 msgstr "Adres:"
@@ -679,3 +679,206 @@ msgid ""
 msgstr ""
 "Varış noktasına ve sipariş büyüklüğüne bağlı olarak hava, deniz ve kara "
 "yoluyla gönderim yapıyoruz."
+
+msgid ""
+"Hossein Karimi Trading - Supplying the finest Iranian Saffron and Pistachio."
+msgstr ""
+"Hossein Karimi Ticaret - En kaliteli İran safranı ve Antep fıstığının "
+"tedarikçisi."
+
+msgid "Working Hours:"
+msgstr "Çalışma Saatleri:"
+
+msgid "Corner of Chamran 28, Chamran St., Sabzevar, Khorasan Razavi, Iran"
+msgstr "İran, Razavi Horasan, Sabzevar, Çamran Caddesi, Çamran 28 Köşesi"
+
+msgid "Palace Karimi Logo"
+msgstr "Palace Karimi Logosu"
+
+msgid "Palace Karimi | Luxury Persian Saffron & Pistachio"
+msgstr "Palace Karimi | Lüks İran Safranı ve Şam Fıstığı"
+
+msgid "In God We Trust..."
+msgstr "Tanrı'ya Güveniyoruz..."
+
+msgid "08:00 - 20:00"
+msgstr "08:00 - 20:00"
+
+msgid "0992 759 0575"
+msgstr "0992 759 0575"
+
+msgid "0930 375 5667"
+msgstr "0930 375 5667"
+
+msgid "051 44 29 20 21"
+msgstr "051 44 29 20 21"
+
+msgid "palacekarimi2023@gmail.com"
+msgstr "palacekarimi2023@gmail.com"
+
+msgid "Instagram"
+msgstr "Instagram"
+
+msgid "Facebook"
+msgstr "Facebook"
+
+msgid "Twitter"
+msgstr "X (Twitter)"
+
+msgid "Linkedin"
+msgstr "LinkedIn"
+
+msgid "Everyday - 08:00 to 20:00"
+msgstr "Her gün - 08:00 ile 20:00 arası"
+
+msgid "Admin Panel"
+msgstr "Yönetici Paneli"
+
+msgid "Palace Karimi: From the heart of orchards to the heart of business"
+msgstr "Palace Karimi; Meyve bahçelerinin kalbinden ticaretin kalbine"
+
+msgid ""
+"Handpicked from the finest orchards and processed under strict quality "
+"standards."
+msgstr ""
+"En iyi bahçelerden özenle seçilmiş ve sıkı kalite standartlarında "
+"işlenmiştir."
+
+msgid "Terms & FAQ"
+msgstr "Şartlar ve SSS"
+
+msgid "Competitive Pricing"
+msgstr "Rekabetçi Fiyatlandırma"
+
+msgid ""
+"Direct sourcing allows us to offer the best market prices for B2B partners."
+msgstr ""
+"Doğrudan tedarik, B2B ortaklarımız için en iyi piyasa fiyatlarını sunmamızı "
+"sağlar."
+
+msgid ""
+"Every great success starts with a small decision and years of relentless "
+"effort."
+msgstr ""
+"Her büyük başarı, küçük bir kararla ve yıllar süren amansız bir çabayla "
+"başlar."
+
+msgid "The Roots"
+msgstr "Kökler"
+
+msgid "Early Ambitions"
+msgstr "Erken Hedefler"
+
+msgid ""
+"Hossein Karimi’s entrepreneurial journey began at age 16 by managing a "
+"poultry farm, followed by establishing a charcoal factory at 19. These early"
+" years built the strong foundation of leadership and market expertise."
+msgstr ""
+"Hossein Karimi'nin girişimcilik yolculuğu 16 yaşında bir tavuk çiftliğini "
+"yöneterek başladı ve 19 yaşında bir kömür fabrikası kurmasıyla devam etti. "
+"Bu ilk yıllar, liderlik ve pazar uzmanlığının güçlü temelini oluşturdu."
+
+msgid "2019"
+msgstr "2019"
+
+msgid "The Birth of Palace Karimi"
+msgstr "Palace Karimi'nin Doğuşu"
+
+msgid ""
+"Starting with a small capital of just 10 million Tomans, Hossein and his "
+"wife began their pistachio business. Products were lovingly sorted at home "
+"at night and distributed to local confectioneries during the day."
+msgstr ""
+"Sadece 10 milyon Tümen gibi küçük bir sermaye ile başlayan Hossein ve eşi, "
+"fıstık işine girdiler. Ürünler geceleri evde sevgiyle ayıklanıyor ve "
+"gündüzleri yerel pastanelere dağıtılıyordu."
+
+msgid "The Journey"
+msgstr "Yolculuk"
+
+msgid "The Turning Point"
+msgstr "Dönüm Noktası"
+
+msgid ""
+"Joined by Hassan Dolatabadi, the team embarked on a challenging road trip to"
+" northern Iran to market 130kg of pistachios. Sleeping in their car and "
+"selling door-to-door, they proved that perseverance is an entrepreneur’s "
+"greatest asset."
+msgstr ""
+"Hassan Dolatabadi'nin katılımıyla ekip, 130 kg fıstığı pazarlamak için kuzey"
+" İran'a zorlu bir yolculuğa çıktı. Arabalarında uyuyup kapı kapı satış "
+"yaparak, azmin bir girişimcinin en büyük varlığı olduğunu kanıtladılar."
+
+msgid "Expansion"
+msgstr "Büyüme"
+
+msgid "Industrial Growth"
+msgstr "Endüstriyel Büyüme"
+
+msgid ""
+"Growing trust from customers led to the opening of the central office and a "
+"larger urban workshop. The integration of modern sorting and processing "
+"machinery elevated production capacity and quality to a new level."
+msgstr ""
+"Müşterilerden gelen artan güven, merkez ofisin ve daha büyük bir şehir "
+"atölyesinin açılmasına yol açtı. Modern ayıklama ve işleme makinelerinin "
+"entegrasyonu, üretim kapasitesini ve kaliteyi yeni bir seviyeye taşıdı."
+
+msgid "Present"
+msgstr "Bugün"
+
+msgid "Global Recognition"
+msgstr "Küresel Tanınma"
+
+msgid ""
+"Today, Palace Karimi operates with 25 dedicated experts, exporting to the "
+"UAE, Turkey, and the UK. Hossein Karimi proudly serves as the youngest "
+"member of the Iran Chamber of Commerce, driving international trade forward."
+msgstr ""
+"Bugün Palace Karimi, BAE, Türkiye ve Birleşik Krallık'a ihracat yapan 25 "
+"uzmanla çalışmaktadır. Hossein Karimi, İran Ticaret Odası'nın en genç üyesi "
+"olarak gururla hizmet vermekte ve uluslararası ticareti ileriye "
+"taşımaktadır."
+
+msgid "About"
+msgstr "Hakkında"
+
+msgid ""
+"Hossein Karimi Trading, operating under the Palace Karimi brand and managed "
+"by Mr. Hossein Karimi, is a dynamic and growing enterprise. With a dedicated"
+" team of 25 experts, we specialize in supplying, packaging, and exporting "
+"premium Iranian saffron and pistachios."
+msgstr ""
+"Palace Karimi markası altında ve Sayın Hossein Karimi yönetiminde faaliyet "
+"gösteren Hossein Karimi Ticaret, dinamik ve büyüyen bir kuruluştur. 25 "
+"kişilik uzman ekibimizle birinci sınıf İran safranı ve fıstığı tedarik, "
+"paketleme ve ihracatında faaliyet gösteriyoruz."
+
+msgid ""
+"By combining experience, market knowledge, and a commitment to quality, we "
+"strive to build a reliable bridge between Iranian producers and global "
+"markets. Every stage of our operation, from meticulous product selection to "
+"packaging and shipping, is conducted under strict professional standards and"
+" continuous supervision to ensure our customers always receive premium and "
+"reliable products."
+msgstr ""
+"Deneyim, pazar bilgisi ve kalite taahhüdünü birleştirerek, İranlı üreticiler"
+" ile küresel pazarlar arasında güvenilir bir köprü kurmaya çalışıyoruz. "
+"Müşterilerimizin her zaman birinci sınıf ve güvenilir ürünler almasını "
+"sağlamak için, dikkatli ürün seçiminden paketleme ve sevkiyata kadar her "
+"aşama sıkı profesyonel standartlar ve sürekli denetim altında "
+"gerçekleştirilir."
+
+msgid ""
+"At Palace Karimi, quality is not just a standard; it is a commitment that "
+"flows through all our partnerships and services. Our vision is to become an "
+"enduring and trusted name in the global trade of authentic Persian products,"
+" forging long-term collaborations with business partners worldwide."
+msgstr ""
+"Palace Karimi'de kalite sadece bir standart değil; tüm işbirliklerimiz ve "
+"hizmetlerimiz boyunca akan bir taahhüttür. Vizyonumuz, dünya çapındaki iş "
+"ortaklarıyla uzun vadeli işbirlikleri kurarak otantik İran ürünlerinin "
+"küresel ticaretinde kalıcı ve güvenilir bir isim olmaktır."
+
+msgid "God provides sustenance without measure."
+msgstr "Allah hesapsız rızık verendir."

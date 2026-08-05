@@ -34,13 +34,13 @@ msgid "Success!"
 msgstr "موفقیت!"
 
 msgid "You have been added to our email list."
-msgstr "شما به لیست ایمیل ما افزوده شدید."
+msgstr "شما به لیست ایمیل ما اضافه شدید."
 
 msgid "Email Address"
 msgstr "آدرس ایمیل"
 
 msgid "Subscribe"
-msgstr "عضویت"
+msgstr "عضویت در خبرنامه"
 
 msgid "Latest Tweets"
 msgstr "جدیدترین توییت‌ها"
@@ -55,7 +55,7 @@ msgid "Follow Us"
 msgstr "ما را دنبال کنید"
 
 msgid "© 2026 Palace Karimi. All Rights Reserved."
-msgstr "© 2026 پالس کریمی. تمامی حقوق محفوظ است."
+msgstr "© ۲۰۲۶ پالاس کریمی. تمامی حقوق محفوظ است."
 
 msgid "Designed & Developed by"
 msgstr "طراحی و توسعه توسط"
@@ -85,7 +85,7 @@ msgid "Hand-picked and premium quality."
 msgstr "دست‌چین شده و با کیفیت جهانی."
 
 msgid "Palace Karimi"
-msgstr "پالس کریمی"
+msgstr "پالِس کریمی"
 
 msgid "YOUR TRUSTED PARTNER"
 msgstr "شریک معتمد شما"
@@ -167,7 +167,7 @@ msgid "Pure, natural products cultivated without harmful chemicals."
 msgstr "محصولات خالص و طبیعی که بدون مواد شیمیایی مضر کشت می‌شوند."
 
 msgid "Premium Quality"
-msgstr "کیفیت برتر"
+msgstr "کیفیت ممتاز"
 
 msgid "Export-grade saffron and pistachio carefully hand-picked."
 msgstr "زعفران و پسته صادراتی با دقت دست‌چین شده."
@@ -310,7 +310,7 @@ msgid "Export Standard Approval"
 msgstr "تأییدیه استاندارد صادرات"
 
 msgid "Our"
-msgstr "ما"
+msgstr "دفتر"
 
 msgid "History"
 msgstr "تاریخچه"
@@ -494,7 +494,7 @@ msgid "Send Message"
 msgstr "ارسال پیام"
 
 msgid "Office"
-msgstr "دفتر"
+msgstr "ما"
 
 msgid "Address:"
 msgstr "آدرس:"
@@ -506,7 +506,7 @@ msgid "Email:"
 msgstr "ایمیل:"
 
 msgid "Business"
-msgstr "ساعات"
+msgstr "ساعت"
 
 msgid "Hours"
 msgstr "کاری"
@@ -666,3 +666,199 @@ msgid ""
 msgstr ""
 "ما ارسال را از طریق حمل و نقل هوایی، دریایی و زمینی، بسته به مقصد و حجم "
 "سفارش انجام می‌دهیم."
+
+msgid "Terms & FAQ"
+msgstr "قوانین و سوالات متداول"
+
+msgid ""
+"Hossein Karimi Trading - Supplying the finest Iranian Saffron and Pistachio."
+msgstr "بازرگانی حسین کریمی - تأمین‌کننده بهترین زعفران و پسته ایرانی."
+
+msgid "Working Hours:"
+msgstr "ساعات کاری:"
+
+msgid "Corner of Chamran 28, Chamran St., Sabzevar, Khorasan Razavi, Iran"
+msgstr "ایران، خراسان رضوی، سبزوار، خیابان چمران، نبش چمران ۲۸"
+
+msgid "Palace Karimi Logo"
+msgstr "لوگوی پالاس کریمی"
+
+msgid "Palace Karimi | Luxury Persian Saffron & Pistachio"
+msgstr "پالاس کریمی | زعفران و پسته لوکس ایرانی"
+
+msgid "In God We Trust..."
+msgstr "به خدا توکل داریم..."
+
+msgid "08:00 - 20:00"
+msgstr "۰۸:۰۰ - ۲۰:۰۰"
+
+msgid "0992 759 0575"
+msgstr "۰۹۹۲ ۷۵۹ ۰۵۷۵"
+
+msgid "0930 375 5667"
+msgstr "۰۹۳۰ ۳۷۵ ۵۶۶۷"
+
+msgid "051 44 29 20 21"
+msgstr "۰۵۱ ۴۴ ۲۹ ۲۰ ۲۱"
+
+msgid "palacekarimi2023@gmail.com"
+msgstr "palacekarimi2023@gmail.com"
+
+msgid "Instagram"
+msgstr "اینستاگرام"
+
+msgid "Facebook"
+msgstr "فیسبوک"
+
+msgid "Twitter"
+msgstr "توییتر"
+
+msgid "Linkedin"
+msgstr "لینکدین"
+
+msgid "Everyday - 08:00 to 20:00"
+msgstr "همه‌روزه - ۰۸:۰۰ صبح تا ۲۰:۰۰ شب"
+
+msgid "Admin Panel"
+msgstr "پنل مدیریت"
+
+msgid "Palace Karimi: From the heart of orchards to the heart of business"
+msgstr "پالس کریمی؛ از دل باغستان تا قلب تجارت"
+
+msgid ""
+"Handpicked from the finest orchards and processed under strict quality "
+"standards."
+msgstr ""
+"دست‌چین شده از بهترین باغ‌ها و فرآوری شده تحت دقیق‌ترین استانداردهای کیفی."
+
+msgid "Competitive Pricing"
+msgstr "قیمت‌های رقابتی"
+
+msgid ""
+"Direct sourcing allows us to offer the best market prices for B2B partners."
+msgstr ""
+"تامین مستقیم به ما اجازه می‌دهد بهترین قیمت‌های بازار را به شرکای B2B خود "
+"ارائه دهیم."
+
+msgid ""
+"Every great success starts with a small decision and years of relentless "
+"effort."
+msgstr "هر موفقیت بزرگی، از یک تصمیم کوچک و سال‌ها تلاش بی‌وقفه آغاز می‌شود."
+
+msgid "The Roots"
+msgstr "ریشه‌ها"
+
+msgid "Early Ambitions"
+msgstr "اهداف اولیه و تجربیات"
+
+msgid ""
+"Hossein Karimi’s entrepreneurial journey began at age 16 by managing a "
+"poultry farm, followed by establishing a charcoal factory at 19. These early"
+" years built the strong foundation of leadership and market expertise."
+msgstr ""
+"مسیر کارآفرینی حسین کریمی در ۱۶ سالگی با اداره یک مرغداری آغاز شد و در ۱۹ "
+"سالگی با تأسیس کارخانه تولید زغال ادامه یافت. این سال‌ها پایه‌های محکم رهبری"
+" و شناخت بازار را در او شکل داد."
+
+msgid "2019"
+msgstr "۱۳۹۸"
+
+msgid "The Birth of Palace Karimi"
+msgstr "تولد پالِس کریمی"
+
+msgid ""
+"Starting with a small capital of just 10 million Tomans, Hossein and his "
+"wife began their pistachio business. Products were lovingly sorted at home "
+"at night and distributed to local confectioneries during the day."
+msgstr ""
+"حسین کریمی و همسرش تنها با ۱۰ میلیون تومان سرمایه وارد حوزه پسته شدند. شب‌ها"
+" پسته‌ها را در خانه پاک می‌کردند و صبح‌ها برای فروش به قنادی‌های محلی "
+"می‌بردند."
+
+msgid "The Journey"
+msgstr "مسیر پرچالش"
+
+msgid "The Turning Point"
+msgstr "نقطه عطف"
+
+msgid ""
+"Joined by Hassan Dolatabadi, the team embarked on a challenging road trip to"
+" northern Iran to market 130kg of pistachios. Sleeping in their car and "
+"selling door-to-door, they proved that perseverance is an entrepreneur’s "
+"greatest asset."
+msgstr ""
+"با پیوستن حسن دولت‌آبادی، تیم سفری پرچالش را با ۱۳۰ کیلوگرم پسته به شمال "
+"ایران آغاز کرد. آن‌ها با استراحت در خودرو و فروش خانه‌به‌خانه، ثابت کردند که"
+" پشتکار بزرگترین سرمایه یک کارآفرین است."
+
+msgid "Expansion"
+msgstr "توسعه"
+
+msgid "Industrial Growth"
+msgstr "رشد صنعتی"
+
+msgid ""
+"Growing trust from customers led to the opening of the central office and a "
+"larger urban workshop. The integration of modern sorting and processing "
+"machinery elevated production capacity and quality to a new level."
+msgstr ""
+"اعتماد روزافزون مشتریان منجر به تأسیس دفتر مرکزی و یک کارگاه بزرگتر شهری شد."
+" بهره‌گیری از دستگاه‌های مدرن سورتینگ و فرآوری، ظرفیت تولید و کیفیت را به "
+"سطح جدیدی ارتقا داد."
+
+msgid "Present"
+msgstr "امروز"
+
+msgid "Global Recognition"
+msgstr "اعتبار جهانی"
+
+msgid ""
+"Today, Palace Karimi operates with 25 dedicated experts, exporting to the "
+"UAE, Turkey, and the UK. Hossein Karimi proudly serves as the youngest "
+"member of the Iran Chamber of Commerce, driving international trade forward."
+msgstr ""
+"امروز، بازرگانی پالِس کریمی با ۲۵ نیروی متخصص فعالیت می‌کند و محصولات خود را"
+" به امارات، ترکیه و انگلستان صادر می‌نماید. حسین کریمی نیز به‌عنوان کوچکترین"
+" عضو اتاق بازرگانی ایران، مسیر توسعه تجارت بین‌المللی را پیش می‌برد."
+
+msgid "About"
+msgstr "درباره"
+
+msgid ""
+"Hossein Karimi Trading, operating under the Palace Karimi brand and managed "
+"by Mr. Hossein Karimi, is a dynamic and growing enterprise. With a dedicated"
+" team of 25 experts, we specialize in supplying, packaging, and exporting "
+"premium Iranian saffron and pistachios."
+msgstr ""
+"بازرگانی حسین کریمی با برند (پالس کریمی) به مدیریت آقای حسین کریمی، امروزه "
+"با بهره‌گیری از تیمی متشکل از ۲۵ نیروی متخصص و متعهد، مجموعه‌ای پویا و رو به"
+" رشد در حوزه تأمین، بسته‌بندی و صادرات پسته و زعفران ممتاز ایران فعالیت "
+"می‌کند."
+
+msgid ""
+"By combining experience, market knowledge, and a commitment to quality, we "
+"strive to build a reliable bridge between Iranian producers and global "
+"markets. Every stage of our operation, from meticulous product selection to "
+"packaging and shipping, is conducted under strict professional standards and"
+" continuous supervision to ensure our customers always receive premium and "
+"reliable products."
+msgstr ""
+"ما با تلفیق تجربه، دانش بازار و تعهد به کیفیت، تلاش کرده‌ایم پلی مطمئن میان "
+"تولیدکنندگان ایرانی و بازارهای جهان ایجاد کنیم. تمامی مراحل فعالیت مجموعه، "
+"از انتخاب دقیق محصولات تا بسته‌بندی و ارسال، با رعایت استانداردهای حرفه‌ای و"
+" نظارت مستمر انجام می‌شود تا مشتریان ما همواره محصولی ممتاز و قابل اعتماد "
+"دریافت کنند."
+
+msgid ""
+"At Palace Karimi, quality is not just a standard; it is a commitment that "
+"flows through all our partnerships and services. Our vision is to become an "
+"enduring and trusted name in the global trade of authentic Persian products,"
+" forging long-term collaborations with business partners worldwide."
+msgstr ""
+"در پالس کریمی، کیفیت تنها یک استاندارد نیست، بلکه تعهدی است که در تمامی "
+"همکاری‌ها و خدمات ما جریان دارد. چشم‌انداز ما، تبدیل شدن به یکی از نام‌های "
+"ماندگار و قابل اعتماد در تجارت جهانی محصولات اصیل ایرانی و ایجاد همکاری‌های "
+"بلندمدت با شرکای تجاری در سراسر جهان است."
+
+msgid "God provides sustenance without measure."
+msgstr "خدا روزی‌رسان بی‌حساب است."
