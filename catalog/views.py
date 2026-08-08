@@ -4,11 +4,13 @@ from django.utils.translation import gettext_lazy as _
 from email_validator import validate_email, EmailNotValidError
 from django_ratelimit.decorators import ratelimit
 from catalog.models import NewsletterSubscriber
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from catalog.models import Category, Product
 from catalog.forms import ContactMessageForm
 from django.core.paginator import Paginator
+from django.http import HttpResponse
+from django.views.decorators.http import require_GET
 
 logger = logging.getLogger(__name__)
 def get_client_ip(request):
@@ -60,6 +62,44 @@ def terms_faq(request):
     Renders the Terms, Conditions & FAQ page.
     """
     return render(request, 'catalog/terms.html')
+
+def product_detail(request, slug):
+    """
+    Displays the detail page for a single product.
+    """
+    product = get_object_or_404(
+        Product.objects.prefetch_related(
+            'translations', 'images', 'variants__tiered_prices', 'category__translations'
+        ),
+        translations__slug=slug,
+        is_active=True
+    )
+    related_products = Product.objects.filter(
+        category=product.category, is_active=True
+    ).exclude(pk=product.pk).prefetch_related('translations', 'images', 'variants')[:4]
+
+    context = {
+        'product': product,
+        'related_products': related_products
+    }
+    return render(request, 'catalog/product_detail.html', context)
+
+def category_detail(request, slug):
+    """
+    Lists all active products within a specific category, with pagination.
+    """
+    category = get_object_or_404(Category.objects.prefetch_related('translations'), translations__slug=slug)
+    product_list = Product.objects.filter(category=category, is_active=True).order_by('-created_at')
+    paginator = Paginator(product_list, 4)
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'category': category,
+        'page_obj': page_obj
+    }
+    return render(request, 'catalog/category_detail.html', context)
 
 
 @ratelimit(key='ip', rate='3/m', method='POST', block=False)

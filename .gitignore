@@ -9,6 +9,9 @@ agent_logs/
 .env
 .env.local
 .env.*.local
+.env.prod
+.env.dev
+*.secret
 
 # Python virtual machine
 venv/

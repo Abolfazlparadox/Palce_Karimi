@@ -12,23 +12,28 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 import os
 from pathlib import Path
-
+from dotenv import load_dotenv
 from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
+# Load environment variables from .env file
+load_dotenv(BASE_DIR / '.env')
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-i@rxx&-1(77k6hg2b)%k@myn31s)(xd_z6g9yd*v*-$1hyzy9u'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'unsafe-default-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS
+allowed_hosts_env = os.environ.get('ALLOWED_HOSTS', '')
+ALLOWED_HOSTS = allowed_hosts_env.split(',') if allowed_hosts_env else []
+
+# CSRF_TRUSTED_ORIGINS (مورد نیاز برای پنل ادمین وقتی روی سرور و داکر می‌رود)
+csrf_trusted_origins_env = os.environ.get('CSRF_TRUSTED_ORIGINS', '')
+CSRF_TRUSTED_ORIGINS = csrf_trusted_origins_env.split(',') if csrf_trusted_origins_env else []
 
 
 # ==============================================================================
@@ -36,19 +41,19 @@ ALLOWED_HOSTS = []
 # ==============================================================================
 
 INSTALLED_APPS = [
-    # Jazzmin must be listed BEFORE django.contrib.admin, otherwise it will
-    # not be able to override the default admin templates.
-    'jazzmin',
+    # 'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
 
     # Third-party apps
-    'parler',   # Multilingual content translation for models (used by ContactMessage/Product etc.)
-    'rosetta',  # In-browser .po translation editor, mounted somewhere in urls.py (e.g. /rosetta/)
+    'parler',
+    'rosetta',
 
     # Local apps
     'core',
@@ -58,9 +63,6 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    # LocaleMiddleware MUST sit between SessionMiddleware and CommonMiddleware.
-    # This is required for Jazzmin's "language_chooser" and Django's set_language
-    # view to correctly detect/persist the active language and text direction.
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -97,11 +99,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'palace_db',
-        'USER': 'postgres',
-        'PASSWORD': '1',
-        'HOST': '127.0.0.1',
-        'PORT': '5433',
+        'NAME': os.environ.get('DB_NAME', 'palace_db'),
+        'USER': os.environ.get('DB_USER', 'postgres'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', '1'),
+        'HOST': os.environ.get('DB_HOST', '127.0.0.1'),
+        'PORT': os.environ.get('DB_PORT', '5433'),
     }
 }
 
@@ -132,22 +134,12 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 # ==============================================================================
 
-# Default UI language for the whole project (admin + front end).
-# "fa-ir" is used instead of plain "fa" so Persian-specific formatting
-# (numbers, dates) is applied where Django provides it.
 LANGUAGE_CODE = 'fa-ir'
 TIME_ZONE = 'Asia/Tehran'
 USE_I18N = True
 USE_TZ = True
 
-# NOTE: USE_L10N was removed as a settings option in Django 5.0+ (localized
-# formatting is always enabled now). It's safe to leave out entirely; keeping
-# it here only for backwards-compat clarity and it will simply be ignored.
-# USE_L10N = True
 
-# Languages made available to Django's LocaleMiddleware / set_language view
-# and to Jazzmin's "language_chooser" dropdown (this affects admin UI text,
-# not the Parler-translated model content below).
 LANGUAGES = [
     ('fa', _('Persian')),
     ('en', _('English')),
@@ -155,17 +147,15 @@ LANGUAGES = [
     ('tr', _('Turkish')),
 ]
 
-# Where Django looks for your .po/.mo translation files (django-admin makemessages).
+
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale'),
 ]
 
-# Required by django-parler's PARLER_LANGUAGES dict below (keyed by SITE_ID),
-# even if django.contrib.sites itself is not installed.
+
 SITE_ID = 1
 
-# Languages available for translatable model CONTENT (Product, Category, etc.
-# via django-parler). This is independent from LANGUAGES/admin UI language above.
+
 PARLER_LANGUAGES = {
     SITE_ID: (
         {'code': 'fa'},
@@ -174,15 +164,14 @@ PARLER_LANGUAGES = {
         {'code': 'tr'},
     ),
     'default': {
-        'fallback': 'fa',            # fall back to Persian if a translation is missing
-        'hide_untranslated': False,  # still show the object even without a translation
+        'fallback': 'fa',
+        'hide_untranslated': False,
     },
 }
 
 
 # ==============================================================================
 # Static & media files
-# https://docs.djangoproject.com/en/5.2/howto/static-files/
 # ==============================================================================
 
 STATIC_URL = '/static/'
@@ -193,15 +182,11 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # ==============================================================================
 # JAZZMIN_SETTINGS
-# General/behavioural configuration for the django-jazzmin admin theme.
-# https://django-jazzmin.readthedocs.io/configuration/
 # ==============================================================================
 
 JAZZMIN_SETTINGS = {
@@ -305,9 +290,6 @@ JAZZMIN_SETTINGS = {
 
 # ==============================================================================
 # JAZZMIN_UI_TWEAKS
-# Visual/structural tweaks (colours here are overridden by admin_rtl_fix.css,
-# but the underlying Bootstrap variables still need sensible base values).
-# https://django-jazzmin.readthedocs.io/ui_customisation/
 # ==============================================================================
 
 JAZZMIN_UI_TWEAKS = {
@@ -316,11 +298,7 @@ JAZZMIN_UI_TWEAKS = {
     "body_small_text": False,
     "brand_small_text": False,
     "brand_colour": False,
-
-    # Accent/link colour set to "primary" so it lines up with the purple
-    # --bs-primary override in admin_rtl_fix.css.
     "accent": "accent-primary",
-
     "navbar": "navbar-white navbar-light",
     "no_navbar_border": False,
     "navbar_fixed": True,
@@ -334,20 +312,9 @@ JAZZMIN_UI_TWEAKS = {
     "sidebar_nav_compact_style": False,
     "sidebar_nav_legacy_style": False,
     "sidebar_nav_flat_style": False,
-
-    # Keep the changelist "actions" toolbar visible while scrolling a long list.
     "actions_sticky_top": True,
-
-    # Base Bootswatch theme; exact colours are repainted by admin_rtl_fix.css.
     "theme": "flatly",
-
-    # IMPORTANT: newer Jazzmin versions (AdminLTE v4 / Bootstrap 5 based)
-    # replaced the old "dark_mode_theme" key with "default_theme_mode".
-    # Valid values: "light" | "dark" | "auto" (auto follows the OS/browser
-    # prefers-color-scheme setting). Do NOT set "dark_mode_theme" anymore —
-    # it is deprecated and silently ignored (with a warning in the logs).
     "default_theme_mode": "auto",
-
     "button_classes": {
         "primary": "btn-primary",
         "secondary": "btn-secondary",
