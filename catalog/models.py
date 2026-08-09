@@ -22,7 +22,7 @@ def get_image_upload_path(instance, filename):
 class Category(TranslatableModel):
     translations = TranslatedFields(
         name=models.CharField(verbose_name="نام دسته‌بندی", max_length=200),
-        slug=models.SlugField(verbose_name="شناسه (Slug)", max_length=220, unique=True,allow_unicode=True),
+        slug=models.SlugField(verbose_name="شناسه (Slug)", max_length=220, unique=True, allow_unicode=True),
         description=models.TextField(verbose_name="توضیحات", blank=True)
     )
     is_active = models.BooleanField(verbose_name="وضعیت فعالیت", default=True, db_index=True)
@@ -75,7 +75,7 @@ class Product(TranslatableModel):
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, db_index=True)
     translations = TranslatedFields(
         name=models.CharField(verbose_name="نام محصول", max_length=200),
-        slug=models.SlugField(verbose_name="شناسه URL (اسلاگ)", max_length=220, unique=True,allow_unicode=True),
+        slug=models.SlugField(verbose_name="شناسه URL (اسلاگ)", max_length=220, unique=True, allow_unicode=True),
         short_description=models.CharField(verbose_name="توضیح کوتاه", max_length=500),
         full_description=models.TextField(verbose_name="توضیحات کامل"),
         seo_title=models.CharField(verbose_name="عنوان سئو", max_length=255, blank=True),
@@ -298,8 +298,8 @@ class NewsletterSubscriber(models.Model):
     )
 
     class Meta:
-        verbose_name = _("Newsletter Subscriber")
-        verbose_name_plural = _("Newsletter Subscribers")
+        verbose_name = _("مشترک خبرنامه")
+        verbose_name_plural = _("مشترکین خبرنامه")
         ordering = ['-created_at']
 
     def __str__(self):

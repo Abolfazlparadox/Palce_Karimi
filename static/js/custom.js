@@ -5,3 +5,38 @@ if(!localStorage.getItem(STORAGE_KEY)&&window.matchMedia){window.matchMedia('(pr
 const observer=new IntersectionObserver(function(entries,obs){entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('is-visible');obs.unobserve(entry.target)}})},{threshold:0.15,rootMargin:'0px 0px -40px 0px'});targets.forEach(function(el,index){el.style.setProperty('--reveal-delay',(index%6)*80+'ms');observer.observe(el)})})();(function headerScrollEffect(){const header=document.getElementById('header');if(!header)return;let ticking=!1;function update(){header.classList.toggle('is-scrolled',window.scrollY>40);ticking=!1}
 window.addEventListener('scroll',function(){if(!ticking){window.requestAnimationFrame(update);ticking=!0}},{passive:!0});update()})();(function rippleEffect(){const selector='.btn-primary, .luxury-cta, .custom-gold-btn, .add-to-cart-product';document.addEventListener('click',function(e){const target=e.target.closest(selector);if(!target)return;const rect=target.getBoundingClientRect();const ripple=document.createElement('span');const size=Math.max(rect.width,rect.height);ripple.className='pk-ripple';ripple.style.width=ripple.style.height=size+'px';ripple.style.left=(e.clientX-rect.left-size/2)+'px';ripple.style.top=(e.clientY-rect.top-size/2)+'px';target.appendChild(ripple);ripple.addEventListener('animationend',function(){ripple.remove()})})})();(function backToTop(){const btn=document.createElement('button');btn.type='button';btn.className='pk-back-to-top';btn.setAttribute('aria-label','بازگشت به بالای صفحه');btn.innerHTML='<i class="fas fa-arrow-up"></i>';document.body.appendChild(btn);let ticking=!1;function update(){btn.classList.toggle('is-visible',window.scrollY>500);ticking=!1}
 window.addEventListener('scroll',function(){if(!ticking){window.requestAnimationFrame(update);ticking=!0}},{passive:!0});btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})})})()
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    // Palace Karimi Office (Sabzevar Coordinates)
+    const lat = 36.20398606913347;
+    const lng = 57.69571887590756;
+
+    // ایجاد نقشه
+    const map = L.map('leaflet-map').setView([lat, lng], 17);
+
+    // نقشه OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // آیکون اختصاصی
+    const marker = L.icon({
+        iconUrl: '/static/img/logo.webp',
+        iconSize: [45, 45],
+        iconAnchor: [22, 45],
+        popupAnchor: [0, -40]
+    });
+
+    // مارکر
+    L.marker([lat, lng], { icon: marker })
+        .addTo(map)
+        .bindPopup(`
+            <div style="text-align:center;">
+                <strong>Palace Karimi</strong><br>
+                Premium Saffron & Pistachio Exporter
+            </div>
+        `)
+        .openPopup();
+
+});

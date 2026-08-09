@@ -84,7 +84,7 @@ msgid "Hand-picked and premium quality."
 msgstr "مقطوف يدوياً وبجودة عالية."
 
 msgid "Palace Karimi"
-msgstr "بالس كريمي"
+msgstr "قصر كريمي"
 
 msgid "YOUR TRUSTED PARTNER"
 msgstr "شريكك الموثوق"
@@ -845,3 +845,27 @@ msgstr ""
 
 msgid "God provides sustenance without measure."
 msgstr "الله هو الرزاق بغير حساب."
+
+msgid "Sale!"
+msgstr "تخفيض!"
+
+msgid "Contact for Price"
+msgstr "اتصل لمعرفة السعر"
+
+msgid "Price not set"
+msgstr "السعر غير محدد"
+
+msgid "No products available in this category."
+msgstr "لا توجد منتجات في هذا القسم."
+
+msgid "Description"
+msgstr "الوصف"
+
+msgid "Additional Info"
+msgstr "معلومات إضافية"
+
+msgid "Related Products"
+msgstr "منتجات ذات صلة"
+
+msgid "Category"
+msgstr "الفئة"

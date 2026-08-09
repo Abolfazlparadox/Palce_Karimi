@@ -31,15 +31,7 @@
                     {% endif %}
                 {% endwith %}
                 <p class="mb-4">{{ product.short_description }}</p>
-                <form enctype="multipart/form-data" method="post" class="cart">
-                   {% csrf_token %}
-                   <div class="quantity quantity-lg">
-                      <input type="button" class="minus" value="-">
-                      <input type="text" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
-                      <input type="button" class="plus" value="+">
-                   </div>
-                   <button class="btn custom-gold-btn text-uppercase">{% trans 'Add to cart' %}</button>
-                </form>
+                <a href="{% url 'catalog:contact_us' %}" class="btn custom-gold-btn text-uppercase">{% trans 'Contact for Price' %}</a>
                 <div class="product-meta mt-3">
                    <span class="posted-in">{% trans 'Category' %}: <a href="{% url 'catalog:category_products' slug=product.category.slug %}" rel="tag">{{ product.category.name }}</a>.</span>
                 </div>
@@ -80,10 +72,10 @@
              <div class="row products product-thumb-info-list">
                 {% for related_product in related_products %}
                 <div class="col-12 col-sm-6 col-lg-3 product mb-4">
-                    {% with variant=related_product.variants.first %}
+                    {% with variant=related_product.default_variant %}
                     <span class="product-thumb-info border-0">
-                        <a href="{% url 'catalog:product_detail' slug=related_product.slug %}" class="add-to-cart-product custom-gold-btn">
-                            <span class="text-1 text-uppercase font-weight-bold">{% trans 'View Details' %}</span>
+                        <a href="{% url 'catalog:contact_us' %}" class="add-to-cart-product custom-gold-btn">
+                            <span class="text-1 text-uppercase font-weight-bold">{% trans 'Contact for Price' %}</span>
                         </a>
                         <a href="{% url 'catalog:product_detail' slug=related_product.slug %}">
                             <span class="product-thumb-info-image">

@@ -3,153 +3,127 @@
 {% get_current_language as LANGUAGE_CODE %}
 <html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'fa' or LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block title %}{% trans 'Palace Karimi | Luxury Persian Saffron & Pistachio' %}{% endblock %}</title>
 
-		<!-- Basic -->
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-		<title>{% block title %}{% trans 'Palace Karimi | Luxury Persian Saffron & Pistachio' %}{% endblock %}</title>
-        <!-- International Luxury Font for English & Turkish -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-		<meta name="keywords" content="HTML5 Template">
-		<meta name="description" content="Porto - Responsive HTML5 Template">
-		<meta name="author" content="okler.net">
+    <meta name="keywords" content="HTML5 Template">
+    <meta name="description" content="Porto - Responsive HTML5 Template">
+    <meta name="author" content="okler.net">
 
-		<!-- Favicon -->
-        <!-- Favicon / Tab Logo -->
-        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon-32x32.png' %}">
-        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon-16x16.png' %}">
-        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon-16x16.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/apple-touch-icon.png' %}">
 
-		<!-- Mobile Metas -->
-		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
 
-		<!-- Vendor CSS -->
-		<link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
-		<link rel="stylesheet" href="{% static 'vendor/fontawesome-free/css/all.min.css' %}">
-		<link rel="stylesheet" href="{% static 'vendor/animate/animate.min.css' %}">
-		<link rel="stylesheet" href="{% static 'vendor/simple-line-icons/css/simple-line-icons.min.css' %}">
-		<link rel="stylesheet" href="{% static 'vendor/owl.carousel/assets/owl.carousel.min.css' %}">
-		<link rel="stylesheet" href="{% static 'vendor/owl.carousel/assets/owl.theme.default.min.css' %}">
-		<link rel="stylesheet" href="{% static 'vendor/magnific-popup/magnific-popup.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/fontawesome-free/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/animate/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/simple-line-icons/css/simple-line-icons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/owl.carousel/assets/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/owl.carousel/assets/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/magnific-popup/magnific-popup.min.css' %}">
 
-		<!-- Theme CSS -->
-		<link rel="stylesheet" href="{% static 'css/theme.css' %}">
-		<link rel="stylesheet" href="{% static 'css/theme-elements.css' %}">
-		<link rel="stylesheet" href="{% static 'css/theme-shop.css' %}">
+    <link rel="stylesheet" href="{% static 'css/theme.css' %}">
+    <link rel="stylesheet" href="{% static 'css/theme-elements.css' %}">
+    <link rel="stylesheet" href="{% static 'css/theme-shop.css' %}">
 
-		<!-- Current Page CSS -->
-		<link rel="stylesheet" href="{% static 'vendor/rs-plugin/css/settings.css' %}">
-		<link rel="stylesheet" href="{% static 'vendor/rs-plugin/css/layers.css' %}">
-		<link rel="stylesheet" href="{% static 'vendor/rs-plugin/css/navigation.css' %}">
-		<link rel="stylesheet" href="{% static 'vendor/circle-flip-slideshow/css/component.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/rs-plugin/css/settings.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/rs-plugin/css/layers.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/rs-plugin/css/navigation.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/circle-flip-slideshow/css/component.css' %}">
 
-		<!-- Demo CSS -->
+    <link id="skin-css" rel="stylesheet"
+          href="{% static 'css/skins/default.css' %}"
+          data-light="{% static 'css/skins/default.css' %}"
+          data-dark="{% static 'css/skins/default-dark.css' %}">
 
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <script src="{% static 'vendor/modernizr/modernizr.min.js' %}"></script>
+    <script>
+        (function () {
+            let savedTheme = localStorage.getItem('palace_theme');
+            let systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            let isDark = savedTheme === 'dark' || (!savedTheme && systemPrefersDark);
 
-		<!-- Skin CSS -->
-		<link id="skin-css" rel="stylesheet"
-		      href="{% static 'css/skins/default.css' %}"
-		      data-light="{% static 'css/skins/default.css' %}"
-		      data-dark="{% static 'css/skins/default-dark.css' %}">
-
-		<!-- Theme Custom CSS -->
-		<link rel="stylesheet" href="{% static 'css/custom.css' %}">
-
-		<!-- Head Libs -->
-		<script src="{% static 'vendor/modernizr/modernizr.min.js' %}"></script>
-        <script>
-            // این اسکریپت باید هرچه زودتر (قبل از رندر) اجرا شود تا از فلش رنگ اشتباه (FOUC) جلوگیری شود
-            (function () {
-                var savedTheme = localStorage.getItem('palace_theme');
-                var systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-                var isDark = savedTheme === 'dark' || (!savedTheme && systemPrefersDark);
-
-                if (isDark) {
-                    document.documentElement.classList.add('dark');
-                    // سوییچ کردن فایل اسکین همینجا، همزمان با کلاس dark -> جلوگیری از ناهماهنگی رنگ اسکین با پس‌زمینه
-                    var skinLink = document.getElementById('skin-css');
-                    if (skinLink && skinLink.dataset.dark) {
-                        skinLink.setAttribute('href', skinLink.dataset.dark);
-                    }
+            if (isDark) {
+                document.documentElement.classList.add('dark');
+                let skinLink = document.getElementById('skin-css');
+                if (skinLink && skinLink.dataset.dark) {
+                    skinLink.setAttribute('href', skinLink.dataset.dark);
                 }
-            })();
-        </script>
-	</head>
-	<body class="loading-overlay-showing" data-plugin-page-transition data-loading-overlay data-plugin-options="{'hideDelay': 500}">
-		<div class="loading-overlay">
-			<div class="bounce-loader">
-				<div class="bounce1"></div>
-				<div class="bounce2"></div>
-				<div class="bounce3"></div>
-			</div>
-		</div>
+            }
+        })();
+    </script>
+</head>
+<body class="loading-overlay-showing" data-plugin-page-transition data-loading-overlay data-plugin-options="{'hideDelay': 100}">
+    <div class="loading-overlay">
+        <div class="bounce-loader">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+    </div>
 
-		<div class="body">
-			{% include 'includes/header.html' %}
+    <div class="body">
+        {% include 'includes/header.html' %}
 
-			<div role="main" class="main">
-				{% block content %}{% endblock %}
-			</div>
+        <div role="main" class="main">
+            {% block content %}{% endblock %}
+        </div>
 
-			{% include 'includes/footer.html' %}
-		</div>
+        {% include 'includes/footer.html' %}
+    </div>
 
-		<!-- Vendor -->
-		<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-		<script src="{% static 'vendor/jquery.appear/jquery.appear.min.js' %}"></script>
-		<script src="{% static 'vendor/jquery.easing/jquery.easing.min.js' %}"></script>
-		<script src="{% static 'vendor/jquery.cookie/jquery.cookie.min.js' %}"></script>
-		<script src="{% static 'vendor/popper/umd/popper.min.js' %}"></script>
-		<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
-		<script src="{% static 'vendor/common/common.min.js' %}"></script>
-		<script src="{% static 'vendor/jquery.validation/jquery.validate.min.js' %}"></script>
-		<script src="{% static 'vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js' %}"></script>
-		<script src="{% static 'vendor/jquery.gmap/jquery.gmap.min.js' %}"></script>
-		<script src="{% static 'vendor/jquery.lazyload/jquery.lazyload.min.js' %}"></script>
-		<script src="{% static 'vendor/isotope/jquery.isotope.min.js' %}"></script>
-		<script src="{% static 'vendor/owl.carousel/owl.carousel.min.js' %}"></script>
-		<script src="{% static 'vendor/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
-		<script src="{% static 'vendor/vide/jquery.vide.min.js' %}"></script>
-		<script src="{% static 'vendor/vivus/vivus.min.js' %}"></script>
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}" defer></script>
+    <script src="{% static 'vendor/jquery.appear/jquery.appear.min.js' %}" defer></script>
+    <script src="{% static 'vendor/jquery.easing/jquery.easing.min.js' %}" defer></script>
+    <script src="{% static 'vendor/jquery.cookie/jquery.cookie.min.js' %}" defer></script>
+    <script src="{% static 'vendor/popper/umd/popper.min.js' %}" defer></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}" defer></script>
+    <script src="{% static 'vendor/common/common.min.js' %}" defer></script>
+    <script src="{% static 'vendor/jquery.validation/jquery.validate.min.js' %}" defer></script>
+    <script src="{% static 'vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js' %}" defer></script>
+    <script src="{% static 'vendor/jquery.gmap/jquery.gmap.min.js' %}" defer></script>
+    <script src="{% static 'vendor/jquery.lazyload/jquery.lazyload.min.js' %}" defer></script>
+    <script src="{% static 'vendor/isotope/jquery.isotope.min.js' %}" defer></script>
+    <script src="{% static 'vendor/owl.carousel/owl.carousel.min.js' %}" defer></script>
+    <script src="{% static 'vendor/magnific-popup/jquery.magnific-popup.min.js' %}" defer></script>
+    <script src="{% static 'vendor/vide/jquery.vide.min.js' %}" defer></script>
+    <script src="{% static 'vendor/vivus/vivus.min.js' %}" defer></script>
 
-		<!-- Theme Base, Components and Settings -->
-		<script src="{% static 'js/theme.js' %}"></script>
+    <script src="{% static 'js/theme.js' %}" defer></script>
 
-		<!-- Current Page Vendor and Views -->
-		<script src="{% static 'vendor/rs-plugin/js/jquery.themepunch.tools.min.js' %}"></script>
-		<script src="{% static 'vendor/rs-plugin/js/jquery.themepunch.revolution.min.js' %}"></script>
-		<script src="{% static 'vendor/circle-flip-slideshow/js/jquery.flipshow.min.js' %}"></script>
-		<script src="{% static 'js/views/view.home.js' %}"></script>
+    <script src="{% static 'vendor/rs-plugin/js/jquery.themepunch.tools.min.js' %}" defer></script>
+    <script src="{% static 'vendor/rs-plugin/js/jquery.themepunch.revolution.min.js' %}" defer></script>
+    <script src="{% static 'vendor/circle-flip-slideshow/js/jquery.flipshow.min.js' %}" defer></script>
+    <script src="{% static 'js/views/view.home.js' %}" defer></script>
 
-		<!-- Theme Custom -->
-		<script src="{% static 'js/custom.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}" defer></script>
+    <script src="{% static 'js/theme.init.js' %}" defer></script>
 
-		<!-- Theme Initialization Files -->
-		<script src="{% static 'js/theme.init.js' %}"></script>
-        <!-- توجه: منطق تاگل تم (دارک/لایت + سوییچ اسکین پسته‌ای) دیگر اینجا نیست،
-             به‌طور کامل و یکپارچه داخل static/js/custom.js قرار گرفته تا یک منبع واحد حقیقت داشته باشیم -->
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                // پیدا کردن تمام پیام‌های سیستم
-                var alerts = document.querySelectorAll('.alert');
-                if (alerts.length > 0) {
-                    setTimeout(function() {
-                        alerts.forEach(function(alert) {
-                            // افکت محو شدن نرم
-                            alert.style.transition = "opacity 0.6s ease";
-                            alert.style.opacity = "0";
-                            setTimeout(function() {
-                                alert.remove();
-                            }, 600); // حذف کامل از DOM بعد از پایان انیمیشن
-                        });
-                    }, 5000); // پیام بعد از ۵ ثانیه محو می‌شود
-                }
-            });
-        </script>
-        {% block scripts %}
-        {% endblock %}
-	</body>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let alerts = document.querySelectorAll('.alert');
+            if (alerts.length > 0) {
+                setTimeout(function() {
+                    alerts.forEach(function(alert) {
+                        alert.style.transition = "opacity 0.6s ease";
+                        alert.style.opacity = "0";
+                        setTimeout(function() {
+                            alert.remove();
+                        }, 600);
+                    });
+                }, 5000);
+            }
+        });
+    </script>
+    {% block scripts %}
+    {% endblock %}
+</body>
 </html>

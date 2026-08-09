@@ -1,0 +1,1291 @@
+/* ==========================================================================
+   Palace Karimi — Premium Export Admin Theme
+   Deep Navy + Saffron Gold | RTL/LTR Aware | Dark & Light Mode
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Design Tokens — Dark Mode (Default)
+   -------------------------------------------------------------------------- */
+:root {
+  /* Brand Palette */
+  --pk-navy:           #1B2A4A;
+  --pk-navy-deep:      #0F1B32;
+  --pk-navy-light:     #2A3F6A;
+  --pk-navy-muted:     #3A4F6F;
+
+  --pk-gold:           #C5A059;
+  --pk-gold-light:     #D4B76A;
+  --pk-gold-dark:       #A88640;
+  --pk-gold-subtle:     rgba(197, 160, 89, 0.15);
+
+  --pk-olive:          #6B7C4F;
+  --pk-olive-light:    #8B9A6B;
+  --pk-olive-subtle:   rgba(107, 124, 79, 0.15);
+
+  --pk-cream:          #FAF6F0;
+  --pk-cream-dark:      #F0EBE3;
+
+  /* Semantic Colors */
+  --pk-success:        #2E7D32;
+  --pk-success-bg:     #E8F5E3;
+  --pk-success-border: #A5D6A7;
+
+  --pk-warning:        #E65100;
+  --pk-warning-bg:     #FFF3E0;
+  --pk-warning-border: #FFCC80;
+
+  --pk-danger:         #C62828;
+  --pk-danger-bg:      #FFEBEE;
+  --pk-danger-border:  #EF9A9A;
+
+  --pk-info:            #1565C0;
+  --pk-info-bg:         #E3F2FD;
+  --pk-info-border:     #90CAF9;
+
+  /* Dark Mode Surfaces */
+  --pk-bg-main:         #0A1628;
+  --pk-bg-surface:      #111D33;
+  --pk-bg-elevated:     #172640;
+  --pk-bg-hover:        #1E3048;
+  --pk-bg-row-alt:      #0E1C30;
+  --pk-bg-input:        #13213B;
+
+  /* Dark Mode Text */
+  --pk-text-primary:    #F0EBE3;
+  --pk-text-secondary:  #C8C0B4;
+  --pk-text-muted:      #7A8899;
+  --pk-text-accent:     #C5A059;
+
+  /* Dark Mode Borders */
+  --pk-border:          #1E3048;
+  --pk-border-input:    #2A3F5A;
+  --pk-border-gold:     rgba(197, 160, 89, 0.25);
+
+  /* Spacing & Radius */
+  --pk-radius-sm:      6px;
+  --pk-radius-md:      10px;
+  --pk-radius-lg:      14px;
+  --pk-radius-pill:     50px;
+
+  /* Shadows */
+  --pk-shadow-sm:      0 1px 3px rgba(0,0,0,.2);
+  --pk-shadow-md:      0 4px 12px rgba(0,0,0,.25);
+  --pk-shadow-lg:      0 8px 24px rgba(0,0,0,.3);
+
+  /* Transitions */
+  --pk-transition:      0.2s ease;
+  --pk-transition-slow: 0.35s ease;
+}
+
+/* --------------------------------------------------------------------------
+   2. Light Mode Tokens
+   -------------------------------------------------------------------------- */
+body.theme-light {
+  --pk-bg-main:         #FAF6F0;
+  --pk-bg-surface:      #FFFFFF;
+  --pk-bg-elevated:     #F5F0E8;
+  --pk-bg-hover:        #EDE7DB;
+  --pk-bg-row-alt:      #F8F4EE;
+  --pk-bg-input:        #FFFFFF;
+
+  --pk-text-primary:    #1B2A4A;
+  --pk-text-secondary:  #3A4F6F;
+  --pk-text-muted:      #7A8899;
+  --pk-text-accent:     #A88640;
+
+  --pk-border:          #E0D8CC;
+  --pk-border-input:    #D0C8BC;
+  --pk-border-gold:     rgba(168, 134, 64, 0.25);
+
+  --pk-shadow-sm:      0 1px 3px rgba(0,0,0,.06);
+  --pk-shadow-md:      0 4px 12px rgba(0,0,0,.08);
+  --pk-shadow-lg:      0 8px 24px rgba(0,0,0,.1);
+}
+
+body.theme-light a:link,
+body.theme-light a:visited {
+  color: var(--pk-navy) !important;
+}
+body.theme-light a:hover,
+body.theme-light a:active {
+  color: var(--pk-gold) !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. Base Reset & Typography
+   -------------------------------------------------------------------------- */
+html, body,
+h1, h2, h3, h4, h5, h6,
+p, a, ul, li, button, div,
+input, select, textarea, span,
+td, th, label, caption {
+  font-family: 'Vazirmatn', 'IRANSansWeb', 'IRANSans', Tahoma, 'Segoe UI', system-ui, sans-serif !important;
+}
+
+html, body {
+  background-color: var(--pk-bg-main) !important;
+  color: var(--pk-text-primary) !important;
+  font-size: 13.5px;
+  line-height: 1.7;
+  margin: 0;
+  padding: 0;
+}
+
+a:link,
+a:visited {
+  color: var(--pk-gold) !important;
+  text-decoration: none !important;
+  transition: color var(--pk-transition);
+}
+a:hover, a:active {
+  color: var(--pk-gold-light) !important;
+}
+
+::selection {
+  background: var(--pk-gold);
+  color: var(--pk-navy-deep);
+}
+
+/* --------------------------------------------------------------------------
+   4. Header — Branding Bar
+   -------------------------------------------------------------------------- */
+#header {
+  background: var(--pk-bg-surface) !important;
+  color: var(--pk-text-primary) !important;
+  border-bottom: 3px solid var(--pk-gold) !important;
+  padding: 12px 24px !important;
+  box-shadow: var(--pk-shadow-md);
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+#branding h1 {
+  font-size: 17px !important;
+  font-weight: 800 !important;
+  margin: 0 !important;
+  color: var(--pk-text-primary) !important;
+  letter-spacing: -0.3px;
+}
+
+#branding h1 a:link,
+#branding h1 a:visited {
+  color: var(--pk-text-primary) !important;
+}
+
+#user-tools {
+  font-size: 12.5px !important;
+  color: var(--pk-text-muted) !important;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#user-tools a {
+  background: var(--pk-bg-elevated) !important;
+  color: var(--pk-text-primary) !important;
+  padding: 5px 12px !important;
+  border-radius: var(--pk-radius-sm) !important;
+  border: 1px solid var(--pk-border) !important;
+  font-weight: 600 !important;
+  transition: all var(--pk-transition);
+}
+
+#user-tools a:hover {
+  background: var(--pk-gold) !important;
+  color: var(--pk-navy-deep) !important;
+  border-color: var(--pk-gold) !important;
+}
+
+/* Theme Toggle Button */
+#pk-theme-toggle {
+  background: var(--pk-bg-elevated) !important;
+  border: 1px solid var(--pk-border) !important;
+  color: var(--pk-gold) !important;
+  padding: 5px 10px !important;
+  border-radius: var(--pk-radius-sm) !important;
+  cursor: pointer !important;
+  font-size: 16px !important;
+  line-height: 1 !important;
+  transition: all var(--pk-transition);
+  margin-inline-start: 6px;
+}
+#pk-theme-toggle:hover {
+  background: var(--pk-gold) !important;
+  color: var(--pk-navy-deep) !important;
+  border-color: var(--pk-gold) !important;
+}
+
+/* --------------------------------------------------------------------------
+   5. Breadcrumbs
+   -------------------------------------------------------------------------- */
+div.breadcrumbs {
+  background: var(--pk-bg-surface) !important;
+  border-bottom: 1px solid var(--pk-border) !important;
+  padding: 8px 24px !important;
+  font-size: 12px !important;
+  color: var(--pk-text-muted) !important;
+}
+div.breadcrumbs a {
+  color: var(--pk-gold) !important;
+  font-weight: 600 !important;
+}
+
+/* --------------------------------------------------------------------------
+   6. Sidebar Navigation
+   -------------------------------------------------------------------------- */
+#nav-sidebar {
+  background-color: var(--pk-bg-surface) !important;
+  border-inline-end: 1px solid var(--pk-border) !important;
+}
+
+.nav-sidebar .module caption,
+.nav-sidebar .module h2 {
+  background: transparent !important;
+  color: var(--pk-gold) !important;
+  font-size: 11.5px !important;
+  font-weight: 800 !important;
+  padding: 12px 16px 6px 16px !important;
+  border: none !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: start !important;
+}
+
+.nav-sidebar tr th a:link,
+.nav-sidebar tr th a:visited {
+  color: var(--pk-text-secondary) !important;
+  font-size: 13px !important;
+  padding: 8px 16px !important;
+  display: block !important;
+  border-radius: var(--pk-radius-sm) !important;
+  margin: 2px 6px;
+  transition: all var(--pk-transition);
+}
+
+.nav-sidebar tr:hover th a {
+  background-color: var(--pk-bg-hover) !important;
+  color: var(--pk-gold) !important;
+}
+
+.nav-sidebar tr.current-model th a {
+  background-color: var(--pk-gold) !important;
+  color: var(--pk-navy-deep) !important;
+  font-weight: 700 !important;
+}
+
+/* --------------------------------------------------------------------------
+   7. Content Area & Dashboard Cards
+   -------------------------------------------------------------------------- */
+#content {
+  padding: 20px 24px !important;
+  background-color: var(--pk-bg-main) !important;
+}
+
+.dashboard .module,
+.module {
+  background: var(--pk-bg-surface) !important;
+  border: 1px solid var(--pk-border) !important;
+  border-radius: var(--pk-radius-lg) !important;
+  box-shadow: var(--pk-shadow-sm) !important;
+  margin-bottom: 20px !important;
+  overflow: hidden;
+}
+
+.dashboard .module caption,
+.module h2 {
+  background: var(--pk-bg-elevated) !important;
+  color: var(--pk-text-primary) !important;
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+  padding: 11px 18px !important;
+  border-bottom: 2px solid var(--pk-gold) !important;
+  text-align: start !important;
+}
+
+.dashboard .module table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+}
+
+.dashboard .module tr {
+  background: var(--pk-bg-surface) !important;
+  border-bottom: 1px solid var(--pk-border) !important;
+  transition: background-color var(--pk-transition);
+}
+
+.dashboard .module tr:nth-child(even) {
+  background-color: var(--pk-bg-row-alt) !important;
+}
+
+.dashboard .module tr:hover {
+  background-color: var(--pk-bg-hover) !important;
+}
+
+.dashboard .module td,
+.dashboard .module th {
+  padding: 10px 18px !important;
+  color: var(--pk-text-primary) !important;
+  font-size: 13px !important;
+  text-align: start !important;
+  border-bottom: 1px solid var(--pk-border) !important;
+}
+
+/* Dashboard Action Links */
+.dashboard .module td a.changelink {
+  background: var(--pk-bg-elevated) !important;
+  color: var(--pk-gold) !important;
+  padding: 5px 12px !important;
+  border-radius: var(--pk-radius-sm) !important;
+  border: 1px solid var(--pk-border-gold) !important;
+  font-weight: 700 !important;
+  display: inline-block;
+  transition: all var(--pk-transition);
+}
+.dashboard .module td a.changelink:hover {
+  background: var(--pk-gold) !important;
+  color: var(--pk-navy-deep) !important;
+}
+
+.dashboard .module td a.addlink {
+  background: var(--pk-gold-subtle) !important;
+  color: var(--pk-gold) !important;
+  padding: 5px 12px !important;
+  border-radius: var(--pk-radius-sm) !important;
+  border: 1px solid var(--pk-gold) !important;
+  font-weight: 700 !important;
+  display: inline-block;
+  transition: all var(--pk-transition);
+}
+.dashboard .module td a.addlink:hover {
+  background: var(--pk-gold) !important;
+  color: var(--pk-navy-deep) !important;
+}
+
+/* Recent Actions Panel */
+#content-related,
+#recent-actions-module {
+  background: var(--pk-bg-surface) !important;
+  border: 1px solid var(--pk-border) !important;
+  border-radius: var(--pk-radius-lg) !important;
+  box-shadow: var(--pk-shadow-sm) !important;
+  overflow: hidden;
+  color: var(--pk-text-primary) !important;
+}
+
+#recent-actions-module h2 {
+  background: var(--pk-bg-elevated) !important;
+  color: var(--pk-text-primary) !important;
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+  padding: 11px 18px !important;
+  border-bottom: 2px solid var(--pk-gold) !important;
+}
+
+#recent-actions-module ul.actionlist {
+  background: var(--pk-bg-surface) !important;
+  padding: 10px 18px !important;
+  margin: 0 !important;
+  list-style: none !important;
+}
+
+#recent-actions-module li {
+  padding: 8px 0 !important;
+  border-bottom: 1px solid var(--pk-border) !important;
+  color: var(--pk-text-secondary) !important;
+  font-size: 12.5px !important;
+  background: transparent !important;
+}
+
+#recent-actions-module li a {
+  color: var(--pk-gold) !important;
+  font-weight: 700 !important;
+}
+
+#recent-actions-module li .mini {
+  color: var(--pk-text-muted) !important;
+  font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   8. Change List — Data Tables
+   -------------------------------------------------------------------------- */
+#changelist {
+  background: var(--pk-bg-surface) !important;
+  border: 1px solid var(--pk-border) !important;
+  border-radius: var(--pk-radius-lg) !important;
+  overflow: hidden;
+}
+
+#toolbar {
+  background: var(--pk-bg-elevated) !important;
+  border-bottom: 1px solid var(--pk-border) !important;
+  padding: 12px 18px !important;
+}
+
+#changelist-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#changelist-search input[type="text"] {
+  background: var(--pk-bg-input) !important;
+  border: 1.5px solid var(--pk-border-input) !important;
+  border-radius: var(--pk-radius-sm) !important;
+  padding: 7px 12px !important;
+  font-size: 13px !important;
+  color: var(--pk-text-primary) !important;
+  width: 260px;
+  transition: all var(--pk-transition);
+}
+
+#changelist-search input[type="text"]:focus {
+  border-color: var(--pk-gold) !important;
+  box-shadow: 0 0 0 3px var(--pk-gold-subtle) !important;
+  outline: none !important;
+}
+
+#changelist-search input[type="submit"] {
+  background: var(--pk-gold) !important;
+  color: var(--pk-navy-deep) !important;
+  border: none !important;
+  border-radius: var(--pk-radius-sm) !important;
+  padding: 7px 18px !important;
+  font-weight: 700 !important;
+  cursor: pointer;
+  transition: all var(--pk-transition);
+}
+#changelist-search input[type="submit"]:hover {
+  background: var(--pk-gold-light) !important;
+}
+
+/* Change List Table */
+#changelist table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+}
+
+#changelist table thead th {
+  background: var(--pk-bg-elevated) !important;
+  color: var(--pk-text-primary) !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  padding: 11px 14px !important;
+  border-bottom: 2px solid var(--pk-gold) !important;
+  text-align: start !important;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+#changelist table thead th a {
+  color: var(--pk-text-accent) !important;
+}
+
+#changelist table thead th.sorted {
+  background: var(--pk-bg-hover) !important;
+}
+
+#changelist table tbody tr {
+  transition: background-color var(--pk-transition);
+}
+
+#changelist table tbody tr:nth-child(even) {
+  background-color: var(--pk-bg-row-alt) !important;
+}
+
+#changelist table tbody tr:hover {
+  background-color: var(--pk-bg-hover) !important;
+}
+
+#changelist table td,
+#changelist table th {
+  padding: 10px 14px !important;
+  border-bottom: 1px solid var(--pk-border) !important;
+  color: var(--pk-text-primary) !important;
+  text-align: start !important;
+  vertical-align: middle !important;
+  font-size: 13px !important;
+}
+
+/* Unread message row highlight */
+#changelist table tbody tr.pk-unread {
+  border-inline-start: 3px solid var(--pk-gold) !important;
+}
+
+/* Selected/checked row */
+#changelist table tbody tr.selected {
+  background-color: var(--pk-gold-subtle) !important;
+}
+
+/* Paginator */
+.paginator {
+  background: var(--pk-bg-elevated) !important;
+  border-top: 1px solid var(--pk-border) !important;
+  padding: 10px 18px !important;
+}
+.paginator a, .paginator span {
+  color: var(--pk-text-secondary) !important;
+  padding: 4px 10px !important;
+  border-radius: var(--pk-radius-sm) !important;
+  transition: all var(--pk-transition);
+}
+.paginator a:hover {
+  background: var(--pk-bg-hover) !important;
+  color: var(--pk-gold) !important;
+}
+.paginator .this-page {
+  background: var(--pk-gold) !important;
+  color: var(--pk-navy-deep) !important;
+  font-weight: 700 !important;
+}
+
+/* Change List Filters */
+#changelist-filter {
+  background: var(--pk-bg-surface) !important;
+  border-inline-end: 1px solid var(--pk-border) !important;
+  padding: 14px !important;
+}
+
+#changelist-filter h2 {
+  background: var(--pk-bg-elevated) !important;
+  color: var(--pk-text-primary) !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  padding: 8px 12px !important;
+  border-radius: var(--pk-radius-sm) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+#changelist-filter li {
+  padding-inline-start: 0 !important;
+}
+
+#changelist-filter li a {
+  color: var(--pk-text-secondary) !important;
+  border-radius: var(--pk-radius-sm) !important;
+  padding: 4px 8px !important;
+  transition: all var(--pk-transition);
+}
+
+#changelist-filter li a:hover,
+#changelist-filter li.selected a {
+  color: var(--pk-gold) !important;
+  font-weight: 700 !important;
+  background: var(--pk-gold-subtle);
+}
+
+/* Action Counter */
+.action-counter {
+  color: var(--pk-text-muted) !important;
+}
+
+/* --------------------------------------------------------------------------
+   9. Forms, Fieldsets & Inputs
+   -------------------------------------------------------------------------- */
+fieldset.module {
+  background: var(--pk-bg-surface) !important;
+  border: 1px solid var(--pk-border) !important;
+  border-radius: var(--pk-radius-lg) !important;
+  margin-bottom: 20px !important;
+  overflow: hidden;
+  transition: box-shadow var(--pk-transition);
+}
+
+fieldset.module:hover {
+  box-shadow: var(--pk-shadow-md) !important;
+}
+
+fieldset.module h2 {
+  background: var(--pk-bg-elevated) !important;
+  color: var(--pk-text-primary) !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  padding: 10px 16px !important;
+  border-bottom: 2px solid var(--pk-gold) !important;
+  text-align: start !important;
+  cursor: default;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Collapsible toggle indicator */
+fieldset.module.pk-collapsible h2::after,
+fieldset.module.collapsed h2::after {
+  content: '▲';
+  font-size: 10px;
+  color: var(--pk-gold);
+  transition: transform var(--pk-transition);
+}
+fieldset.module.collapsed h2::after {
+  content: '▼';
+}
+
+fieldset.module.collapsed .form-row,
+fieldset.module.collapsed .pk-collapsible-content {
+  display: none !important;
+}
+
+fieldset.module.collapsed {
+  border-color: var(--pk-border) !important;
+}
+
+.form-row {
+  padding: 10px 16px !important;
+  border-bottom: 1px solid var(--pk-border) !important;
+  transition: background-color var(--pk-transition);
+}
+
+.form-row:hover {
+  background-color: var(--pk-bg-hover);
+}
+
+.form-row:last-child {
+  border-bottom: none !important;
+}
+
+label {
+  font-weight: 600 !important;
+  color: var(--pk-text-primary) !important;
+  font-size: 13px !important;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="url"],
+input[type="tel"],
+input[type="date"],
+input[type="time"],
+input[type="datetime"],
+textarea,
+select {
+  background: var(--pk-bg-input) !important;
+  color: var(--pk-text-primary) !important;
+  border: 1.5px solid var(--pk-border-input) !important;
+  border-radius: var(--pk-radius-sm) !important;
+  padding: 8px 12px !important;
+  font-size: 13px !important;
+  transition: all var(--pk-transition);
+  width: auto;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="url"]:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--pk-gold) !important;
+  box-shadow: 0 0 0 3px var(--pk-gold-subtle) !important;
+  outline: none !important;
+  background: var(--pk-bg-surface) !important;
+}
+
+select {
+  cursor: pointer;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Checkbox & Radio */
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: var(--pk-gold) !important;
+  width: 16px !important;
+  height: 16px !important;
+  cursor: pointer;
+}
+
+/* Help Text */
+.form-row .help,
+.form-row p.help {
+  color: var(--pk-text-muted) !important;
+  font-size: 12px !important;
+  font-style: italic;
+  margin-top: 4px;
+}
+
+/* Errors */
+.errorlist {
+  background: var(--pk-danger-bg) !important;
+  color: var(--pk-danger) !important;
+  border: 1px solid var(--pk-danger-border) !important;
+  border-radius: var(--pk-radius-sm) !important;
+  padding: 8px 12px !important;
+  margin: 4px 0 !important;
+  font-size: 12px !important;
+}
+
+.errornote {
+  background: var(--pk-danger-bg) !important;
+  color: var(--pk-danger) !important;
+  border: 1px solid var(--pk-danger-border) !important;
+  border-radius: var(--pk-radius-sm) !important;
+  padding: 10px 14px !important;
+  margin-bottom: 16px !important;
+  font-weight: 700;
+}
+
+/* Description under fieldset */
+.fieldset-description,
+.description {
+  color: var(--pk-text-muted) !important;
+  font-size: 12px !important;
+  font-style: italic;
+  padding: 6px 16px 10px 16px !important;
+}
+
+/* --------------------------------------------------------------------------
+   10. Parler Language Tabs
+   -------------------------------------------------------------------------- */
+.parler-language-tabs {
+  display: flex !important;
+  gap: 4px !important;
+  border-bottom: 2px solid var(--pk-gold) !important;
+  margin-bottom: 14px !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+.parler-language-tabs a {
+  padding: 7px 16px !important;
+  font-weight: 600 !important;
+  font-size: 12px !important;
+  border-radius: var(--pk-radius-sm) var(--pk-radius-sm) 0 0 !important;
+  background: var(--pk-bg-elevated) !important;
+  color: var(--pk-text-secondary) !important;
+  border: 1px solid var(--pk-border) !important;
+  border-bottom: none !important;
+  transition: all var(--pk-transition);
+}
+
+.parler-language-tabs .current a,
+.parler-language-tabs a:hover {
+  background: var(--pk-gold) !important;
+  color: var(--pk-navy-deep) !important;
+  border-color: var(--pk-gold) !important;
+}
+
+.parler-language-tabs .current a {
+  font-weight: 800 !important;
+}
+
+/* --------------------------------------------------------------------------
+   11. Inline Forms — Product Gallery & Variants
+   -------------------------------------------------------------------------- */
+/* Inline Group Headers */
+.inline-group {
+  background: var(--pk-bg-surface) !important;
+  border: 1px solid var(--pk-border) !important;
+  border-radius: var(--pk-radius-lg) !important;
+  overflow: hidden;
+  margin-bottom: 20px !important;
+}
+
+.inline-group .tabular-inline-related .module h2,
+.inline-group h2 {
+  background: var(--pk-bg-elevated) !important;
+  color: var(--pk-text-primary) !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  padding: 10px 16px !important;
+  border-bottom: 2px solid var(--pk-gold) !important;
+}
+
+/* Tabular Inline Table */
+.inline-group .tabular table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+}
+
+.inline-group .tabular thead th {
+  background: var(--pk-bg-elevated) !important;
+  color: var(--pk-text-primary) !important;
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+  padding: 9px 12px !important;
+  border-bottom: 2px solid var(--pk-gold) !important;
+  text-align: start !important;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+.inline-group .tabular tbody td {
+  padding: 8px 12px !important;
+  border-bottom: 1px solid var(--pk-border) !important;
+  background: var(--pk-bg-surface) !important;
+  vertical-align: middle !important;
+  color: var(--pk-text-primary) !important;
+  font-size: 13px !important;
+  transition: background-color var(--pk-transition);
+}
+
+.inline-group .tabular tbody tr:hover td {
+  background-color: var(--pk-bg-hover) !important;
+}
+
+.inline-group .tabular tbody tr:nth-child(even) td {
+  background-color: var(--pk-bg-row-alt) !important;
+}
+
+/* Inline Add Row */
+.inline-group .tabular tr.add-row td {
+  background: var(--pk-bg-elevated) !important;
+  padding: 10px 12px !important;
+  border-top: 1px solid var(--pk-border) !important;
+}
+
+.inline-group .tabular tr.add-row a {
+  color: var(--pk-gold) !important;
+  font-weight: 700 !important;
+}
+
+/* Inline Delete Row */
+.inline-group .tabular td .delete,
+.inline-group .tabular td a.deletelink {
+  color: var(--pk-danger) !important;
+  font-weight: 600 !important;
+  font-size: 12px !important;
+}
+
+/* Inline Empty Row (placeholder) */
+.inline-group .tabular tr.empty-form td {
+  background: var(--pk-bg-elevated) !important;
+  border-top: 1px dashed var(--pk-border) !important;
+}
+
+/* Gallery-specific: wider image preview column */
+.inline-group .tabular td img {
+  transition: transform var(--pk-transition);
+}
+
+.inline-group .tabular td img:hover {
+  transform: scale(1.15);
+  z-index: 10;
+  position: relative;
+}
+
+/* Inline variant SKU code styling */
+.inline-group .tabular td code {
+  background: var(--pk-bg-elevated) !important;
+  color: var(--pk-text-accent) !important;
+  padding: 2px 8px !important;
+  border-radius: 4px !important;
+  font-size: 12px !important;
+}
+
+/* Stacked Inline */
+.inline-group .stacked {
+  background: var(--pk-bg-surface) !important;
+}
+
+.inline-group .stacked .module h2 {
+  background: var(--pk-bg-elevated) !important;
+  border-bottom: 1px solid var(--pk-border) !important;
+}
+
+/* --------------------------------------------------------------------------
+   12. Buttons & Action Bar
+   -------------------------------------------------------------------------- */
+.submit-row {
+  background: var(--pk-bg-surface) !important;
+  border: 1px solid var(--pk-border) !important;
+  border-radius: var(--pk-radius-lg) !important;
+  padding: 12px 18px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 8px !important;
+  box-shadow: var(--pk-shadow-sm) !important;
+}
+
+input[type="submit"].default,
+.button.default,
+.default.button {
+  background: var(--pk-gold) !important;
+  color: var(--pk-navy-deep) !important;
+  font-weight: 800 !important;
+  border: none !important;
+  border-radius: var(--pk-radius-sm) !important;
+  padding: 9px 22px !important;
+  font-size: 13px !important;
+  cursor: pointer;
+  transition: all var(--pk-transition);
+  box-shadow: 0 2px 8px var(--pk-gold-subtle) !important;
+}
+
+input[type="submit"].default:hover,
+.button.default:hover {
+  background: var(--pk-gold-light) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--pk-gold-subtle) !important;
+}
+
+input[type="submit"],
+.button,
+.submit-row input[type="submit"] {
+  background: var(--pk-navy-light) !important;
+  color: var(--pk-text-primary) !important;
+  font-weight: 600 !important;
+  border: none !important;
+  border-radius: var(--pk-radius-sm) !important;
+  padding: 8px 16px !important;
+  font-size: 13px !important;
+  cursor: pointer;
+  transition: all var(--pk-transition);
+}
+
+input[type="submit"]:hover,
+.button:hover {
+  background: var(--pk-gold) !important;
+  color: var(--pk-navy-deep) !important;
+}
+
+.deletelink {
+  background: var(--pk-danger-bg) !important;
+  color: var(--pk-danger) !important;
+  font-weight: 600 !important;
+  padding: 7px 14px !important;
+  border-radius: var(--pk-radius-sm) !important;
+  border: 1px solid var(--pk-danger-border) !important;
+  transition: all var(--pk-transition);
+  display: inline-block;
+}
+.deletelink:hover {
+  background: var(--pk-danger) !important;
+  color: #FFFFFF !important;
+}
+
+/* Object Tools (top-right buttons on change page) */
+.object-tools {
+  display: flex;
+  gap: 6px;
+}
+.object-tools a {
+  background: var(--pk-bg-elevated) !important;
+  color: var(--pk-text-secondary) !important;
+  padding: 5px 12px !important;
+  border-radius: var(--pk-radius-sm) !important;
+  border: 1px solid var(--pk-border) !important;
+  font-weight: 600 !important;
+  transition: all var(--pk-transition);
+}
+.object-tools a:hover {
+  background: var(--pk-gold) !important;
+  color: var(--pk-navy-deep) !important;
+  border-color: var(--pk-gold) !important;
+}
+
+/* --------------------------------------------------------------------------
+   13. System Messages / Alerts
+   -------------------------------------------------------------------------- */
+ul.messagelist {
+  padding: 0 !important;
+  margin: 0 0 16px 0 !important;
+}
+
+ul.messagelist li {
+  padding: 10px 16px !important;
+  border-radius: var(--pk-radius-sm) !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  margin-bottom: 8px !important;
+}
+
+ul.messagelist li.success {
+  background-color: var(--pk-success-bg) !important;
+  color: var(--pk-success) !important;
+  border: 1px solid var(--pk-success-border) !important;
+}
+
+ul.messagelist li.warning {
+  background-color: var(--pk-warning-bg) !important;
+  color: var(--pk-warning) !important;
+  border: 1px solid var(--pk-warning-border) !important;
+}
+
+ul.messagelist li.error {
+  background-color: var(--pk-danger-bg) !important;
+  color: var(--pk-danger) !important;
+  border: 1px solid var(--pk-danger-border) !important;
+}
+
+/* --------------------------------------------------------------------------
+   14. Date Hierarchy
+   -------------------------------------------------------------------------- */
+.date-hierarchy {
+  background: var(--pk-bg-elevated) !important;
+  border-bottom: 1px solid var(--pk-border) !important;
+  padding: 8px 18px !important;
+}
+.date-hierarchy a {
+  color: var(--pk-gold) !important;
+  font-weight: 600 !important;
+  padding: 3px 8px !important;
+  border-radius: var(--pk-radius-sm) !important;
+  transition: all var(--pk-transition);
+}
+.date-hierarchy a:hover {
+  background: var(--pk-gold-subtle);
+}
+
+/* --------------------------------------------------------------------------
+   15. Login Page
+   -------------------------------------------------------------------------- */
+.login #container {
+  background: var(--pk-bg-surface) !important;
+  border: 1px solid var(--pk-border) !important;
+  border-radius: var(--pk-radius-lg) !important;
+  box-shadow: var(--pk-shadow-lg) !important;
+  padding: 40px !important;
+  max-width: 400px;
+  margin: 80px auto !important;
+}
+
+.login #header {
+  border-bottom: none !important;
+  box-shadow: none !important;
+  justify-content: center !important;
+  padding-bottom: 0 !important;
+}
+
+.login .login-form {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+}
+
+/* --------------------------------------------------------------------------
+   16. Timestamp Widget
+   -------------------------------------------------------------------------- */
+.clock-icon::before {
+  color: var(--pk-text-muted) !important;
+}
+
+/* --------------------------------------------------------------------------
+   17. Scrollbar Styling
+   -------------------------------------------------------------------------- */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--pk-bg-main);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--pk-navy-muted);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--pk-navy-light);
+}
+
+/* --------------------------------------------------------------------------
+   18. Responsive — Tablet (≤1024px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  #header {
+    flex-direction: column;
+    padding: 10px 16px !important;
+    gap: 8px;
+  }
+
+  #content {
+    padding: 16px !important;
+  }
+
+  #changelist table thead th,
+  #changelist table td,
+  #changelist table th {
+    padding: 8px 10px !important;
+    font-size: 12px !important;
+  }
+
+  .inline-group .tabular thead th,
+  .inline-group .tabular tbody td {
+    padding: 6px 8px !important;
+    font-size: 12px !important;
+  }
+
+  #changelist-search input[type="text"] {
+    width: 200px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   19. Responsive — Mobile (≤768px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  #header {
+    padding: 8px 12px !important;
+  }
+
+  #branding h1 {
+    font-size: 14px !important;
+  }
+
+  #content {
+    padding: 12px !important;
+  }
+
+  #changelist {
+    border-radius: var(--pk-radius-md) !important;
+  }
+
+  #changelist table {
+    font-size: 11px !important;
+  }
+
+  #changelist table thead th,
+  #changelist table td,
+  #changelist table th {
+    padding: 6px 8px !important;
+    font-size: 11px !important;
+    white-space: nowrap;
+  }
+
+  .inline-group .tabular {
+    overflow-x: auto;
+    display: block;
+  }
+
+  .inline-group .tabular table {
+    min-width: 500px;
+  }
+
+  .submit-row {
+    flex-wrap: wrap;
+    padding: 10px 12px !important;
+  }
+
+  .submit-row input[type="submit"],
+  .submit-row .button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .form-row {
+    padding: 8px 12px !important;
+  }
+
+  fieldset.module h2 {
+    padding: 8px 12px !important;
+    font-size: 12px !important;
+  }
+
+  /* Hide less important columns on small screens */
+  .pk-hide-mobile {
+    display: none !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   20. Responsive — Small Mobile (≤480px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+  #user-tools {
+    flex-wrap: wrap;
+    gap: 4px;
+    font-size: 11px !important;
+  }
+
+  #user-tools a {
+    padding: 4px 8px !important;
+    font-size: 11px !important;
+  }
+
+  .parler-language-tabs {
+    flex-wrap: wrap;
+  }
+
+  .parler-language-tabs a {
+    padding: 5px 10px !important;
+    font-size: 11px !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   21. Print Styles
+   -------------------------------------------------------------------------- */
+@media print {
+  #header,
+  #nav-sidebar,
+  .submit-row,
+  .object-tools,
+  #changelist-filter,
+  #changelist-search,
+  .paginator {
+    display: none !important;
+  }
+
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .module {
+    border: 1px solid #ddd !important;
+    box-shadow: none !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   22. Animation Helpers
+   -------------------------------------------------------------------------- */
+@keyframes pkFadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.module {
+  animation: pkFadeIn 0.25s ease-out;
+}
+
+/* --------------------------------------------------------------------------
+   23. ContactMessage Detail — Inbox Layout
+   -------------------------------------------------------------------------- */
+.pk-wide-field .vTextField,
+.pk-wide-field .vLargeTextField {
+  width: 100% !important;
+}
+
+.pk-inline-row .form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 10px 16px !important;
+}
+
+.pk-inline-row .form-row > div {
+  flex: 1;
+  min-width: 150px;
+}
+
+/* --------------------------------------------------------------------------
+   24. ExchangeRate — Tabular Nums
+   -------------------------------------------------------------------------- */
+.vIntegerField,
+input[type="number"] {
+  font-variant-numeric: tabular-nums !important;
+}
+
+/* --------------------------------------------------------------------------
+   25. Focus Ring Accessibility
+   -------------------------------------------------------------------------- */
+*:focus-visible {
+  outline: 2px solid var(--pk-gold) !important;
+  outline-offset: 2px !important;
+}

@@ -85,7 +85,7 @@ msgid "Hand-picked and premium quality."
 msgstr "دست‌چین شده و با کیفیت جهانی."
 
 msgid "Palace Karimi"
-msgstr "پالِس کریمی"
+msgstr "پالاس کریمی"
 
 msgid "YOUR TRUSTED PARTNER"
 msgstr "شریک معتمد شما"
@@ -862,3 +862,27 @@ msgstr ""
 
 msgid "God provides sustenance without measure."
 msgstr "خدا روزی‌رسان بی‌حساب است."
+
+msgid "Sale!"
+msgstr "حراج!"
+
+msgid "Contact for Price"
+msgstr "تماس برای قیمت"
+
+msgid "Price not set"
+msgstr "قیمت تعیین نشده"
+
+msgid "No products available in this category."
+msgstr "هیچ محصولی در این دسته‌بندی موجود نیست."
+
+msgid "Description"
+msgstr "توضیحات"
+
+msgid "Additional Info"
+msgstr "اطلاعات بیشتر"
+
+msgid "Related Products"
+msgstr "محصولات مرتبط"
+
+msgid "Category"
+msgstr "دسته‌بندی"

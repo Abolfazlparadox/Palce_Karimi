@@ -29,7 +29,7 @@
                 {% for product in page_obj %}
                 <div class="col-12 col-sm-6 col-lg-3 product mb-4">
 
-                    {% with variant=product.variants.first %}
+                    {% with variant=product.default_variant %}
 
                     {% if variant and variant.sale_price %}
                     <a href="{% url 'catalog:product_detail' slug=product.slug %}">
@@ -38,8 +38,8 @@
                     {% endif %}
 
                     <span class="product-thumb-info border-0">
-                        <a href="{% url 'catalog:product_detail' slug=product.slug %}" class="add-to-cart-product custom-gold-btn">
-                            <span class="text-1 text-uppercase font-weight-bold">{% trans 'View Details' %}</span>
+                        <a href="{% url 'catalog:contact_us' %}" class="add-to-cart-product custom-gold-btn">
+                            <span class="text-1 text-uppercase font-weight-bold">{% trans 'Contact for Price' %}</span>
                         </a>
 
                         <a href="{% url 'catalog:product_detail' slug=product.slug %}">
@@ -88,12 +88,12 @@
                         {% if page_obj.has_previous %}
                         <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}"><i class="fas fa-angle-right"></i></a></li>
                         {% else %}
-                        <li class="page-item disabled"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a></li>
+                        <li class="page-item disabled"><a class="page-link" href="#" aria-disabled="true"><i class="fas fa-angle-right"></i></a></li>
                         {% endif %}
 
                         {% for i in page_obj.paginator.page_range %}
                             {% if page_obj.number == i %}
-                                <li class="page-item active"><a class="page-link bg-primary border-primary" href="#">{{ i|localize_digits }}</a></li>
+                                <li class="page-item active"><a class="page-link bg-primary border-primary" href="?page={{ i }}">{{ i|localize_digits }}</a></li>
                             {% else %}
                                 <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i|localize_digits }}</a></li>
                             {% endif %}
@@ -102,7 +102,7 @@
                         {% if page_obj.has_next %}
                         <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}"><i class="fas fa-angle-left"></i></a></li>
                         {% else %}
-                        <li class="page-item disabled"><a class="page-link" href="#"><i class="fas fa-angle-left"></i></a></li>
+                        <li class="page-item disabled"><a class="page-link" href="#" aria-disabled="true"><i class="fas fa-angle-left"></i></a></li>
                         {% endif %}
                     </ul>
                 </div>

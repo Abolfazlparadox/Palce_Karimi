@@ -9,10 +9,10 @@
         {% for product in latest_products %}
         <div class="col-12 col-sm-6 col-lg-3 product mb-4">
             <span class="product-thumb-info border-0">
-                <a href="#" class="add-to-cart-product custom-gold-btn">
+                <a href="{% url 'catalog:product_detail' slug=product.slug %}" class="add-to-cart-product custom-gold-btn">
                     <span class="text-1">{% trans 'View Details' %}</span>
                 </a>
-                <a href="#">
+                <a href="{% url 'catalog:product_detail' slug=product.slug %}">
                     <span class="product-thumb-info-image">
                         {% if product.main_image %}
                             <img alt="{{ product.main_image.alt_text|default:product.name }}" class="img-fluid" src="{{ product.main_image.image.url }}" width="300" height="400" style="object-fit: cover; aspect-ratio: 3/4;">
@@ -22,7 +22,7 @@
                     </span>
                 </a>
                 <span class="product-thumb-info-content pl-0 bg-color-light">
-                    <a href="#">
+                    <a href="{% url 'catalog:product_detail' slug=product.slug %}">
                         <h4 class="text-4 text-primary">{{ product.name }}</h4>
                         <span class="price">
                             <span class="amount text-dark font-weight-semibold">

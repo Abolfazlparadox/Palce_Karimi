@@ -31,7 +31,7 @@ DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 allowed_hosts_env = os.environ.get('ALLOWED_HOSTS', '')
 ALLOWED_HOSTS = allowed_hosts_env.split(',') if allowed_hosts_env else []
 
-# CSRF_TRUSTED_ORIGINS (مورد نیاز برای پنل ادمین وقتی روی سرور و داکر می‌رود)
+# CSRF_TRUSTED_ORIGINS
 csrf_trusted_origins_env = os.environ.get('CSRF_TRUSTED_ORIGINS', '')
 CSRF_TRUSTED_ORIGINS = csrf_trusted_origins_env.split(',') if csrf_trusted_origins_env else []
 
@@ -41,7 +41,6 @@ CSRF_TRUSTED_ORIGINS = csrf_trusted_origins_env.split(',') if csrf_trusted_origi
 # ==============================================================================
 
 INSTALLED_APPS = [
-    # 'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -93,7 +92,6 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # ==============================================================================
 # Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 # ==============================================================================
 
 DATABASES = {
@@ -110,7 +108,6 @@ DATABASES = {
 
 # ==============================================================================
 # Password validation
-# https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 # ==============================================================================
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -131,14 +128,12 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # ==============================================================================
 # Internationalization / RTL / Multilingual content
-# https://docs.djangoproject.com/en/5.2/topics/i18n/
 # ==============================================================================
 
-LANGUAGE_CODE = 'fa-ir'
+LANGUAGE_CODE = 'fa-IR'
 TIME_ZONE = 'Asia/Tehran'
 USE_I18N = True
 USE_TZ = True
-
 
 LANGUAGES = [
     ('fa', _('Persian')),
@@ -185,142 +180,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# ==============================================================================
-# JAZZMIN_SETTINGS
-# ==============================================================================
 
-JAZZMIN_SETTINGS = {
-    # --- Branding & logo ---
-    "site_title": "مدیریت کاخ کریمی",
-    "site_header": "پنل مدیریت",
-    "site_brand": "Palace Karimi",
-    # Path relative to a static files directory (must resolve via {% static %}).
-    "site_logo": "img/logo.webp",
-    "login_logo": "img/logo.webp",
-    # Separate logo for data-bs-theme="dark" login page, in case the light
-    # logo doesn't read well on a dark background. Falls back to login_logo
-    # automatically if you don't have a dark variant yet.
-    "login_logo_dark": "img/logo.webp",
-    "site_logo_classes": "img-circle",
-    "site_icon": "img/favicon-32x32.png",
-    "welcome_sign": "به سیستم مدیریت محتوای کاخ کریمی خوش آمدید",
-    "copyright": "Palace Karimi Ltd",
-
-    # --- Search bar ---
-    "search_model": ["catalog.Product", "catalog.ContactMessage"],
-    "user_avatar": None,
-
-    # --- Top navbar links ---
-    "topmenu_links": [
-        {"name": "پیشخوان", "url": "admin:index", "permissions": ["auth.view_user"]},
-        {"model": "auth.User"},
-        {"name": "مشاهده سایت", "url": "/", "new_window": True},
-    ],
-
-    # --- User menu (top-right dropdown) ---
-    "usermenu_links": [
-        {"name": "مشاهده سایت", "url": "/", "new_window": True},
-    ],
-
-    # --- Side menu behaviour ---
-    "show_sidebar": True,
-    "navigation_expanded": True,
-    "hide_apps": [],
-    "hide_models": [],
-    # Optional explicit ordering for apps/models in the sidebar (and dashboard app list).
-    "order_with_respect_to": [
-        "catalog",
-        "catalog.Product",
-        "catalog.Category",
-        "catalog.ProductVariant",
-        "catalog.QualityGrade",
-        "catalog.PackagingType",
-        "catalog.TieredPrice",
-        "catalog.ExchangeRate",
-        "catalog.ContactMessage",
-        "auth",
-    ],
-
-    # --- Custom sidebar icons (Font Awesome 5 free classes) ---
-    "icons": {
-        "auth": "fas fa-users-cog",
-        "auth.user": "fas fa-user-shield",
-        "auth.Group": "fas fa-users",
-        "catalog.Product": "fas fa-box-open",
-        "catalog.Category": "fas fa-tags",
-        "catalog.QualityGrade": "fas fa-gem",
-        "catalog.PackagingType": "fas fa-box",
-        "catalog.ProductVariant": "fas fa-cubes",
-        "catalog.TieredPrice": "fas fa-hand-holding-usd",
-        "catalog.ContactMessage": "fas fa-envelope-open-text",
-        "catalog.ExchangeRate": "fas fa-money-check-alt",
-    },
-    "default_icon_parents": "fas fa-chevron-circle-right",
-    "default_icon_children": "fas fa-circle",
-
-    # --- Related object popups (foreign key "+" / edit / view buttons) ---
-    # Render them as a Bootstrap modal instead of a separate browser popup
-    # window; this behaves far better in an RTL layout.
-    "related_modal_active": True,
-
-    # --- Custom CSS/JS ---
-    # Save the theme CSS provided earlier as: static/css/admin_rtl_fix.css
-    "custom_css": "css/admin_rtl_fix.css",
-    "custom_js": "js/admin_custom.js",
-    # Disabled because the Persian "Vazirmatn" font is already loaded via
-    # @import inside admin_rtl_fix.css — no need to also load Jazzmin's
-    # default Google Font.
-    "use_google_fonts_cdn": False,
-    # Leave both of these off in production; only flip "show_ui_builder" to
-    # True temporarily in development if you want to live-tweak the theme.
-    "show_ui_builder": False,
-    "show_theme_chooser": False,
-
-    # --- Change form layout ---
-    "changeform_format": "horizontal_tabs",
-    "changeform_format_overrides": {
-        "catalog.product": "single",
-        "catalog.category": "single",
-    },
-
-    # --- Admin UI language switcher dropdown (uses LANGUAGES above) ---
-    "language_chooser": True,
-}
-
-
-# ==============================================================================
-# JAZZMIN_UI_TWEAKS
-# ==============================================================================
-
-JAZZMIN_UI_TWEAKS = {
-    "navbar_small_text": False,
-    "footer_small_text": False,
-    "body_small_text": False,
-    "brand_small_text": False,
-    "brand_colour": False,
-    "accent": "accent-primary",
-    "navbar": "navbar-white navbar-light",
-    "no_navbar_border": False,
-    "navbar_fixed": True,
-    "layout_boxed": False,
-    "footer_fixed": False,
-    "sidebar_fixed": True,
-    "sidebar": "sidebar-dark-primary",
-    "sidebar_nav_small_text": False,
-    "sidebar_disable_expand": False,
-    "sidebar_nav_child_indent": True,
-    "sidebar_nav_compact_style": False,
-    "sidebar_nav_legacy_style": False,
-    "sidebar_nav_flat_style": False,
-    "actions_sticky_top": True,
-    "theme": "flatly",
-    "default_theme_mode": "auto",
-    "button_classes": {
-        "primary": "btn-primary",
-        "secondary": "btn-secondary",
-        "info": "btn-info",
-        "warning": "btn-warning",
-        "danger": "btn-danger",
-        "success": "btn-success",
-    },
-}

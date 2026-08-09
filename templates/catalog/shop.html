@@ -28,22 +28,20 @@
                 {% for product in page_obj %}
                 <div class="col-12 col-sm-6 col-lg-3 product mb-4">
 
-                    {% with variant=product.variants.first %}
+                    {% with variant=product.default_variant %}
 
                     {% if variant and variant.sale_price %}
-                    <a href="#">
+                    <a href="{% url 'catalog:product_detail' slug=product.slug %}">
                         <span class="onsale bg-primary text-color-light">{% trans 'Sale!' %}</span>
                     </a>
                     {% endif %}
 
                     <span class="product-thumb-info border-0">
-                        <!-- دکمه مشاهده جزئیات / افزودن به سبد -->
-                        <a href="#" class="add-to-cart-product custom-gold-btn">
-                            <span class="text-1 text-uppercase font-weight-bold">{% trans 'View Details' %}</span>
+                        <a href="{% url 'catalog:contact_us' %}" class="add-to-cart-product custom-gold-btn">
+                            <span class="text-1 text-uppercase font-weight-bold">{% trans 'Contact for Price' %}</span>
                         </a>
 
-                        <!-- عکس محصول -->
-                        <a href="#">
+                        <a href="{% url 'catalog:product_detail' slug=product.slug %}">
                             <span class="product-thumb-info-image">
                                 {% if product.main_image %}
                                     <img alt="{{ product.main_image.alt_text|default:product.name }}" class="img-fluid" src="{{ product.main_image.image.url }}" width="300" height="400" style="object-fit: cover; aspect-ratio: 3/4;">
@@ -53,9 +51,8 @@
                             </span>
                         </a>
 
-                        <!-- اطلاعات محصول -->
                         <span class="product-thumb-info-content product-thumb-info-content pl-0 bg-color-light">
-                            <a href="#">
+                            <a href="{% url 'catalog:product_detail' slug=product.slug %}">
                                 <h4 class="text-4 text-primary mb-1">{{ product.name }}</h4>
                                 <span class="price">
                                     {% if variant %}
@@ -83,37 +80,29 @@
 
             </div>
 
-            <!-- Pagination -->
             {% if page_obj.has_other_pages %}
             <div class="row mt-4 mb-n3">
                 <div class="col">
                     <ul class="pagination float-right">
 
-                        <!-- دکمه صفحه قبلی -->
                         {% if page_obj.has_previous %}
-                        <!-- دقت کن: در href فیلتر نذاشتیم تا انگلیسی بماند -->
                         <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}"><i class="fas fa-angle-right"></i></a></li>
                         {% else %}
-                        <li class="page-item disabled"><a class="page-link" href="#"><i class="fas fa-angle-right"></i></a></li>
+                        <li class="page-item disabled"><a class="page-link" href="#" aria-disabled="true"><i class="fas fa-angle-right"></i></a></li>
                         {% endif %}
 
-                        <!-- شماره صفحات -->
                         {% for i in page_obj.paginator.page_range %}
                             {% if page_obj.number == i %}
-                                <!-- اینجا فقط نمایش است، پس فیلتر می‌گیرد -->
-                                <li class="page-item active"><a class="page-link bg-primary border-primary" href="#">{{ i|localize_digits }}</a></li>
+                                <li class="page-item active"><a class="page-link bg-primary border-primary" href="?page={{ i }}">{{ i|localize_digits }}</a></li>
                             {% else %}
-                                <!-- در href انگلیسی، در متن نمایشی فارسی -->
                                 <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i|localize_digits }}</a></li>
                             {% endif %}
                         {% endfor %}
 
-                        <!-- دکمه صفحه بعدی -->
                         {% if page_obj.has_next %}
-                        <!-- در href فیلتر نذاشتیم -->
                         <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}"><i class="fas fa-angle-left"></i></a></li>
                         {% else %}
-                        <li class="page-item disabled"><a class="page-link" href="#"><i class="fas fa-angle-left"></i></a></li>
+                        <li class="page-item disabled"><a class="page-link" href="#" aria-disabled="true"><i class="fas fa-angle-left"></i></a></li>
                         {% endif %}
 
                     </ul>

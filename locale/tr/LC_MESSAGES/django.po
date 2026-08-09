@@ -882,3 +882,27 @@ msgstr ""
 
 msgid "God provides sustenance without measure."
 msgstr "Allah hesapsız rızık verendir."
+
+msgid "Sale!"
+msgstr "İndirim!"
+
+msgid "Contact for Price"
+msgstr "Fiyat için İletişim"
+
+msgid "Price not set"
+msgstr "Fiyat Belirlenmedi"
+
+msgid "No products available in this category."
+msgstr "Bu kategoride ürün bulunmamaktadır."
+
+msgid "Description"
+msgstr "Açıklama"
+
+msgid "Additional Info"
+msgstr "Ek Bilgi"
+
+msgid "Related Products"
+msgstr "İlgili Ürünler"
+
+msgid "Category"
+msgstr "Kategori"

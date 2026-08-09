@@ -11,6 +11,6 @@ urlpatterns = [
     path('shop/', views.shop_page, name='shop'),
     path('terms-and-faq/', views.terms_faq, name='terms_faq'),
     path('newsletter/subscribe/', views.newsletter_subscribe, name='newsletter_subscribe'),
-    path('product/<slug:slug>/', views.product_detail, name='product_detail'),
-    path('category/<slug:slug>/', views.category_detail, name='category_products'),
+    path('product/<str:slug>/', views.product_detail, name='product_detail'),
+    path('category/<str:slug>/', views.category_detail, name='category_products'),
 ]
