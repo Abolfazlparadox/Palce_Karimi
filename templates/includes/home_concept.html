@@ -1,41 +1,272 @@
 {% load static i18n %}
-<div class="appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="200">
-    <div class="home-concept mt-5 mb-5">
-        <div class="container">
-            <div class="row text-center align-items-center">
-                <span class="sun custom-concept-sun"></span>
-                <span class="cloud"></span>
-                <div class="col-lg-2 ml-lg-auto z-index-1">
-                    <div class="process-image">
-                        <img src="{% static 'img/home/concept-harvest.webp' %}" alt="Harvest">
-                        <strong class="custom-concept-label">{% trans 'Harvesting' %}</strong>
-                    </div>
+<style>
+    /* ===== Roadmap block — namespaced (tl-), does not touch site CSS ===== */
+.tl-roadmap { position: relative; padding: 60px 0 40px; overflow: hidden; }
+
+.tl-roadmap-inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: clamp(28px, 5vw, 64px);
+    z-index: 1;
+    min-height: 260px;
+}
+
+/* مسیر پس‌زمینه (عکس‌های خودت) */
+.tl-path-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity .5s ease;
+}
+.tl-path-light.is-active,
+.tl-path-dark.is-active { opacity: 1; }
+
+/* آیکون خورشید/ابر - رنگ‌پویا با تم */
+.tl-weather {
+    position: absolute;
+    top: 6%;
+    left: 30%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #8e44ad;           /* لایت: ارغوانی */
+    z-index: 1;
+}
+body.dark-mode .tl-weather { color: #4caf50; }  /* دارک: سبز — اگر کلاس تمت فرق داره اینجا عوض کن */
+
+.tl-icon-sun,
+.tl-icon-cloud {
+    width: 26px;
+    height: 26px;
+    fill: currentColor;
+    animation: tl-sway 4s ease-in-out infinite;
+}
+.tl-icon-sun  { fill: none; stroke: currentColor; }
+.tl-icon-cloud{ animation-delay: .6s; opacity: .85; }
+
+@keyframes tl-sway {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-6px); }
+}
+
+/* استپ‌ها */
+.tl-step {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    flex: 0 0 auto;
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity .6s ease, transform .6s ease;
+}
+.tl-roadmap-inner.tl-in-view .tl-step { opacity: 1; transform: translateY(0); }
+.tl-roadmap-inner.tl-in-view .tl-step:nth-child(3) { transition-delay: .1s; }
+.tl-roadmap-inner.tl-in-view .tl-step:nth-child(4) { transition-delay: .2s; }
+.tl-roadmap-inner.tl-in-view .tl-step:nth-child(5) { transition-delay: .3s; }
+.tl-roadmap-inner.tl-in-view .tl-step:nth-child(6) { transition-delay: .4s; }
+
+.tl-step-mid { margin-top: -34px; }
+
+.tl-step-circle {
+    display: block;
+    position: relative;
+    width: clamp(90px, 9vw, 120px);
+    height: clamp(90px, 9vw, 120px);
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid rgba(255,255,255,.12);
+    box-shadow: 0 8px 22px rgba(0,0,0,.25);
+    animation: tl-float 5s ease-in-out infinite;
+}
+.tl-step:nth-child(3) .tl-step-circle { animation-delay: .3s; }
+.tl-step:nth-child(4) .tl-step-circle { animation-delay: .6s; }
+.tl-step:nth-child(5) .tl-step-circle { animation-delay: .9s; }
+.tl-step:nth-child(6) .tl-step-circle { animation-delay: 1.2s; }
+
+@keyframes tl-float {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-8px); }
+}
+
+.tl-step-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.tl-step-label {
+    display: block;
+    color: #8bc34a;
+    font-weight: 600;
+}
+
+.tl-step-final .tl-step-circle {
+    width: clamp(170px, 16vw, 220px);
+    height: clamp(170px, 16vw, 220px);
+}
+
+.tl-step-label-pill {
+    display: inline-block;
+    margin-top: 18px;
+    background: #8bc34a;
+    color: #1c1c1c;
+    padding: 10px 30px;
+    border-radius: 30px;
+}
+
+/* اسلایدشو - کنترل با JS، بدون وابستگی به prefers-reduced-motion */
+.tl-slideshow { display: block; }
+.tl-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+.tl-slide.is-active { opacity: 1; z-index: 1; }
+
+.tl-slide-dots {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    z-index: 2;
+}
+.tl-slide-dots i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.4);
+    transition: background .3s;
+}
+.tl-slide-dots i.is-active { background: #fff; }
+
+@media (max-width: 991px) {
+    .tl-path-img { display: none; }
+    .tl-step-mid { margin-top: 0; }
+    .tl-weather { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .tl-step-circle, .tl-icon-sun, .tl-icon-cloud { animation: none !important; }
+}
+</style>
+<div class="tl-roadmap appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="200">
+    <div class="container">
+        <div class="tl-roadmap-inner">
+            <img class="tl-path-img tl-path-light" src="{% static 'img/home/home-concept.png' %}" alt="">
+            <img class="tl-path-img tl-path-dark"  src="{% static 'img/home/home-concept-dark.png' %}" alt="">
+
+            <span class="tl-weather">
+                <svg class="tl-icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="23"/><line x1="1" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="23" y2="12"/><line x1="4.2" y1="4.2" x2="6.3" y2="6.3"/><line x1="17.7" y1="17.7" x2="19.8" y2="19.8"/><line x1="4.2" y1="19.8" x2="6.3" y2="17.7"/><line x1="17.7" y1="6.3" x2="19.8" y2="4.2"/></g></svg>
+                <svg class="tl-icon-cloud" viewBox="0 0 24 24"><path d="M6 18a4 4 0 0 1-.6-7.96A5 5 0 0 1 15 8a4.5 4.5 0 0 1 1 8.9V18H6z"/></svg>
+            </span>
+
+            <div class="tl-step" data-tl-step>
+                <div class="tl-step-circle">
+                    <img src="{% static 'img/home/concept-harvest.webp' %}" alt="Harvest">
                 </div>
-                <div class="col-lg-2 mt-4 mt-lg-0 z-index-1">
-                    <div class="process-image process-image-on-middle">
-                        <img src="{% static 'img/home/concept-processing.webp' %}" alt="Processing">
-                        <strong class="custom-concept-label">{% trans 'Processing' %}</strong>
-                    </div>
+                <strong class="tl-step-label">{% trans 'Harvesting' %}</strong>
+            </div>
+
+            <div class="tl-step tl-step-mid" data-tl-step>
+                <div class="tl-step-circle">
+                    <img src="{% static 'img/home/concept-processing.webp' %}" alt="Processing">
                 </div>
-                <div class="col-lg-2 mt-4 mt-lg-0 z-index-1">
-                    <div class="process-image">
-                            <img src="{% static 'img/home/concept-packaging.webp' %}" alt="Packaging">
-                        <strong class="custom-concept-label">{% trans 'Packaging' %}</strong>
-                    </div>
+                <strong class="tl-step-label">{% trans 'Processing' %}</strong>
+            </div>
+
+            <div class="tl-step" data-tl-step>
+                <div class="tl-step-circle">
+                    <img src="{% static 'img/home/concept-packaging.webp' %}" alt="Packaging">
                 </div>
-                <div class="col-lg-4 ml-lg-auto mt-1 mt-lg-0 z-index-1">
-                    <div class="project-image">
-                        <div id="fcSlideshow" class="fc-slideshow">
-                            <ul class="fc-slides">
-                                <li><a href="{% url 'catalog:shop' %}"><img class="img-responsive" src="{% static 'img/home/export-1.webp' %}" alt="Export"></a></li>
-                                <li><a href="{% url 'catalog:shop' %}"><img class="img-responsive" src="{% static 'img/home/export-1.webp' %}" alt="Export"></a></li>
-                                <li><a href="{% url 'catalog:shop' %}"><img class="img-responsive" src="{% static 'img/home/export-1.webp' %}" alt="Export"></a></li>
-                            </ul>
-                        </div>
-                        <strong class="our-work custom-concept-our-work">{% trans 'Global Export' %}</strong>
-                    </div>
-                </div>
+                <strong class="tl-step-label">{% trans 'Packaging' %}</strong>
+            </div>
+
+            <div class="tl-step tl-step-final" data-tl-step>
+                <a href="{% url 'catalog:shop' %}" class="tl-step-circle tl-slideshow" id="tlSlideshow">
+                    <img class="tl-slide is-active" src="{% static 'img/home/export-1.webp' %}" alt="Export">
+                    <img class="tl-slide" src="{% static 'img/home/export-1.webp' %}" alt="Export">
+                    <img class="tl-slide" src="{% static 'img/home/export-1.webp' %}" alt="Export">
+                    <span class="tl-slide-dots">
+                        <i></i><i></i><i></i>
+                    </span>
+                </a>
+                <strong class="tl-step-label tl-step-label-pill">{% trans 'Global Export' %}</strong>
             </div>
         </div>
     </div>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var root = document.querySelector('.tl-roadmap-inner');
+    if (!root) return;
+
+    /* --- تشخیص تم و سواپ عکس مسیر --- */
+    function isDarkMode() {
+        // اگه کلاس تم سایتت فرق داره فقط همین خط رو عوض کن
+        return document.body.classList.contains('dark-mode');
+    }
+    var pathLight = root.querySelector('.tl-path-light');
+    var pathDark  = root.querySelector('.tl-path-dark');
+    function syncTheme() {
+        var dark = isDarkMode();
+        pathLight.classList.toggle('is-active', !dark);
+        pathDark.classList.toggle('is-active', dark);
+    }
+    syncTheme();
+    new MutationObserver(syncTheme).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+    /* --- انیمیشن ورود استپ‌ها هنگام دیده‌شدن --- */
+    if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries, obs) {
+            entries.forEach(function (e) {
+                if (e.isIntersecting) {
+                    root.classList.add('tl-in-view');
+                    obs.disconnect();
+                }
+            });
+        }, { threshold: 0.3 }).observe(root);
+    } else {
+        root.classList.add('tl-in-view');
+    }
+
+    /* --- اسلایدشوی export --- */
+    var slideshow = document.getElementById('tlSlideshow');
+    if (slideshow) {
+        var slides = slideshow.querySelectorAll('.tl-slide');
+        var dots   = slideshow.querySelectorAll('.tl-slide-dots i');
+        var idx = 0, timer;
+
+        function goTo(i) {
+            slides[idx].classList.remove('is-active');
+            dots[idx] && dots[idx].classList.remove('is-active');
+            idx = i;
+            slides[idx].classList.add('is-active');
+            dots[idx] && dots[idx].classList.add('is-active');
+        }
+        function next() { goTo((idx + 1) % slides.length); }
+
+        function start() { timer = setInterval(next, 3500); }
+        function stop()  { clearInterval(timer); }
+
+        start();
+        slideshow.addEventListener('mouseenter', stop);
+        slideshow.addEventListener('mouseleave', start);
+    }
+});
+</script>

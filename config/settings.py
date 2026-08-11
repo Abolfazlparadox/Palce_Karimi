@@ -99,6 +99,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'core.middleware.PermissionsPolicyMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -261,4 +262,19 @@ LOGGING = {
             'propagate': False,
         },
     },
+}
+
+# ==============================================================================
+# Cache — PostgreSQL-backed cache for django-ratelimit
+# ==============================================================================
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.db.DatabaseCache",
+        "LOCATION": "rate_limit_cache",
+        "TIMEOUT": 3600,
+        "OPTIONS": {
+            "MAX_ENTRIES": 10000,
+        },
+    }
 }

@@ -7,7 +7,7 @@
      1. Font Imports
      2. Design Tokens (Light & Dark Themes)
      3. Global Base, Reset & Typography
-     4. Symmetric Direction System (RTL / LTR Mirroring)
+     4. Symmetric Direction System (RTL / LTR Mirroring & Alignment)
      5. Loading Overlay
      6. Header & Navigation System
      7. Page Headers & Breadcrumbs
@@ -24,21 +24,20 @@
     14. Footer System
     15. Utility Components & Accessibility
     16. Responsive Breakpoint Rules
+    17. Global Toast Notification System
 
    ============================================================ */
 
 
-/*!* ============================================================*/
-/*   1. FONT IMPORTS*/
-/*   ============================================================ *!*/
-/*@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Vazirmatn:wght@300;400;500;600;700;800&display=swap');*/
+/* ============================================================
+   1. FONT IMPORTS
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Vazirmatn:wght@300;400;500;600;700;800&display=swap');
 
 
 /* ============================================================
    2. DESIGN TOKENS (CSS Custom Properties)
    ============================================================ */
-
-/* --- Light Theme (Default) --- */
 :root {
   /* Primary - Luxury Royal Violet */
   --pk-primary: #8A609C;
@@ -184,17 +183,26 @@ html.dark {
 
 html {
   scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
+  font-size: 16px !important;
+  -webkit-text-size-adjust: 100% !important;
+  text-size-adjust: 100% !important;
 }
 
 body {
   background-color: var(--pk-bg);
   color: var(--pk-text);
+  font-size: 1rem !important;
+  zoom: 1 !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   transition: background-color var(--pk-transition-smooth),
               color var(--pk-transition-smooth);
+}
+
+.body {
+  width: 100% !important;
+  max-width: 100% !important;
 }
 
 /* Text Selection */
@@ -294,13 +302,32 @@ html[lang="fa"] h6, html[lang="ar"] h6 {
 
 
 /* ============================================================
-   4. SYMMETRIC DIRECTION SYSTEM (RTL / LTR MIRRORING)
+   4. SYMMETRIC DIRECTION SYSTEM (RTL / LTR MIRRORING & ALIGNMENT)
    ============================================================ */
 
-/* --- RTL (Persian / Arabic) Mirroring Rules --- */
+/* --- RTL (Persian / Arabic) Mirroring & Alignment Rules --- */
 html[dir="rtl"] {
   direction: rtl;
   text-align: right;
+}
+
+html[dir="rtl"] body,
+html[dir="rtl"] p,
+html[dir="rtl"] h1, html[dir="rtl"] h2, html[dir="rtl"] h3,
+html[dir="rtl"] h4, html[dir="rtl"] h5, html[dir="rtl"] h6,
+html[dir="rtl"] .lead,
+html[dir="rtl"] .feature-box-info,
+html[dir="rtl"] .feature-box-info p,
+html[dir="rtl"] .form-group,
+html[dir="rtl"] .form-group label,
+html[dir="rtl"] .contact-details,
+html[dir="rtl"] .office-info,
+html[dir="rtl"] #footer,
+html[dir="rtl"] #footer p,
+html[dir="rtl"] #footer h5,
+html[dir="rtl"] #footer ul,
+html[dir="rtl"] .summary.entry-summary {
+  text-align: right !important;
 }
 
 /* Swap Bootstrap Directional Utility Classes in RTL */
@@ -345,6 +372,7 @@ html[dir="rtl"] .feature-box-style-2 .feature-box-icon {
 html[dir="rtl"] .feature-box-style-2 .feature-box-info {
   padding-right: 50px !important;
   padding-left: 0 !important;
+  text-align: right !important;
 }
 
 /* RTL Accordion Icons */
@@ -355,15 +383,34 @@ html[dir="rtl"] .accordion .accordion-toggle i {
 
 /* RTL Form Label Alignment */
 html[dir="rtl"] .form-group label {
-  text-align: right;
+  text-align: right !important;
   display: block;
 }
 
 
-/* --- LTR (English / Turkish) Mirroring Rules --- */
+/* --- LTR (English / Turkish) Mirroring & Alignment Rules --- */
 html[dir="ltr"] {
   direction: ltr;
   text-align: left;
+}
+
+html[dir="ltr"] body,
+html[dir="ltr"] p,
+html[dir="ltr"] h1, html[dir="ltr"] h2, html[dir="ltr"] h3,
+html[dir="ltr"] h4, html[dir="ltr"] h5, html[dir="ltr"] h6,
+html[dir="ltr"] .lead,
+html[dir="ltr"] .feature-box-info,
+html[dir="ltr"] .feature-box-info p,
+html[dir="ltr"] .form-group,
+html[dir="ltr"] .form-group label,
+html[dir="ltr"] .contact-details,
+html[dir="ltr"] .office-info,
+html[dir="ltr"] #footer,
+html[dir="ltr"] #footer p,
+html[dir="ltr"] #footer h5,
+html[dir="ltr"] #footer ul,
+html[dir="ltr"] .summary.entry-summary {
+  text-align: left !important;
 }
 
 html[dir="ltr"] .text-left     { text-align: left !important; }
@@ -390,6 +437,7 @@ html[dir="ltr"] .feature-box-style-2 .feature-box-icon {
 html[dir="ltr"] .feature-box-style-2 .feature-box-info {
   padding-left: 50px !important;
   padding-right: 0 !important;
+  text-align: left !important;
 }
 
 /* LTR Accordion Icons */
@@ -400,7 +448,7 @@ html[dir="ltr"] .accordion .accordion-toggle i {
 
 /* LTR Form Label Alignment */
 html[dir="ltr"] .form-group label {
-  text-align: left;
+  text-align: left !important;
   display: block;
 }
 
@@ -759,7 +807,7 @@ html[dir="rtl"] .page-header h1 {
   text-align: center;
   vertical-align: middle;
   overflow: hidden;
-  padding: 4px 12px !important;  /* Fixes typo from 'padding: 5 10px' */
+  padding: 4px 12px !important;
   border-radius: 6px;
   line-height: 1.3;
   transition: width 0.3s var(--pk-ease);
@@ -780,24 +828,6 @@ html.dark .word-rotator-words {
   position: relative;
 }
 
-/* DO NOT override #fcSlideshow .fc-slides li with position: absolute; top:0; left:0; width:100%; height:100%!
-   Allow jquery.flipshow.min.js plugin to build and rotate its 3D CSS frames! */
-#fcSlideshow.fc-slideshow {
-  position: relative;
-  width: 100%;
-  max-width: 360px;
-  margin: 0 auto;
-}
-
-#fcSlideshow .fc-slides li img {
-  border-radius: 50%;
-  object-fit: cover;
-  box-shadow: var(--pk-shadow-md);
-  width: 100%;
-  height: auto;
-}
-
-/* Sun & Cloud Diagram Elements */
 .custom-concept-sun {
   background-color: var(--pk-primary);
   box-shadow: 0 0 25px rgba(var(--pk-primary-rgb), 0.5);
@@ -890,7 +920,7 @@ html.dark .accordion-modern .card-title a {
    ============================================================ */
 
 .owl-carousel {
-  direction: ltr !important; /* Owl carousel internal calculation engine runs LTR */
+  direction: ltr !important;
 }
 
 html[dir="rtl"] .owl-carousel .owl-stage-outer {
@@ -1272,7 +1302,7 @@ html[dir="ltr"] .newsletter-wrapper {
 }
 html[dir="ltr"] .newsletter-wrapper input {
   border-radius: var(--pk-radius-pill) 0 0 var(--pk-radius-pill) !important;
-  text-align: left;
+  text-align: left !important;
 }
 html[dir="ltr"] .newsletter-wrapper button {
   border-radius: 0 var(--pk-radius-pill) var(--pk-radius-pill) 0 !important;
@@ -1284,7 +1314,7 @@ html[dir="rtl"] .newsletter-wrapper {
 }
 html[dir="rtl"] .newsletter-wrapper input {
   border-radius: 0 var(--pk-radius-pill) var(--pk-radius-pill) 0 !important;
-  text-align: right;
+  text-align: right !important;
 }
 html[dir="rtl"] .newsletter-wrapper button {
   border-radius: var(--pk-radius-pill) 0 0 var(--pk-radius-pill) !important;
@@ -1390,18 +1420,14 @@ html.dark .timeline-box {
 }
 
 /* Timeline Arrow Mirroring for LTR & RTL */
-html[dir="ltr"] .timeline-box.left {
-  text-align: left;
-}
+html[dir="ltr"] .timeline-box.left,
 html[dir="ltr"] .timeline-box.right {
-  text-align: left;
+  text-align: left !important;
 }
 
-html[dir="rtl"] .timeline-box.left {
-  text-align: right;
-}
+html[dir="rtl"] .timeline-box.left,
 html[dir="rtl"] .timeline-box.right {
-  text-align: right;
+  text-align: right !important;
 }
 
 /* RTL Timeline Box Arrow Flip */
@@ -1660,7 +1686,6 @@ html.dark .pk-back-to-top {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    /*transition-duration: 0.01ms !important;*/
     scroll-behavior: auto !important;
   }
 }
@@ -1711,11 +1736,11 @@ html.dark .pk-back-to-top {
 /* Mobile & Tablet Responsive Nav (≤991.98px) */
 @media (max-width: 991.98px) {
   html[dir="rtl"] .header-nav-main nav > ul {
-    text-align: right;
+    text-align: right !important;
   }
 
   html[dir="ltr"] .header-nav-main nav > ul {
-    text-align: left;
+    text-align: left !important;
   }
 
   html[dir="rtl"] .page-header .row {
@@ -1725,6 +1750,11 @@ html.dark .pk-back-to-top {
   html[dir="rtl"] .page-header h1,
   html[dir="rtl"] .page-header .breadcrumb {
     text-align: right !important;
+  }
+
+  html[dir="ltr"] .page-header h1,
+  html[dir="ltr"] .page-header .breadcrumb {
+    text-align: left !important;
   }
 
   .modern-contact-form {
@@ -1737,6 +1767,268 @@ html.dark .pk-back-to-top {
   .container {
     max-width: 1320px;
   }
+}
+
+/* ============================================================
+   17. GLOBAL TOAST NOTIFICATION SYSTEM (UI/UX Pro Max)
+   ============================================================ */
+
+/* Container */
+.pk-toast-container {
+  position: fixed;
+  top: 24px;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 420px;
+  width: calc(100vw - 32px);
+  pointer-events: none;
+}
+
+/* Direction Alignment */
+html[dir="rtl"] .pk-toast-container {
+  right: 20px;
+  left: auto;
+}
+
+html[dir="ltr"] .pk-toast-container {
+  left: 20px;
+  right: auto;
+}
+
+/* Toast Card */
+.pk-toast {
+  pointer-events: auto;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: var(--pk-radius-md, 12px);
+  background: var(--pk-surface, #FFFFFF);
+  color: var(--pk-text, #1A1A2E);
+  border: 1px solid var(--pk-border, rgba(0, 0, 0, 0.08));
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  overflow: hidden;
+  will-change: transform, opacity;
+  transition: transform 350ms cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Dark Mode Surface Override */
+html.dark .pk-toast {
+  background: var(--pk-surface-elevated, #242628);
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+}
+
+/* Animation Motion States */
+html[dir="rtl"] .pk-toast { transform: translateX(120%); opacity: 0; }
+html[dir="rtl"] .pk-toast.pk-toast-show { transform: translateX(0); opacity: 1; }
+html[dir="rtl"] .pk-toast.pk-toast-hide { transform: translateX(120%); opacity: 0; }
+
+html[dir="ltr"] .pk-toast { transform: translateX(-120%); opacity: 0; }
+html[dir="ltr"] .pk-toast.pk-toast-show { transform: translateX(0); opacity: 1; }
+html[dir="ltr"] .pk-toast.pk-toast-hide { transform: translateX(-120%); opacity: 0; }
+
+/* Status Icon Wrapper */
+.pk-toast-icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  margin-top: 2px;
+}
+.pk-toast-icon svg { width: 18px; height: 18px; stroke-width: 2.2; }
+
+/* Toast Variants */
+.pk-toast-success { border-left: 4px solid var(--pk-success, #10B981); }
+html[dir="rtl"] .pk-toast-success { border-left: 1px solid var(--pk-border); border-right: 4px solid var(--pk-success, #10B981); }
+.pk-toast-success .pk-toast-icon { background: rgba(16, 185, 129, 0.12); color: #10B981; }
+
+.pk-toast-error, .pk-toast-danger { border-left: 4px solid var(--pk-danger, #EF4444); }
+html[dir="rtl"] .pk-toast-error, html[dir="rtl"] .pk-toast-danger { border-left: 1px solid var(--pk-border); border-right: 4px solid var(--pk-danger, #EF4444); }
+.pk-toast-error .pk-toast-icon, .pk-toast-danger .pk-toast-icon { background: rgba(239, 68, 68, 0.12); color: #EF4444; }
+
+.pk-toast-warning { border-left: 4px solid var(--pk-warning, #F59E0B); }
+html[dir="rtl"] .pk-toast-warning { border-left: 1px solid var(--pk-border); border-right: 4px solid var(--pk-warning, #F59E0B); }
+.pk-toast-warning .pk-toast-icon { background: rgba(245, 158, 11, 0.12); color: #F59E0B; }
+
+.pk-toast-info { border-left: 4px solid var(--pk-primary, #8A609C); }
+html[dir="rtl"] .pk-toast-info { border-left: 1px solid var(--pk-border); border-right: 4px solid var(--pk-primary, #8A609C); }
+.pk-toast-info .pk-toast-icon { background: rgba(138, 96, 156, 0.12); color: #8A609C; }
+
+/* Body & Close Button */
+.pk-toast-body { flex-grow: 1; font-size: 14px; line-height: 1.5; font-weight: 500; word-break: break-word; }
+.pk-toast-close { flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border: none; background: transparent; color: var(--pk-text-muted, #7A7A8A); cursor: pointer; border-radius: 6px; }
+.pk-toast-close:hover { background: rgba(0, 0, 0, 0.06); color: var(--pk-text, #1A1A2E); }
+html.dark .pk-toast-close:hover { background: rgba(255, 255, 255, 0.1); color: #FFFFFF; }
+
+/* Progress Bar */
+.pk-toast-progress { position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: rgba(0, 0, 0, 0.08); }
+html.dark .pk-toast-progress { background: rgba(255, 255, 255, 0.1); }
+.pk-toast-progress-bar { height: 100%; width: 100%; transform-origin: left center; transition: transform linear; }
+html[dir="rtl"] .pk-toast-progress-bar { transform-origin: right center; }
+.pk-toast-success .pk-toast-progress-bar { background: #10B981; }
+.pk-toast-error .pk-toast-progress-bar, .pk-toast-danger .pk-toast-progress-bar { background: #EF4444; }
+.pk-toast-warning .pk-toast-progress-bar { background: #F59E0B; }
+.pk-toast-info .pk-toast-progress-bar { background: #8A609C; }
+
+
+/* ============================================================
+   PALACE KARIMI — HIGH-SPECIFICITY OVERRIDES (Part 2 Snippet)
+   Overrides base Porto stylesheets & enforces brand palette
+   ============================================================ */
+
+/* --- 1. Banner CTA & Purple Section Overrides (Image 1 Fix) --- */
+section.bg-primary,
+.bg-primary {
+  background-color: var(--pk-primary) !important;
+  color: #FFFFFF !important;
+}
+
+html.dark section.bg-primary,
+html.dark .bg-primary {
+  background-color: #4A2E58 !important; /* Rich Dark Royal Velvet */
+  color: #FFFFFF !important;
+}
+
+/* Fix dark background issue inside banner buttons */
+section.bg-primary .btn-dark,
+.bg-primary .btn-dark {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.30) !important;
+  color: #FFFFFF !important;
+  font-weight: 600 !important;
+  transition: all 200ms ease !important;
+}
+
+section.bg-primary .btn-dark:hover,
+.bg-primary .btn-dark:hover {
+  background-color: var(--pk-accent) !important;
+  border-color: var(--pk-accent) !important;
+  color: var(--pk-bg) !important;
+}
+
+/* Fix 'or view products' link contrast */
+section.bg-primary a.text-color-light,
+section.bg-primary a {
+  color: #FFFFFF !important;
+  text-decoration: underline !important;
+  font-weight: 600 !important;
+}
+
+/* --- 2. 'Why Choose' & Word Rotator Highlight (Image 2 Fix) --- */
+html[dir="ltr"] .feature-box {
+  text-align: left !important;
+}
+
+html[dir="ltr"] .feature-box .feature-box-info h4,
+html[dir="ltr"] .feature-box .feature-box-info p {
+  text-align: left !important;
+}
+
+/* Fix highlighted text box ('Middle East') overflow & padding */
+.word-rotator-words {
+  display: inline-block !important;
+  padding: 4px 14px !important;
+  margin: 0 4px !important;
+  border-radius: var(--pk-radius-sm) !important;
+  background-color: var(--pk-primary) !important;
+  color: #FFFFFF !important;
+}
+
+html.dark .word-rotator-words {
+  background-color: var(--pk-accent) !important;
+  color: var(--pk-bg) !important;
+}
+
+/* --- 3. Contact Us Page LTR Layout & Alignment (Image 4 Fix) --- */
+html[dir="ltr"] .office-info,
+html[dir="ltr"] .office-info *,
+html[dir="ltr"] .contact-details,
+html[dir="ltr"] .contact-details *,
+html[dir="ltr"] #contact-info,
+html[dir="ltr"] #contact-info * {
+  text-align: left !important;
+}
+
+html[dir="ltr"] .modern-contact-form {
+  text-align: left !important;
+}
+
+html[dir="ltr"] .modern-contact-form label {
+  text-align: left !important;
+  display: block !important;
+}
+
+/* Fix Contact Page Send Message Button */
+.modern-contact-form .btn-primary,
+.modern-contact-form button[type="submit"] {
+  background-color: var(--pk-accent) !important;
+  border-color: var(--pk-accent) !important;
+  color: var(--pk-text-on-primary) !important;
+  font-weight: 700 !important;
+  padding: 12px 30px !important;
+  border-radius: var(--pk-radius-pill) !important;
+}
+
+.modern-contact-form .btn-primary:hover,
+.modern-contact-form button[type="submit"]:hover {
+  background-color: var(--pk-accent-hover) !important;
+  border-color: var(--pk-accent-hover) !important;
+}
+
+/* --- 4. Footer & Ribbon Overrides (Image 3 Fix) --- */
+html.dark #footer {
+  background-color: #111214 !important;
+  border-top: 1px solid var(--pk-border) !important;
+}
+
+html.dark #footer h5 {
+  color: var(--pk-accent) !important;
+  font-weight: 700 !important;
+}
+
+html.dark #footer p,
+html.dark #footer li,
+html.dark #footer span {
+  color: var(--pk-text-secondary) !important;
+}
+
+/* Fix Footer Ribbon Button ('Get in Touch') */
+#footer .footer-ribbon {
+  background: var(--pk-accent) !important;
+  box-shadow: var(--pk-shadow-accent) !important;
+}
+
+#footer .footer-ribbon span {
+  color: var(--pk-bg) !important;
+
+
+#footer .footer-ribbon span {
+  color: var(--pk-bg) !important;
+  font-weight: 700 !important;
+}
+
+/* Footer Newsletter Input Contrast in Dark Mode */
+html.dark .newsletter-wrapper input {
+  background-color: var(--pk-surface-elevated) !important;
+  color: var(--pk-text) !important;
+  border: 1px solid var(--pk-border) !important;
+}
+
+html.dark .newsletter-wrapper button {
+  background-color: var(--pk-accent) !important;
+  color: var(--pk-bg) !important;
+  font-weight: 700 !important;
 }
 
 /* ============================================================

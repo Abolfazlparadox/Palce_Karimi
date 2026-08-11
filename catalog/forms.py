@@ -9,7 +9,7 @@ class ContactMessageForm(forms.ModelForm):
     # لایه ۲: تله عسل (Honeypot) - کاربر نمی‌بیند، ربات پر می‌کند
     phone_ext = forms.CharField(
         required=False,
-        label="Phone Extension",
+        label=_("Phone Extension"),
         widget=forms.TextInput(attrs={
             'class': 'd-none',  # با کلاس بوت‌استرپ از دید کاربر مخفی می‌شود
             'autocomplete': 'off',

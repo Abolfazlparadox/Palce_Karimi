@@ -3,15 +3,79 @@ import polib
 
 LOCALE_DIR = 'locale'
 
-# دیکشنری جامع ترجمه‌های فوتر و هدر سایت
+# دیکشنری جامع ترجمه‌های کامل سایت برای ۴ زبان (FA, AR, TR)
 TRANSLATIONS = {
-    # فوتر
+    # ---------------------------------------------------------------------------
+    # پیام‌ها و اعلان‌های سیستم (Messages & Alerts)
+    # ---------------------------------------------------------------------------
+    "You have sent too many messages. Please try again later.": {
+        "fa": "تعداد پیام‌های شما بیش از حد مجاز است. لطفاً بعداً دوباره تلاش کنید.",
+        "ar": "لقد أرسلت عددًا كبيرًا جدًا من الرسائل. يرجى المحاولة مرة أخرى لاحقًا.",
+        "tr": "Çok fazla mesaj gönderdiniz. Lütfen daha sonra tekrar deneyiniz."
+    },
+    "Your message has been sent successfully. We will contact you soon.": {
+        "fa": "پیام شما با موفقیت ارسال شد. به زودی با شما تماس خواهیم گرفت.",
+        "ar": "تم ارسال رسالتك بنجاح. وسوف نتصل بك قريبا.",
+        "tr": "Mesajınız başarıyla gönderildi. En kısa sürede sizinle iletişime geçeceğiz."
+    },
+    "success_contact": {
+        "fa": "پیام شما با موفقیت ارسال شد. به زودی با شما تماس خواهیم گرفت.",
+        "ar": "تم ارسال رسالتك بنجاح. وسوف نتصل بك قريبا.",
+        "tr": "Mesajınız başarıyla gönderildi. En kısa sürede sizinle iletişime geçeceğiz."
+    },
+    "Too many requests. Please try again later.": {
+        "fa": "تعداد درخواست‌ها بیش از حد مجاز است. لطفاً بعداً دوباره تلاش کنید.",
+        "ar": "طلبات كثيرة جدا. يرجى المحاولة مرة أخرى لاحقًا.",
+        "tr": "Çok fazla istek. Lütfen daha sonra tekrar deneyiniz."
+    },
+    "Please enter an email address.": {
+        "fa": "لطفاً یک آدرس ایمیل وارد کنید.",
+        "ar": "يرجى إدخال البريد الإلكتروني.",
+        "tr": "Lütfen bir e-posta adresi girin."
+    },
+    "Thank you for subscribing to our newsletter.": {
+        "fa": "با تشکر از عضویت شما در خبرنامه.",
+        "ar": "شكرا لاشتراكك في نشرتنا الإخبارية.",
+        "tr": "Bültenimize abone olduğunuz için teşekkür ederiz."
+    },
+    "You are already subscribed to our email list.": {
+        "fa": "شما قبلاً در خبرنامه ثبت‌نام کرده‌اید.",
+        "ar": "أنت مشترك بالفعل في قائمتنا البريدية.",
+        "tr": "E-posta listemize zaten abonesiniz."
+    },
+    "Invalid email address. Please check and try again.": {
+        "fa": "آدرس ایمیل نامعتبر است. لطفاً بررسی و دوباره تلاش کنید.",
+        "ar": "عنوان بريد إلكتروني غير صالح. يرجى التحقق والمحاولة مرة أخرى.",
+        "tr": "Geçersiz e-posta adresi. Lütfen kontrol edip tekrar deneyin."
+    },
+
+    # ---------------------------------------------------------------------------
+    # اعتبارسنجی فرم‌ها (Form Validation)
+    # ---------------------------------------------------------------------------
+    "Your message is too short. Please provide more details (minimum 20 characters).": {
+        "fa": "متن پیام شما بسیار کوتاه است. لطفاً اطلاعات بیشتری وارد کنید (حداقل ۲۰ کاراکتر).",
+        "ar": "رسالتك قصيرة جداً. يرجى تقديم المزيد من التفاصيل (۲۰ حرفاً على الأقل).",
+        "tr": "Mesajınız çok kısa. Lütfen daha fazla detay verin (en az 20 karakter)."
+    },
+    "Spam bot detected!": {
+        "fa": "ربات اسپم شناسایی شد!",
+        "ar": "تم اكتشاف برامج بريد عشوائي!",
+        "tr": "Spam botu tespit edildi!"
+    },
+    "Phone Extension": {
+        "fa": "پیش‌شماره تلفن",
+        "ar": "تحويلة الهاتف",
+        "tr": "Dahili Telefon"
+    },
+
+    # ---------------------------------------------------------------------------
+    # هدر، فوتر و ناوبری (Header, Footer & Navigation)
+    # ---------------------------------------------------------------------------
     "Get in Touch": {
         "fa": "در ارتباط باشید",
         "ar": "ابق على تواصل",
-        "tr": "İletişimde Kalın"
+        "tr": "İletيشimde Kalın"
     },
-    # هدر / breadcrumb
     "Home": {
         "fa": "خانه",
         "ar": "الرئيسية",
@@ -22,7 +86,15 @@ TRANSLATIONS = {
         "ar": "المنتجات",
         "tr": "Ürünler"
     },
-    # فروشگاه
+    "Notifications": {
+        "fa": "اعلان‌ها",
+        "ar": "الإشعارات",
+        "tr": "Bildirimler"
+    },
+
+    # ---------------------------------------------------------------------------
+    # کاتالوگ و فروشگاه (Catalog & Shop)
+    # ---------------------------------------------------------------------------
     "Sale!": {
         "fa": "حراج!",
         "ar": "تخفيض!",
@@ -43,7 +115,6 @@ TRANSLATIONS = {
         "ar": "لا توجد منتجات في هذا القسم.",
         "tr": "Bu kategoride ürün bulunmamaktadır."
     },
-    # صفحه جزئیات محصول
     "Description": {
         "fa": "توضیحات",
         "ar": "الوصف",
@@ -64,11 +135,29 @@ TRANSLATIONS = {
         "ar": "الفئة",
         "tr": "Kategori"
     },
-    # برند (در عنوان صفحات)
+
+    # ---------------------------------------------------------------------------
+    # برند و عناوین عمومی (Brand & Page Titles)
+    # ---------------------------------------------------------------------------
     "Palace Karimi": {
         "fa": "پالاس کریمی",
         "ar": "قصر كريمي",
         "tr": "Palace Karimi"
+    },
+    "404 - Page Not Found": {
+        "fa": "۴۰۴ - صفحه مورد نظر پیدا نشد",
+        "ar": "۴۰۴ - الصفحة غير موجودة",
+        "tr": "404 - Sayfa Bulunamadı"
+    },
+    "500 - Internal Server Error": {
+        "fa": "۵۰۰ - خطای داخلی سرور",
+        "ar": "۵۰۰ - خطأ في الخادم الداخلي",
+        "tr": "500 - Sunucu Hatası"
+    },
+    "Back to Home": {
+        "fa": "بازگشت به صفحه اصلی",
+        "ar": "العودة إلى الرئيسية",
+        "tr": "Ana Sayfaya Dön"
     },
 }
 

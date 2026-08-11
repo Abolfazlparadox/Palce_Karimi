@@ -561,7 +561,7 @@ msgstr ""
 " استانداردهای بین‌المللی بسته‌بندی و ارسال می‌شوند."
 
 msgid "404 - Page Not Found"
-msgstr "٤٠٤ - الصفحة غير موجودة"
+msgstr "۴۰۴ - الصفحة غير موجودة"
 
 msgid "404"
 msgstr "٤٠٤"
@@ -573,10 +573,10 @@ msgid "You may have mistyped the address or the page may have moved."
 msgstr "ربما تكون قد كتبت العنوان بشكل خاطئ أو تم نقل الصفحة."
 
 msgid "Back to Home"
-msgstr "العودة إلى الصفحة الرئيسية"
+msgstr "العودة إلى الرئيسية"
 
 msgid "500 - Internal Server Error"
-msgstr "٥٠٠ - خطأ داخلي في الخادم"
+msgstr "۵۰۰ - خطأ في الخادم الداخلي"
 
 msgid "500"
 msgstr "٥٠٠"
@@ -869,3 +869,43 @@ msgstr "منتجات ذات صلة"
 
 msgid "Category"
 msgstr "الفئة"
+
+msgid "You have sent too many messages. Please try again later."
+msgstr ""
+"لقد أرسلت عددًا كبيرًا جدًا من الرسائل. يرجى المحاولة مرة أخرى لاحقًا."
+
+msgid "Your message has been sent successfully. We will contact you soon."
+msgstr "تم ارسال رسالتك بنجاح. وسوف نتصل بك قريبا."
+
+msgid "success_contact"
+msgstr "تم ارسال رسالتك بنجاح. وسوف نتصل بك قريبا."
+
+msgid "Too many requests. Please try again later."
+msgstr "طلبات كثيرة جدا. يرجى المحاولة مرة أخرى لاحقًا."
+
+msgid "Please enter an email address."
+msgstr "يرجى إدخال البريد الإلكتروني."
+
+msgid "Thank you for subscribing to our newsletter."
+msgstr "شكرا لاشتراكك في نشرتنا الإخبارية."
+
+msgid "You are already subscribed to our email list."
+msgstr "أنت مشترك بالفعل في قائمتنا البريدية."
+
+msgid "Invalid email address. Please check and try again."
+msgstr "عنوان بريد إلكتروني غير صالح. يرجى التحقق والمحاولة مرة أخرى."
+
+msgid ""
+"Your message is too short. Please provide more details (minimum 20 "
+"characters)."
+msgstr ""
+"رسالتك قصيرة جداً. يرجى تقديم المزيد من التفاصيل (۲۰ حرفاً على الأقل)."
+
+msgid "Spam bot detected!"
+msgstr "تم اكتشاف برامج بريد عشوائي!"
+
+msgid "Phone Extension"
+msgstr "تحويلة الهاتف"
+
+msgid "Notifications"
+msgstr "الإشعارات"

@@ -568,7 +568,7 @@ msgid "09303755667"
 msgstr "09303755667"
 
 msgid "404 - Page Not Found"
-msgstr "۴۰۴ - صفحه پیدا نشد"
+msgstr "۴۰۴ - صفحه مورد نظر پیدا نشد"
 
 msgid "404"
 msgstr "۴۰۴"
@@ -886,3 +886,43 @@ msgstr "محصولات مرتبط"
 
 msgid "Category"
 msgstr "دسته‌بندی"
+
+msgid "You have sent too many messages. Please try again later."
+msgstr "تعداد پیام‌های شما بیش از حد مجاز است. لطفاً بعداً دوباره تلاش کنید."
+
+msgid "Your message has been sent successfully. We will contact you soon."
+msgstr "پیام شما با موفقیت ارسال شد. به زودی با شما تماس خواهیم گرفت."
+
+msgid "success_contact"
+msgstr "پیام شما با موفقیت ارسال شد. به زودی با شما تماس خواهیم گرفت."
+
+msgid "Too many requests. Please try again later."
+msgstr "تعداد درخواست‌ها بیش از حد مجاز است. لطفاً بعداً دوباره تلاش کنید."
+
+msgid "Please enter an email address."
+msgstr "لطفاً یک آدرس ایمیل وارد کنید."
+
+msgid "Thank you for subscribing to our newsletter."
+msgstr "با تشکر از عضویت شما در خبرنامه."
+
+msgid "You are already subscribed to our email list."
+msgstr "شما قبلاً در خبرنامه ثبت‌نام کرده‌اید."
+
+msgid "Invalid email address. Please check and try again."
+msgstr "آدرس ایمیل نامعتبر است. لطفاً بررسی و دوباره تلاش کنید."
+
+msgid ""
+"Your message is too short. Please provide more details (minimum 20 "
+"characters)."
+msgstr ""
+"متن پیام شما بسیار کوتاه است. لطفاً اطلاعات بیشتری وارد کنید (حداقل ۲۰ "
+"کاراکتر)."
+
+msgid "Spam bot detected!"
+msgstr "ربات اسپم شناسایی شد!"
+
+msgid "Phone Extension"
+msgstr "پیش‌شماره تلفن"
+
+msgid "Notifications"
+msgstr "اعلان‌ها"

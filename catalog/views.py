@@ -6,7 +6,6 @@ from django.db.models import Prefetch
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.utils.translation import gettext_lazy as _
-from django.views.decorators.http import require_POST
 from django_ratelimit.decorators import ratelimit
 from email_validator import EmailNotValidError, validate_email
 
@@ -27,7 +26,6 @@ logger = logging.getLogger(__name__)
 # Reusable prefetch sets — avoid repeating these strings across views
 # ---------------------------------------------------------------------------
 
-# Lightweight: list pages where we need images + first variant only
 _PRODUCT_LIST_PREFETCH = Prefetch(
     "images",
     queryset=ProductImage.objects.filter(is_main=True),
@@ -111,13 +109,14 @@ def about_us(request):
     return render(request, "catalog/about_us.html")
 
 
-@require_POST
-@ratelimit(key="ip", rate="5/h", method="POST", block=False) # لایه ۱: حداکثر ۵ پیام در ساعت برای هر IP
+@ratelimit(key="ip", rate="5/h", method="POST", block=False)
 def contact_us(request):
     if request.method == "POST":
-        # بررسی محدودیت زمانی (Rate Limit)
         if getattr(request, "limited", False):
-            logger.warning("Rate-limited contact attempt from IP %s", get_client_ip(request))
+            logger.warning(
+                "Rate-limited contact attempt from IP %s",
+                get_client_ip(request),
+            )
             messages.error(request, _("You have sent too many messages. Please try again later."))
             return redirect("catalog:contact_us")
 
@@ -129,16 +128,10 @@ def contact_us(request):
             msg.user_agent = request.META.get("HTTP_USER_AGENT", "")[:1000]
             msg.save()
 
-            logger.info(
-                "Contact message received from %s <%s>",
-                msg.name,
-                msg.email,
-            )
-            messages.success(request, _("success_contact"))
+            logger.info("Contact message received successfully.")
+            messages.success(request, _("Your message has been sent successfully. We will contact you soon."))
             return redirect("catalog:contact_us")
 
-        # اگر فرم نامعتبر بود (مثلاً متن کوتاه بود یا تله عسل پر شد)،
-        # جنگو فرم را به همراه ارورهایش دوباره به تمپلیت پاس می‌دهد.
     else:
         form = ContactMessageForm()
 
@@ -241,7 +234,6 @@ def category_detail(request, slug):
     return render(request, "catalog/category_detail.html", context)
 
 
-@require_POST
 @ratelimit(key="ip", rate="3/m", method="POST", block=False)
 def newsletter_subscribe(request):
     if getattr(request, "limited", False):
