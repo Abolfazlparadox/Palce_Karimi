@@ -1,4 +1,5 @@
 import csv
+
 from django.http import HttpResponse
 from django.contrib import admin
 from django.utils import timezone
@@ -7,24 +8,26 @@ from parler.admin import TranslatableAdmin
 from django.utils.html import format_html
 from django.urls import reverse, NoReverseMatch
 from django.utils.translation import gettext_lazy as _
+
 from catalog.models import (
     Category, QualityGrade, PackagingType,
-    Product, ProductVariant, TieredPrice, ProductImage, ContactMessage, ExchangeRate, NewsletterSubscriber
+    Product, ProductVariant, TieredPrice, ProductImage, ContactMessage,
+    ExchangeRate, NewsletterSubscriber,
 )
 
 # =============================================================================
-# نام‌گذاری سایت — مدیریت صادرات پالاس کریمی
+# Site Branding
 # =============================================================================
 admin.site.site_header = "پالاس کریمی — مدیریت صادرات"
 admin.site.site_title = "پالاس کریمی | پنل مدیریت"
-admin.site.index_title = "به پنل مدیریت پالاس کریمی خوش آمدید"
+admin.site.index_title = "به مدیریت پالاس کریمی خوش آمدید"
 
 
 # =============================================================================
-# میکسین‌ها — کمک‌دهنده‌های نشان وضعیت قابل استفاده مجدد
+# Mixins — Shared Helpers
 # =============================================================================
 class StatusBadgeMixin:
-    """نمایش یکسان نشان‌های وضعیت در تمام بخش‌های مدیریت"""
+    """Reusable pill-style badge renderer."""
 
     @staticmethod
     def _badge(text, bg_color, text_color, border_color=None):
@@ -38,7 +41,22 @@ class StatusBadgeMixin:
 
 
 # =============================================================================
-# اینلاین‌ها — تصاویر محصول (جدولی به سبک گالری)
+# RTL-Aware Media Injection (Language-based)
+# =============================================================================
+class RTLAdminMediaMixin:
+    """
+    Inject admin CSS/JS conditionally.
+
+    The rtl.css and admin_custom.js are loaded via
+    admin/base_site.html (template override), NOT from individual ModelAdmin
+    Media classes. This prevents RTL styles from breaking LTR languages.
+
+    See: templates/admin/base_site.html for the template implementation.
+    """
+
+
+# =============================================================================
+# Inlines — Product Images (Gallery-Style Tabular)
 # =============================================================================
 class ProductImageInline(admin.TabularInline):
     model = ProductImage
@@ -52,29 +70,29 @@ class ProductImageInline(admin.TabularInline):
     def image_preview(self, obj):
         if obj.image:
             border = '#C5A059' if obj.is_main else '#3A4F6F'
+            # اسپن ستاره را فقط برای تصویر اصلی می‌سازیم
+            if obj.is_main:
+                star_span = (
+                    ''
+                )
+            else:
+                star_span = ''
             return format_html(
                 '<div style="position:relative;width:60px;height:60px;">'
                 '<img src="{}" style="width:60px;height:60px;object-fit:cover;'
                 'border-radius:6px;border:2px solid {};box-shadow:0 2px 6px rgba(0,0,0,.12);"/>'
                 '{}</div>',
-                obj.image.url, border,
-                '<span style="position:absolute;top:-4px;right:-4px;background:#C5A059;color:#fff;'
-                'font-size:9px;font-weight:700;width:16px;height:16px;border-radius:50%;'
-                'display:flex;align-items:center;justify-content:center;">&#9733;</span>'
-                if obj.is_main else ''
+                obj.image.url, border, star_span
             )
         return format_html(
             '<span style="color:#8899AA;font-size:11px;font-style:italic;">بدون تصویر</span>'
         )
-    image_preview.short_description = _("پیش‌نمایش")
 
-    class Media:
-        css = {'all': ('admin/css/rtl.css',)}
-        js = ('admin/js/admin_custom.js',)
+    image_preview.short_description = _("پیش‌نمایش")
 
 
 # =============================================================================
-# اینلاین‌ها — گونه‌های محصول (جدول فشرده)
+# Inlines — Product Variants (Compact Table)
 # =============================================================================
 class ProductVariantInline(admin.TabularInline):
     model = ProductVariant
@@ -97,52 +115,52 @@ class ProductVariantInline(admin.TabularInline):
 
 
 # =============================================================================
-# اکشن‌های سفارشی
+# Custom Actions
 # =============================================================================
-@admin.action(description="انتشار محصولات انتخاب‌شده")
+@admin.action(description=_("انتشار محصولات انتخاب‌شده"))
 def make_published(modeladmin, request, queryset):
     updated = queryset.update(is_active=True, published_at=timezone.now())
     modeladmin.message_user(request, _("%(count)d محصول با موفقیت منتشر شد.") % {'count': updated})
 
 
-@admin.action(description="لغو انتشار محصولات انتخاب‌شده")
+@admin.action(description=_("عدم انتشار محصولات انتخاب‌شده"))
 def make_unpublished(modeladmin, request, queryset):
     updated = queryset.update(is_active=False, published_at=None)
-    modeladmin.message_user(request, _("انتشار %(count)d محصول لغو شد.") % {'count': updated})
+    modeladmin.message_user(request, _("%(count)d محصول از حالت انتشار خارج شد.") % {'count': updated})
 
 
-@admin.action(description="علامت‌گذاری پیام‌های انتخاب‌شده به عنوان خوانده‌شده")
+@admin.action(description=_("علامت‌گذاری پیام‌های انتخاب‌شده به عنوان خوانده‌شده"))
 def mark_as_read(modeladmin, request, queryset):
     updated = queryset.update(is_read=True)
     modeladmin.message_user(request, _("%(count)d پیام به عنوان خوانده‌شده علامت‌گذاری شد.") % {'count': updated})
 
 
-@admin.action(description="علامت‌گذاری پیام‌های انتخاب‌شده به عنوان خوانده‌نشده")
+@admin.action(description=_("علامت‌گذاری پیام‌های انتخاب‌شده به عنوان خوانده‌نشده"))
 def mark_as_unread(modeladmin, request, queryset):
     updated = queryset.update(is_read=False)
     modeladmin.message_user(request, _("%(count)d پیام به عنوان خوانده‌نشده علامت‌گذاری شد.") % {'count': updated})
 
 
-@admin.action(description="فعال‌سازی مشترکین انتخاب‌شده")
+@admin.action(description=_("فعال‌سازی مشترکین انتخاب‌شده"))
 def make_active(modeladmin, request, queryset):
     updated = queryset.update(is_active=True)
     modeladmin.message_user(request, _("%(count)d مشترک فعال شد.") % {'count': updated})
 
 
-@admin.action(description="غیرفعال‌سازی مشترکین انتخاب‌شده")
+@admin.action(description=_("غیرفعال‌سازی مشترکین انتخاب‌شده"))
 def make_inactive(modeladmin, request, queryset):
     updated = queryset.update(is_active=False)
     modeladmin.message_user(request, _("%(count)d مشترک غیرفعال شد.") % {'count': updated})
 
 
-@admin.action(description="خروجی CSV مشترکین انتخاب‌شده")
+@admin.action(description=_("خروجی CSV از مشترکین انتخاب‌شده"))
 def export_to_csv(modeladmin, request, queryset):
     response = HttpResponse(content_type='text/csv; charset=utf-8-sig')
     response['Content-Disposition'] = 'attachment; filename="palace_karimi_subscribers.csv"'
     writer = csv.writer(response)
-    writer.writerow(['ایمیل', 'زبان', 'آدرس IP', 'وضعیت', 'تاریخ عضویت'])
+    writer.writerow(['ایمیل', 'زبان', 'آدرس IP', 'وضعیت', 'تاریخ اشتراک'])
     for obj in queryset:
-        status = 'فعال' if obj.is_active else 'لغو عضویت'
+        status = 'فعال' if obj.is_active else 'لغو اشتراک'
         writer.writerow([
             obj.email, obj.language, obj.ip_address or '',
             status, obj.created_at.strftime("%Y-%m-%d %H:%M:%S")
@@ -151,10 +169,10 @@ def export_to_csv(modeladmin, request, queryset):
 
 
 # =============================================================================
-# مدیریت محصول — رابط اصلی مدیریت
+# Product Admin
 # =============================================================================
 @admin.register(Product)
-class ProductAdmin(TranslatableAdmin, StatusBadgeMixin):
+class ProductAdmin(TranslatableAdmin, StatusBadgeMixin, RTLAdminMediaMixin):
     list_display = (
         'main_image_thumb', 'name', 'category', 'grade',
         'status_badge', 'variant_count', 'created_at'
@@ -170,29 +188,26 @@ class ProductAdmin(TranslatableAdmin, StatusBadgeMixin):
     list_per_page = 25
     show_full_result_count = False
 
-    prepopulated_fields = {'slug': ('name',)}
-
     fieldsets = (
         (_("اطلاعات محصول (چندزبانه)"), {
             'fields': ('name', 'slug', 'short_description', 'full_description'),
             'description': _(
-                "جزئیات محصول را وارد کنید. برای مدیریت ترجمه‌ها به زبان‌های "
-                "فارسی، انگلیسی، عربی و ترکی از زبانه‌های بالای صفحه استفاده کنید."
+                "جزئیات محصول را وارد کنید. از زبانه‌های زبان برای مدیریت ترجمه‌ها "
+                "به فارسی، انگلیسی، عربی و ترکی استفاده کنید."
             ),
         }),
-        (_("دسته‌بندی B2B"), {
+        (_("طبقه‌بندی B2B"), {
             'fields': ('category', 'grade'),
             'description': _(
-                "محصول را به یک دسته (زعفران، پسته و غیره) و در صورت نیاز "
-                "به یک درجه کیفی اختصاص دهید."
+                "محصول را به یک دسته‌بندی و در صورت نیاز به یک درجه کیفیت اختصاص دهید."
             ),
         }),
-        (_("SEO — بهینه‌سازی موتورهای جستجو"), {
+        (_("سئو"), {
             'fields': ('seo_title', 'meta_description'),
             'classes': ('collapse', 'pk-collapsible'),
             'description': _(
-                "ظاهر صفحه محصول در نتایج جستجوی گوگل را بهینه کنید. "
-                "خالی گذاشتن این فیلد باعث می‌شود خودکار از نام محصول ساخته شود."
+                "ظاهر صفحه محصول را در نتایج جستجو بهینه کنید. "
+                "برای تولید خودکار از نام محصول، خالی بگذارید."
             ),
         }),
         (_("وضعیت انتشار"), {
@@ -200,18 +215,12 @@ class ProductAdmin(TranslatableAdmin, StatusBadgeMixin):
         }),
     )
 
-    class Media:
-        css = {'all': ('admin/css/rtl.css',)}
-        js = ('admin/js/admin_custom.js',)
-
     def get_queryset(self, request):
         qs = super().get_queryset(request)
         return qs.prefetch_related(
             'translations', 'images', 'variants__tiered_prices',
             'variants__packaging_type__translations'
         )
-
-    # ---- متدهای نمایش لیست ----
 
     def main_image_thumb(self, obj):
         img = obj.main_image
@@ -232,12 +241,8 @@ class ProductAdmin(TranslatableAdmin, StatusBadgeMixin):
 
     def status_badge(self, obj):
         if obj.is_active:
-            return self._badge(
-                _("منتشر شده"), '#E8F5E3', '#2E7D32', '#A5D6A7'
-            )
-        return self._badge(
-            _("پیش‌نویس"), '#FFF3E0', '#E65100', '#FFCC80'
-        )
+            return self._badge(_("منتشر شده"), '#E8F5E3', '#2E7D32', '#A5D6A7')
+        return self._badge(_("پیش‌نویس"), '#FFF3E0', '#E65100', '#FFCC80')
     status_badge.short_description = _("وضعیت")
 
     def variant_count(self, obj):
@@ -249,12 +254,14 @@ class ProductAdmin(TranslatableAdmin, StatusBadgeMixin):
         )
     variant_count.short_description = _("گونه‌ها")
 
+    def get_prepopulated_fields(self, request, obj=None):
+        return {'slug': ('name',)}
 
 # =============================================================================
-# مدیریت قیمت‌گذاری پلکانی — سطوح قیمت شفاف
+# TieredPrice Admin
 # =============================================================================
 @admin.register(TieredPrice)
-class TieredPriceAdmin(admin.ModelAdmin):
+class TieredPriceAdmin(admin.ModelAdmin, RTLAdminMediaMixin):
     list_display = (
         'product_link', 'variant_sku', 'tier_range', 'price_display'
     )
@@ -269,16 +276,11 @@ class TieredPriceAdmin(admin.ModelAdmin):
         (_("جزئیات قیمت‌گذاری"), {
             'fields': ('product_variant', 'min_qty', 'max_qty', 'price_usd'),
             'description': _(
-                "قیمت‌گذاری بر اساس تعداد سفارش برای این گونه را تعریف کنید. "
-                "برای بالاترین سطح (مثلاً ۱۰۰+) حداکثر تعداد را خالی بگذارید."
+                "قیمت‌گذاری بر اساس مقدار را برای این گونه تعریف کنید. "
+                "برای بالاترین سطح (مثلاً ۱۰۰+)، حداکثر تعداد را خالی بگذارید."
             ),
         }),
     )
-    readonly_fields = ('tier_range_inline',)
-
-    class Media:
-        css = {'all': ('admin/css/rtl.css',)}
-        js = ('admin/js/admin_custom.js',)
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
@@ -299,7 +301,6 @@ class TieredPriceAdmin(admin.ModelAdmin):
         except NoReverseMatch:
             return format_html('<span style="font-weight:600;">{}</span>', name)
     product_link.short_description = _("محصول")
-    product_link.admin_order_field = 'product_variant__product'
 
     def variant_sku(self, obj):
         return format_html(
@@ -307,53 +308,40 @@ class TieredPriceAdmin(admin.ModelAdmin):
             'border-radius:4px;font-size:12px;">{}</code>',
             obj.product_variant.sku
         )
-    variant_sku.short_description = _("کد محصول")
-    variant_sku.admin_order_field = 'product_variant__sku'
+    variant_sku.short_description = _("کد انبار")
 
     def tier_range(self, obj):
         if obj.max_qty:
             return format_html(
-                '<span style="font-weight:600;color:#E8E2D8;">'
+                '<span style="font-weight:600;">'
                 '<span style="color:#8899AA;">{}</span>'
                 ' &mdash; '
                 '<span style="color:#8899AA;">{}</span></span>',
                 obj.min_qty, obj.max_qty
             )
         return format_html(
-            '<span style="font-weight:600;color:#E8E2D8;">'
+            '<span style="font-weight:600;">'
             '<span style="color:#8899AA;">{}</span>+</span>',
             obj.min_qty
         )
     tier_range.short_description = _("بازه تعداد")
-    tier_range.admin_order_field = 'min_qty'
 
     def price_display(self, obj):
         return format_html(
-            '<span style="color:#C5A059;font-weight:700;font-size:14px;">'
-            '${}</span>',
+            '<span style="color:#C5A059;font-weight:700;font-size:14px;">${}</span>',
             obj.price_usd
         )
     price_display.short_description = _("قیمت (دلار)")
 
-    def tier_range_inline(self, obj):
-        """نمایش فقط خواندنی بازه تعداد در فرم تغییر"""
-        return self.tier_range(obj)
-    tier_range_inline.short_description = _("بازه تعداد")
-
 
 # =============================================================================
-# مدیریت دسته‌بندی
+# Category Admin
 # =============================================================================
 @admin.register(Category)
-class CategoryAdmin(TranslatableAdmin, StatusBadgeMixin):
+class CategoryAdmin(TranslatableAdmin, StatusBadgeMixin, RTLAdminMediaMixin):
     list_display = ('name', 'slug', 'product_count', 'status_badge')
     list_filter = ('is_active',)
     search_fields = ('translations__name', 'translations__slug')
-    prepopulated_fields = {'slug': ('name',)}
-
-    class Media:
-        css = {'all': ('admin/css/rtl.css',)}
-        js = ('admin/js/admin_custom.js',)
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
@@ -372,18 +360,16 @@ class CategoryAdmin(TranslatableAdmin, StatusBadgeMixin):
         return self._badge(_("غیرفعال"), '#FFF3E0', '#E65100', '#FFCC80')
     status_badge.short_description = _("وضعیت")
 
+    def get_prepopulated_fields(self, request, obj=None):
+        return {'slug': ('name',)}
 
 # =============================================================================
-# مدیریت درجه کیفی
+# QualityGrade Admin
 # =============================================================================
 @admin.register(QualityGrade)
-class QualityGradeAdmin(TranslatableAdmin):
+class QualityGradeAdmin(TranslatableAdmin, RTLAdminMediaMixin):
     list_display = ('name', 'product_count')
     search_fields = ('translations__name',)
-
-    class Media:
-        css = {'all': ('admin/css/rtl.css',)}
-        js = ('admin/js/admin_custom.js',)
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
@@ -398,16 +384,12 @@ class QualityGradeAdmin(TranslatableAdmin):
 
 
 # =============================================================================
-# مدیریت نوع بسته‌بندی
+# PackagingType Admin
 # =============================================================================
 @admin.register(PackagingType)
-class PackagingTypeAdmin(TranslatableAdmin):
+class PackagingTypeAdmin(TranslatableAdmin, RTLAdminMediaMixin):
     list_display = ('name', 'variant_count')
     search_fields = ('translations__name',)
-
-    class Media:
-        css = {'all': ('admin/css/rtl.css',)}
-        js = ('admin/js/admin_custom.js',)
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
@@ -422,10 +404,10 @@ class PackagingTypeAdmin(TranslatableAdmin):
 
 
 # =============================================================================
-# مدیریت پیام‌های تماس — به سبک صندوق ورودی
+# ContactMessage Admin
 # =============================================================================
 @admin.register(ContactMessage)
-class ContactMessageAdmin(admin.ModelAdmin, StatusBadgeMixin):
+class ContactMessageAdmin(admin.ModelAdmin, StatusBadgeMixin, RTLAdminMediaMixin):
     list_display = (
         'read_status_badge', 'sender_name', 'subject_preview',
         'sender_email', 'created_at'
@@ -434,8 +416,7 @@ class ContactMessageAdmin(admin.ModelAdmin, StatusBadgeMixin):
     search_fields = ('name', 'email', 'subject', 'message')
     readonly_fields = (
         'name', 'email', 'subject', 'message',
-        'created_at', 'ip_address', 'user_agent',
-        'is_read'
+        'created_at', 'ip_address', 'user_agent', 'is_read'
     )
     actions = [mark_as_read, mark_as_unread]
     ordering = ('-created_at',)
@@ -443,7 +424,7 @@ class ContactMessageAdmin(admin.ModelAdmin, StatusBadgeMixin):
     date_hierarchy = 'created_at'
 
     fieldsets = (
-        (_("متن پیام"), {
+        (_("محتوای پیام"), {
             'fields': ('subject', 'message'),
             'classes': ('pk-wide-field',),
         }),
@@ -457,15 +438,9 @@ class ContactMessageAdmin(admin.ModelAdmin, StatusBadgeMixin):
         }),
     )
 
-    class Media:
-        css = {'all': ('admin/css/rtl.css',)}
-        js = ('admin/js/admin_custom.js',)
-
-    # ---- متدهای نمایش لیست ----
-
     def read_status_badge(self, obj):
         if obj.is_read:
-            return self._badge(_("خوانده شده"), '#E8F5E3', '#2E7D32', '#A5D6A7')
+            return self._badge(_("خوانده‌شده"), '#E8F5E3', '#2E7D32', '#A5D6A7')
         return self._badge(_("جدید"), '#FFF8E1', '#F57F17', '#FFE082')
     read_status_badge.short_description = _("وضعیت")
 
@@ -500,11 +475,11 @@ class ContactMessageAdmin(admin.ModelAdmin, StatusBadgeMixin):
 
 
 # =============================================================================
-# مدیریت نرخ ارز
+# ExchangeRate Admin
 # =============================================================================
 @admin.register(ExchangeRate)
-class ExchangeRateAdmin(admin.ModelAdmin):
-    list_display = ('currency_flag', 'currency_name', 'rate_display', 'updated_at')
+class ExchangeRateAdmin(admin.ModelAdmin, RTLAdminMediaMixin):
+    list_display = ('currency_flag', 'currency_name', 'rate', 'updated_at')
     list_editable = ('rate',)
     ordering = ('currency',)
 
@@ -516,28 +491,22 @@ class ExchangeRateAdmin(admin.ModelAdmin):
         'IRR': {'flag': '🇮🇷', 'name': 'ریال ایران'},
     }
 
-    class Media:
-        css = {'all': ('admin/css/rtl.css',)}
-        js = ('admin/js/admin_custom.js',)
-
     def currency_flag(self, obj):
         meta = self.CURRENCY_META.get(obj.currency, {})
-        flag = meta.get('flag', '💱')
         return format_html(
-            '<span style="font-size:20px;line-height:1;">{}</span>', flag
+            '<span style="font-size:20px;line-height:1;">{}</span>',
+            meta.get('flag', '💱')
         )
     currency_flag.short_description = ""
 
     def currency_name(self, obj):
         meta = self.CURRENCY_META.get(obj.currency, {})
-        name = meta.get('name', obj.get_currency_display())
-        code = obj.currency
         return format_html(
             '<div>'
             '<span style="font-weight:700;color:#E8E2D8;">{}</span>'
             '<br><span style="color:#8899AA;font-size:11px;">{}</span>'
             '</div>',
-            name, code
+            meta.get('name', obj.get_currency_display()), obj.currency
         )
     currency_name.short_description = _("ارز")
 
@@ -551,10 +520,10 @@ class ExchangeRateAdmin(admin.ModelAdmin):
 
 
 # =============================================================================
-# مدیریت مشترکین خبرنامه
+# NewsletterSubscriber Admin
 # =============================================================================
 @admin.register(NewsletterSubscriber)
-class NewsletterSubscriberAdmin(admin.ModelAdmin, StatusBadgeMixin):
+class NewsletterSubscriberAdmin(admin.ModelAdmin, StatusBadgeMixin, RTLAdminMediaMixin):
     list_display = ('email', 'language_display', 'status_badge', 'created_at')
     list_filter = ('is_active', 'language', 'created_at')
     search_fields = ('email', 'ip_address')
@@ -565,22 +534,18 @@ class NewsletterSubscriberAdmin(admin.ModelAdmin, StatusBadgeMixin):
     actions = [make_active, make_inactive, export_to_csv]
     ordering = ('-created_at',)
 
-    class Media:
-        css = {'all': ('admin/css/rtl.css',)}
-        js = ('admin/js/admin_custom.js',)
-
     def status_badge(self, obj):
         if obj.is_active:
             return self._badge(_("فعال"), '#E8F5E3', '#2E7D32', '#A5D6A7')
-        return self._badge(_("لغو عضویت"), '#FFEBEE', '#C62828', '#EF9A9A')
+        return self._badge(_("لغو اشتراک"), '#FFEBEE', '#C62828', '#EF9A9A')
     status_badge.short_description = _("وضعیت")
 
     def language_display(self, obj):
         lang_map = {
-            'fa': '🇮🇷 فارسی',
-            'en': '🇬🇧 انگلیسی',
-            'ar': '🇸🇦 عربی',
-            'tr': '🇹🇷 ترکی',
+            'fa': 'فارسی',
+            'en': 'انگلیسی',
+            'ar': 'عربی',
+            'tr': 'ترکی',
         }
         display = lang_map.get(obj.language, obj.language.upper() if obj.language else '—')
         return format_html(

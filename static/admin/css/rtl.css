@@ -1,114 +1,205 @@
 /* ==========================================================================
-   Palace Karimi — Premium Export Admin Theme
-   Deep Navy + Saffron Gold | RTL/LTR Aware | Dark & Light Mode
+   Palace Karimi — Export Admin Theme  (v2 — corrected & simplified)
+   Purple (primary) + Pistachio (accent, used sparingly) | RTL aware
+
+   FIXES vs. previous version
+   ---------------------------------------------------------------------
+   1) THEME SWITCH WAS NEVER WORKING
+      The old file waited for a class "theme-light" on <body>. Django's
+      built-in theme button (theme.js / dark_mode.css, the same files
+      already linked in the page <head>) does not add that class — it
+      sets an attribute on <html>, e.g. <html data-theme="dark">,
+      <html data-theme="light"> or <html data-theme="auto">. Because that
+      class never appeared, the page was ALWAYS rendered with the dark
+      token set, no matter what the toggle showed. That is why the
+      "light" screenshot still looked black, and why <select> boxes
+      (rendered by Select2, a separate widget) stayed unstyled/black.
+      This file now keys off html[data-theme] exactly like Django does,
+      with a matching prefers-color-scheme fallback for "auto".
+
+   2) TOO MANY COMPETING COLORS
+      The old file used purple, pistachio, burgundy and blue all at once
+      on the same screen (sidebar caption, active row, links, badges,
+      helper icons, SKU codes…). It reads as noisy/unprofessional.
+      This version uses ONE accent color for interactive elements
+      (links, active states, buttons, focus rings) and keeps everything
+      else — text, borders, surfaces — on a calm neutral gray scale.
+      Pistachio is now reserved for: focus rings, success state and the
+      primary "save" button only. Burgundy/blue accents were removed
+      from everyday UI and kept only for semantic alerts.
+
+   3) SELECT2 / AUTOCOMPLETE WIDGETS
+      Native <select> theming doesn't reach Select2's generated markup,
+      which is why dropdowns stayed black. Select2 is now themed to
+      match the regular inputs in both modes.
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   1. Design Tokens — Dark Mode (Default)
+   1. Design Tokens — LIGHT (default)
    -------------------------------------------------------------------------- */
 :root {
-  /* Brand Palette */
-  --pk-navy:           #1B2A4A;
-  --pk-navy-deep:      #0F1B32;
-  --pk-navy-light:     #2A3F6A;
-  --pk-navy-muted:     #3A4F6F;
+  /* Brand */
+  --pk-primary:           #6631A1;   /* deep purple — the ONE interactive accent */
+  --pk-primary-hover:     #542785;
+  --pk-primary-soft:      #F1EBF9;   /* faint tint for hover/active backgrounds */
+  --pk-primary-contrast:  #FFFFFF;   /* text color placed ON TOP of --pk-primary */
 
-  --pk-gold:           #C5A059;
-  --pk-gold-light:     #D4B76A;
-  --pk-gold-dark:       #A88640;
-  --pk-gold-subtle:     rgba(197, 160, 89, 0.15);
+  --pk-accent:            #8FB84A;   /* pistachio, darkened for AA contrast on white */
+  --pk-accent-soft:       #EEF4E2;
 
-  --pk-olive:          #6B7C4F;
-  --pk-olive-light:    #8B9A6B;
-  --pk-olive-subtle:   rgba(107, 124, 79, 0.15);
+  /* Semantic (alerts / badges only) */
+  --pk-success:           #3F7D3A;
+  --pk-success-bg:        #EAF5E8;
+  --pk-success-border:    #B9DDB2;
 
-  --pk-cream:          #FAF6F0;
-  --pk-cream-dark:      #F0EBE3;
+  --pk-warning:           #92660E;
+  --pk-warning-bg:        #FBF1DD;
+  --pk-warning-border:    #E9C77E;
 
-  /* Semantic Colors */
-  --pk-success:        #2E7D32;
-  --pk-success-bg:     #E8F5E3;
-  --pk-success-border: #A5D6A7;
+  --pk-danger:            #A23B45;
+  --pk-danger-bg:         #FBEBEC;
+  --pk-danger-border:     #E7AFB4;
 
-  --pk-warning:        #E65100;
-  --pk-warning-bg:     #FFF3E0;
-  --pk-warning-border: #FFCC80;
+  --pk-info:              #33588F;
+  --pk-info-bg:           #EAF1FB;
+  --pk-info-border:       #AFC7E7;
 
-  --pk-danger:         #C62828;
-  --pk-danger-bg:      #FFEBEE;
-  --pk-danger-border:  #EF9A9A;
+  /* Neutral surfaces */
+  --pk-bg-main:           #F7F7F9;
+  --pk-bg-surface:        #FFFFFF;
+  --pk-bg-elevated:       #FBFBFC;
+  --pk-bg-hover:          #F2F1F5;
+  --pk-bg-row-alt:        #FAFAFB;
+  --pk-bg-input:          #FFFFFF;
+  --pk-bg-sidebar:        #FFFFFF;
 
-  --pk-info:            #1565C0;
-  --pk-info-bg:         #E3F2FD;
-  --pk-info-border:     #90CAF9;
+  /* Neutral text */
+  --pk-text-primary:      #201A26;
+  --pk-text-secondary:    #5B5563;
+  --pk-text-muted:        #8B8593;
+  --pk-text-on-primary:   #FFFFFF;
 
-  /* Dark Mode Surfaces */
-  --pk-bg-main:         #0A1628;
-  --pk-bg-surface:      #111D33;
-  --pk-bg-elevated:     #172640;
-  --pk-bg-hover:        #1E3048;
-  --pk-bg-row-alt:      #0E1C30;
-  --pk-bg-input:        #13213B;
+  /* Borders */
+  --pk-border:            #E4E2E8;
+  --pk-border-input:      #D6D3DC;
+  --pk-border-strong:     #C9C5D1;
 
-  /* Dark Mode Text */
-  --pk-text-primary:    #F0EBE3;
-  --pk-text-secondary:  #C8C0B4;
-  --pk-text-muted:      #7A8899;
-  --pk-text-accent:     #C5A059;
-
-  /* Dark Mode Borders */
-  --pk-border:          #1E3048;
-  --pk-border-input:    #2A3F5A;
-  --pk-border-gold:     rgba(197, 160, 89, 0.25);
-
-  /* Spacing & Radius */
-  --pk-radius-sm:      6px;
-  --pk-radius-md:      10px;
-  --pk-radius-lg:      14px;
-  --pk-radius-pill:     50px;
+  /* Radius / spacing */
+  --pk-radius-sm:         6px;
+  --pk-radius-md:         10px;
+  --pk-radius-lg:         12px;
+  --pk-radius-pill:       50px;
 
   /* Shadows */
-  --pk-shadow-sm:      0 1px 3px rgba(0,0,0,.2);
-  --pk-shadow-md:      0 4px 12px rgba(0,0,0,.25);
-  --pk-shadow-lg:      0 8px 24px rgba(0,0,0,.3);
+  --pk-shadow-sm:         0 1px 2px rgba(30, 20, 45, .05);
+  --pk-shadow-md:         0 4px 14px rgba(30, 20, 45, .08);
+  --pk-shadow-lg:         0 10px 28px rgba(30, 20, 45, .14);
 
-  /* Transitions */
-  --pk-transition:      0.2s ease;
-  --pk-transition-slow: 0.35s ease;
+  /* Motion */
+  --pk-transition:        0.15s ease;
+  --pk-transition-slow:   0.3s ease;
 }
 
 /* --------------------------------------------------------------------------
-   2. Light Mode Tokens
+   2. Design Tokens — DARK
+   Matches Django's real toggle: html[data-theme="dark"], and the "auto"
+   state when the OS is in dark mode.
    -------------------------------------------------------------------------- */
-body.theme-light {
-  --pk-bg-main:         #FAF6F0;
-  --pk-bg-surface:      #FFFFFF;
-  --pk-bg-elevated:     #F5F0E8;
-  --pk-bg-hover:        #EDE7DB;
-  --pk-bg-row-alt:      #F8F4EE;
-  --pk-bg-input:        #FFFFFF;
+html[data-theme="dark"],
+html[data-theme="auto"] {
+  @media (prefers-color-scheme: dark) {
+    --pk-primary:           #B49CDD;   /* lighter purple keeps AA contrast on dark bg */
+    --pk-primary-hover:     #C7B4E6;
+    --pk-primary-soft:      #2C2438;
+    --pk-primary-contrast:  #201535;
 
-  --pk-text-primary:    #1B2A4A;
-  --pk-text-secondary:  #3A4F6F;
-  --pk-text-muted:      #7A8899;
-  --pk-text-accent:     #A88640;
+    --pk-accent:            #BDD674;
+    --pk-accent-soft:       #2B331C;
 
-  --pk-border:          #E0D8CC;
-  --pk-border-input:    #D0C8BC;
-  --pk-border-gold:     rgba(168, 134, 64, 0.25);
+    --pk-success:           #9BC97C;
+    --pk-success-bg:        #26331F;
+    --pk-success-border:    #47613A;
 
-  --pk-shadow-sm:      0 1px 3px rgba(0,0,0,.06);
-  --pk-shadow-md:      0 4px 12px rgba(0,0,0,.08);
-  --pk-shadow-lg:      0 8px 24px rgba(0,0,0,.1);
+    --pk-warning:           #E3B563;
+    --pk-warning-bg:        #392E1A;
+    --pk-warning-border:    #6B5326;
+
+    --pk-danger:            #E28D95;
+    --pk-danger-bg:         #3A2226;
+    --pk-danger-border:     #6B3941;
+
+    --pk-info:              #90AEDE;
+    --pk-info-bg:           #1E2A3D;
+    --pk-info-border:       #3C567F;
+
+    --pk-bg-main:           #17141C;
+    --pk-bg-surface:        #1E1A24;
+    --pk-bg-elevated:       #241F2B;
+    --pk-bg-hover:          #2A2532;
+    --pk-bg-row-alt:        #1B1720;
+    --pk-bg-input:          #211C29;
+    --pk-bg-sidebar:        #1B1720;
+
+    --pk-text-primary:      #F1EEF4;
+    --pk-text-secondary:    #C2BCCA;
+    --pk-text-muted:        #8D8695;
+    --pk-text-on-primary:   #201535;
+
+    --pk-border:            #34303C;
+    --pk-border-input:      #3A3542;
+    --pk-border-strong:     #454049;
+
+    --pk-shadow-sm:         0 1px 3px rgba(0,0,0,.35);
+    --pk-shadow-md:         0 4px 14px rgba(0,0,0,.4);
+    --pk-shadow-lg:         0 10px 28px rgba(0,0,0,.5);
+  }
 }
 
-body.theme-light a:link,
-body.theme-light a:visited {
-  color: var(--pk-navy) !important;
-}
-body.theme-light a:hover,
-body.theme-light a:active {
-  color: var(--pk-gold) !important;
+html[data-theme="dark"] {
+  --pk-primary:           #B49CDD;
+  --pk-primary-hover:     #C7B4E6;
+  --pk-primary-soft:      #2C2438;
+  --pk-primary-contrast:  #201535;
+
+  --pk-accent:            #BDD674;
+  --pk-accent-soft:       #2B331C;
+
+  --pk-success:           #9BC97C;
+  --pk-success-bg:        #26331F;
+  --pk-success-border:    #47613A;
+
+  --pk-warning:           #E3B563;
+  --pk-warning-bg:        #392E1A;
+  --pk-warning-border:    #6B5326;
+
+  --pk-danger:            #E28D95;
+  --pk-danger-bg:         #3A2226;
+  --pk-danger-border:     #6B3941;
+
+  --pk-info:              #90AEDE;
+  --pk-info-bg:           #1E2A3D;
+  --pk-info-border:       #3C567F;
+
+  --pk-bg-main:           #17141C;
+  --pk-bg-surface:        #1E1A24;
+  --pk-bg-elevated:       #241F2B;
+  --pk-bg-hover:          #2A2532;
+  --pk-bg-row-alt:        #1B1720;
+  --pk-bg-input:          #211C29;
+  --pk-bg-sidebar:        #1B1720;
+
+  --pk-text-primary:      #F1EEF4;
+  --pk-text-secondary:    #C2BCCA;
+  --pk-text-muted:        #8D8695;
+  --pk-text-on-primary:   #201535;
+
+  --pk-border:            #34303C;
+  --pk-border-input:      #3A3542;
+  --pk-border-strong:     #454049;
+
+  --pk-shadow-sm:         0 1px 3px rgba(0,0,0,.35);
+  --pk-shadow-md:         0 4px 14px rgba(0,0,0,.4);
+  --pk-shadow-lg:         0 10px 28px rgba(0,0,0,.5);
 }
 
 /* --------------------------------------------------------------------------
@@ -129,48 +220,39 @@ html, body {
   line-height: 1.7;
   margin: 0;
   padding: 0;
+  transition: background-color var(--pk-transition-slow), color var(--pk-transition-slow);
 }
 
-a:link,
-a:visited {
-  color: var(--pk-gold) !important;
+a:link, a:visited {
+  color: var(--pk-primary) !important;
   text-decoration: none !important;
   transition: color var(--pk-transition);
 }
-a:hover, a:active {
-  color: var(--pk-gold-light) !important;
-}
+a:hover, a:active { color: var(--pk-primary-hover) !important; }
 
-::selection {
-  background: var(--pk-gold);
-  color: var(--pk-navy-deep);
-}
+::selection { background: var(--pk-primary); color: var(--pk-primary-contrast); }
 
 /* --------------------------------------------------------------------------
-   4. Header — Branding Bar
+   4. Header
    -------------------------------------------------------------------------- */
 #header {
   background: var(--pk-bg-surface) !important;
   color: var(--pk-text-primary) !important;
-  border-bottom: 3px solid var(--pk-gold) !important;
+  border-bottom: 1px solid var(--pk-border) !important;
   padding: 12px 24px !important;
-  box-shadow: var(--pk-shadow-md);
+  box-shadow: var(--pk-shadow-sm);
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
 }
 
-#branding h1 {
-  font-size: 17px !important;
-  font-weight: 800 !important;
+#branding h1,
+#site-name a {
+  font-size: 16px !important;
+  font-weight: 700 !important;
   margin: 0 !important;
   color: var(--pk-text-primary) !important;
-  letter-spacing: -0.3px;
-}
-
-#branding h1 a:link,
-#branding h1 a:visited {
-  color: var(--pk-text-primary) !important;
+  letter-spacing: -0.2px;
 }
 
 #user-tools {
@@ -178,77 +260,82 @@ a:hover, a:active {
   color: var(--pk-text-muted) !important;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
+#user-tools strong { color: var(--pk-text-primary) !important; }
+
 #user-tools a {
-  background: var(--pk-bg-elevated) !important;
-  color: var(--pk-text-primary) !important;
-  padding: 5px 12px !important;
+  background: transparent !important;
+  color: var(--pk-text-secondary) !important;
+  padding: 5px 10px !important;
   border-radius: var(--pk-radius-sm) !important;
   border: 1px solid var(--pk-border) !important;
-  font-weight: 600 !important;
+  font-weight: 500 !important;
   transition: all var(--pk-transition);
 }
 
 #user-tools a:hover {
-  background: var(--pk-gold) !important;
-  color: var(--pk-navy-deep) !important;
-  border-color: var(--pk-gold) !important;
+  background: var(--pk-bg-hover) !important;
+  color: var(--pk-primary) !important;
+  border-color: var(--pk-border-strong) !important;
 }
 
-/* Theme Toggle Button */
-#pk-theme-toggle {
-  background: var(--pk-bg-elevated) !important;
+/* Native Django theme toggle button */
+.theme-toggle {
+  background: transparent !important;
   border: 1px solid var(--pk-border) !important;
-  color: var(--pk-gold) !important;
-  padding: 5px 10px !important;
+  color: var(--pk-text-secondary) !important;
   border-radius: var(--pk-radius-sm) !important;
+  padding: 5px 8px !important;
   cursor: pointer !important;
-  font-size: 16px !important;
-  line-height: 1 !important;
   transition: all var(--pk-transition);
-  margin-inline-start: 6px;
 }
-#pk-theme-toggle:hover {
-  background: var(--pk-gold) !important;
-  color: var(--pk-navy-deep) !important;
-  border-color: var(--pk-gold) !important;
+.theme-toggle:hover {
+  border-color: var(--pk-border-strong) !important;
+  color: var(--pk-primary) !important;
 }
+.theme-toggle svg { fill: currentColor; }
 
 /* --------------------------------------------------------------------------
    5. Breadcrumbs
    -------------------------------------------------------------------------- */
 div.breadcrumbs {
-  background: var(--pk-bg-surface) !important;
+  background: var(--pk-bg-main) !important;
   border-bottom: 1px solid var(--pk-border) !important;
-  padding: 8px 24px !important;
+  padding: 10px 24px !important;
   font-size: 12px !important;
   color: var(--pk-text-muted) !important;
 }
-div.breadcrumbs a {
-  color: var(--pk-gold) !important;
-  font-weight: 600 !important;
-}
+div.breadcrumbs a { color: var(--pk-text-secondary) !important; font-weight: 500 !important; }
+div.breadcrumbs a:hover { color: var(--pk-primary) !important; }
 
 /* --------------------------------------------------------------------------
-   6. Sidebar Navigation
+   6. Sidebar Navigation — single accent, no rainbow
    -------------------------------------------------------------------------- */
 #nav-sidebar {
-  background-color: var(--pk-bg-surface) !important;
+  background-color: var(--pk-bg-sidebar) !important;
   border-inline-end: 1px solid var(--pk-border) !important;
 }
 
+#nav-filter {
+  background: var(--pk-bg-input) !important;
+  color: var(--pk-text-primary) !important;
+  border: 1px solid var(--pk-border-input) !important;
+  border-radius: var(--pk-radius-sm) !important;
+}
+
 .nav-sidebar .module caption,
-.nav-sidebar .module h2 {
+.nav-sidebar .module h2,
+.nav-sidebar .module caption .section {
   background: transparent !important;
-  color: var(--pk-gold) !important;
-  font-size: 11.5px !important;
-  font-weight: 800 !important;
-  padding: 12px 16px 6px 16px !important;
+  color: var(--pk-text-muted) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  padding: 16px 16px 6px 16px !important;
   border: none !important;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.6px;
   text-align: start !important;
 }
 
@@ -256,23 +343,30 @@ div.breadcrumbs a {
 .nav-sidebar tr th a:visited {
   color: var(--pk-text-secondary) !important;
   font-size: 13px !important;
-  padding: 8px 16px !important;
+  font-weight: 500 !important;
+  padding: 8px 14px !important;
   display: block !important;
   border-radius: var(--pk-radius-sm) !important;
-  margin: 2px 6px;
+  margin: 1px 8px;
   transition: all var(--pk-transition);
 }
 
 .nav-sidebar tr:hover th a {
   background-color: var(--pk-bg-hover) !important;
-  color: var(--pk-gold) !important;
+  color: var(--pk-text-primary) !important;
 }
 
 .nav-sidebar tr.current-model th a {
-  background-color: var(--pk-gold) !important;
-  color: var(--pk-navy-deep) !important;
+  background-color: var(--pk-primary-soft) !important;
+  color: var(--pk-primary) !important;
   font-weight: 700 !important;
 }
+
+.nav-sidebar td a.addlink {
+  color: var(--pk-text-muted) !important;
+  font-size: 12px !important;
+}
+.nav-sidebar td a.addlink:hover { color: var(--pk-primary) !important; }
 
 /* --------------------------------------------------------------------------
    7. Content Area & Dashboard Cards
@@ -288,7 +382,7 @@ div.breadcrumbs a {
   border: 1px solid var(--pk-border) !important;
   border-radius: var(--pk-radius-lg) !important;
   box-shadow: var(--pk-shadow-sm) !important;
-  margin-bottom: 20px !important;
+  margin-bottom: 18px !important;
   overflow: hidden;
 }
 
@@ -296,31 +390,21 @@ div.breadcrumbs a {
 .module h2 {
   background: var(--pk-bg-elevated) !important;
   color: var(--pk-text-primary) !important;
-  font-size: 13.5px !important;
+  font-size: 13px !important;
   font-weight: 700 !important;
   padding: 11px 18px !important;
-  border-bottom: 2px solid var(--pk-gold) !important;
+  border-bottom: 1px solid var(--pk-border) !important;
   text-align: start !important;
 }
 
-.dashboard .module table {
-  width: 100% !important;
-  border-collapse: collapse !important;
-}
+.dashboard .module table { width: 100% !important; border-collapse: collapse !important; }
 
 .dashboard .module tr {
   background: var(--pk-bg-surface) !important;
   border-bottom: 1px solid var(--pk-border) !important;
-  transition: background-color var(--pk-transition);
 }
-
-.dashboard .module tr:nth-child(even) {
-  background-color: var(--pk-bg-row-alt) !important;
-}
-
-.dashboard .module tr:hover {
-  background-color: var(--pk-bg-hover) !important;
-}
+.dashboard .module tr:nth-child(even) { background-color: var(--pk-bg-row-alt) !important; }
+.dashboard .module tr:hover { background-color: var(--pk-bg-hover) !important; }
 
 .dashboard .module td,
 .dashboard .module th {
@@ -331,35 +415,21 @@ div.breadcrumbs a {
   border-bottom: 1px solid var(--pk-border) !important;
 }
 
-/* Dashboard Action Links */
-.dashboard .module td a.changelink {
-  background: var(--pk-bg-elevated) !important;
-  color: var(--pk-gold) !important;
-  padding: 5px 12px !important;
-  border-radius: var(--pk-radius-sm) !important;
-  border: 1px solid var(--pk-border-gold) !important;
-  font-weight: 700 !important;
-  display: inline-block;
-  transition: all var(--pk-transition);
-}
-.dashboard .module td a.changelink:hover {
-  background: var(--pk-gold) !important;
-  color: var(--pk-navy-deep) !important;
-}
-
+.dashboard .module td a.changelink,
 .dashboard .module td a.addlink {
-  background: var(--pk-gold-subtle) !important;
-  color: var(--pk-gold) !important;
-  padding: 5px 12px !important;
+  background: transparent !important;
+  color: var(--pk-primary) !important;
+  padding: 4px 10px !important;
   border-radius: var(--pk-radius-sm) !important;
-  border: 1px solid var(--pk-gold) !important;
-  font-weight: 700 !important;
+  border: 1px solid var(--pk-border) !important;
+  font-weight: 600 !important;
   display: inline-block;
   transition: all var(--pk-transition);
 }
+.dashboard .module td a.changelink:hover,
 .dashboard .module td a.addlink:hover {
-  background: var(--pk-gold) !important;
-  color: var(--pk-navy-deep) !important;
+  background: var(--pk-primary-soft) !important;
+  border-color: var(--pk-primary) !important;
 }
 
 /* Recent Actions Panel */
@@ -376,15 +446,15 @@ div.breadcrumbs a {
 #recent-actions-module h2 {
   background: var(--pk-bg-elevated) !important;
   color: var(--pk-text-primary) !important;
-  font-size: 13.5px !important;
+  font-size: 13px !important;
   font-weight: 700 !important;
   padding: 11px 18px !important;
-  border-bottom: 2px solid var(--pk-gold) !important;
+  border-bottom: 1px solid var(--pk-border) !important;
 }
 
 #recent-actions-module ul.actionlist {
   background: var(--pk-bg-surface) !important;
-  padding: 10px 18px !important;
+  padding: 8px 18px !important;
   margin: 0 !important;
   list-style: none !important;
 }
@@ -396,16 +466,9 @@ div.breadcrumbs a {
   font-size: 12.5px !important;
   background: transparent !important;
 }
-
-#recent-actions-module li a {
-  color: var(--pk-gold) !important;
-  font-weight: 700 !important;
-}
-
-#recent-actions-module li .mini {
-  color: var(--pk-text-muted) !important;
-  font-weight: 500;
-}
+#recent-actions-module li:last-child { border-bottom: none !important; }
+#recent-actions-module li a { color: var(--pk-text-primary) !important; font-weight: 600 !important; }
+#recent-actions-module li .mini { color: var(--pk-text-muted) !important; font-weight: 400; }
 
 /* --------------------------------------------------------------------------
    8. Change List — Data Tables
@@ -423,15 +486,11 @@ div.breadcrumbs a {
   padding: 12px 18px !important;
 }
 
-#changelist-search {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+#changelist-search { display: flex; align-items: center; gap: 8px; }
 
 #changelist-search input[type="text"] {
   background: var(--pk-bg-input) !important;
-  border: 1.5px solid var(--pk-border-input) !important;
+  border: 1px solid var(--pk-border-input) !important;
   border-radius: var(--pk-radius-sm) !important;
   padding: 7px 12px !important;
   font-size: 13px !important;
@@ -439,65 +498,44 @@ div.breadcrumbs a {
   width: 260px;
   transition: all var(--pk-transition);
 }
-
 #changelist-search input[type="text"]:focus {
-  border-color: var(--pk-gold) !important;
-  box-shadow: 0 0 0 3px var(--pk-gold-subtle) !important;
+  border-color: var(--pk-primary) !important;
+  box-shadow: 0 0 0 3px var(--pk-primary-soft) !important;
   outline: none !important;
 }
 
 #changelist-search input[type="submit"] {
-  background: var(--pk-gold) !important;
-  color: var(--pk-navy-deep) !important;
+  background: var(--pk-primary) !important;
+  color: var(--pk-primary-contrast) !important;
   border: none !important;
   border-radius: var(--pk-radius-sm) !important;
-  padding: 7px 18px !important;
-  font-weight: 700 !important;
+  padding: 7px 16px !important;
+  font-weight: 600 !important;
   cursor: pointer;
   transition: all var(--pk-transition);
 }
-#changelist-search input[type="submit"]:hover {
-  background: var(--pk-gold-light) !important;
-}
+#changelist-search input[type="submit"]:hover { background: var(--pk-primary-hover) !important; }
 
-/* Change List Table */
-#changelist table {
-  width: 100% !important;
-  border-collapse: collapse !important;
-}
+#changelist table { width: 100% !important; border-collapse: collapse !important; }
 
 #changelist table thead th {
   background: var(--pk-bg-elevated) !important;
-  color: var(--pk-text-primary) !important;
-  font-size: 12px !important;
+  color: var(--pk-text-secondary) !important;
+  font-size: 11.5px !important;
   font-weight: 700 !important;
   padding: 11px 14px !important;
-  border-bottom: 2px solid var(--pk-gold) !important;
+  border-bottom: 1px solid var(--pk-border) !important;
   text-align: start !important;
   text-transform: uppercase;
   letter-spacing: 0.3px;
   white-space: nowrap;
 }
+#changelist table thead th a { color: var(--pk-text-secondary) !important; }
+#changelist table thead th.sorted { background: var(--pk-bg-hover) !important; color: var(--pk-primary) !important; }
+#changelist table thead th.sorted a { color: var(--pk-primary) !important; }
 
-#changelist table thead th a {
-  color: var(--pk-text-accent) !important;
-}
-
-#changelist table thead th.sorted {
-  background: var(--pk-bg-hover) !important;
-}
-
-#changelist table tbody tr {
-  transition: background-color var(--pk-transition);
-}
-
-#changelist table tbody tr:nth-child(even) {
-  background-color: var(--pk-bg-row-alt) !important;
-}
-
-#changelist table tbody tr:hover {
-  background-color: var(--pk-bg-hover) !important;
-}
+#changelist table tbody tr:nth-child(even) { background-color: var(--pk-bg-row-alt) !important; }
+#changelist table tbody tr:hover { background-color: var(--pk-bg-hover) !important; }
 
 #changelist table td,
 #changelist table th {
@@ -509,15 +547,8 @@ div.breadcrumbs a {
   font-size: 13px !important;
 }
 
-/* Unread message row highlight */
-#changelist table tbody tr.pk-unread {
-  border-inline-start: 3px solid var(--pk-gold) !important;
-}
-
-/* Selected/checked row */
-#changelist table tbody tr.selected {
-  background-color: var(--pk-gold-subtle) !important;
-}
+#changelist table tbody tr.pk-unread { border-inline-start: 3px solid var(--pk-primary) !important; }
+#changelist table tbody tr.selected { background-color: var(--pk-primary-soft) !important; }
 
 /* Paginator */
 .paginator {
@@ -531,56 +562,39 @@ div.breadcrumbs a {
   border-radius: var(--pk-radius-sm) !important;
   transition: all var(--pk-transition);
 }
-.paginator a:hover {
-  background: var(--pk-bg-hover) !important;
-  color: var(--pk-gold) !important;
-}
-.paginator .this-page {
-  background: var(--pk-gold) !important;
-  color: var(--pk-navy-deep) !important;
-  font-weight: 700 !important;
-}
+.paginator a:hover { background: var(--pk-bg-hover) !important; color: var(--pk-primary) !important; }
+.paginator .this-page { background: var(--pk-primary) !important; color: var(--pk-primary-contrast) !important; font-weight: 700 !important; }
 
-/* Change List Filters */
+/* Filters */
 #changelist-filter {
   background: var(--pk-bg-surface) !important;
   border-inline-end: 1px solid var(--pk-border) !important;
   padding: 14px !important;
 }
-
 #changelist-filter h2 {
-  background: var(--pk-bg-elevated) !important;
-  color: var(--pk-text-primary) !important;
-  font-size: 12px !important;
+  background: transparent !important;
+  color: var(--pk-text-muted) !important;
+  font-size: 11px !important;
   font-weight: 700 !important;
-  padding: 8px 12px !important;
-  border-radius: var(--pk-radius-sm) !important;
+  padding: 8px 4px !important;
   text-transform: uppercase;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.4px;
 }
-
-#changelist-filter li {
-  padding-inline-start: 0 !important;
-}
-
+#changelist-filter li { padding-inline-start: 0 !important; }
 #changelist-filter li a {
   color: var(--pk-text-secondary) !important;
   border-radius: var(--pk-radius-sm) !important;
   padding: 4px 8px !important;
   transition: all var(--pk-transition);
 }
-
 #changelist-filter li a:hover,
 #changelist-filter li.selected a {
-  color: var(--pk-gold) !important;
+  color: var(--pk-primary) !important;
   font-weight: 700 !important;
-  background: var(--pk-gold-subtle);
+  background: var(--pk-primary-soft);
 }
 
-/* Action Counter */
-.action-counter {
-  color: var(--pk-text-muted) !important;
-}
+.action-counter { color: var(--pk-text-muted) !important; }
 
 /* --------------------------------------------------------------------------
    9. Forms, Fieldsets & Inputs
@@ -589,13 +603,8 @@ fieldset.module {
   background: var(--pk-bg-surface) !important;
   border: 1px solid var(--pk-border) !important;
   border-radius: var(--pk-radius-lg) !important;
-  margin-bottom: 20px !important;
+  margin-bottom: 18px !important;
   overflow: hidden;
-  transition: box-shadow var(--pk-transition);
-}
-
-fieldset.module:hover {
-  box-shadow: var(--pk-shadow-md) !important;
 }
 
 fieldset.module h2 {
@@ -604,7 +613,7 @@ fieldset.module h2 {
   font-size: 13px !important;
   font-weight: 700 !important;
   padding: 10px 16px !important;
-  border-bottom: 2px solid var(--pk-gold) !important;
+  border-bottom: 1px solid var(--pk-border) !important;
   text-align: start !important;
   cursor: default;
   user-select: none;
@@ -613,40 +622,24 @@ fieldset.module h2 {
   justify-content: space-between;
 }
 
-/* Collapsible toggle indicator */
 fieldset.module.pk-collapsible h2::after,
 fieldset.module.collapsed h2::after {
   content: '▲';
-  font-size: 10px;
-  color: var(--pk-gold);
+  font-size: 9px;
+  color: var(--pk-text-muted);
   transition: transform var(--pk-transition);
 }
-fieldset.module.collapsed h2::after {
-  content: '▼';
-}
-
+fieldset.module.collapsed h2::after { content: '▼'; }
 fieldset.module.collapsed .form-row,
-fieldset.module.collapsed .pk-collapsible-content {
-  display: none !important;
-}
-
-fieldset.module.collapsed {
-  border-color: var(--pk-border) !important;
-}
+fieldset.module.collapsed .pk-collapsible-content { display: none !important; }
 
 .form-row {
   padding: 10px 16px !important;
   border-bottom: 1px solid var(--pk-border) !important;
   transition: background-color var(--pk-transition);
 }
-
-.form-row:hover {
-  background-color: var(--pk-bg-hover);
-}
-
-.form-row:last-child {
-  border-bottom: none !important;
-}
+.form-row:hover { background-color: var(--pk-bg-hover); }
+.form-row:last-child { border-bottom: none !important; }
 
 label {
   font-weight: 600 !important;
@@ -663,11 +656,12 @@ input[type="tel"],
 input[type="date"],
 input[type="time"],
 input[type="datetime"],
+input[type="file"],
 textarea,
 select {
   background: var(--pk-bg-input) !important;
   color: var(--pk-text-primary) !important;
-  border: 1.5px solid var(--pk-border-input) !important;
+  border: 1px solid var(--pk-border-input) !important;
   border-radius: var(--pk-radius-sm) !important;
   padding: 8px 12px !important;
   font-size: 13px !important;
@@ -682,40 +676,30 @@ input[type="number"]:focus,
 input[type="url"]:focus,
 textarea:focus,
 select:focus {
-  border-color: var(--pk-gold) !important;
-  box-shadow: 0 0 0 3px var(--pk-gold-subtle) !important;
+  border-color: var(--pk-primary) !important;
+  box-shadow: 0 0 0 3px var(--pk-primary-soft) !important;
   outline: none !important;
   background: var(--pk-bg-surface) !important;
 }
 
-select {
-  cursor: pointer;
-}
+select { cursor: pointer; }
+textarea { min-height: 100px; resize: vertical; }
 
-textarea {
-  min-height: 100px;
-  resize: vertical;
-}
-
-/* Checkbox & Radio */
 input[type="checkbox"],
 input[type="radio"] {
-  accent-color: var(--pk-gold) !important;
+  accent-color: var(--pk-primary) !important;
   width: 16px !important;
   height: 16px !important;
   cursor: pointer;
 }
 
-/* Help Text */
 .form-row .help,
 .form-row p.help {
   color: var(--pk-text-muted) !important;
   font-size: 12px !important;
-  font-style: italic;
   margin-top: 4px;
 }
 
-/* Errors */
 .errorlist {
   background: var(--pk-danger-bg) !important;
   color: var(--pk-danger) !important;
@@ -736,14 +720,79 @@ input[type="radio"] {
   font-weight: 700;
 }
 
-/* Description under fieldset */
 .fieldset-description,
 .description {
   color: var(--pk-text-muted) !important;
   font-size: 12px !important;
-  font-style: italic;
-  padding: 6px 16px 10px 16px !important;
+  padding: 8px 16px 10px 16px !important;
 }
+
+/* --------------------------------------------------------------------------
+   9b. Select2 / Autocomplete widgets — match plain inputs
+   (This is the piece that was missing before — Select2 renders its own
+   DOM outside the native <select>, so it needs its own rules.)
+   -------------------------------------------------------------------------- */
+.select2-container .select2-selection--single,
+.select2-container .select2-selection--multiple {
+  background: var(--pk-bg-input) !important;
+  border: 1px solid var(--pk-border-input) !important;
+  border-radius: var(--pk-radius-sm) !important;
+  min-height: 34px !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  color: var(--pk-text-primary) !important;
+  line-height: 32px !important;
+  padding-inline-start: 12px !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  height: 32px !important;
+}
+
+.select2-container--default.select2-container--open .select2-selection--single,
+.select2-container--default .select2-selection--single:focus {
+  border-color: var(--pk-primary) !important;
+  box-shadow: 0 0 0 3px var(--pk-primary-soft) !important;
+}
+
+.select2-dropdown {
+  background: var(--pk-bg-surface) !important;
+  border: 1px solid var(--pk-border-input) !important;
+  border-radius: var(--pk-radius-sm) !important;
+  box-shadow: var(--pk-shadow-md) !important;
+}
+
+.select2-search--dropdown .select2-search__field {
+  background: var(--pk-bg-input) !important;
+  color: var(--pk-text-primary) !important;
+  border: 1px solid var(--pk-border-input) !important;
+  border-radius: var(--pk-radius-sm) !important;
+}
+
+.select2-results__option {
+  color: var(--pk-text-primary) !important;
+  background: var(--pk-bg-surface) !important;
+}
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+  background: var(--pk-primary) !important;
+  color: var(--pk-primary-contrast) !important;
+}
+.select2-container--default .select2-results__option[aria-selected="true"] {
+  background: var(--pk-bg-hover) !important;
+  color: var(--pk-text-primary) !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+  background: var(--pk-primary-soft) !important;
+  color: var(--pk-primary) !important;
+  border: 1px solid var(--pk-primary) !important;
+  border-radius: var(--pk-radius-sm) !important;
+}
+
+/* Related-object widget icons (add/change/delete/view next to selects) */
+.related-widget-wrapper-link img { opacity: 0.75; transition: opacity var(--pk-transition); }
+.related-widget-wrapper-link:hover img { opacity: 1; }
 
 /* --------------------------------------------------------------------------
    10. Parler Language Tabs
@@ -751,70 +800,68 @@ input[type="radio"] {
 .parler-language-tabs {
   display: flex !important;
   gap: 4px !important;
-  border-bottom: 2px solid var(--pk-gold) !important;
+  border-bottom: 1px solid var(--pk-border) !important;
   margin-bottom: 14px !important;
   padding: 0 !important;
   list-style: none !important;
 }
 
-.parler-language-tabs a {
+.parler-language-tabs a,
+.parler-language-tabs .current {
   padding: 7px 16px !important;
   font-weight: 600 !important;
   font-size: 12px !important;
   border-radius: var(--pk-radius-sm) var(--pk-radius-sm) 0 0 !important;
-  background: var(--pk-bg-elevated) !important;
-  color: var(--pk-text-secondary) !important;
-  border: 1px solid var(--pk-border) !important;
-  border-bottom: none !important;
+  background: transparent !important;
+  color: var(--pk-text-muted) !important;
+  border: 1px solid transparent !important;
   transition: all var(--pk-transition);
+  display: inline-block;
 }
 
-.parler-language-tabs .current a,
 .parler-language-tabs a:hover {
-  background: var(--pk-gold) !important;
-  color: var(--pk-navy-deep) !important;
-  border-color: var(--pk-gold) !important;
+  color: var(--pk-text-primary) !important;
+  background: var(--pk-bg-hover) !important;
 }
 
-.parler-language-tabs .current a {
-  font-weight: 800 !important;
+.parler-language-tabs .current {
+  background: var(--pk-primary) !important;
+  color: var(--pk-primary-contrast) !important;
+  font-weight: 700 !important;
 }
+
+.parler-language-tabs .empty a { color: var(--pk-text-muted) !important; }
 
 /* --------------------------------------------------------------------------
    11. Inline Forms — Product Gallery & Variants
    -------------------------------------------------------------------------- */
-/* Inline Group Headers */
 .inline-group {
   background: var(--pk-bg-surface) !important;
   border: 1px solid var(--pk-border) !important;
   border-radius: var(--pk-radius-lg) !important;
   overflow: hidden;
-  margin-bottom: 20px !important;
+  margin-bottom: 18px !important;
 }
 
-.inline-group .tabular-inline-related .module h2,
-.inline-group h2 {
+.inline-group h2,
+.inline-group .inline-heading {
   background: var(--pk-bg-elevated) !important;
   color: var(--pk-text-primary) !important;
   font-size: 13px !important;
   font-weight: 700 !important;
   padding: 10px 16px !important;
-  border-bottom: 2px solid var(--pk-gold) !important;
+  border-bottom: 1px solid var(--pk-border) !important;
 }
 
-/* Tabular Inline Table */
-.inline-group .tabular table {
-  width: 100% !important;
-  border-collapse: collapse !important;
-}
+.inline-group .tabular table { width: 100% !important; border-collapse: collapse !important; }
 
 .inline-group .tabular thead th {
   background: var(--pk-bg-elevated) !important;
-  color: var(--pk-text-primary) !important;
-  font-size: 11.5px !important;
+  color: var(--pk-text-secondary) !important;
+  font-size: 11px !important;
   font-weight: 700 !important;
   padding: 9px 12px !important;
-  border-bottom: 2px solid var(--pk-gold) !important;
+  border-bottom: 1px solid var(--pk-border) !important;
   text-align: start !important;
   text-transform: uppercase;
   letter-spacing: 0.3px;
@@ -831,27 +878,16 @@ input[type="radio"] {
   transition: background-color var(--pk-transition);
 }
 
-.inline-group .tabular tbody tr:hover td {
-  background-color: var(--pk-bg-hover) !important;
-}
+.inline-group .tabular tbody tr:hover td { background-color: var(--pk-bg-hover) !important; }
+.inline-group .tabular tbody tr:nth-child(even) td { background-color: var(--pk-bg-row-alt) !important; }
 
-.inline-group .tabular tbody tr:nth-child(even) td {
-  background-color: var(--pk-bg-row-alt) !important;
-}
-
-/* Inline Add Row */
 .inline-group .tabular tr.add-row td {
   background: var(--pk-bg-elevated) !important;
   padding: 10px 12px !important;
   border-top: 1px solid var(--pk-border) !important;
 }
+.inline-group .tabular tr.add-row a { color: var(--pk-primary) !important; font-weight: 700 !important; }
 
-.inline-group .tabular tr.add-row a {
-  color: var(--pk-gold) !important;
-  font-weight: 700 !important;
-}
-
-/* Inline Delete Row */
 .inline-group .tabular td .delete,
 .inline-group .tabular td a.deletelink {
   color: var(--pk-danger) !important;
@@ -859,41 +895,23 @@ input[type="radio"] {
   font-size: 12px !important;
 }
 
-/* Inline Empty Row (placeholder) */
 .inline-group .tabular tr.empty-form td {
   background: var(--pk-bg-elevated) !important;
   border-top: 1px dashed var(--pk-border) !important;
 }
 
-/* Gallery-specific: wider image preview column */
-.inline-group .tabular td img {
-  transition: transform var(--pk-transition);
-}
+.inline-group .tabular td img:hover { transform: scale(1.15); z-index: 10; position: relative; }
 
-.inline-group .tabular td img:hover {
-  transform: scale(1.15);
-  z-index: 10;
-  position: relative;
-}
-
-/* Inline variant SKU code styling */
 .inline-group .tabular td code {
   background: var(--pk-bg-elevated) !important;
-  color: var(--pk-text-accent) !important;
+  color: var(--pk-text-primary) !important;
   padding: 2px 8px !important;
   border-radius: 4px !important;
   font-size: 12px !important;
 }
 
-/* Stacked Inline */
-.inline-group .stacked {
-  background: var(--pk-bg-surface) !important;
-}
-
-.inline-group .stacked .module h2 {
-  background: var(--pk-bg-elevated) !important;
-  border-bottom: 1px solid var(--pk-border) !important;
-}
+.inline-group .stacked { background: var(--pk-bg-surface) !important; }
+.inline-group .stacked .module h2 { background: var(--pk-bg-elevated) !important; border-bottom: 1px solid var(--pk-border) !important; }
 
 /* --------------------------------------------------------------------------
    12. Buttons & Action Bar
@@ -913,43 +931,39 @@ input[type="radio"] {
 input[type="submit"].default,
 .button.default,
 .default.button {
-  background: var(--pk-gold) !important;
-  color: var(--pk-navy-deep) !important;
-  font-weight: 800 !important;
+  background: var(--pk-primary) !important;
+  color: var(--pk-primary-contrast) !important;
+  font-weight: 700 !important;
   border: none !important;
   border-radius: var(--pk-radius-sm) !important;
   padding: 9px 22px !important;
   font-size: 13px !important;
   cursor: pointer;
   transition: all var(--pk-transition);
-  box-shadow: 0 2px 8px var(--pk-gold-subtle) !important;
 }
-
 input[type="submit"].default:hover,
 .button.default:hover {
-  background: var(--pk-gold-light) !important;
+  background: var(--pk-primary-hover) !important;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px var(--pk-gold-subtle) !important;
+  box-shadow: var(--pk-shadow-sm) !important;
 }
 
 input[type="submit"],
 .button,
 .submit-row input[type="submit"] {
-  background: var(--pk-navy-light) !important;
+  background: var(--pk-bg-elevated) !important;
   color: var(--pk-text-primary) !important;
   font-weight: 600 !important;
-  border: none !important;
+  border: 1px solid var(--pk-border) !important;
   border-radius: var(--pk-radius-sm) !important;
   padding: 8px 16px !important;
   font-size: 13px !important;
   cursor: pointer;
   transition: all var(--pk-transition);
 }
-
-input[type="submit"]:hover,
-.button:hover {
-  background: var(--pk-gold) !important;
-  color: var(--pk-navy-deep) !important;
+input[type="submit"]:hover, .button:hover {
+  background: var(--pk-bg-hover) !important;
+  border-color: var(--pk-border-strong) !important;
 }
 
 .deletelink {
@@ -962,16 +976,9 @@ input[type="submit"]:hover,
   transition: all var(--pk-transition);
   display: inline-block;
 }
-.deletelink:hover {
-  background: var(--pk-danger) !important;
-  color: #FFFFFF !important;
-}
+.deletelink:hover { background: var(--pk-danger) !important; color: var(--pk-bg-surface) !important; }
 
-/* Object Tools (top-right buttons on change page) */
-.object-tools {
-  display: flex;
-  gap: 6px;
-}
+.object-tools { display: flex; gap: 6px; }
 .object-tools a {
   background: var(--pk-bg-elevated) !important;
   color: var(--pk-text-secondary) !important;
@@ -982,19 +989,15 @@ input[type="submit"]:hover,
   transition: all var(--pk-transition);
 }
 .object-tools a:hover {
-  background: var(--pk-gold) !important;
-  color: var(--pk-navy-deep) !important;
-  border-color: var(--pk-gold) !important;
+  background: var(--pk-primary-soft) !important;
+  color: var(--pk-primary) !important;
+  border-color: var(--pk-primary) !important;
 }
 
 /* --------------------------------------------------------------------------
    13. System Messages / Alerts
    -------------------------------------------------------------------------- */
-ul.messagelist {
-  padding: 0 !important;
-  margin: 0 0 16px 0 !important;
-}
-
+ul.messagelist { padding: 0 !important; margin: 0 0 16px 0 !important; }
 ul.messagelist li {
   padding: 10px 16px !important;
   border-radius: var(--pk-radius-sm) !important;
@@ -1002,24 +1005,9 @@ ul.messagelist li {
   font-size: 13px !important;
   margin-bottom: 8px !important;
 }
-
-ul.messagelist li.success {
-  background-color: var(--pk-success-bg) !important;
-  color: var(--pk-success) !important;
-  border: 1px solid var(--pk-success-border) !important;
-}
-
-ul.messagelist li.warning {
-  background-color: var(--pk-warning-bg) !important;
-  color: var(--pk-warning) !important;
-  border: 1px solid var(--pk-warning-border) !important;
-}
-
-ul.messagelist li.error {
-  background-color: var(--pk-danger-bg) !important;
-  color: var(--pk-danger) !important;
-  border: 1px solid var(--pk-danger-border) !important;
-}
+ul.messagelist li.success { background-color: var(--pk-success-bg) !important; color: var(--pk-success) !important; border: 1px solid var(--pk-success-border) !important; }
+ul.messagelist li.warning { background-color: var(--pk-warning-bg) !important; color: var(--pk-warning) !important; border: 1px solid var(--pk-warning-border) !important; }
+ul.messagelist li.error   { background-color: var(--pk-danger-bg) !important;  color: var(--pk-danger) !important;  border: 1px solid var(--pk-danger-border) !important; }
 
 /* --------------------------------------------------------------------------
    14. Date Hierarchy
@@ -1030,15 +1018,13 @@ ul.messagelist li.error {
   padding: 8px 18px !important;
 }
 .date-hierarchy a {
-  color: var(--pk-gold) !important;
+  color: var(--pk-text-secondary) !important;
   font-weight: 600 !important;
   padding: 3px 8px !important;
   border-radius: var(--pk-radius-sm) !important;
   transition: all var(--pk-transition);
 }
-.date-hierarchy a:hover {
-  background: var(--pk-gold-subtle);
-}
+.date-hierarchy a:hover { background: var(--pk-primary-soft); color: var(--pk-primary) !important; }
 
 /* --------------------------------------------------------------------------
    15. Login Page
@@ -1052,240 +1038,81 @@ ul.messagelist li.error {
   max-width: 400px;
   margin: 80px auto !important;
 }
-
-.login #header {
-  border-bottom: none !important;
-  box-shadow: none !important;
-  justify-content: center !important;
-  padding-bottom: 0 !important;
-}
-
-.login .login-form {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  border-radius: 0 !important;
-  padding: 0 !important;
-}
+.login #header { border-bottom: none !important; box-shadow: none !important; justify-content: center !important; padding-bottom: 0 !important; }
+.login .login-form { background: transparent !important; border: none !important; box-shadow: none !important; border-radius: 0 !important; padding: 0 !important; }
 
 /* --------------------------------------------------------------------------
-   16. Timestamp Widget
+   16. Scrollbar
    -------------------------------------------------------------------------- */
-.clock-icon::before {
-  color: var(--pk-text-muted) !important;
-}
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--pk-bg-main); }
+::-webkit-scrollbar-thumb { background: var(--pk-border-strong); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--pk-primary); }
 
 /* --------------------------------------------------------------------------
-   17. Scrollbar Styling
-   -------------------------------------------------------------------------- */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-::-webkit-scrollbar-track {
-  background: var(--pk-bg-main);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--pk-navy-muted);
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--pk-navy-light);
-}
-
-/* --------------------------------------------------------------------------
-   18. Responsive — Tablet (≤1024px)
+   17. Responsive — Tablet (≤1024px)
    -------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
-  #header {
-    flex-direction: column;
-    padding: 10px 16px !important;
-    gap: 8px;
-  }
-
-  #content {
-    padding: 16px !important;
-  }
-
-  #changelist table thead th,
-  #changelist table td,
-  #changelist table th {
-    padding: 8px 10px !important;
-    font-size: 12px !important;
-  }
-
-  .inline-group .tabular thead th,
-  .inline-group .tabular tbody td {
-    padding: 6px 8px !important;
-    font-size: 12px !important;
-  }
-
-  #changelist-search input[type="text"] {
-    width: 200px !important;
-  }
+  #header { flex-direction: column; padding: 10px 16px !important; gap: 8px; }
+  #content { padding: 16px !important; }
+  #changelist table thead th, #changelist table td, #changelist table th { padding: 8px 10px !important; font-size: 12px !important; }
+  .inline-group .tabular thead th, .inline-group .tabular tbody td { padding: 6px 8px !important; font-size: 12px !important; }
+  #changelist-search input[type="text"] { width: 200px !important; }
 }
 
 /* --------------------------------------------------------------------------
-   19. Responsive — Mobile (≤768px)
+   18. Responsive — Mobile (≤768px)
    -------------------------------------------------------------------------- */
 @media (max-width: 768px) {
-  #header {
-    padding: 8px 12px !important;
-  }
-
-  #branding h1 {
-    font-size: 14px !important;
-  }
-
-  #content {
-    padding: 12px !important;
-  }
-
-  #changelist {
-    border-radius: var(--pk-radius-md) !important;
-  }
-
-  #changelist table {
-    font-size: 11px !important;
-  }
-
-  #changelist table thead th,
-  #changelist table td,
-  #changelist table th {
-    padding: 6px 8px !important;
-    font-size: 11px !important;
-    white-space: nowrap;
-  }
-
-  .inline-group .tabular {
-    overflow-x: auto;
-    display: block;
-  }
-
-  .inline-group .tabular table {
-    min-width: 500px;
-  }
-
-  .submit-row {
-    flex-wrap: wrap;
-    padding: 10px 12px !important;
-  }
-
-  .submit-row input[type="submit"],
-  .submit-row .button {
-    width: 100%;
-    text-align: center;
-  }
-
-  .form-row {
-    padding: 8px 12px !important;
-  }
-
-  fieldset.module h2 {
-    padding: 8px 12px !important;
-    font-size: 12px !important;
-  }
-
-  /* Hide less important columns on small screens */
-  .pk-hide-mobile {
-    display: none !important;
-  }
+  #header { padding: 8px 12px !important; }
+  #branding h1 { font-size: 14px !important; }
+  #content { padding: 12px !important; }
+  #changelist { border-radius: var(--pk-radius-md) !important; }
+  #changelist table { font-size: 11px !important; }
+  #changelist table thead th, #changelist table td, #changelist table th { padding: 6px 8px !important; font-size: 11px !important; white-space: nowrap; }
+  .inline-group .tabular { overflow-x: auto; display: block; }
+  .inline-group .tabular table { min-width: 500px; }
+  .submit-row { flex-wrap: wrap; padding: 10px 12px !important; }
+  .submit-row input[type="submit"], .submit-row .button { width: 100%; text-align: center; }
+  .form-row { padding: 8px 12px !important; }
+  fieldset.module h2 { padding: 8px 12px !important; font-size: 12px !important; }
+  .pk-hide-mobile { display: none !important; }
 }
 
 /* --------------------------------------------------------------------------
-   20. Responsive — Small Mobile (≤480px)
+   19. Responsive — Small Mobile (≤480px)
    -------------------------------------------------------------------------- */
 @media (max-width: 480px) {
-  #user-tools {
-    flex-wrap: wrap;
-    gap: 4px;
-    font-size: 11px !important;
-  }
-
-  #user-tools a {
-    padding: 4px 8px !important;
-    font-size: 11px !important;
-  }
-
-  .parler-language-tabs {
-    flex-wrap: wrap;
-  }
-
-  .parler-language-tabs a {
-    padding: 5px 10px !important;
-    font-size: 11px !important;
-  }
+  #user-tools { flex-wrap: wrap; gap: 4px; font-size: 11px !important; }
+  #user-tools a { padding: 4px 8px !important; font-size: 11px !important; }
+  .parler-language-tabs { flex-wrap: wrap; }
+  .parler-language-tabs a, .parler-language-tabs .current { padding: 5px 10px !important; font-size: 11px !important; }
 }
 
 /* --------------------------------------------------------------------------
-   21. Print Styles
+   20. Print
    -------------------------------------------------------------------------- */
 @media print {
-  #header,
-  #nav-sidebar,
-  .submit-row,
-  .object-tools,
-  #changelist-filter,
-  #changelist-search,
-  .paginator {
-    display: none !important;
-  }
-
-  body {
-    background: #fff !important;
-    color: #000 !important;
-  }
-
-  .module {
-    border: 1px solid #ddd !important;
-    box-shadow: none !important;
-  }
+  #header, #nav-sidebar, .submit-row, .object-tools, #changelist-filter, #changelist-search, .paginator { display: none !important; }
+  body { background: #fff !important; color: #000 !important; }
+  .module { border: 1px solid #ddd !important; box-shadow: none !important; }
 }
 
 /* --------------------------------------------------------------------------
-   22. Animation Helpers
-   -------------------------------------------------------------------------- */
-@keyframes pkFadeIn {
-  from { opacity: 0; transform: translateY(4px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.module {
-  animation: pkFadeIn 0.25s ease-out;
-}
-
-/* --------------------------------------------------------------------------
-   23. ContactMessage Detail — Inbox Layout
+   21. Misc utility classes used elsewhere in the templates
    -------------------------------------------------------------------------- */
 .pk-wide-field .vTextField,
-.pk-wide-field .vLargeTextField {
-  width: 100% !important;
-}
+.pk-wide-field .vLargeTextField { width: 100% !important; }
 
-.pk-inline-row .form-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  padding: 10px 16px !important;
-}
+.pk-inline-row .form-row { display: flex; flex-wrap: wrap; gap: 12px; padding: 10px 16px !important; }
+.pk-inline-row .form-row > div { flex: 1; min-width: 150px; }
 
-.pk-inline-row .form-row > div {
-  flex: 1;
-  min-width: 150px;
-}
+.vIntegerField, input[type="number"] { font-variant-numeric: tabular-nums !important; }
 
 /* --------------------------------------------------------------------------
-   24. ExchangeRate — Tabular Nums
-   -------------------------------------------------------------------------- */
-.vIntegerField,
-input[type="number"] {
-  font-variant-numeric: tabular-nums !important;
-}
-
-/* --------------------------------------------------------------------------
-   25. Focus Ring Accessibility
+   22. Accessibility
    -------------------------------------------------------------------------- */
 *:focus-visible {
-  outline: 2px solid var(--pk-gold) !important;
+  outline: 2px solid var(--pk-primary) !important;
   outline-offset: 2px !important;
 }

@@ -1,0 +1,29 @@
+{% extends "admin/base_site.html" %}
+{% load static i18n %}
+
+{# ==========================================================================
+   Palace Karimi — RTL-aware admin asset loading.
+
+   This template overrides Django's admin base_site.html to load
+   rtl.css and admin_custom.js ONLY for RTL languages (fa, ar).
+
+   For LTR languages (en, tr), only the admin_custom.js theme toggle
+   is loaded — no RTL overrides.
+
+   This replaces the old approach of hardcoding Media classes in
+   every single ModelAdmin, which broke LTR layouts.
+   ========================================================================== #}
+
+{% block extrahead %}
+
+    {# admin_custom.js is always loaded (theme toggle, collapsibles, etc.) #}
+    <script type="text/javascript" src="{% static 'admin/js/admin_custom.js' %}"></script>
+
+    {# rtl.css is ONLY loaded for Persian and Arabic #}
+    {% if request.LANGUAGE_CODE == 'fa' or request.LANGUAGE_CODE == 'ar' %}
+        <link rel="stylesheet" type="text/css" href="{% static 'admin/css/rtl.css' %}">
+    {% endif %}
+
+    {{ block.super }}
+
+{% endblock %}
