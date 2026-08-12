@@ -1217,6 +1217,13 @@ html[dir="ltr"] .pagination {
   padding-left: 0;
 }
 
+/* Pagination nav arrows are coded RTL-first; mirror them for LTR */
+html[dir="ltr"] .pagination .fas.fa-angle-right,
+html[dir="ltr"] .pagination .fas.fa-angle-left {
+  display: inline-block;
+  transform: scaleX(-1);
+}
+
 .pagination .page-link {
   border-radius: var(--pk-radius-md) !important;
   margin: 0 3px;

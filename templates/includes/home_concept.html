@@ -218,8 +218,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     /* --- تشخیص تم و سواپ عکس مسیر --- */
     function isDarkMode() {
-        // اگه کلاس تم سایتت فرق داره فقط همین خط رو عوض کن
-        return document.body.classList.contains('dark-mode');
+        return document.documentElement.classList.contains('dark');
     }
     var pathLight = root.querySelector('.tl-path-light');
     var pathDark  = root.querySelector('.tl-path-dark');
@@ -229,7 +228,7 @@ document.addEventListener('DOMContentLoaded', function () {
         pathDark.classList.toggle('is-active', dark);
     }
     syncTheme();
-    new MutationObserver(syncTheme).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    new MutationObserver(syncTheme).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 
     /* --- انیمیشن ورود استپ‌ها هنگام دیده‌شدن --- */
     if ('IntersectionObserver' in window) {

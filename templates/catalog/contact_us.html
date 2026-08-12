@@ -35,20 +35,6 @@
                         <p class="mb-0 appear-animation lead" data-appear-animation="maskUp" data-appear-animation-delay="400">{% trans 'We are here to answer your questions and discuss global export opportunities.' %}</p>
                     </div>
 
-{#                    {% if messages %}#}
-{#                        {% for message in messages %}#}
-{#                            {% if message.message == 'success_contact' %}#}
-{#                                <div class="alert alert-success mt-4">#}
-{#                                    <strong>{% trans 'Success!' %}</strong> {% trans 'Your message has been sent to us.' %}#}
-{#                                </div>#}
-{#                            {% else %}#}
-{#                                <div class="alert alert-warning mt-4">#}
-{#                                    {{ message }}#}
-{#                                </div>#}
-{#                            {% endif %}#}
-{#                        {% endfor %}#}
-{#                    {% endif %}#}
-
                     <!-- نمایش ارورهای امنیتی و اعتبارسنجی (مثل کوتاه بودن متن) -->
                     {% if form.errors %}
                         <div class="alert alert-danger mt-4">
@@ -140,6 +126,5 @@
 </div>
 {% endblock %}
 {% block scripts %}
-        <script src="{% static 'vendor/jquery.gmap/jquery.gmap.min.js' %}" defer></script>
         <script src="{% static 'js/map.js' %}" defer></script>
 {% endblock %}

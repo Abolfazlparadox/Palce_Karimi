@@ -105,6 +105,9 @@ class Product(TranslatableModel):
 
     @property
     def main_image(self):
+        # Use prefetched result when available (avoids N+1 queries)
+        if hasattr(self, 'main_image_obj'):
+            return self.main_image_obj[0] if self.main_image_obj else None
         img = self.images.filter(is_main=True).first()
         return img if img else self.images.order_by('order').first()
 

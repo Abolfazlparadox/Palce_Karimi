@@ -37,6 +37,9 @@ COPY --from=builder /usr/local/bin/ /usr/local/bin/
 # Copy application code
 COPY --chown=appuser:appuser . /app/
 
+# Ensure entrypoint is executable
+RUN chmod +x /app/entrypoint.sh
+
 # Switch to non-root user
 USER appuser
 

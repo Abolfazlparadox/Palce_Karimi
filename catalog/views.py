@@ -6,6 +6,7 @@ from django.db.models import Prefetch
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.http import url_has_allowed_host_and_scheme
 from django.utils.translation import gettext_lazy as _
+from django.views.decorators.http import require_POST
 from django_ratelimit.decorators import ratelimit
 from email_validator import EmailNotValidError, validate_email
 
@@ -234,6 +235,7 @@ def category_detail(request, slug):
     return render(request, "catalog/category_detail.html", context)
 
 
+@require_POST
 @ratelimit(key="ip", rate="3/m", method="POST", block=False)
 def newsletter_subscribe(request):
     if getattr(request, "limited", False):

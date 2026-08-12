@@ -30,12 +30,6 @@
 
                     {% with variant=product.default_variant %}
 
-                    {% if variant and variant.sale_price %}
-                    <a href="{% url 'catalog:product_detail' slug=product.slug %}">
-                        <span class="onsale bg-primary text-color-light">{% trans 'Sale!' %}</span>
-                    </a>
-                    {% endif %}
-
                     <span class="product-thumb-info border-0">
                         <a href="{% url 'catalog:contact_us' %}" class="add-to-cart-product custom-gold-btn">
                             <span class="text-1 text-uppercase font-weight-bold">{% trans 'Contact for Price' %}</span>
@@ -56,12 +50,7 @@
                                 <h4 class="text-4 text-primary mb-1">{{ product.name }}</h4>
                                 <span class="price">
                                     {% if variant %}
-                                        {% if variant.sale_price %}
-                                            <del><span class="amount text-muted">{% convert_price variant.base_price %}</span></del>
-                                            <ins><span class="amount text-dark font-weight-semibold">{% convert_price variant.sale_price %}</span></ins>
-                                        {% else %}
-                                            <span class="amount text-dark font-weight-semibold">{% convert_price variant.base_price %}</span>
-                                        {% endif %}
+                                        <span class="amount text-dark font-weight-semibold">{% convert_price variant.base_price %}</span>
                                     {% else %}
                                         <span class="amount text-dark font-weight-semibold">{% trans 'Price not set' %}</span>
                                     {% endif %}

@@ -1,6 +1,14 @@
 {% extends 'base.html' %}
 {% load static i18n %}
 {% block title %}{% trans 'Home' %} | {% trans 'Palace Karimi' %}{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'vendor/rs-plugin/css/settings.css' %}">
+<link rel="stylesheet" href="{% static 'vendor/rs-plugin/css/layers.css' %}">
+<link rel="stylesheet" href="{% static 'vendor/rs-plugin/css/navigation.css' %}">
+<link rel="stylesheet" href="{% static 'vendor/circle-flip-slideshow/css/component.css' %}">
+{% endblock %}
+
 {% block content %}
 {% include 'includes/home_slider.html' %}
 {% include 'includes/home_intro.html' %}
@@ -8,4 +16,11 @@
 {% include 'includes/home_concept.html' %}
 {% include 'includes/latest_products.html' %}
 {% include 'includes/home_core_values.html' %}
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'vendor/rs-plugin/js/jquery.themepunch.tools.min.js' %}" defer></script>
+<script src="{% static 'vendor/rs-plugin/js/jquery.themepunch.revolution.min.js' %}" defer></script>
+<script src="{% static 'vendor/circle-flip-slideshow/js/jquery.flipshow.min.js' %}" defer></script>
+<script src="{% static 'js/views/view.home.js' %}" defer></script>
 {% endblock %}
