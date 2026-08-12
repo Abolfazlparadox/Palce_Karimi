@@ -8,7 +8,7 @@ from parler.admin import TranslatableAdmin
 from django.utils.html import format_html
 from django.urls import reverse, NoReverseMatch
 from django.utils.translation import gettext_lazy as _
-
+from django.utils.safestring import mark_safe
 from catalog.models import (
     Category, QualityGrade, PackagingType,
     Product, ProductVariant, TieredPrice, ProductImage, ContactMessage,
@@ -84,9 +84,9 @@ class ProductImageInline(admin.TabularInline):
                 '{}</div>',
                 obj.image.url, border, star_span
             )
-        return format_html(
-            '<span style="color:#8899AA;font-size:11px;font-style:italic;">بدون تصویر</span>'
-        )
+            return mark_safe(
+                '<span style="color:#8899AA;font-size:11px;font-style:italic;">بدون تصویر</span>'
+            )
 
     image_preview.short_description = _("پیش‌نمایش")
 
@@ -110,7 +110,9 @@ class ProductVariantInline(admin.TabularInline):
                 '<span style="color:#C5A059;font-weight:700;font-size:13px;">${}</span>',
                 price
             )
-        return format_html('<span style="color:#8899AA;font-size:11px;">—</span>')
+            return mark_safe(
+                '<span style="color:#8899AA;font-size:11px;">—</span>'
+            )
     base_price_display.short_description = _("قیمت پایه")
 
 
@@ -173,6 +175,7 @@ def export_to_csv(modeladmin, request, queryset):
 # =============================================================================
 @admin.register(Product)
 class ProductAdmin(TranslatableAdmin, StatusBadgeMixin, RTLAdminMediaMixin):
+    delete_confirmation_max_display = None
     list_display = (
         'main_image_thumb', 'name', 'category', 'grade',
         'status_badge', 'variant_count', 'created_at'
@@ -231,7 +234,7 @@ class ProductAdmin(TranslatableAdmin, StatusBadgeMixin, RTLAdminMediaMixin):
                 'box-shadow:0 1px 4px rgba(0,0,0,.15);"/>',
                 img.image.url
             )
-        return format_html(
+        return mark_safe(
             '<div style="width:44px;height:44px;border-radius:8px;'
             'border:2px dashed #3A4F6F;display:flex;align-items:center;'
             'justify-content:center;color:#6B7C8A;font-size:16px;">'
