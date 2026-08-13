@@ -118,7 +118,7 @@ class ProductVariant(models.Model):
     packaging_type = models.ForeignKey(PackagingType, related_name='variants', on_delete=models.PROTECT, verbose_name="نوع بسته‌بندی")
 
     sku = models.CharField(verbose_name="کد کالا (SKU)", max_length=100, unique=True, db_index=True)
-    weight_in_grams = models.DecimalField(verbose_name="وزن (گرم)")
+    weight_in_grams = models.DecimalField(verbose_name="وزن (گرم)" ,decimal_places=2,max_digits=100)
     moq = models.PositiveIntegerField(verbose_name="حداقل سفارش (MOQ)", default=1)
     is_default = models.BooleanField(verbose_name="متغیر پیش‌فرض", default=False, help_text="این متغیر به عنوان قیمت و ویژگی اصلی محصول نمایش داده می‌شود.")
 
