@@ -180,3 +180,38 @@ See `.env.example` for the full list of required variables.
 - **Rate limiting** uses a database-backed cache table (`rate_limit_cache`). The `entrypoint.sh` creates it automatically in Docker. Run `python manage.py createcachetable` manually in development.
 - **HTTPS**: In production, configure SSL certificates and uncomment the HTTPS redirect block in `nginx/default.conf`.
 - **Media files**: Uploaded product images are stored in `media/` and served by Nginx at `/media/`.
+
+# Local Development
+
+## Requirements
+- Git
+- Docker Desktop
+- Python 3.12
+
+## Setup
+
+git clone ...
+cd ...
+
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+
+pip install -r requirements.txt
+
+Copy-Item .env.example .env
+
+docker compose up -d db
+
+python manage.py migrate
+
+python manage.py collectstatic --noinput
+
+python manage.py runserver
+
+# Restore Existing Database
+
+docker compose up -d db
+
+docker cp .\backups\palace_db.sql palace_postgres:/tmp/palace_db.sql
+
+docker exec palace_postgres psql -U postgres -d palace_db -f /tmp/palace_db.sql
