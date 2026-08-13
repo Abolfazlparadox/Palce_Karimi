@@ -38,3 +38,5 @@ desktop.ini
 media/
 *.mo
 *.pyc
+staticfiles/
+backups/
