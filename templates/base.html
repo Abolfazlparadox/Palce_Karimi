@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 {% load static i18n %}
 {% get_current_language as LANGUAGE_CODE %}
-<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'fa' or LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+<html lang="{{ LANGUAGE_CODE }}"
+    dir="{% if LANGUAGE_CODE == 'fa' or LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>{% block title %}{% trans 'Palace Karimi | Luxury Persian Saffron & Pistachio' %}{% endblock %}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <meta name="keywords" content="saffron export, persian saffron, pistachio export, iran saffron, bulk saffron, B2B saffron, premium pistachio">
-    <meta name="description" content="Palace Karimi — Premium Iranian Saffron and Pistachio Exporter. B2B bulk export worldwide. Quality certified products from Sabzevar, Iran.">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <meta name="keywords"
+        content="saffron export, persian saffron, pistachio export, iran saffron, bulk saffron, B2B saffron, premium pistachio">
+    <meta name="description"
+        content="Palace Karimi — Premium Iranian Saffron and Pistachio Exporter. B2B bulk export worldwide. Quality certified products from Sabzevar, Iran.">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon-32x32.png' %}">
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon-16x16.png' %}">
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/apple-touch-icon.png' %}">
@@ -25,10 +30,8 @@
     <link rel="stylesheet" href="{% static 'css/theme.css' %}">
     <link rel="stylesheet" href="{% static 'css/theme-elements.css' %}">
     <link rel="stylesheet" href="{% static 'css/theme-shop.css' %}">
-    <link id="skin-css" rel="stylesheet"
-          href="{% static 'css/skins/default.css' %}"
-          data-light="{% static 'css/skins/default.css' %}"
-          data-dark="{% static 'css/skins/default-dark.css' %}">
+    <link id="skin-css" rel="stylesheet" href="{% static 'css/skins/default.css' %}"
+        data-light="{% static 'css/skins/default.css' %}" data-dark="{% static 'css/skins/default-dark.css' %}">
     <link rel="stylesheet" href="{% static 'css/custom.css' %}">
     {% block extra_css %}{% endblock %}
     <script src="{% static 'vendor/modernizr/modernizr.min.js' %}"></script>
@@ -48,12 +51,13 @@
         })();
     </script>
 </head>
-<body class="loading-overlay-showing" data-plugin-page-transition data-loading-overlay data-plugin-options="{'hideDelay': 100}">
-    <div class="loading-overlay">
-        <div class="bounce-loader">
-            <div class="bounce1"></div>
-            <div class="bounce2"></div>
-            <div class="bounce3"></div>
+
+<body>
+    <div id="pk-loading-overlay" class="pk-loading-overlay" role="status" aria-label="در حال بارگذاری...">
+        <div class="pk-loader">
+            <div class="pk-loader-dot"></div>
+            <div class="pk-loader-dot"></div>
+            <div class="pk-loader-dot"></div>
         </div>
     </div>
 
@@ -66,7 +70,22 @@
 
         {% include 'includes/footer.html' %}
     </div>
-
+    <script>
+        (function () {
+            var overlay = document.getElementById('pk-loading-overlay');
+            if (!overlay) return;
+            function hideOverlay() {
+                overlay.classList.add('pk-loaded');
+                setTimeout(function () { overlay.remove(); }, 550);
+            }
+            if (document.readyState === 'complete') {
+                hideOverlay();
+            } else {
+                window.addEventListener('load', hideOverlay);
+                setTimeout(hideOverlay, 3000);
+            }
+        })();
+    </script>
     <script src="{% static 'vendor/jquery/jquery.min.js' %}" defer></script>
     <script src="{% static 'vendor/jquery.appear/jquery.appear.min.js' %}" defer></script>
     <script src="{% static 'vendor/jquery.easing/jquery.easing.min.js' %}" defer></script>
