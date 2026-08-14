@@ -215,3 +215,13 @@ docker compose up -d db
 docker cp .\backups\palace_db.sql palace_postgres:/tmp/palace_db.sql
 
 docker exec palace_postgres psql -U postgres -d palace_db -f /tmp/palace_db.sql
+
+
+
+
+
+
+
+************************
+1
+************************
