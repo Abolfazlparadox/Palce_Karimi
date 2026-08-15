@@ -1,12 +1,18 @@
+# =============================================================================
 # Dockerfile — Palace Karimi B2B Export
 # Production-ready multi-stage build with non-root execution
+# =============================================================================
+
+# ---------------------------------------------------------------------------
+# Stage 1: Builder — install Python dependencies
+# ---------------------------------------------------------------------------
 FROM python:3.12-slim AS builder
 
 WORKDIR /build
 
 # Install system build dependencies only (discarded after build)
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends gcc libpq-dev gettext \
+    && apt-get install -y --no-install-recommends gcc libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
@@ -15,7 +21,7 @@ RUN pip install --no-cache-dir --upgrade pip \
 
 
 # ---------------------------------------------------------------------------
-# Runtime stage — minimal image, non-root user
+# Stage 2: Runtime — minimal image, non-root user
 # ---------------------------------------------------------------------------
 FROM python:3.12-slim
 
@@ -37,8 +43,19 @@ COPY --from=builder /usr/local/bin/ /usr/local/bin/
 # Copy application code
 COPY --chown=appuser:appuser . /app/
 
-# Ensure entrypoint is executable
-RUN chmod +x /app/entrypoint.sh
+# Remove files that should not be in the image
+RUN rm -rf /app/venv /app/.git /app/.idea /app/.vscode /app/__pycache__ \
+    /app/structures.txt /app/project_summary.md /app/backups
+
+# Pre-collect static files during build for deterministic static serving.
+# This bakes the current static assets into the image itself.
+RUN python manage.py collectstatic --noinput 2>/dev/null || true
+
+# Ensure entrypoint is executable (fix Windows line endings)
+RUN sed -i 's/\r$//' /app/entrypoint.sh && chmod +x /app/entrypoint.sh
+
+# Create media directory with correct ownership
+RUN mkdir -p /app/media && chown -R appuser:appuser /app/media /app/staticfiles
 
 # Switch to non-root user
 USER appuser
@@ -46,9 +63,8 @@ USER appuser
 # Environment variables
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
-ENV GUNICORN_CMD_ARGS="--timeout 120 --access-logfile - --error-logfile - --worker-tmp-dir /dev/shm"
 
 # Gunicorn binds inside container; Nginx reverse-proxy handles public port
 EXPOSE 8000
 
-CMD ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3"]
+ENTRYPOINT ["/bin/bash", "/app/entrypoint.sh"]

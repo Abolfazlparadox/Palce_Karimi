@@ -1,16 +1,20 @@
-version: '3.8'
+# =============================================================================
+# docker-compose.yml — Palace Karimi B2B Export
+# Architecture: Nginx → Gunicorn/Django → PostgreSQL
+# =============================================================================
 
 services:
   # ---------------------------------------------------------------------------
-  # PostgreSQL 16 — Database
+  # PostgreSQL 16 — Database (internal only)
   # ---------------------------------------------------------------------------
   db:
     image: postgres:16
     container_name: palace_postgres
     restart: unless-stopped
 
-    ports:
-      - "5433:5432"
+    # NOT exposed to host — internal Docker network only
+    expose:
+      - "5432"
 
     volumes:
       - postgres_data:/var/lib/postgresql/data
@@ -20,11 +24,11 @@ services:
 
     environment:
       POSTGRES_DB: ${DB_NAME:-palace_db}
-      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_USER: ${DB_USER:-palace_user}
       POSTGRES_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD must be set in .env}
 
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-postgres} -d ${DB_NAME:-palace_db}"]
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-palace_user} -d ${DB_NAME:-palace_db}"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -33,40 +37,51 @@ services:
       - palace_net
 
   # ---------------------------------------------------------------------------
-  # Django + Gunicorn — Application
+  # Django + Gunicorn — Application (internal only)
   # ---------------------------------------------------------------------------
   web:
     build: .
     container_name: palace_web
     restart: unless-stopped
-    entrypoint: ["/bin/bash", "/app/entrypoint.sh"]
+
+    # NOT exposed to host — Nginx proxies internally
+    expose:
+      - "8000"
+
     volumes:
       - static_volume:/app/staticfiles
       - media_volume:/app/media
+
     env_file:
       - .env
+
     depends_on:
       db:
         condition: service_healthy
+
     networks:
       - palace_net
 
   # ---------------------------------------------------------------------------
-  # Nginx — Reverse Proxy & Static Files
+  # Nginx — Reverse Proxy & Static Files (public)
   # ---------------------------------------------------------------------------
   nginx:
     image: nginx:1.27-alpine
     container_name: palace_nginx
     restart: unless-stopped
+
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
       - static_volume:/app/staticfiles:ro
       - media_volume:/app/media:ro
+
     ports:
       - "80:80"
       - "443:443"
+
     depends_on:
       - web
+
     networks:
       - palace_net
 

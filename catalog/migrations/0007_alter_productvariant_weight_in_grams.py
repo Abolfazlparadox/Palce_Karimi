@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="productvariant",
             name="weight_in_grams",
-            field=models.DecimalField(verbose_name="وزن (گرم)"),
+            field=models.DecimalField(max_digits=100, decimal_places=2, verbose_name="وزن (گرم)"),
         ),
     ]

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # =============================================================================
 # entrypoint.sh — Palace Karimi Docker entrypoint
-# Waits for PostgreSQL, runs migrations, creates cache table, starts Gunicorn.
+# Waits for PostgreSQL, runs migrations, collects static, starts Gunicorn.
 # =============================================================================
 set -e
 
@@ -15,7 +15,7 @@ try:
     psycopg2.connect(
         host=os.environ.get('DB_HOST', 'db'),
         port=os.environ.get('DB_PORT', '5432'),
-        user=os.environ.get('DB_USER', 'postgres'),
+        user=os.environ.get('DB_USER', 'palace_user'),
         password=os.environ.get('DB_PASSWORD', ''),
         dbname=os.environ.get('DB_NAME', 'palace_db'),
     )
@@ -38,7 +38,7 @@ echo ">>> Creating cache table (idempotent)..."
 python manage.py createcachetable || true
 
 echo ">>> Collecting static files..."
-python manage.py collectstatic --noinput --clear
+python manage.py collectstatic --noinput
 
 # ---------------------------------------------------------------------------
 # Start application server
@@ -49,4 +49,5 @@ exec gunicorn config.wsgi:application \
     --workers 3 \
     --timeout 120 \
     --access-logfile - \
-    --error-logfile -
+    --error-logfile - \
+    --worker-tmp-dir /dev/shm
