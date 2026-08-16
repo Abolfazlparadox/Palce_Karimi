@@ -1959,6 +1959,12 @@ html.dark .pk-loader-dot {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
   }
+
+  /* Loader باید همچنان قابل مشاهده و متحرک باشد */
+  .pk-loader-dot {
+    animation-duration: 1.4s !important;
+    animation-iteration-count: infinite !important;
+  }
 }
 
 
@@ -2439,5 +2445,71 @@ html.dark .newsletter-wrapper button {
 }
 
   /* ============================================================
-   END OF CUSTOM STYLESHEET
+   END OF CUSTOM STYLESHEET v1.0.0
    ============================================================ */
+   /* test */
+
+   :root {
+  --header-height: 80px;
+  --header-bg: rgba(255, 255, 255, 0.75);
+  --header-bg-scrolled: rgba(255, 255, 255, 0.95);
+  --header-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --header-border: rgba(0, 0, 0, 0.06);
+  --transition: 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+}
+
+/* فاصله بالای بدنه به اندازه ارتفاع هدر */
+body {
+  padding-top: var(--header-height);
+}
+
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: var(--header-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--header-border);
+  transition: transform var(--transition), background 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+  will-change: transform, background, box-shadow;
+}
+
+/* وقتی اسکرول شده و چسبیده */
+#header.header-scrolled {
+  background: var(--header-bg-scrolled);
+  box-shadow: var(--header-shadow);
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+/* مخفی شدن هنگام اسکرول به پایین */
+#header.header-hidden {
+  transform: translateY(-100%);
+}
+
+/* نمایش دوباره هنگام اسکرول به بالا (پیش‌فرض بدون transform) */
+#header {
+  transform: translateY(0);
+}
+
+/* ریسپانسیو موبایل */
+@media (max-width: 768px) {
+  :root {
+    --header-height: 65px; /* ارتفاع کمتر در موبایل */
+  }
+  body {
+    padding-top: var(--header-height);
+  }
+  #header {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  #header.header-scrolled {
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+}

@@ -6,3 +6,28 @@ const observer=new IntersectionObserver(function(entries,obs){entries.forEach(fu
 window.addEventListener('scroll',function(){if(!ticking){window.requestAnimationFrame(update);ticking=!0}},{passive:!0});update()})();(function rippleEffect(){const selector='.btn-primary, .luxury-cta, .custom-gold-btn, .add-to-cart-product';document.addEventListener('click',function(e){const target=e.target.closest(selector);if(!target)return;const rect=target.getBoundingClientRect();const ripple=document.createElement('span');const size=Math.max(rect.width,rect.height);ripple.className='pk-ripple';ripple.style.width=ripple.style.height=size+'px';ripple.style.left=(e.clientX-rect.left-size/2)+'px';ripple.style.top=(e.clientY-rect.top-size/2)+'px';target.appendChild(ripple);ripple.addEventListener('animationend',function(){ripple.remove()})})})();(function backToTop(){const btn=document.createElement('button');btn.type='button';btn.className='pk-back-to-top';btn.setAttribute('aria-label','بازگشت به بالای صفحه');btn.innerHTML='<i class="fas fa-arrow-up"></i>';document.body.appendChild(btn);let ticking=!1;function update(){btn.classList.toggle('is-visible',window.scrollY>500);ticking=!1}
 window.addEventListener('scroll',function(){if(!ticking){window.requestAnimationFrame(update);ticking=!0}},{passive:!0});btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})})})()
 
+const header = document.getElementById('header');
+let lastScroll = 0;
+
+window.addEventListener('scroll', () => {
+  const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+  // شرینک بعد از ۱۰۰ پیکسل
+  if (currentScroll > 100) {
+    header.classList.add('header-scrolled');
+  } else {
+    header.classList.remove('header-scrolled');
+  }
+
+  // مخفی/نمایش بر اساس جهت اسکرول
+  if (currentScroll > lastScroll && currentScroll > 200) {
+    // اسکرول به پایین => مخفی
+    header.classList.add('header-hidden');
+  } else {
+    // اسکرول به بالا => نمایش
+    header.classList.remove('header-hidden');
+  }
+
+  lastScroll = currentScroll <= 0 ? 0 : currentScroll;
+}, { passive: true });
+
