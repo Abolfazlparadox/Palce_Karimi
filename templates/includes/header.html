@@ -1,5 +1,7 @@
 {% load static i18n %}
-
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+{% get_language_info_list for LANGUAGES as languages %}
 <header id="header" class="header-effect-shrink" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 100, 'stickyChangeLogo': true, 'stickyHeaderContainerHeight': 80}">
     <div class="header-body border-top-0" style="box-shadow: 0 5px 25px rgba(0,0,0,0.03);">
 
@@ -47,8 +49,8 @@
                                         <li class="dropdown"><a class="dropdown-item" href="{% url 'catalog:home' %}">{% trans 'Home' %}</a></li>
                                         <li class="dropdown"><a class="dropdown-item" href="{% url 'catalog:shop' %}">{% trans 'Products' %}</a></li>
                                         <li class="dropdown"><a class="dropdown-item" href="{% url 'catalog:about_us' %}">{% trans 'About Us' %}</a></li>
-                                        <li class="dropdown"><a class="dropdown-item" href="{% url 'catalog:terms_faq' %}">{% trans 'Terms & FAQ' %}</a></li>
                                         <li class="dropdown"><a class="dropdown-item" href="{% url 'catalog:contact_us' %}">{% trans 'Contact Us' %}</a></li>
+                                        <li class="dropdown"><a class="dropdown-item" href="{% url 'catalog:terms_faq' %}">{% trans 'Terms & FAQ' %}</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -56,16 +58,22 @@
 
                         <div class="header-actions d-flex align-items-center ml-3 mr-3 z-index-3">
 
-                            {% get_current_language as LANGUAGE_CODE %}
-                            {% get_available_languages as LANGUAGES %}
-                            {% get_language_info_list for LANGUAGES as languages %}
-                            <!-- Admin Login Button -->
-                            <a href="{% url 'admin:index' %}" class="btn luxury-admin-btn d-flex align-items-center justify-content-center mx-1" style="background: transparent; border: 1px solid #8A609C; color: #8A609C; border-radius: 8px; width: 38px; height: 38px; transition: all 0.3s;" title="{% trans 'Admin Panel' %}">
+                            <form id="lang-switch-form" action="{% url 'set_language' %}" method="post" style="display:none;">
+                                {% csrf_token %}
+                                <input name="next" type="hidden" value="{% url 'admin:index' %}">
+                                <input name="language" type="hidden" value="fa">
+                            </form>
+
+                            <!-- دکمه ادمین -->
+                            <a href="#" onclick="document.getElementById('lang-switch-form').submit(); return false;"
+                               class="btn luxury-admin-btn d-flex align-items-center justify-content-center mx-1"
+                               style="background: transparent; border: 1px solid #8A609C; color: #8A609C; border-radius: 8px; width: 38px; height: 38px; transition: all 0.3s;"
+                               title="{% trans 'Admin Panel' %}">
                                 <i class="fas fa-user-shield"></i>
                             </a>
 
                             <!-- Dark Mode Toggle Button -->
-                            <a href="#" id="theme-toggle-btn" class="btn mx-1 d-flex align-items-center justify-content-center" style="background: transparent; border: 1px solid #8A609C; color: #8A609C; border-radius: 8px; width: 38px; height: 38px; transition: all 0.3s;" title="{% trans 'Toggle Dark Mode' %}">
+                            <a href="javascript:void(0);" id="theme-toggle-btn" class="btn mx-1 d-flex align-items-center justify-content-center" style="background: transparent; border: 1px solid #8A609C; color: #8A609C; border-radius: 8px; width: 38px; height: 38px; transition: all 0.3s;" title="{% trans 'Toggle Dark Mode' %}">
                                 <i id="theme-toggle-icon" class="fas fa-moon"></i>
                             </a>
 
@@ -84,7 +92,14 @@
 
                                 <div class="dropdown-menu dropdown-menu-right lang-dropdown-menu" aria-labelledby="langMenuBtn" style="border-radius: 12px; border: 1px solid #E8E3D9; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
                                     {% for language in languages %}
-                                       <a href="javascript:void(0);" onclick="event.preventDefault(); let f = this.closest('.dropdown').querySelector('form'); f.querySelector('input[name=language]').value='{{ language.code }}'; f.submit();" class="dropdown-item text-center py-2 font-weight-semibold">
+                                       <a href="javascript:void(0);"
+                                          onclick="event.preventDefault();
+                                                   let f = this.closest('.dropdown').querySelector('form');
+                                                   f.querySelector('input[name=language]').value='{{ language.code }}';
+                                                   let path = window.location.pathname + window.location.search;
+                                                   f.querySelector('input[name=next]').value = path.replace(/^\/(en|fa|ar|tr)(\/|$)/, '/{{ language.code }}$2');
+                                                   f.submit();"
+                                          class="dropdown-item text-center py-2 font-weight-semibold">
                                            <img src="{% static 'img/blank.gif' %}" class="flag flag-{% if language.code == 'en' %}us{% elif language.code == 'fa' %}ir{% elif language.code == 'ar' %}sa{% elif language.code == 'tr' %}tr{% endif %} mx-1" alt="{{ language.name_local }}">
                                            {{ language.name_local }}
                                        </a>

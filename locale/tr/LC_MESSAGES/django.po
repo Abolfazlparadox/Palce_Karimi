@@ -20,7 +20,7 @@ msgid "Contact Us"
 msgstr "İletişim"
 
 msgid "Get in Touch"
-msgstr "İletişimde Kalın"
+msgstr "İletيشimde Kalın"
 
 msgid "Newsletter"
 msgstr "Bülten"
@@ -595,7 +595,7 @@ msgid "Back to Home"
 msgstr "Ana Sayfaya Dön"
 
 msgid "500 - Internal Server Error"
-msgstr "500 - İç Sunucu Hatası"
+msgstr "500 - Sunucu Hatası"
 
 msgid "500"
 msgstr "500"
@@ -882,3 +882,68 @@ msgstr ""
 
 msgid "God provides sustenance without measure."
 msgstr "Allah hesapsız rızık verendir."
+
+msgid "Sale!"
+msgstr "İndirim!"
+
+msgid "Contact for Price"
+msgstr "Fiyat için İletişim"
+
+msgid "Price not set"
+msgstr "Fiyat Belirlenmedi"
+
+msgid "No products available in this category."
+msgstr "Bu kategoride ürün bulunmamaktadır."
+
+msgid "Description"
+msgstr "Açıklama"
+
+msgid "Additional Info"
+msgstr "Ek Bilgi"
+
+msgid "Related Products"
+msgstr "İlgili Ürünler"
+
+msgid "Category"
+msgstr "Kategori"
+
+msgid "You have sent too many messages. Please try again later."
+msgstr "Çok fazla mesaj gönderdiniz. Lütfen daha sonra tekrar deneyiniz."
+
+msgid "Your message has been sent successfully. We will contact you soon."
+msgstr ""
+"Mesajınız başarıyla gönderildi. En kısa sürede sizinle iletişime geçeceğiz."
+
+msgid "success_contact"
+msgstr ""
+"Mesajınız başarıyla gönderildi. En kısa sürede sizinle iletişime geçeceğiz."
+
+msgid "Too many requests. Please try again later."
+msgstr "Çok fazla istek. Lütfen daha sonra tekrar deneyiniz."
+
+msgid "Please enter an email address."
+msgstr "Lütfen bir e-posta adresi girin."
+
+msgid "Thank you for subscribing to our newsletter."
+msgstr "Bültenimize abone olduğunuz için teşekkür ederiz."
+
+msgid "You are already subscribed to our email list."
+msgstr "E-posta listemize zaten abonesiniz."
+
+msgid "Invalid email address. Please check and try again."
+msgstr "Geçersiz e-posta adresi. Lütfen kontrol edip tekrar deneyin."
+
+msgid ""
+"Your message is too short. Please provide more details (minimum 20 "
+"characters)."
+msgstr ""
+"Mesajınız çok kısa. Lütfen daha fazla detay verin (en az 20 karakter)."
+
+msgid "Spam bot detected!"
+msgstr "Spam botu tespit edildi!"
+
+msgid "Phone Extension"
+msgstr "Dahili Telefon"
+
+msgid "Notifications"
+msgstr "Bildirimler"

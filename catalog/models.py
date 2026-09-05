@@ -22,7 +22,7 @@ def get_image_upload_path(instance, filename):
 class Category(TranslatableModel):
     translations = TranslatedFields(
         name=models.CharField(verbose_name="نام دسته‌بندی", max_length=200),
-        slug=models.SlugField(verbose_name="شناسه (Slug)", max_length=220, unique=True,allow_unicode=True),
+        slug=models.SlugField(verbose_name="شناسه (Slug)", max_length=220, unique=True, allow_unicode=True),
         description=models.TextField(verbose_name="توضیحات", blank=True)
     )
     is_active = models.BooleanField(verbose_name="وضعیت فعالیت", default=True, db_index=True)
@@ -75,7 +75,7 @@ class Product(TranslatableModel):
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, db_index=True)
     translations = TranslatedFields(
         name=models.CharField(verbose_name="نام محصول", max_length=200),
-        slug=models.SlugField(verbose_name="شناسه URL (اسلاگ)", max_length=220, unique=True,allow_unicode=True),
+        slug=models.SlugField(verbose_name="شناسه URL (اسلاگ)", max_length=220, unique=True, allow_unicode=True),
         short_description=models.CharField(verbose_name="توضیح کوتاه", max_length=500),
         full_description=models.TextField(verbose_name="توضیحات کامل"),
         seo_title=models.CharField(verbose_name="عنوان سئو", max_length=255, blank=True),
@@ -105,6 +105,9 @@ class Product(TranslatableModel):
 
     @property
     def main_image(self):
+        # Use prefetched result when available (avoids N+1 queries)
+        if hasattr(self, 'main_image_obj'):
+            return self.main_image_obj[0] if self.main_image_obj else None
         img = self.images.filter(is_main=True).first()
         return img if img else self.images.order_by('order').first()
 
@@ -115,7 +118,7 @@ class ProductVariant(models.Model):
     packaging_type = models.ForeignKey(PackagingType, related_name='variants', on_delete=models.PROTECT, verbose_name="نوع بسته‌بندی")
 
     sku = models.CharField(verbose_name="کد کالا (SKU)", max_length=100, unique=True, db_index=True)
-    weight_in_grams = models.PositiveIntegerField(verbose_name="وزن (گرم)")
+    weight_in_grams = models.DecimalField(verbose_name="وزن (گرم)" ,decimal_places=2,max_digits=100)
     moq = models.PositiveIntegerField(verbose_name="حداقل سفارش (MOQ)", default=1)
     is_default = models.BooleanField(verbose_name="متغیر پیش‌فرض", default=False, help_text="این متغیر به عنوان قیمت و ویژگی اصلی محصول نمایش داده می‌شود.")
 
@@ -298,8 +301,8 @@ class NewsletterSubscriber(models.Model):
     )
 
     class Meta:
-        verbose_name = _("Newsletter Subscriber")
-        verbose_name_plural = _("Newsletter Subscribers")
+        verbose_name = _("مشترک خبرنامه")
+        verbose_name_plural = _("مشترکین خبرنامه")
         ordering = ['-created_at']
 
     def __str__(self):

@@ -1,37 +1,91 @@
-# Other folder (containing extra files)
-other/
+# ==============================================================================
+# Palace Karimi — Django .gitignore
+# ==============================================================================
 
-# Agent logs
-agent_logs/
-*.log
-
-# Environment files
+# ------------------------------------------------------------------------------
+# 1. Environment & Secrets (NEVER COMMIT SENSITIVE DATA)
+# ------------------------------------------------------------------------------
 .env
 .env.local
 .env.*.local
+.env.prod
+.env.dev
+*.secret
+*.key
 
-# Python virtual machine
+# Ensure .env.example is always tracked
+!.env.example
+
+# ------------------------------------------------------------------------------
+# 2. Python Virtual Environment
+# ------------------------------------------------------------------------------
 venv/
 .venv/
 env/
 ENV/
 env.bak/
 venv.bak/
+
+# ------------------------------------------------------------------------------
+# 3. Python Bytecode & Cache
+# ------------------------------------------------------------------------------
 __pycache__/
 *.py[cod]
 *$py.class
+*.pyd
+*.pyo
+
+# ------------------------------------------------------------------------------
+# 4. Django Runtime & Generated Media/Static
+# ------------------------------------------------------------------------------
+# User uploaded files (keep local, not in git)
+media/
+
+# Collected static files for production
+staticfiles/
+
+# Database files & Backups
+*.sqlite3
+*.db
+backups/
+*.sql
+*.sql.gz
+
+# Local testing & coverage reports
 .pytest_cache/
 .coverage
 htmlcov/
-# System files
-.DS_Store
-Thumbs.db
-desktop.ini
-# IDE files
-.vscode/
+.tox/
+
+# ------------------------------------------------------------------------------
+# 5. IDEs & Editors
+# ------------------------------------------------------------------------------
 .idea/
+.vscode/
 *.swp
 *.swo
-media/
-*.mo
-*.pyc
+*~
+.project
+.pydevproject
+.settings/
+
+# ------------------------------------------------------------------------------
+# 6. Operating System Files
+# ------------------------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ------------------------------------------------------------------------------
+# 7. Logs & Temporary Project Dumps
+# ------------------------------------------------------------------------------
+*.log
+agent_logs/
+structures.txt
+structure.txt
+other/

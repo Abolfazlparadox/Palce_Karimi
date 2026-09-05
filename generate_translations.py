@@ -2,9 +2,99 @@ import os
 import polib
 
 LOCALE_DIR = 'locale'
+LANGS = ['en', 'fa', 'ar', 'tr']
 
-# دیکشنری جامع ترجمه‌های فوتر و هدر سایت
+# ---------------------------------------------------------------------------
+# دیکشنری جامع ترجمه‌ها برای ۳ زبان (فارسی، عربی، ترکی)
+# انگلیسی به‌صورت خودکار از کلید msgid استفاده می‌کند.
+# ---------------------------------------------------------------------------
 TRANSLATIONS = {
+    # ------------------------------------------------------------------
+    # پیام‌ها و اعلان‌های سیستم
+    # ------------------------------------------------------------------
+    "You have sent too many messages. Please try again later.": {
+        "fa": "تعداد پیام‌های شما بیش از حد مجاز است. لطفاً بعداً دوباره تلاش کنید.",
+        "ar": "لقد أرسلت عددًا كبيرًا جدًا من الرسائل. يرجى المحاولة مرة أخرى لاحقًا.",
+        "tr": "Çok fazla mesaj gönderdiniz. Lütfen daha sonra tekrar deneyiniz."
+    },
+    "Your message has been sent successfully. We will contact you soon.": {
+        "fa": "پیام شما با موفقیت ارسال شد. به زودی با شما تماس خواهیم گرفت.",
+        "ar": "تم إرسال رسالتك بنجاح. سنتواصل معك قريبًا.",
+        "tr": "Mesajınız başarıyla gönderildi. En kısa sürede sizinle iletişime geçeceğiz."
+    },
+    "success_contact": {
+        "fa": "پیام شما با موفقیت ارسال شد. به زودی با شما تماس خواهیم گرفت.",
+        "ar": "تم إرسال رسالتك بنجاح. سنتواصل معك قريبًا.",
+        "tr": "Mesajınız başarıyla gönderildi. En kısa sürede sizinle iletişime geçeceğiz."
+    },
+    "Too many requests. Please try again later.": {
+        "fa": "تعداد درخواست‌ها بیش از حد مجاز است. لطفاً بعداً دوباره تلاش کنید.",
+        "ar": "طلبات كثيرة جدًا. يرجى المحاولة مرة أخرى لاحقًا.",
+        "tr": "Çok fazla istek. Lütfen daha sonra tekrar deneyiniz."
+    },
+    "Please enter an email address.": {
+        "fa": "لطفاً یک آدرس ایمیل وارد کنید.",
+        "ar": "يرجى إدخال البريد الإلكتروني.",
+        "tr": "Lütfen bir e-posta adresi girin."
+    },
+    "Thank you for subscribing to our newsletter.": {
+        "fa": "با تشکر از عضویت شما در خبرنامه.",
+        "ar": "شكرًا لاشتراكك في نشرتنا الإخبارية.",
+        "tr": "Bültenimize abone olduğunuz için teşekkür ederiz."
+    },
+    "You are already subscribed to our email list.": {
+        "fa": "شما قبلاً در خبرنامه ثبت‌نام کرده‌اید.",
+        "ar": "أنت مشترك بالفعل في قائمتنا البريدية.",
+        "tr": "E-posta listemize zaten abonesiniz."
+    },
+    "Invalid email address. Please check and try again.": {
+        "fa": "آدرس ایمیل نامعتبر است. لطفاً بررسی و دوباره تلاش کنید.",
+        "ar": "عنوان البريد الإلكتروني غير صالح. يرجى التحقق والمحاولة مرة أخرى.",
+        "tr": "Geçersiz e-posta adresi. Lütfen kontrol edip tekrar deneyin."
+    },
+
+    # ------------------------------------------------------------------
+    # اعتبارسنجی فرم‌ها
+    # ------------------------------------------------------------------
+    "Your message is too short. Please provide more details (minimum 20 characters).": {
+        "fa": "متن پیام شما بسیار کوتاه است. لطفاً اطلاعات بیشتری وارد کنید (حداقل ۲۰ کاراکتر).",
+        "ar": "رسالتك قصيرة جدًا. يرجى تقديم المزيد من التفاصيل (۲۰ حرفًا على الأقل).",
+        "tr": "Mesajınız çok kısa. Lütfen daha fazla detay verin (en az 20 karakter)."
+    },
+    "Spam bot detected!": {
+        "fa": "ربات اسپم شناسایی شد!",
+        "ar": "تم اكتشاف برنامج روبوت للبريد العشوائي!",
+        "tr": "Spam botu tespit edildi!"
+    },
+    "Phone Extension": {
+        "fa": "پیش‌شماره تلفن",
+        "ar": "تحويلة الهاتف",
+        "tr": "Dahili Telefon"
+    },
+
+    # ------------------------------------------------------------------
+    # هدر، فوتر و ناوبری
+    # ------------------------------------------------------------------
+    "Home": {
+        "fa": "خانه",
+        "ar": "الرئيسية",
+        "tr": "Ana Sayfa"
+    },
+    "About Us": {
+        "fa": "درباره ما",
+        "ar": "من نحن",
+        "tr": "Hakkımızda"
+    },
+    "Products": {
+        "fa": "محصولات",
+        "ar": "المنتجات",
+        "tr": "Ürünler"
+    },
+    "Contact Us": {
+        "fa": "تماس با ما",
+        "ar": "اتصل بنا",
+        "tr": "İletişim"
+    },
     "Get in Touch": {
         "fa": "در ارتباط باشید",
         "ar": "ابق على تواصل",
@@ -16,9 +106,9 @@ TRANSLATIONS = {
         "tr": "Bülten"
     },
     "Subscribe to our newsletter to get the latest updates and luxury offers.": {
-        "fa": "برای دریافت آخرین به‌روزرسانی‌ها و پیشنهادات ویژه ما، در خبرنامه مشترک شوید.",
-        "ar": "اشترك في النشرة الإخبارية للحصول على أحدث التحديثات والعروض الفاخرة.",
-        "tr": "En son güncellemeleri ve lüks teklifleri almak için bültenimize abone olun."
+        "fa": "برای دریافت آخرین به‌روزرسانی‌ها و پیشنهادهای ویژه در خبرنامه ما عضو شوید.",
+        "ar": "اشترك في نشرتنا الإخبارية للحصول على آخر التحديثات والعروض الفاخرة.",
+        "tr": "En güncel haberler ve lüks tekliflerden haberdar olmak için bültenimize abone olun."
     },
     "Success!": {
         "fa": "موفقیت!",
@@ -27,62 +117,52 @@ TRANSLATIONS = {
     },
     "You have been added to our email list.": {
         "fa": "شما به لیست ایمیل ما اضافه شدید.",
-        "ar": "تمت إضافتك إلى قائمة البريد الإلكتروني لدينا.",
+        "ar": "تمت إضافتك إلى قائمتنا البريدية.",
         "tr": "E-posta listemize eklendiniz."
     },
     "Email Address": {
         "fa": "آدرس ایمیل",
-        "ar": "عنوان البريد الإلكتروني",
+        "ar": "البريد الإلكتروني",
         "tr": "E-posta Adresi"
     },
     "Subscribe": {
-        "fa": "عضویت در خبرنامه",
-        "ar": "اشتراك",
+        "fa": "عضویت",
+        "ar": "اشترك",
         "tr": "Abone Ol"
     },
-    "About Us": {
-        "fa": "درباره ما",
-        "ar": "معلومات عنا",
-        "tr": "Hakkımızda"
+    "Latest Tweets": {
+        "fa": "آخرین توییت‌ها",
+        "ar": "أحدث التغريدات",
+        "tr": "Son Tweetler"
     },
-    "Hossein Karimi Trading - Supplying the finest Iranian Saffron and Pistachio.": {
-        "fa": "بازرگانی حسین کریمی - تأمین‌کننده بهترین زعفران و پسته ایرانی.",
-        "ar": "تجارة حسين كريمي - المورّد لأفضل الزعفران والفستق الإيراني.",
-        "tr": "Hossein Karimi Ticaret - En kaliteli İran safranı ve Antep fıstığının tedarikçisi."
+    "Please wait...": {
+        "fa": "لطفاً صبر کنید...",
+        "ar": "يرجى الانتظار...",
+        "tr": "Lütfen bekleyin..."
     },
-    "Contact Us": {
-        "fa": "تماس با ما",
-        "ar": "اتصل بنا",
-        "tr": "İletişim"
-    },
-    "Corner of Chamran 28, Chamran St., Sabzevar, Khorasan Razavi, Iran": {
-        "fa": "ایران، خراسان رضوی، سبزوار، خیابان چمران، نبش چمران ۲۸",
-        "ar": "إيران، خراسان الرضوية، سبزوار، شارع جمران، زاوية جمران 28",
-        "tr": "İran, Razavi Horasan, Sabzevar, Çamran Caddesi, Çamran 28 Köşesi"
+    "Tehran, Iran": {
+        "fa": "تهران، ایران",
+        "ar": "طهران، إيران",
+        "tr": "Tahran, İran"
     },
     "Follow Us": {
         "fa": "ما را دنبال کنید",
         "ar": "تابعنا",
         "tr": "Bizi Takip Edin"
     },
-    "Palace Karimi Logo": {
-        "fa": "لوگوی پالاس کریمی",
-        "ar": "شعار بالاس كريمي",
-        "tr": "Palace Karimi Logosu"
-    },
     "© 2026 Palace Karimi. All Rights Reserved.": {
         "fa": "© ۲۰۲۶ پالاس کریمی. تمامی حقوق محفوظ است.",
-        "ar": "© 2026 Palace Karimi. جميع الحقوق محفوظة.",
-        "tr": "© 2026 Palace Karimi. Tüm Hakları Saklıdır."
+        "ar": "© ۲۰۲۶ قصر كريمي. جميع الحقوق محفوظة.",
+        "tr": "© 2026 Palace Karimi. Tüm hakları saklıdır."
     },
     "Designed & Developed by": {
         "fa": "طراحی و توسعه توسط",
         "ar": "تصميم وتطوير بواسطة",
-        "tr": "Tasarım ve Geliştirme:"
+        "tr": "Tasarım ve Geliştirme"
     },
     "FAQ": {
         "fa": "سوالات متداول",
-        "ar": "أسئلة مكررة",
+        "ar": "الأسئلة الشائعة",
         "tr": "SSS"
     },
     "Sitemap": {
@@ -90,84 +170,662 @@ TRANSLATIONS = {
         "ar": "خريطة الموقع",
         "tr": "Site Haritası"
     },
-    "Palace Karimi | Luxury Persian Saffron & Pistachio": {
-        "fa": "پالاس کریمی | زعفران و پسته لوکس ایرانی",
-        "ar": "بالاس كريمي | الزعفران والفستق الإيراني الفاخر",
-        "tr": "Palace Karimi | Lüks İran Safranı ve Şam Fıstığı"
-    },
-    "In God We Trust...": {
-        "fa": "به خدا توکل داریم...",
-        "ar": "في الله نثق...",
-        "tr": "Tanrı'ya Güveniyoruz..."
-    },
-    "Working Hours:": {
-        "fa": "ساعات کاری:",
-        "ar": "ساعات العمل:",
-        "tr": "Çalışma Saatleri:"
+    "Notifications": {
+        "fa": "اعلان‌ها",
+        "ar": "الإشعارات",
+        "tr": "Bildirimler"
     },
 
-    "08:00 - 20:00": {
-        "fa": "۰۸:۰۰ - ۲۰:۰۰",
-        "ar": "08:00 - 20:00",
-        "tr": "08:00 - 20:00"
+    # ------------------------------------------------------------------
+    # کاتالوگ و فروشگاه
+    # ------------------------------------------------------------------
+    "Sale!": {
+        "fa": "حراج!",
+        "ar": "تخفيض!",
+        "tr": "İndirim!"
+    },
+    "Contact for Price": {
+        "fa": "تماس برای قیمت",
+        "ar": "اتصل لمعرفة السعر",
+        "tr": "Fiyat için İletişim"
+    },
+    "Price not set": {
+        "fa": "قیمت تعیین نشده",
+        "ar": "السعر غير محدد",
+        "tr": "Fiyat Belirlenmedi"
+    },
+    "No products available in this category.": {
+        "fa": "هیچ محصولی در این دسته‌بندی موجود نیست.",
+        "ar": "لا توجد منتجات في هذا القسم.",
+        "tr": "Bu kategoride ürün bulunmamaktadır."
+    },
+    "Description": {
+        "fa": "توضیحات",
+        "ar": "الوصف",
+        "tr": "Açıklama"
+    },
+    "Additional Info": {
+        "fa": "اطلاعات بیشتر",
+        "ar": "معلومات إضافية",
+        "tr": "Ek Bilgi"
+    },
+    "Related Products": {
+        "fa": "محصولات مرتبط",
+        "ar": "منتجات ذات صلة",
+        "tr": "İlgili Ürünler"
+    },
+    "Category": {
+        "fa": "دسته‌بندی",
+        "ar": "الفئة",
+        "tr": "Kategori"
     },
 
-    "0992 759 0575": {
-        "fa": "۰۹۹۲ ۷۵۹ ۰۵۷۵",
-        "ar": "0992 759 0575",
-        "tr": "0992 759 0575"
+    # ------------------------------------------------------------------
+    # برند و عناوین عمومی
+    # ------------------------------------------------------------------
+    "Palace Karimi": {
+        "fa": "پالاس کریمی",
+        "ar": "قصر كريمي",
+        "tr": "Palace Karimi"
+    },
+    "404 - Page Not Found": {
+        "fa": "۴۰۴ - صفحه مورد نظر پیدا نشد",
+        "ar": "۴۰۴ - الصفحة غير موجودة",
+        "tr": "404 - Sayfa Bulunamadı"
+    },
+    "500 - Internal Server Error": {
+        "fa": "۵۰۰ - خطای داخلی سرور",
+        "ar": "۵۰۰ - خطأ في الخادم الداخلي",
+        "tr": "500 - Sunucu Hatası"
+    },
+    "Back to Home": {
+        "fa": "بازگشت به صفحه اصلی",
+        "ar": "العودة إلى الرئيسية",
+        "tr": "Ana Sayfaya Dön"
     },
 
-    "0930 375 5667": {
-        "fa": "۰۹۳۰ ۳۷۵ ۵۶۶۷",
-        "ar": "0930 375 5667",
-        "tr": "0930 375 5667"
+    # ------------------------------------------------------------------
+    # بخش اصلی صفحه نخست
+    # ------------------------------------------------------------------
+    "The Finest Quality": {
+        "fa": "بالاترین کیفیت",
+        "ar": "أعلى جودة",
+        "tr": "En Yüksek Kalite"
     },
-
-    "051 44 29 20 21": {
-        "fa": "۰۵۱ ۴۴ ۲۹ ۲۰ ۲۱",
-        "ar": "051 44 29 20 21",
-        "tr": "051 44 29 20 21"
+    "PREMIUM SAFFRON": {
+        "fa": "زعفران ممتاز",
+        "ar": "زعفران فاخر",
+        "tr": "PREMIUM SAFRAN"
     },
-
-    "palacekarimi2023@gmail.com": {
-        "fa": "palacekarimi2023@gmail.com",
-        "ar": "palacekarimi2023@gmail.com",
-        "tr": "palacekarimi2023@gmail.com"
+    "Experience the true taste of luxury.": {
+        "fa": "طعم واقعی لوکس بودن را تجربه کنید.",
+        "ar": "جرّب المذاق الحقيقي للفخامة.",
+        "tr": "Lüksün gerçek tadını yaşayın."
     },
-
-    "Instagram": {
-        "fa": "اینستاگرام",
-        "ar": "إنستغرام",
-        "tr": "Instagram"
+    "Exporting Worldwide": {
+        "fa": "صادرات به سراسر جهان",
+        "ar": "تصدير إلى جميع أنحاء العالم",
+        "tr": "Dünya Geneline İhracat"
     },
-
-    "Facebook": {
-        "fa": "فیسبوک",
-        "ar": "فيسبوك",
-        "tr": "Facebook"
+    "PERSIAN PISTACHIO": {
+        "fa": "پسته ایرانی",
+        "ar": "فستق فارسي",
+        "tr": "PERSIAN FISTIK"
     },
-
-    "Twitter": {
-        "fa": "توییتر",
-        "ar": "إكس (تويتر)",
-        "tr": "X (Twitter)"
+    "Hand-picked and premium quality.": {
+        "fa": "چیده شده با دست و با کیفیت عالی.",
+        "ar": "مختارة يدويًا وبجودة ممتازة.",
+        "tr": "Elle toplanmış ve birinci sınıf kalite."
     },
-
-    "Linkedin": {
-        "fa": "لینکدین",
-        "ar": "لينكدإن",
-        "tr": "LinkedIn"
+    "YOUR TRUSTED PARTNER": {
+        "fa": "شریک مورد اعتماد شما",
+        "ar": "شريكك الموثوق",
+        "tr": "GÜVENİLİR ORTAĞINIZ"
     },
-"Our": {
-        "fa": "دفتر",
-        "ar": "مكتبنا",
-        "tr": "Ofisimiz"
+    "Providing the best agricultural products.": {
+        "fa": "ارائه بهترین محصولات کشاورزی.",
+        "ar": "توفير أفضل المنتجات الزراعية.",
+        "tr": "En iyi tarım ürünlerini sağlıyoruz."
+    },
+    "Follow us on social media for the latest updates and news!": {
+        "fa": "برای آخرین اخبار و به‌روزرسانی‌ها ما را در شبکه‌های اجتماعی دنبال کنید!",
+        "ar": "تابعنا على وسائل التواصل الاجتماعي لآخر التحديثات والأخبار!",
+        "tr": "En son güncellemeler ve haberler için bizi sosyal medyada takip edin!"
+    },
+    "Experience a secure purchase with the top exporter of authentic Iranian products": {
+        "fa": "با برترین صادرکننده محصولات اصیل ایرانی، خریدی مطمئن را تجربه کنید",
+        "ar": "استمتع بعملية شراء آمنة مع أفضل مصدّر للمنتجات الإيرانية الأصيلة",
+        "tr": "Orijinal İran ürünlerinin en iyi ihracatçısıyla güvenli bir alışveriş deneyimi yaşayın"
+    },
+    "Demand the best quality saffron and pistachio from us.": {
+        "fa": "بهترین کیفیت زعفران و پسته را از ما بخواهید.",
+        "ar": "اطلب أجود أنواع الزعفران والفستق منا.",
+        "tr": "En kaliteli safran ve fıstığı bizden isteyin."
+    },
+    "Contact Experts": {
+        "fa": "تماس با کارشناسان",
+        "ar": "تواصل مع الخبراء",
+        "tr": "Uzmanlarla İletişime Geçin"
+    },
+    "or": {
+        "fa": "یا",
+        "ar": "أو",
+        "tr": "veya"
+    },
+    "view products.": {
+        "fa": "مشاهده محصولات.",
+        "ar": "عرض المنتجات.",
+        "tr": "ürünleri görüntüleyin."
+    },
+    "Palace Karimi is a brand that is": {
+        "fa": "پالاس کریمی برندی است که",
+        "ar": "قصر كريمي علامة تجارية تتميز بأنها",
+        "tr": "Palace Karimi öyle bir markadır ki"
+    },
+    "Authentic": {
+        "fa": "اصیل",
+        "ar": "أصيلة",
+        "tr": "Otantik"
+    },
+    "High Quality": {
+        "fa": "کیفیت بالا",
+        "ar": "جودة عالية",
+        "tr": "Yüksek Kalite"
+    },
+    "Global": {
+        "fa": "جهانی",
+        "ar": "عالمية",
+        "tr": "Küresel"
+    },
+    "and a secure choice for export.": {
+        "fa": "و انتخابی مطمئن برای صادرات.",
+        "ar": "وخيار آمن للتصدير.",
+        "tr": "ve ihracat için güvenli bir seçimdir."
+    },
+    "Experience the pinnacle of luxury with Palace Karimi": {
+        "fa": "اوج تجمل را با پالاس کریمی تجربه کنید",
+        "ar": "استمتع بقمة الفخامة مع قصر كريمي",
+        "tr": "Palace Karimi ile lüksün zirvesini yaşayın"
+    },
+    "Consultation": {
+        "fa": "مشاوره",
+        "ar": "استشارة",
+        "tr": "Danışmanlık"
+    },
+    "Harvesting": {
+        "fa": "برداشت",
+        "ar": "الحصاد",
+        "tr": "Hasat"
+    },
+    "Processing": {
+        "fa": "فرآوری",
+        "ar": "المعالجة",
+        "tr": "İşleme"
+    },
+    "Packaging": {
+        "fa": "بسته‌بندی",
+        "ar": "التعبئة والتغليف",
+        "tr": "Paketleme"
+    },
+    "Global Export": {
+        "fa": "صادرات جهانی",
+        "ar": "التصدير العالمي",
+        "tr": "Küresel İhracat"
+    },
+    "New": {
+        "fa": "جدید",
+        "ar": "جديد",
+        "tr": "Yeni"
+    },
+    "View Details": {
+        "fa": "مشاهده جزئیات",
+        "ar": "عرض التفاصيل",
+        "tr": "Detayları Gör"
+    },
+    "No products available.": {
+        "fa": "هیچ محصولی موجود نیست.",
+        "ar": "لا توجد منتجات متاحة.",
+        "tr": "Mevcut ürün yok."
+    },
+    "Why Choose": {
+        "fa": "چرا انتخاب کنید",
+        "ar": "لماذا تختار",
+        "tr": "Neden Seçmelisiniz"
+    },
+    "Palace Karimi?": {
+        "fa": "پالاس کریمی؟",
+        "ar": "قصر كريمي؟",
+        "tr": "Palace Karimi?"
+    },
+    "Pure, natural products cultivated without harmful chemicals.": {
+        "fa": "محصولات خالص و طبیعی که بدون مواد شیمیایی مضر کشت شده‌اند.",
+        "ar": "منتجات نقية وطبيعية مزروعة بدون مواد كيميائية ضارة.",
+        "tr": "Zararlı kimyasallar olmadan yetiştirilen saf ve doğal ürünler."
+    },
+    "Premium Quality": {
+        "fa": "کیفیت برتر",
+        "ar": "جودة ممتازة",
+        "tr": "Birinci Sınıf Kalite"
+    },
+    "Export-grade saffron and pistachio carefully hand-picked.": {
+        "fa": "زعفران و پسته با کیفیت صادراتی که با دقت دست‌چین شده‌اند.",
+        "ar": "زعفران وفستق بجودة التصدير، مختارة يدويًا بعناية.",
+        "tr": "İhracat kalitesinde, özenle elle toplanmış safran ve fıstık."
+    },
+    "Luxury Packaging": {
+        "fa": "بسته‌بندی لوکس",
+        "ar": "تغليف فاخر",
+        "tr": "Lüks Paketleme"
+    },
+    "Elegant and secure packaging maintaining freshness and aroma.": {
+        "fa": "بسته‌بندی شیک و ایمن که تازگی و عطر را حفظ می‌کند.",
+        "ar": "تغليف أنيق وآمن يحافظ على النضارة والرائحة.",
+        "tr": "Tazelik ve aromayı koruyan zarif ve güvenli paketleme."
+    },
+    "Lab Certified": {
+        "fa": "دارای گواهی آزمایشگاهی",
+        "ar": "معتمد مختبريًا",
+        "tr": "Laboratuvar Sertifikalı"
+    },
+    "Rigorous laboratory testing for color, flavor, and purity.": {
+        "fa": "آزمایش‌های دقیق آزمایشگاهی برای رنگ، طعم و خلوص.",
+        "ar": "اختبارات مخبرية صارمة للون والنكهة والنقاء.",
+        "tr": "Renk, tat ve saflık için titiz laboratuvar testleri."
+    },
+    "Direct from Farms": {
+        "fa": "مستقیم از مزارع",
+        "ar": "مباشرة من المزارع",
+        "tr": "Doğrudan Çiftliklerden"
+    },
+    "Sourced directly from the best Iranian agricultural lands.": {
+        "fa": "مستقیماً از بهترین زمین‌های کشاورزی ایران تهیه شده است.",
+        "ar": "مصدرها مباشرة من أفضل الأراضي الزراعية الإيرانية.",
+        "tr": "Doğrudan en iyi İran tarım arazilerinden temin edilmektedir."
+    },
+    "Wholesale Supply": {
+        "fa": "تأمین عمده",
+        "ar": "توريد بالجملة",
+        "tr": "Toptan Tedarik"
+    },
+    "Capability to fulfill bulk orders for businesses worldwide.": {
+        "fa": "توانایی تأمین سفارش‌های عمده برای کسب‌وکارها در سراسر جهان.",
+        "ar": "القدرة على تلبية الطلبات بالجملة للشركات في جميع أنحاء العالم.",
+        "tr": "Dünya çapındaki işletmeler için toplu siparişleri karşılama kapasitesi."
+    },
+    "24/7 Support": {
+        "fa": "پشتیبانی ۲۴/۷",
+        "ar": "دعم على مدار الساعة",
+        "tr": "7/24 Destek"
+    },
+    "Dedicated customer service and consultation for our partners.": {
+        "fa": "خدمات مشتریان و مشاوره اختصاصی برای شرکای ما.",
+        "ar": "خدمة عملاء واستشارات مخصصة لشركائنا.",
+        "tr": "Ortaklarımız için özel müşteri hizmetleri ve danışmanlık."
+    },
+    "Our Guarantees": {
+        "fa": "تضمین‌های ما",
+        "ar": "ضماناتنا",
+        "tr": "Garantilerimiz"
+    },
+    "Authenticity Guarantee": {
+        "fa": "تضمین اصالت",
+        "ar": "ضمان الأصالة",
+        "tr": "Orijinallik Garantisi"
+    },
+    "International Standards": {
+        "fa": "استانداردهای بین‌المللی",
+        "ar": "المعايير الدولية",
+        "tr": "Uluslararası Standartlar"
+    },
+    "Our products are processed and packaged strictly according to international food safety and hygiene standards.": {
+        "fa": "محصولات ما دقیقاً مطابق با استانداردهای بین‌المللی ایمنی و بهداشت مواد غذایی فرآوری و بسته‌بندی می‌شوند.",
+        "ar": "تتم معالجة منتجاتنا وتغليفها بدقة وفقًا لمعايير سلامة الأغذية والنظافة الدولية.",
+        "tr": "Ürünlerimiz uluslararası gıda güvenliği ve hijyen standartlarına tam uygun olarak işlenir ve paketlenir."
+    },
+    "Custom White-Labeling": {
+        "fa": "برچسب سفارشی",
+        "ar": "العلامة التجارية الخاصة",
+        "tr": "Özel Etiketleme"
+    },
+    "We offer exclusive custom packaging and white-labeling services for your brand to stand out in the global market.": {
+        "fa": "ما خدمات بسته‌بندی سفارشی و برچسب اختصاصی ارائه می‌دهیم تا برند شما در بازار جهانی متمایز شود.",
+        "ar": "نقدم خدمات التغليف المخصص والعلامة التجارية الخاصة لعلامتك التجارية لتتميز في السوق العالمية.",
+        "tr": "Markanızın küresel pazarda öne çıkması için özel paketleme ve etiketleme hizmetleri sunuyoruz."
+    },
+    "We proudly export our products to": {
+        "fa": "ما با افتخار محصولات خود را به",
+        "ar": "نحن بفخر نصدر منتجاتنا إلى",
+        "tr": "Ürünlerimizi gururla şu bölgelere ihraç ediyoruz"
+    },
+    "Europe": {
+        "fa": "اروپا",
+        "ar": "أوروبا",
+        "tr": "Avrupa"
+    },
+    "Asia": {
+        "fa": "آسیا",
+        "ar": "آسيا",
+        "tr": "Asya"
+    },
+    "Middle East": {
+        "fa": "خاورمیانه",
+        "ar": "الشرق الأوسط",
+        "tr": "Orta Doğu"
+    },
+    "Trusted by leading international businesses and distributors worldwide.": {
+        "fa": "مورد اعتماد کسب‌وکارها و توزیع‌کنندگان پیشرو بین‌المللی در سراسر جهان.",
+        "ar": "موثوق به من قبل الشركات والموزعين الدوليين الرائدين في جميع أنحاء العالم.",
+        "tr": "Dünya çapındaki önde gelen uluslararası işletmeler ve distribütörler tarafından güvenilmektedir."
+    },
+    "Introduce": {
+        "fa": "معرفی",
+        "ar": "تقديم",
+        "tr": "Tanıtım"
+    },
+    "Us": {
+        "fa": "ما",
+        "ar": "نحن",
+        "tr": "Biz"
+    },
+    "Palace Karimi is a leading exporter of premium agricultural products. Sourced directly from the finest farms, our saffron and pistachios undergo rigorous quality control.": {
+        "fa": "پالاس کریمی صادرکننده پیشرو محصولات کشاورزی ممتاز است. زعفران و پسته ما مستقیماً از بهترین مزارع تهیه شده و تحت کنترل کیفی دقیق قرار می‌گیرند.",
+        "ar": "قصر كريمي هو مصدّر رائد للمنتجات الزراعية الفاخرة. زعفراننا وفستقنا يتم الحصول عليهما مباشرة من أفضل المزارع ويخضعان لرقابة جودة صارمة.",
+        "tr": "Palace Karimi, birinci sınıf tarım ürünlerinin lider ihracatçısıdır. En iyi çiftliklerden doğrudan temin edilen safran ve fıstıklarımız titiz kalite kontrolden geçer."
+    },
+    "Read More": {
+        "fa": "بیشتر بخوانید",
+        "ar": "اقرأ المزيد",
+        "tr": "Daha Fazla Oku"
+    },
+    "Our commitment to excellence ensures that every product reaching your hands meets the highest international standards.": {
+        "fa": "تعهد ما به برتری تضمین می‌کند هر محصولی که به دست شما می‌رسد بالاترین استانداردهای بین‌المللی را رعایت کند.",
+        "ar": "إن التزامنا بالتميز يضمن أن كل منتج يصل إلى يديك يفي بأعلى المعايير الدولية.",
+        "tr": "Mükemmelliğe olan bağlılığımız, elinize ulaşan her ürünün en yüksek uluslararası standartları karşılamasını sağlar."
+    },
+    "We utilize state-of-the-art sorting and packaging technologies to preserve the natural aroma, flavor, and nutritional value of our products.": {
+        "fa": "ما از فناوری‌های پیشرفته تفکیک و بسته‌بندی برای حفظ عطر، طعم و ارزش غذایی طبیعی محصولات خود استفاده می‌کنیم.",
+        "ar": "نستخدم أحدث تقنيات الفرز والتغليف للحفاظ على الرائحة والنكهة والقيمة الغذائية الطبيعية لمنتجاتنا.",
+        "tr": "Ürünlerimizin doğal aromasını, tadını ve besin değerini korumak için en son teknoloji ayıklama ve paketleme teknolojilerini kullanıyoruz."
+    },
+    "Our Vision": {
+        "fa": "چشم‌انداز ما",
+        "ar": "رؤيتنا",
+        "tr": "Vizyonumuz"
+    },
+    "To be the most trusted and recognized global brand for luxury Persian saffron and premium pistachios, setting the benchmark for quality, purity, and sustainable agriculture in the international market.": {
+        "fa": "تبدیل شدن به معتبرترین و شناخته‌شده‌ترین برند جهانی زعفران لوکس ایرانی و پسته ممتاز، و تعیین معیار کیفیت، خلوص و کشاورزی پایدار در بازار بین‌المللی.",
+        "ar": "أن نكون العلامة التجارية العالمية الأكثر ثقة واعترافًا للزعفران الفارسي الفاخر والفستق الممتاز، واضعين المعيار للجودة والنقاء والزراعة المستدامة في السوق الدولية.",
+        "tr": "Uluslararası pazarda kalite, saflık ve sürdürülebilir tarım için ölçüt belirleyen, lüks İran safranı ve birinci sınıf fıstık için en güvenilir ve tanınan küresel marka olmak."
+    },
+    "Our Mission": {
+        "fa": "ماموریت ما",
+        "ar": "مهمتنا",
+        "tr": "Misyonumuz"
+    },
+    "Licenses & Certificates": {
+        "fa": "مجوزها و گواهینامه‌ها",
+        "ar": "التراخيص والشهادات",
+        "tr": "Lisanslar ve Sertifikalar"
+    },
+    "Quality Management System": {
+        "fa": "سیستم مدیریت کیفیت",
+        "ar": "نظام إدارة الجودة",
+        "tr": "Kalite Yönetim Sistemi"
+    },
+    "Organic Certified": {
+        "fa": "دارای گواهی ارگانیک",
+        "ar": "معتمد عضويًا",
+        "tr": "Organik Sertifikalı"
+    },
+    "Phytosanitary": {
+        "fa": "بهداشت گیاهی",
+        "ar": "الصحة النباتية",
+        "tr": "Bitki Sağlığı"
+    },
+    "Global Health & Safety": {
+        "fa": "سلامت و ایمنی جهانی",
+        "ar": "الصحة والسلامة العالمية",
+        "tr": "Küresel Sağlık ve Güvenlik"
+    },
+    "Export Standard Approval": {
+        "fa": "تأیید استاندارد صادراتی",
+        "ar": "اعتماد معيار التصدير",
+        "tr": "İhracat Standardı Onayı"
+    },
+    "Our": {
+        "fa": "ما",
+        "ar": "خاصتنا",
+        "tr": "Bizim"
+    },
+    "History": {
+        "fa": "تاریخچه",
+        "ar": "التاريخ",
+        "tr": "Tarihçe"
+    },
+    "From a passionate family-owned farm to a recognized global export enterprise.": {
+        "fa": "از یک مزرعه خانوادگی پرشور تا یک شرکت صادراتی جهانی شناخته‌شده.",
+        "ar": "من مزرعة عائلية شغوفة إلى مؤسسة تصدير عالمية معترف بها.",
+        "tr": "Tutkulu bir aile çiftliğinden tanınmış bir küresel ihracat kuruluşuna."
+    },
+    "Global Expansion": {
+        "fa": "توسعه جهانی",
+        "ar": "التوسع العالمي",
+        "tr": "Küresel Genişleme"
+    },
+    "Palace Karimi officially expanded its export lines to Europe and the Middle East, acquiring major international licenses.": {
+        "fa": "پالاس کریمی رسماً خطوط صادراتی خود را به اروپا و خاورمیانه گسترش داد و مجوزهای بین‌المللی عمده‌ای دریافت کرد.",
+        "ar": "وسّعت قصر كريمي رسميًا خطوط التصدير إلى أوروبا والشرق الأوسط، وحصلت على تراخيص دولية كبرى.",
+        "tr": "Palace Karimi, ihracat hatlarını resmî olarak Avrupa ve Orta Doğu'ya genişletti ve önemli uluslararası lisanslar aldı."
+    },
+    "Modern Facilities": {
+        "fa": "تجهیزات مدرن",
+        "ar": "مرافق حديثة",
+        "tr": "Modern Tesisler"
+    },
+    "The Beginning": {
+        "fa": "آغاز",
+        "ar": "البداية",
+        "tr": "Başlangıç"
+    },
+    "Cultivating the first premium saffron and pistachio farms with a dedication to organic and traditional farming methods.": {
+        "fa": "کشت اولین مزارع زعفران و پسته ممتاز با تعهد به روش‌های کشاورزی ارگانیک و سنتی.",
+        "ar": "زراعة أولى مزارع الزعفران والفستق الفاخرة مع الالتزام بأساليب الزراعة العضوية والتقليدية.",
+        "tr": "Organik ve geleneksel tarım yöntemlerine bağlılıkla ilk birinci sınıf safran ve fıstık çiftliklerini yetiştirmek."
+    },
+    "Meet": {
+        "fa": "ملاقات",
+        "ar": "تعرف على",
+        "tr": "Tanışın"
+    },
+    "Our Team": {
+        "fa": "تیم ما",
+        "ar": "فريقنا",
+        "tr": "Ekibimiz"
+    },
+    "The dedicated experts behind the success of Palace Karimi.": {
+        "fa": "کارشناسان متعهدی که پشت موفقیت پالاس کریمی هستند.",
+        "ar": "الخبراء المتفانون وراء نجاح قصر كريمي.",
+        "tr": "Palace Karimi'nin başarısının arkasındaki özverili uzmanlar."
+    },
+    "Abolfazl Karimi": {
+        "fa": "ابوالفضل کریمی",
+        "ar": "أبو الفضل كريمي",
+        "tr": "Abolfazl Karimi"
+    },
+    "CEO & Founder": {
+        "fa": "مدیرعامل و بنیان‌گذار",
+        "ar": "الرئيس التنفيذي والمؤسس",
+        "tr": "CEO ve Kurucu"
+    },
+    "Leading the global strategy and ensuring the highest quality standards across all products.": {
+        "fa": "رهبری استراتژی جهانی و تضمین بالاترین استانداردهای کیفیت در تمام محصولات.",
+        "ar": "قيادة الاستراتيجية العالمية وضمان أعلى معايير الجودة في جميع المنتجات.",
+        "tr": "Küresel stratejiyi yönetmek ve tüm ürünlerde en yüksek kalite standartlarını sağlamak."
+    },
+    "Sara Ahmadi": {
+        "fa": "سارا احمدی",
+        "ar": "سارة أحمدي",
+        "tr": "Sara Ahmadi"
+    },
+    "Export Manager": {
+        "fa": "مدیر صادرات",
+        "ar": "مديرة التصدير",
+        "tr": "İhracat Müdürü"
+    },
+    "Managing international logistics, B2B relations, and smooth customs clearances.": {
+        "fa": "مدیریت لجستیک بین‌المللی، روابط B2B و ترخیص کالا بدون مشکل.",
+        "ar": "إدارة الخدمات اللوجستية الدولية وعلاقات B2B والتخليص الجمركي السلس.",
+        "tr": "Uluslararası lojistik, B2B ilişkileri ve sorunsuz gümrük işlemlerini yönetmek."
+    },
+    "Ali Rezaei": {
+        "fa": "علی رضایی",
+        "ar": "علي رضائي",
+        "tr": "Ali Rezaei"
+    },
+    "Quality Control": {
+        "fa": "کنترل کیفیت",
+        "ar": "مراقبة الجودة",
+        "tr": "Kalite Kontrol"
+    },
+    "Mina Rostami": {
+        "fa": "مینا رستمی",
+        "ar": "مينا رستمي",
+        "tr": "Mina Rostami"
+    },
+    "Marketing": {
+        "fa": "بازاریابی",
+        "ar": "التسويق",
+        "tr": "Pazarlama"
+    },
+    "Showcasing the true value and luxury of Persian saffron to our international audience.": {
+        "fa": "نمایش ارزش واقعی و لوکس بودن زعفران ایرانی به مخاطبان بین‌المللی.",
+        "ar": "عرض القيمة الحقيقية والفخامة للزعفران الفارسي لجمهورنا الدولي.",
+        "tr": "Uluslararası izleyicimize İran safranının gerçek değerini ve lüksünü sunmak."
+    },
+    "Palace Karimi; The Symbol of": {
+        "fa": "پالاس کریمی؛ نماد",
+        "ar": "قصر كريمي؛ رمز",
+        "tr": "Palace Karimi; Sembolü"
+    },
+    "Authenticity": {
+        "fa": "اصالت",
+        "ar": "الأصالة",
+        "tr": "Orijinallik"
+    },
+    "Join Our Network": {
+        "fa": "به شبکه ما بپیوندید",
+        "ar": "انضم إلى شبكتنا",
+        "tr": "Ağımıza Katılın"
+    },
+    "International": {
+        "fa": "بین‌المللی",
+        "ar": "دولي",
+        "tr": "Uluslararası"
+    },
+    "Certifications & Standards": {
+        "fa": "گواهینامه‌ها و استانداردها",
+        "ar": "الشهادات والمعايير",
+        "tr": "Sertifikalar ve Standartlar"
+    },
+    "Committed to global food safety, organic farming, and premium export quality.": {
+        "fa": "متعهد به ایمنی جهانی غذا، کشاورزی ارگانیک و کیفیت صادراتی ممتاز.",
+        "ar": "ملتزمون بسلامة الأغذية العالمية والزراعة العضوية وجودة التصدير الممتازة.",
+        "tr": "Küresel gıda güvenliği, organik tarım ve birinci sınıf ihracat kalitesine bağlıyız."
+    },
+    "With a rich heritage in cultivating the world’s finest saffron and pistachios, Palace Karimi stands as a bridge between the ancient farms of Persia and the luxury global market.": {
+        "fa": "پالاس کریمی با میراثی غنی در کشت بهترین زعفران و پسته جهان، به‌عنوان پلی بین مزارع باستانی ایران و بازار لوکس جهانی ایستاده است.",
+        "ar": "بإرث غني في زراعة أجود أنواع الزعفران والفستق في العالم، تقف قصر كريمي كجسر بين المزارع العريقة في فارس والسوق العالمية الفاخرة.",
+        "tr": "Dünyanın en iyi safran ve fıstıklarını yetiştirme konusundaki zengin mirasıyla Palace Karimi, İran'ın kadim çiftlikleri ile lüks küresel pazar arasında bir köprü görevi görmektedir."
+    },
+    "We deliver nothing but perfection.": {
+        "fa": "ما چیزی جز کمال ارائه نمی‌دهیم.",
+        "ar": "نحن لا نقدم سوى الكمال.",
+        "tr": "Kusursuzluktan başka bir şey sunmuyoruz."
+    },
+    "Overseeing laboratory testing and ensuring 100 Percent organic certification compliance.": {
+        "fa": "نظارت بر آزمایش‌های آزمایشگاهی و اطمینان از انطباق ۱۰۰٪ گواهی ارگانیک.",
+        "ar": "الإشراف على الاختبارات المخبرية وضمان الامتثال للشهادة العضوية بنسبة ۱۰۰٪.",
+        "tr": "Laboratuvar testlerini denetlemek ve %100 organik sertifika uyumluluğunu sağlamak."
+    },
+    "Implementation of state-of-the-art sorting and packaging facilities to maintain 100 Percent purity and aroma.": {
+        "fa": "پیاده‌سازی تجهیزات پیشرفته تفکیک و بسته‌بندی برای حفظ ۱۰۰٪ خلوص و عطر.",
+        "ar": "تنفيذ مرافق فرز وتغليف حديثة للحفاظ على النقاء والرائحة بنسبة ۱۰۰٪.",
+        "tr": "%100 saflık ve aromayı korumak için en son teknoloji ayıklama ve paketleme tesislerinin uygulanması."
+    },
+    "Our mission is to empower local farmers through fair trade while delivering 100 Percent organic, lab-tested, and exquisitely packaged products to our B2B partners and consumers worldwide.": {
+        "fa": "ماموریت ما توانمندسازی کشاورزان محلی از طریق تجارت منصفانه و ارائه محصولات ۱۰۰٪ ارگانیک، آزمایش‌شده در آزمایشگاه و بسته‌بندی نفیس به شرکای B2B و مصرف‌کنندگان در سراسر جهان است.",
+        "ar": "مهمتنا هي تمكين المزارعين المحليين من خلال التجارة العادلة مع تقديم منتجات عضوية ۱۰۰٪ ومختبرة مخبريًا ومعبأة بشكل رائع لشركائنا B2B والمستهلكين حول العالم.",
+        "tr": "Misyonumuz, adil ticaret yoluyla yerel çiftçileri güçlendirirken, dünya çapındaki B2B ortaklarımıza ve tüketicilere %100 organik, laboratuvar testli ve zarif paketlenmiş ürünler sunmaktır."
+    },
+    "We guarantee that all our saffron and pistachios are 100 Percent authentic Persian products, free from any artificial additives or coloring.": {
+        "fa": "ما تضمین می‌کنیم که تمام زعفران و پسته ما محصولات ۱۰۰٪ اصیل ایرانی، عاری از هرگونه افزودنی یا رنگ مصنوعی هستند.",
+        "ar": "نضمن أن جميع منتجاتنا من الزعفران والفستق هي منتجات فارسية أصيلة ۱۰۰٪ وخالية من أي إضافات أو ألوان صناعية.",
+        "tr": "Tüm safran ve fıstıklarımızın %100 orijinal İran ürünü olduğunu, hiçbir yapay katkı veya renklendirici içermediğini garanti ediyoruz."
+    },
+    "100 Percent Organic": {
+        "fa": "۱۰۰٪ ارگانیک",
+        "ar": "۱۰۰٪ عضوي",
+        "tr": "%100 Organik"
+    },
+    "100 Percent Natural & Additive-Free": {
+        "fa": "۱۰۰٪ طبیعی و بدون افزودنی",
+        "ar": "۱۰۰٪ طبيعي وخالٍ من الإضافات",
+        "tr": "%100 Doğal ve Katkısız"
+    },
+    "Fast and reliable international shipping to global destinations.": {
+        "fa": "ارسال بین‌المللی سریع و مطمئن به مقاصد جهانی.",
+        "ar": "شحن دولي سريع وموثوق إلى الوجهات العالمية.",
+        "tr": "Küresel varış noktalarına hızlı ve güvenilir uluslararası kargo."
+    },
+    "Contact": {
+        "fa": "تماس",
+        "ar": "اتصال",
+        "tr": "İletişim"
+    },
+    "We are here to answer your questions and discuss global export opportunities.": {
+        "fa": "ما اینجا هستیم تا به سوالات شما پاسخ دهیم و فرصت‌های صادرات جهانی را بررسی کنیم.",
+        "ar": "نحن هنا للإجابة على أسئلتكم ومناقشة فرص التصدير العالمية.",
+        "tr": "Sorularınızı yanıtlamak ve küresel ihracat fırsatlarını görüşmek için buradayız."
+    },
+    "Error!": {
+        "fa": "خطا!",
+        "ar": "خطأ!",
+        "tr": "Hata!"
+    },
+    "There was an error sending your message. Please check the fields.": {
+        "fa": "هنگام ارسال پیام خطایی رخ داد. لطفاً فیلدها را بررسی کنید.",
+        "ar": "حدث خطأ أثناء إرسال رسالتك. يرجى التحقق من الحقول.",
+        "tr": "Mesajınız gönderilirken bir hata oluştu. Lütfen alanları kontrol edin."
+    },
+    "Your message has been sent to us.": {
+        "fa": "پیام شما برای ما ارسال شد.",
+        "ar": "تم إرسال رسالتك إلينا.",
+        "tr": "Mesajınız bize gönderildi."
+    },
+    "Full Name": {
+        "fa": "نام کامل",
+        "ar": "الاسم الكامل",
+        "tr": "Tam Ad"
+    },
+    "Subject": {
+        "fa": "موضوع",
+        "ar": "الموضوع",
+        "tr": "Konu"
+    },
+    "Message": {
+        "fa": "پیام",
+        "ar": "الرسالة",
+        "tr": "Mesaj"
+    },
+    "Send Message": {
+        "fa": "ارسال پیام",
+        "ar": "إرسال الرسالة",
+        "tr": "Mesaj Gönder"
     },
     "Office": {
-        "fa": "ما",
-        "ar": "",
-        "tr": ""
+        "fa": "دفتر",
+        "ar": "المكتب",
+        "tr": "Ofis"
     },
     "Address:": {
         "fa": "آدرس:",
@@ -176,7 +834,7 @@ TRANSLATIONS = {
     },
     "Phone:": {
         "fa": "تلفن:",
-        "ar": "هاتف:",
+        "ar": "الهاتف:",
         "tr": "Telefon:"
     },
     "Email:": {
@@ -185,230 +843,138 @@ TRANSLATIONS = {
         "tr": "E-posta:"
     },
     "Business": {
-        "fa": "ساعت",
-        "ar": "ساعات",
-        "tr": "Çalışma"
+        "fa": "کسب‌وکار",
+        "ar": "العمل",
+        "tr": "İşletme"
     },
     "Hours": {
-        "fa": "کاری",
-        "ar": "العمل",
-        "tr": "Saatleri"
+        "fa": "ساعات کاری",
+        "ar": "ساعات العمل",
+        "tr": "Çalışma Saatleri"
     },
-    "Everyday - 08:00 to 20:00": {
-        "fa": "همه‌روزه - ۰۸:۰۰ صبح تا ۲۰:۰۰ شب",
-        "ar": "كل يوم - 08:00 إلى 20:00",
-        "tr": "Her gün - 08:00 ile 20:00 arası"
+    "Saturday to Wednesday - 9:00 AM to 5:00 PM": {
+        "fa": "شنبه تا چهارشنبه - ۹ صبح تا ۵ عصر",
+        "ar": "السبت إلى الأربعاء - ۹ صباحًا حتى ۵ مساءً",
+        "tr": "Cumartesi - Çarşamba 09:00 - 17:00"
     },
-    "Admin Panel": {
-            "fa": "پنل مدیریت",
-            "ar": "لوحة الإدارة",
-            "tr": "Yönetici Paneli"
-        },
-    "Palace Karimi: From the heart of orchards to the heart of business": {
-        "en": "Palace Karimi: From the heart of orchards to the heart of business",
-        "fa": "پالس کریمی؛ از دل باغستان تا قلب تجارت",
-        "ar": "بالس كريمي؛ من قلب البساتين إلى قلب التجارة",
-        "tr": "Palace Karimi; Meyve bahçelerinin kalbinden ticaretin kalbine"
+    "Thursday - 9:00 AM to 2:00 PM": {
+        "fa": "پنجشنبه - ۹ صبح تا ۲ بعدازظهر",
+        "ar": "الخميس - ۹ صباحًا حتى ۲ ظهرًا",
+        "tr": "Perşembe 09:00 - 14:00"
     },
-
-    "Premium Quality": {
-        "en": "Premium Quality",
-        "fa": "کیفیت ممتاز",
-        "ar": "جودة ممتازة",
-        "tr": "Üstün Kalite"
+    "Friday - Closed": {
+        "fa": "جمعه - تعطیل",
+        "ar": "الجمعة - مغلق",
+        "tr": "Cuma - Kapalı"
     },
-
-    "Handpicked from the finest orchards and processed under strict quality standards.": {
-        "en": "Handpicked from the finest orchards and processed under strict quality standards.",
-        "fa": "دست‌چین شده از بهترین باغ‌ها و فرآوری شده تحت دقیق‌ترین استانداردهای کیفی.",
-        "ar": "مقطوفة بعناية من أفضل البساتين ومعالجة وفقاً لأدق معايير الجودة.",
-        "tr": "En iyi bahçelerden özenle seçilmiş ve sıkı kalite standartlarında işlenmiştir."
+    "Whether you are looking for bulk saffron orders, premium pistachio exports, or white-labeling services, our experts are ready to assist you.": {
+        "fa": "چه به دنبال سفارش عمده زعفران، صادرات پسته ممتاز یا خدمات برچسب اختصاصی باشید، کارشناسان ما آماده کمک به شما هستند.",
+        "ar": "سواء كنت تبحث عن طلبات زعفران بالجملة، أو تصدير الفستق الممتاز، أو خدمات العلامة التجارية الخاصة، فإن خبراءنا مستعدون لمساعدتك.",
+        "tr": "İster toplu safran siparişleri, ister birinci sınıf fıstık ihracatı, ister özel etiketleme hizmetleri arıyor olun, uzmanlarımız size yardımcı olmaya hazırdır."
     },
-    "Terms & FAQ": {
-            "en": "Terms & FAQ",
-            "fa": "قوانین و سوالات متداول",
-            "ar": "الشروط والأسئلة الشائعة",
-            "tr": "Şartlar ve SSS"
-        },
-    "Competitive Pricing": {
-        "en": "Competitive Pricing",
-        "fa": "قیمت‌های رقابتی",
-        "ar": "أسعار تنافسية",
-        "tr": "Rekabetçi Fiyatlandırma"
-    },
-
-    "Direct sourcing allows us to offer the best market prices for B2B partners.": {
-        "en": "Direct sourcing allows us to offer the best market prices for B2B partners.",
-        "fa": "تامین مستقیم به ما اجازه می‌دهد بهترین قیمت‌های بازار را به شرکای B2B خود ارائه دهیم.",
-        "ar": "يتيح لنا التوريد المباشر تقديم أفضل أسعار السوق لشركائنا التجاريين.",
-        "tr": "Doğrudan tedarik, B2B ortaklarımız için en iyi piyasa fiyatlarını sunmamızı sağlar."
-    },
-    "Every great success starts with a small decision and years of relentless effort.": {
-        "en": "Every great success starts with a small decision and years of relentless effort.",
-        "fa": "هر موفقیت بزرگی، از یک تصمیم کوچک و سال‌ها تلاش بی‌وقفه آغاز می‌شود.",
-        "ar": "كل نجاح عظيم يبدأ بقرار صغير وسنوات من الجهد الدؤوب.",
-        "tr": "Her büyük başarı, küçük bir kararla ve yıllar süren amansız bir çabayla başlar."
-    },
-    "The Roots": {
-        "en": "The Roots",
-        "fa": "ریشه‌ها",
-        "ar": "الجذور",
-        "tr": "Kökler"
-    },
-    "Early Ambitions": {
-        "en": "Early Ambitions",
-        "fa": "اهداف اولیه و تجربیات",
-        "ar": "الطموحات المبكرة",
-        "tr": "Erken Hedefler"
-    },
-    "Hossein Karimi’s entrepreneurial journey began at age 16 by managing a poultry farm, followed by establishing a charcoal factory at 19. These early years built the strong foundation of leadership and market expertise.": {
-        "en": "Hossein Karimi’s entrepreneurial journey began at age 16 by managing a poultry farm, followed by establishing a charcoal factory at 19. These early years built the strong foundation of leadership and market expertise.",
-        "fa": "مسیر کارآفرینی حسین کریمی در ۱۶ سالگی با اداره یک مرغداری آغاز شد و در ۱۹ سالگی با تأسیس کارخانه تولید زغال ادامه یافت. این سال‌ها پایه‌های محکم رهبری و شناخت بازار را در او شکل داد.",
-        "ar": "بدأت رحلة حسين كريمي في ريادة الأعمال في سن الـ ۱۶ من خلال إدارة مزرعة دواجن، وتلاها إنشاء مصنع للفحم في سن الـ ۱۹. بنت هذه السنوات الأولى أساساً قوياً للقيادة والخبرة في السوق.",
-        "tr": "Hossein Karimi'nin girişimcilik yolculuğu 16 yaşında bir tavuk çiftliğini yöneterek başladı ve 19 yaşında bir kömür fabrikası kurmasıyla devam etti. Bu ilk yıllar, liderlik ve pazar uzmanlığının güçlü temelini oluşturdu."
-    },
-    "2019": {
-        "en": "2019",
-        "fa": "۱۳۹۸",
-        "ar": "۲۰۱۹",
-        "tr": "2019"
-    },
-    "The Birth of Palace Karimi": {
-        "en": "The Birth of Palace Karimi",
-        "fa": "تولد پالِس کریمی",
-        "ar": "ولادة بالس كريمي",
-        "tr": "Palace Karimi'nin Doğuşu"
-    },
-    "Starting with a small capital of just 10 million Tomans, Hossein and his wife began their pistachio business. Products were lovingly sorted at home at night and distributed to local confectioneries during the day.": {
-        "en": "Starting with a small capital of just 10 million Tomans, Hossein and his wife began their pistachio business. Products were lovingly sorted at home at night and distributed to local confectioneries during the day.",
-        "fa": "حسین کریمی و همسرش تنها با ۱۰ میلیون تومان سرمایه وارد حوزه پسته شدند. شب‌ها پسته‌ها را در خانه پاک می‌کردند و صبح‌ها برای فروش به قنادی‌های محلی می‌بردند.",
-        "ar": "بدأ حسين وزوجته تجارة الفستق برأس مال صغير بلغ ۱۰ ملايين تومان فقط. كانت المنتجات تُفرز بحب في المنزل ليلاً وتُوزع على محلات الحلويات المحلية نهاراً.",
-        "tr": "Sadece 10 milyon Tümen gibi küçük bir sermaye ile başlayan Hossein ve eşi, fıstık işine girdiler. Ürünler geceleri evde sevgiyle ayıklanıyor ve gündüzleri yerel pastanelere dağıtılıyordu."
-    },
-    "The Journey": {
-        "en": "The Journey",
-        "fa": "مسیر پرچالش",
-        "ar": "الرحلة",
-        "tr": "Yolculuk"
-    },
-    "The Turning Point": {
-        "en": "The Turning Point",
-        "fa": "نقطه عطف",
-        "ar": "نقطة التحول",
-        "tr": "Dönüm Noktası"
-    },
-    "Joined by Hassan Dolatabadi, the team embarked on a challenging road trip to northern Iran to market 130kg of pistachios. Sleeping in their car and selling door-to-door, they proved that perseverance is an entrepreneur’s greatest asset.": {
-        "en": "Joined by Hassan Dolatabadi, the team embarked on a challenging road trip to northern Iran to market 130kg of pistachios. Sleeping in their car and selling door-to-door, they proved that perseverance is an entrepreneur’s greatest asset.",
-        "fa": "با پیوستن حسن دولت‌آبادی، تیم سفری پرچالش را با ۱۳۰ کیلوگرم پسته به شمال ایران آغاز کرد. آن‌ها با استراحت در خودرو و فروش خانه‌به‌خانه، ثابت کردند که پشتکار بزرگترین سرمایه یک کارآفرین است.",
-        "ar": "بانضمام حسن دولت آبادي، انطلق الفريق في رحلة شاقة إلى شمال إيران لتسويق ۱۳۰ كيلوغراماً من الفستق. من خلال النوم في سيارتهم والبيع من باب إلى باب، أثبتوا أن المثابرة هي أعظم أصول رائد الأعمال.",
-        "tr": "Hassan Dolatabadi'nin katılımıyla ekip, 130 kg fıstığı pazarlamak için kuzey İran'a zorlu bir yolculuğa çıktı. Arabalarında uyuyup kapı kapı satış yaparak, azmin bir girişimcinin en büyük varlığı olduğunu kanıtladılar."
-    },
-    "Expansion": {
-        "en": "Expansion",
-        "fa": "توسعه",
-        "ar": "التوسع",
-        "tr": "Büyüme"
-    },
-    "Industrial Growth": {
-        "en": "Industrial Growth",
-        "fa": "رشد صنعتی",
-        "ar": "النمو الصناعي",
-        "tr": "Endüstriyel Büyüme"
-    },
-    "Growing trust from customers led to the opening of the central office and a larger urban workshop. The integration of modern sorting and processing machinery elevated production capacity and quality to a new level.": {
-        "en": "Growing trust from customers led to the opening of the central office and a larger urban workshop. The integration of modern sorting and processing machinery elevated production capacity and quality to a new level.",
-        "fa": "اعتماد روزافزون مشتریان منجر به تأسیس دفتر مرکزی و یک کارگاه بزرگتر شهری شد. بهره‌گیری از دستگاه‌های مدرن سورتینگ و فرآوری، ظرفیت تولید و کیفیت را به سطح جدیدی ارتقا داد.",
-        "ar": "أدت الثقة المتزايدة من العملاء إلى افتتاح المكتب المركزي وورشة عمل حضرية أكبر. رفع دمج آلات الفرز والمعالجة الحديثة الطاقة الإنتاجية والجودة إلى مستوى جديد.",
-        "tr": "Müşterilerden gelen artan güven, merkez ofisin ve daha büyük bir şehir atölyesinin açılmasına yol açtı. Modern ayıklama ve işleme makinelerinin entegrasyonu, üretim kapasitesini ve kaliteyi yeni bir seviyeye taşıdı."
-    },
-    "Present": {
-        "en": "Present",
-        "fa": "امروز",
-        "ar": "اليوم",
-        "tr": "Bugün"
-    },
-    "Global Recognition": {
-        "en": "Global Recognition",
-        "fa": "اعتبار جهانی",
-        "ar": "اعتراف عالمي",
-        "tr": "Küresel Tanınma"
-    },
-    "Today, Palace Karimi operates with 25 dedicated experts, exporting to the UAE, Turkey, and the UK. Hossein Karimi proudly serves as the youngest member of the Iran Chamber of Commerce, driving international trade forward.": {
-        "en": "Today, Palace Karimi operates with 25 dedicated experts, exporting to the UAE, Turkey, and the UK. Hossein Karimi proudly serves as the youngest member of the Iran Chamber of Commerce, driving international trade forward.",
-        "fa": "امروز، بازرگانی پالِس کریمی با ۲۵ نیروی متخصص فعالیت می‌کند و محصولات خود را به امارات، ترکیه و انگلستان صادر می‌نماید. حسین کریمی نیز به‌عنوان کوچکترین عضو اتاق بازرگانی ایران، مسیر توسعه تجارت بین‌المللی را پیش می‌برد.",
-        "ar": "اليوم، تعمل بالس كريمي مع ۲۵ خبيراً متخصصاً، وتصدر إلى الإمارات العربية المتحدة وتركيا والمملكة المتحدة. يخدم حسين كريمي بفخر كأصغر عضو في غرفة التجارة الإيرانية، دافعاً التجارة الدولية إلى الأمام.",
-        "tr": "Bugün Palace Karimi, BAE, Türkiye ve Birleşik Krallık'a ihracat yapan 25 uzmanla çalışmaktadır. Hossein Karimi, İran Ticaret Odası'nın en genç üyesi olarak gururla hizmet vermekte ve uluslararası ticareti ileriye taşımaktadır."
-    },
-    "About": {
-        "en": "About",
-        "fa": "درباره",
-        "ar": "حول",
-        "tr": "Hakkında"
-    },
-
-    "Palace Karimi": {
-        "en": "Palace Karimi",
-        "fa": "پالِس کریمی",
-        "ar": "بالس كريمي",
+    "Palace Karimi is": {
+        "fa": "پالاس کریمی است",
+        "ar": "قصر كريمي هي",
         "tr": "Palace Karimi"
     },
-
-    "Hossein Karimi Trading, operating under the Palace Karimi brand and managed by Mr. Hossein Karimi, is a dynamic and growing enterprise. With a dedicated team of 25 experts, we specialize in supplying, packaging, and exporting premium Iranian saffron and pistachios.": {
-        "en": "Hossein Karimi Trading, operating under the Palace Karimi brand and managed by Mr. Hossein Karimi, is a dynamic and growing enterprise. With a dedicated team of 25 experts, we specialize in supplying, packaging, and exporting premium Iranian saffron and pistachios.",
-        "fa": "بازرگانی حسین کریمی با برند (پالس کریمی) به مدیریت آقای حسین کریمی، امروزه با بهره‌گیری از تیمی متشکل از ۲۵ نیروی متخصص و متعهد، مجموعه‌ای پویا و رو به رشد در حوزه تأمین، بسته‌بندی و صادرات پسته و زعفران ممتاز ایران فعالیت می‌کند.",
-        "ar": "تعمل شركة حسين كريمي التجارية، تحت علامة بالس كريمي التجارية وبإدارة السيد حسين كريمي، كمؤسسة ديناميكية ومتنامية. بفضل فريق متخصص مكون من ۲۵ خبيراً، ننشط في توريد وتعبئة وتصدير الزعفران والفستق الإيراني الممتاز.",
-        "tr": "Palace Karimi markası altında ve Sayın Hossein Karimi yönetiminde faaliyet gösteren Hossein Karimi Ticaret, dinamik ve büyüyen bir kuruluştur. 25 kişilik uzman ekibimizle birinci sınıf İran safranı ve fıstığı tedarik, paketleme ve ihracatında faaliyet gösteriyoruz."
+    "Everything": {
+        "fa": "همه چیز",
+        "ar": "كل شيء",
+        "tr": "Her Şey"
     },
-
-    "By combining experience, market knowledge, and a commitment to quality, we strive to build a reliable bridge between Iranian producers and global markets. Every stage of our operation, from meticulous product selection to packaging and shipping, is conducted under strict professional standards and continuous supervision to ensure our customers always receive premium and reliable products.": {
-        "en": "By combining experience, market knowledge, and a commitment to quality, we strive to build a reliable bridge between Iranian producers and global markets. Every stage of our operation, from meticulous product selection to packaging and shipping, is conducted under strict professional standards and continuous supervision to ensure our customers always receive premium and reliable products.",
-        "fa": "ما با تلفیق تجربه، دانش بازار و تعهد به کیفیت، تلاش کرده‌ایم پلی مطمئن میان تولیدکنندگان ایرانی و بازارهای جهان ایجاد کنیم. تمامی مراحل فعالیت مجموعه، از انتخاب دقیق محصولات تا بسته‌بندی و ارسال، با رعایت استانداردهای حرفه‌ای و نظارت مستمر انجام می‌شود تا مشتریان ما همواره محصولی ممتاز و قابل اعتماد دریافت کنند.",
-        "ar": "من خلال الجمع بين الخبرة ومعرفة السوق والالتزام بالجودة، سعينا لبناء جسر موثوق بين المنتجين الإيرانيين والأسواق العالمية. تتم جميع مراحل عملنا، من الاختيار الدقيق للمنتجات إلى التعبئة والشحن، وفقاً للمعايير المهنية والإشراف المستمر لضمان حصول عملائنا دائماً على منتجات ممتازة وموثوقة.",
-        "tr": "Deneyim, pazar bilgisi ve kalite taahhüdünü birleştirerek, İranlı üreticiler ile küresel pazarlar arasında güvenilir bir köprü kurmaya çalışıyoruz. Müşterilerimizin her zaman birinci sınıf ve güvenilir ürünler almasını sağlamak için, dikkatli ürün seçiminden paketleme ve sevkiyata kadar her aşama sıkı profesyonel standartlar ve sürekli denetim altında gerçekleştirilir."
+    "you need for a": {
+        "fa": "که برای یک",
+        "ar": "التي تحتاجها لتجربة",
+        "tr": "ihtiyacınız olan"
     },
-
-    "At Palace Karimi, quality is not just a standard; it is a commitment that flows through all our partnerships and services. Our vision is to become an enduring and trusted name in the global trade of authentic Persian products, forging long-term collaborations with business partners worldwide.": {
-        "en": "At Palace Karimi, quality is not just a standard; it is a commitment that flows through all our partnerships and services. Our vision is to become an enduring and trusted name in the global trade of authentic Persian products, forging long-term collaborations with business partners worldwide.",
-        "fa": "در پالس کریمی، کیفیت تنها یک استاندارد نیست، بلکه تعهدی است که در تمامی همکاری‌ها و خدمات ما جریان دارد. چشم‌انداز ما، تبدیل شدن به یکی از نام‌های ماندگار و قابل اعتماد در تجارت جهانی محصولات اصیل ایرانی و ایجاد همکاری‌های بلندمدت با شرکای تجاری در سراسر جهان است.",
-        "ar": "في بالس كريمي، الجودة ليست مجرد معيار، بل هي التزام يتدفق عبر جميع شراكاتنا وخدماتنا. رؤيتنا هي أن نصبح اسماً خالداً وموثوقاً في التجارة العالمية للمنتجات الإيرانية الأصيلة، وإقامة تعاون طويل الأمد مع شركاء تجاريين في جميع أنحاء العالم.",
-        "tr": "Palace Karimi'de kalite sadece bir standart değil; tüm işbirliklerimiz ve hizmetlerimiz boyunca akan bir taahhüttür. Vizyonumuz, dünya çapındaki iş ortaklarıyla uzun vadeli işbirlikleri kurarak otantik İran ürünlerinin küresel ticaretinde kalıcı ve güvenilir bir isim olmaktır."
+    "Luxury": {
+        "fa": "لوکس",
+        "ar": "فاخرة",
+        "tr": "Lüks"
     },
-    "God provides sustenance without measure.": {
-        "en": "God provides sustenance without measure.",
-        "fa": "خدا روزی‌رسان بی‌حساب است.",
-        "ar": "الله هو الرزاق بغير حساب.",
-        "tr": "Allah hesapsız rızık verendir."
+    "export experience!": {
+        "fa": "تجربه صادراتی نیاز دارید!",
+        "ar": "تصدير فاخرة!",
+        "tr": "ihracat deneyimi!"
+    },
+    "The Best": {
+        "fa": "بهترین",
+        "ar": "الأفضل",
+        "tr": "En İyi"
+    },
+    "choice for authentic Persian products.": {
+        "fa": "انتخاب برای محصولات اصیل ایرانی.",
+        "ar": "خيار للمنتجات الفارسية الأصيلة.",
+        "tr": "otantik İran ürünleri için seçim."
+    },
+    "Hossein Karimi Trading": {
+        "fa": "تجارت حسین کریمی",
+        "ar": "تجارة حسين كريمي",
+        "tr": "Hossein Karimi Trading"
+    },
+    "Palace Karimi Office": {
+        "fa": "دفتر پالاس کریمی",
+        "ar": "مكتب قصر كريمي",
+        "tr": "Palace Karimi Ofisi"
+    },
+    "With years of experience in cultivation, processing, and exporting the finest Iranian saffron and pistachio, we offer quality and authenticity to global markets. All our products are packaged and shipped with international standards.": {
+        "fa": "با سال‌ها تجربه در کشت، فرآوری و صادرات بهترین زعفران و پسته ایران، کیفیت و اصالت را به بازارهای جهانی عرضه می‌کنیم. تمام محصولات ما با استانداردهای بین‌المللی بسته‌بندی و ارسال می‌شوند.",
+        "ar": "مع سنوات من الخبرة في زراعة ومعالجة وتصدير أجود أنواع الزعفران والفستق الإيراني، نقدم الجودة والأصالة للأسواق العالمية. جميع منتجاتنا معبأة ومشحونة وفق المعايير الدولية.",
+        "tr": "En iyi İran safranı ve fıstığının yetiştirilmesi, işlenmesi ve ihracatı konusunda yılların deneyimiyle küresel pazarlara kalite ve orijinallik sunuyoruz. Tüm ürünlerimiz uluslararası standartlara uygun olarak paketlenir ve gönderilir."
+    },
+    "09303755667": {
+        "fa": "۰۹۳۰۳۷۵۵۶۶۷",
+        "ar": "۰۹۳۰۳۷۵۵۶۶۷",
+        "tr": "09303755667"
     },
 }
 
 
-def update_translations():
-    for lang, _ in [('fa', 'Persian'), ('ar', 'Arabic'), ('tr', 'Turkish')]:
-        po_path = os.path.join(LOCALE_DIR, lang, 'LC_MESSAGES', 'django.po')
+def ensure_dir(path):
+    if not os.path.exists(path):
+        os.makedirs(path)
 
-        if not os.path.exists(po_path):
-            print(f"File not found: {po_path}. Skipping {lang}.")
-            continue
 
+def create_or_update_po(lang):
+    po_path = os.path.join(LOCALE_DIR, lang, 'LC_MESSAGES', 'django.po')
+    ensure_dir(os.path.dirname(po_path))
+
+    # اگر فایل از قبل وجود دارد، آن را بارگیری می‌کنیم؛ در غیر این صورت یک فایل جدید می‌سازیم
+    if os.path.exists(po_path):
         po = polib.pofile(po_path)
+    else:
+        po = polib.POFile()
 
-        for msgid, trans_dict in TRANSLATIONS.items():
-            if lang in trans_dict:
-                entry = po.find(msgid)
-                if entry:
-                    entry.msgstr = trans_dict[lang]
-                else:
-                    entry = polib.POEntry(
-                        msgid=msgid,
-                        msgstr=trans_dict[lang]
-                    )
-                    po.append(entry)
+    # تنظیم متادیتا
+    po.metadata = {
+        'Project-Id-Version': '1.0',
+        'Language': lang,
+        'MIME-Version': '1.0',
+        'Content-Type': 'text/plain; charset=utf-8',
+        'Content-Transfer-Encoding': '8bit',
+    }
 
-        po.save(po_path)
-        print(f"Updated {po_path}")
+    # پاک کردن همه ورودی‌های قبلی برای جلوگیری از تکرار
+    po.clear()
+
+    # افزودن همه رشته‌ها
+    for msgid, trans_dict in TRANSLATIONS.items():
+        if lang == 'en':
+            msgstr = msgid
+        else:
+            msgstr = trans_dict.get(lang, '')
+        entry = polib.POEntry(
+            msgid=msgid,
+            msgstr=msgstr
+        )
+        po.append(entry)
+
+    po.save(po_path)
+    print(f"Updated {po_path}")
 
 
 if __name__ == '__main__':
-    print("Starting translation update...")
-    update_translations()
+    print("Starting translation generation...")
+    for lang in LANGS:
+        create_or_update_po(lang)
     print("Done. Now run: python manage.py compilemessages")

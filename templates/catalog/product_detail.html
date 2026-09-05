@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static i18n currency_tags %}
+
+{% block title %}{{ product.name }} | {% trans 'Palace Karimi' %}{% endblock %}
+
+{% block content %}
+<div role="main" class="main shop pt-4">
+    <div class="container">
+       <div class="row">
+          <div class="col-lg-6">
+             <div class="owl-carousel owl-theme" data-plugin-options="{'items': 1, 'margin': 10}">
+                {% for image in product.images.all %}
+                <div>
+                    <img alt="{{ image.alt_text|default:product.name }}" src="{{ image.image.url }}" class="img-fluid" style="border-radius: 8px;">
+                </div>
+                {% empty %}
+                <div>
+                    <img alt="{{ product.name }}" src="{% static 'img/products/product-0.png' %}" class="img-fluid" style="border-radius: 8px;">
+                </div>
+                {% endfor %}
+             </div>
+          </div>
+          <div class="col-lg-6">
+             <div class="summary entry-summary">
+                <h1 class="mb-2 font-weight-bold text-7">{{ product.name }}</h1>
+                {% with variant=product.default_variant %}
+                    {% if variant %}
+                    <p class="price">
+                        <span class="amount">{% convert_price variant.base_price %}</span>
+                    </p>
+                    {% endif %}
+                {% endwith %}
+                <p class="mb-4">{{ product.short_description }}</p>
+                <a href="{% url 'catalog:contact_us' %}" class="btn custom-gold-btn text-uppercase">{% trans 'Contact for Price' %}</a>
+                <div class="product-meta mt-3">
+                   <span class="posted-in">{% trans 'Category' %}: <a href="{% url 'catalog:category_products' slug=product.category.slug %}" rel="tag">{{ product.category.name }}</a>.</span>
+                </div>
+             </div>
+          </div>
+       </div>
+       <div class="row">
+          <div class="col">
+             <div class="tabs tabs-product mb-2">
+                <ul class="nav nav-tabs d-block d-sm-flex">
+                   <li class="nav-item active"><a class="nav-link py-3 px-4" href="#productDescription" data-toggle="tab">{% trans 'Description' %}</a></li>
+                   <li class="nav-item"><a class="nav-link py-3 px-4" href="#productInfo" data-toggle="tab">{% trans 'Additional Info' %}</a></li>
+                </ul>
+                <div class="tab-content p-0">
+                   <div class="tab-pane p-4 active" id="productDescription">
+                      {{ product.full_description|safe }}
+                   </div>
+                   <div class="tab-pane p-4" id="productInfo">
+                        <table class="table table-striped">
+                            <tbody>
+                                {% for variant in product.variants.all %}
+                                <tr>
+                                    <th>{{ variant.packaging_type.name }}</th>
+                                    <td>{{ variant.weight_in_grams }}g - (MOQ: {{ variant.moq }})</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+       <div class="row">
+          <div class="col">
+             <hr class="solid my-5">
+             <h4 class="mb-4"><strong>{% trans 'Related Products' %}</strong></h4>
+             <div class="row products product-thumb-info-list">
+                {% for related_product in related_products %}
+                <div class="col-12 col-sm-6 col-lg-3 product mb-4">
+                    {% with variant=related_product.default_variant %}
+                    <span class="product-thumb-info border-0">
+                        <a href="{% url 'catalog:contact_us' %}" class="add-to-cart-product custom-gold-btn">
+                            <span class="text-1 text-uppercase font-weight-bold">{% trans 'Contact for Price' %}</span>
+                        </a>
+                        <a href="{% url 'catalog:product_detail' slug=related_product.slug %}">
+                            <span class="product-thumb-info-image">
+                                {% if related_product.main_image %}
+                                    <img alt="{{ related_product.main_image.alt_text|default:related_product.name }}" class="img-fluid" src="{{ related_product.main_image.image.url }}">
+                                {% else %}
+                                    <img alt="{{ related_product.name }}" class="img-fluid" src="{% static 'img/products/product-0.png' %}">
+                                {% endif %}
+                            </span>
+                        </a>
+                        <span class="product-thumb-info-content product-thumb-info-content pl-0 bg-color-light">
+                            <a href="{% url 'catalog:product_detail' slug=related_product.slug %}">
+                                <h4 class="text-4 text-primary mb-1">{{ related_product.name }}</h4>
+                                <span class="price">
+                                    {% if variant %}
+                                        <span class="amount text-dark font-weight-semibold">{% convert_price variant.base_price %}</span>
+                                    {% endif %}
+                                </span>
+                            </a>
+                        </span>
+                    </span>
+                    {% endwith %}
+                </div>
+                {% endfor %}
+             </div>
+          </div>
+       </div>
+    </div>
+</div>
+{% endblock %}

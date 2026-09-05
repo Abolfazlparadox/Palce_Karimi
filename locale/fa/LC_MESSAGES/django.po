@@ -1,4 +1,3 @@
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
@@ -55,7 +54,7 @@ msgid "Follow Us"
 msgstr "ما را دنبال کنید"
 
 msgid "© 2026 Palace Karimi. All Rights Reserved."
-msgstr "© ۲۰۲۶ پالاس کریمی. تمامی حقوق محفوظ است."
+msgstr "© ۲۰۲۶ پالِس کریمی. تمامی حقوق محفوظ است."
 
 msgid "Designed & Developed by"
 msgstr "طراحی و توسعه توسط"
@@ -116,7 +115,7 @@ msgid "view products."
 msgstr "مشاهده محصولات."
 
 msgid "Palace Karimi is a brand that is"
-msgstr "پالس کریمی برندی"
+msgstr "پالِس کریمی برندی"
 
 msgid "Authentic"
 msgstr "اصیل"
@@ -131,7 +130,7 @@ msgid "and a secure choice for export."
 msgstr "و انتخابی مطمئن برای صادرات است."
 
 msgid "Experience the pinnacle of luxury with Palace Karimi"
-msgstr "اوج لوکس بودن را با پالس کریمی تجربه کنید"
+msgstr "اوج لوکس بودن را با پالِس کریمی تجربه کنید"
 
 msgid "Consultation"
 msgstr "مشاوره"
@@ -161,7 +160,7 @@ msgid "Why Choose"
 msgstr "چرا انتخاب کنید"
 
 msgid "Palace Karimi?"
-msgstr "پالاس کریمی؟"
+msgstr "پالِس کریمی؟"
 
 msgid "Pure, natural products cultivated without harmful chemicals."
 msgstr "محصولات خالص و طبیعی که بدون مواد شیمیایی مضر کشت می‌شوند."
@@ -256,7 +255,7 @@ msgid ""
 "Sourced directly from the finest farms, our saffron and pistachios undergo "
 "rigorous quality control."
 msgstr ""
-"پالاس کریمی یک صادرکننده پیشرو در محصولات کشاورزی برتر است. زعفران و پسته ما"
+"پالِس کریمی یک صادرکننده پیشرو در محصولات کشاورزی برتر است. زعفران و پسته ما"
 " مستقیماً از بهترین مزارع تهیه شده و تحت کنترل کیفیت دقیق قرار می‌گیرند."
 
 msgid "Read More"
@@ -327,7 +326,7 @@ msgid ""
 "Palace Karimi officially expanded its export lines to Europe and the Middle "
 "East, acquiring major international licenses."
 msgstr ""
-"پالاس کریمی رسماً خطوط صادراتی خود را به اروپا و خاورمیانه گسترش داد و "
+"پالِس کریمی رسماً خطوط صادراتی خود را به اروپا و خاورمیانه گسترش داد و "
 "مجوزهای بین‌المللی عمده را دریافت کرد."
 
 msgid "Modern Facilities"
@@ -350,7 +349,7 @@ msgid "Our Team"
 msgstr "تیم ما"
 
 msgid "The dedicated experts behind the success of Palace Karimi."
-msgstr "کارشناسان متعهد پشت موفقیت پالاس کریمی."
+msgstr "کارشناسان متعهد پشت موفقیت پالِس کریمی."
 
 msgid "Abolfazl Karimi"
 msgstr "ابوالفضل کریمی"
@@ -393,7 +392,7 @@ msgid ""
 msgstr "نمایش ارزش واقعی و لوکس زعفران ایرانی به مخاطبان بین‌المللی ما."
 
 msgid "Palace Karimi; The Symbol of"
-msgstr "پالس کریمی؛ نمادِ"
+msgstr "پالِس کریمی؛ نمادِ"
 
 msgid "Authenticity"
 msgstr "اصالت"
@@ -417,7 +416,7 @@ msgid ""
 "pistachios, Palace Karimi stands as a bridge between the ancient farms of "
 "Persia and the luxury global market."
 msgstr ""
-"پالس کریمی با میراثی غنی در کشت بهترین زعفران و پسته جهان، به عنوان پلی میان"
+"پالِس کریمی با میراثی غنی در کشت بهترین زعفران و پسته جهان، به عنوان پلی میان"
 " مزارع کهن ایران و بازار لوکس جهانی ایستاده است."
 
 msgid "We deliver nothing but perfection."
@@ -528,7 +527,7 @@ msgstr ""
 "برچسب‌گذاری خصوصی، کارشناسان ما آماده کمک به شما هستند."
 
 msgid "Palace Karimi is"
-msgstr "پالس کریمی"
+msgstr "پالِس کریمی"
 
 msgid "Everything"
 msgstr "همان چیزی"
@@ -552,7 +551,7 @@ msgid "Hossein Karimi Trading"
 msgstr "بازرگانی حسین کریمی"
 
 msgid "Palace Karimi Office"
-msgstr "دفتر مرکزی پالس کریمی"
+msgstr "دفتر مرکزی پالِس کریمی"
 
 msgid ""
 "With years of experience in cultivation, processing, and exporting the "
@@ -568,7 +567,7 @@ msgid "09303755667"
 msgstr "09303755667"
 
 msgid "404 - Page Not Found"
-msgstr "۴۰۴ - صفحه پیدا نشد"
+msgstr "۴۰۴ - صفحه مورد نظر پیدا نشد"
 
 msgid "404"
 msgstr "۴۰۴"
@@ -681,10 +680,10 @@ msgid "Corner of Chamran 28, Chamran St., Sabzevar, Khorasan Razavi, Iran"
 msgstr "ایران، خراسان رضوی، سبزوار، خیابان چمران، نبش چمران ۲۸"
 
 msgid "Palace Karimi Logo"
-msgstr "لوگوی پالاس کریمی"
+msgstr "لوگوی پالِس کریمی"
 
 msgid "Palace Karimi | Luxury Persian Saffron & Pistachio"
-msgstr "پالاس کریمی | زعفران و پسته لوکس ایرانی"
+msgstr "پالِس کریمی | زعفران و پسته لوکس ایرانی"
 
 msgid "In God We Trust..."
 msgstr "به خدا توکل داریم..."
@@ -723,7 +722,7 @@ msgid "Admin Panel"
 msgstr "پنل مدیریت"
 
 msgid "Palace Karimi: From the heart of orchards to the heart of business"
-msgstr "پالس کریمی؛ از دل باغستان تا قلب تجارت"
+msgstr "پالِس کریمی؛ از دل باغستان تا قلب تجارت"
 
 msgid ""
 "Handpicked from the finest orchards and processed under strict quality "
@@ -830,7 +829,7 @@ msgid ""
 " team of 25 experts, we specialize in supplying, packaging, and exporting "
 "premium Iranian saffron and pistachios."
 msgstr ""
-"بازرگانی حسین کریمی با برند (پالس کریمی) به مدیریت آقای حسین کریمی، امروزه "
+"بازرگانی حسین کریمی با برند (پالِس کریمی) به مدیریت آقای حسین کریمی، امروزه "
 "با بهره‌گیری از تیمی متشکل از ۲۵ نیروی متخصص و متعهد، مجموعه‌ای پویا و رو به"
 " رشد در حوزه تأمین، بسته‌بندی و صادرات پسته و زعفران ممتاز ایران فعالیت "
 "می‌کند."
@@ -855,10 +854,74 @@ msgid ""
 "enduring and trusted name in the global trade of authentic Persian products,"
 " forging long-term collaborations with business partners worldwide."
 msgstr ""
-"در پالس کریمی، کیفیت تنها یک استاندارد نیست، بلکه تعهدی است که در تمامی "
+"در پالِس کریمی، کیفیت تنها یک استاندارد نیست، بلکه تعهدی است که در تمامی "
 "همکاری‌ها و خدمات ما جریان دارد. چشم‌انداز ما، تبدیل شدن به یکی از نام‌های "
 "ماندگار و قابل اعتماد در تجارت جهانی محصولات اصیل ایرانی و ایجاد همکاری‌های "
 "بلندمدت با شرکای تجاری در سراسر جهان است."
 
 msgid "God provides sustenance without measure."
 msgstr "خدا روزی‌رسان بی‌حساب است."
+
+msgid "Sale!"
+msgstr "حراج!"
+
+msgid "Contact for Price"
+msgstr "تماس برای قیمت"
+
+msgid "Price not set"
+msgstr "قیمت تعیین نشده"
+
+msgid "No products available in this category."
+msgstr "هیچ محصولی در این دسته‌بندی موجود نیست."
+
+msgid "Description"
+msgstr "توضیحات"
+
+msgid "Additional Info"
+msgstr "اطلاعات بیشتر"
+
+msgid "Related Products"
+msgstr "محصولات مرتبط"
+
+msgid "Category"
+msgstr "دسته‌بندی"
+
+msgid "You have sent too many messages. Please try again later."
+msgstr "تعداد پیام‌های شما بیش از حد مجاز است. لطفاً بعداً دوباره تلاش کنید."
+
+msgid "Your message has been sent successfully. We will contact you soon."
+msgstr "پیام شما با موفقیت ارسال شد. به زودی با شما تماس خواهیم گرفت."
+
+msgid "success_contact"
+msgstr "پیام شما با موفقیت ارسال شد. به زودی با شما تماس خواهیم گرفت."
+
+msgid "Too many requests. Please try again later."
+msgstr "تعداد درخواست‌ها بیش از حد مجاز است. لطفاً بعداً دوباره تلاش کنید."
+
+msgid "Please enter an email address."
+msgstr "لطفاً یک آدرس ایمیل وارد کنید."
+
+msgid "Thank you for subscribing to our newsletter."
+msgstr "با تشکر از عضویت شما در خبرنامه."
+
+msgid "You are already subscribed to our email list."
+msgstr "شما قبلاً در خبرنامه ثبت‌نام کرده‌اید."
+
+msgid "Invalid email address. Please check and try again."
+msgstr "آدرس ایمیل نامعتبر است. لطفاً بررسی و دوباره تلاش کنید."
+
+msgid ""
+"Your message is too short. Please provide more details (minimum 20 "
+"characters)."
+msgstr ""
+"متن پیام شما بسیار کوتاه است. لطفاً اطلاعات بیشتری وارد کنید (حداقل ۲۰ "
+"کاراکتر)."
+
+msgid "Spam bot detected!"
+msgstr "ربات اسپم شناسایی شد!"
+
+msgid "Phone Extension"
+msgstr "پیش‌شماره تلفن"
+
+msgid "Notifications"
+msgstr "اعلان‌ها"
